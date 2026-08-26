@@ -1,0 +1,41 @@
+{
+  "id": "magnesium-ribbon",
+  "name": "Magnesium Ribbon",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A thin strip of elemental magnesium metal as used in the CBSE Class 10 'burning of magnesium ribbon' experiment, shown as a gently wavy strip.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "length": 0.15,
+    "width": 0.012,
+    "thickness": 0.0015
+  },
+  "simplifications": [
+    "Thickness exaggerated from ~0.1 mm (real ribbon) to 1.5 mm so the strip remains visible at educational camera distances; the exaggeration must not be read as physical scale.",
+    "Wavy-strip shape approximates how rolled magnesium ribbon unwinds; it is not an exact model of any specific commercial ribbon."
+  ],
+  "materials": [
+    { "id": "magnesium-metal", "look": "silvery-white metal, metallic 1.0, roughness 0.35" }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_magnesium_ribbon.py",
+    "generatedBy": "AI coding agent (ox-alpha)",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/magnesium-ribbon.glb",
+    "remotion": "use out/preview.png or render frames from the .blend scene"
+  },
+  "outputs": [
+    { "file": "out/magnesium-ribbon.blend", "kind": "blender-scene" },
+    { "file": "out/magnesium-ribbon.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["mg", "metal", "laboratory"]
+}

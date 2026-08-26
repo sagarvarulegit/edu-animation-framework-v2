@@ -1,0 +1,42 @@
+{
+  "id": "chemistry.magnesium-ribbon",
+  "title": "Burning of Magnesium Ribbon",
+  "subject": "chemistry",
+  "grade": 10,
+  "curriculum": "CBSE",
+  "status": "foundation",
+  "learningObjectives": [
+    "Observe the burning of magnesium ribbon.",
+    "Identify the bright white flame and white solid product.",
+    "Understand that magnesium reacts with oxygen.",
+    "Represent the reaction with a balanced chemical equation."
+  ],
+  "scenes": [
+    {
+      "id": "introduction",
+      "purpose": "Establish the laboratory experiment.",
+      "assets": [
+        "magnesium-ribbon",
+        "laboratory-tongs",
+        "bunsen-burner"
+      ]
+    },
+    {
+      "id": "heating",
+      "purpose": "Show the ribbon being heated."
+    },
+    {
+      "id": "burning",
+      "purpose": "Show bright white combustion and formation of product."
+    },
+    {
+      "id": "molecular-explanation",
+      "purpose": "Conceptually visualize magnesium reacting with oxygen."
+    },
+    {
+      "id": "chemical-equation",
+      "purpose": "Connect the observation to the balanced equation.",
+      "equation": "2Mg + O₂ → 2MgO"
+    }
+  ]
+}

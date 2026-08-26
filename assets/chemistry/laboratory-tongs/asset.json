@@ -1,0 +1,38 @@
+{
+  "id": "laboratory-tongs",
+  "name": "Laboratory Tongs",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "Steel laboratory tongs (scissor type) used to hold a magnesium ribbon over a flame without direct hand contact.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "totalLength": 0.22
+  },
+  "simplifications": [
+    "Arms are straight bars with a simple hinge cylinder; real tongs have curved jaws and finger rings that are omitted for visual clarity at educational camera distances."
+  ],
+  "materials": [
+    { "id": "tongs-steel", "look": "brushed steel, metallic 1.0, roughness 0.35" }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_laboratory_tongs.py",
+    "generatedBy": "AI coding agent (ox-alpha)",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/laboratory-tongs.glb",
+    "remotion": "use out/preview.png or render frames from the .blend scene"
+  },
+  "outputs": [
+    { "file": "out/laboratory-tongs.blend", "kind": "blender-scene" },
+    { "file": "out/laboratory-tongs.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["laboratory", "equipment"]
+}

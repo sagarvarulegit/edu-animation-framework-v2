@@ -1,0 +1,17 @@
+{
+  "name": "edu-animation-framework",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI-agent-friendly framework for educational 2D/3D animation and interactive STEM lessons",
+  "scripts": {
+    "validate": "node tools/validate.mjs",
+    "build:magnesium-ribbon": "blender --background --python assets/chemistry/magnesium-ribbon/build_magnesium_ribbon.py",
+    "build:laboratory-tongs": "blender --background --python assets/chemistry/laboratory-tongs/build_laboratory_tongs.py",
+    "build:bunsen-burner": "blender --background --python assets/chemistry/bunsen-burner/build_bunsen_burner.py",
+    "render:scene01-introduction": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/01-introduction.json --qa-frames 12,60,96,143 --width 960 --height 540 --samples 48",
+    "render:scene02-heating": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/02-heating.json --qa-frames 18,44,80,140 --width 960 --height 540 --samples 48",
+    "render:scene03-burning": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/03-burning.json --qa-frames 12,62,130,191 --width 960 --height 540 --samples 48",
+    "render:scene01-introduction": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/01-introduction.json --qa-frames 12,60,96,143",
+    "test": "echo \"Tests not implemented yet\""
+  }
+}

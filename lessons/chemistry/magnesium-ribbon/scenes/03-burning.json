@@ -1,0 +1,37 @@
+{
+  "id": "03-burning",
+  "lessonId": "chemistry.magnesium-ribbon",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 8,
+  "purpose": "The ribbon ignites and burns with a dazzling white light, then settles as a white magnesium oxide solid. Continues from 02-heating (ribbon already lowered into the flame).",
+  "instances": [
+    { "asset": "bunsen-burner", "position": [0.0, 0.0, 0.0] },
+    { "asset": "laboratory-tongs", "position": [0.18, 0.0, 0.145], "rotationZ": 180 },
+    { "asset": "magnesium-ribbon", "position": [0.0, 0.0, 0.145] }
+  ],
+  "camera": {
+    "shots": {
+      "focusOnFlame": {
+        "position": [0.2, -0.26, 0.21],
+        "target": [0.0, 0.0, 0.15],
+        "lens": 55
+      },
+      "revealProduct": {
+        "position": [0.5, -0.66, 0.36],
+        "target": [0.07, 0.0, 0.1],
+        "lens": 50
+      }
+    }
+  },
+  "timeline": [
+    { "primitive": "cameraMove", "shot": "focusOnFlame", "start": 0.0, "duration": 0.04 },
+    { "primitive": "showFlame", "target": "bunsen-burner", "offset": [0.0, 0.0, 0.135], "start": 0.0, "duration": 0.04, "end": 5.4 },
+    { "primitive": "heat", "target": "magnesium-ribbon", "color": [1.0, 0.3, 0.05], "strength": 1.5, "start": 0.2, "duration": 0.8 },
+    { "primitive": "burn", "target": "magnesium-ribbon", "strength": 120, "start": 1.0, "duration": 4.5 },
+    { "primitive": "showLabel", "target": "magnesium-ribbon", "text": "Dazzling white light!", "start": 1.6, "end": 4.6, "offset": [0.0, 0.0, 0.04] },
+    { "primitive": "transform", "target": "magnesium-ribbon", "look": "magnesium-oxide", "start": 5.0 },
+    { "primitive": "cameraMove", "shot": "revealProduct", "start": 5.6, "duration": 1.6 },
+    { "primitive": "showLabel", "target": "magnesium-ribbon", "text": "Magnesium oxide - white solid", "start": 6.4, "end": 7.8, "offset": [0.0, 0.0, 0.04] }
+  ]
+}

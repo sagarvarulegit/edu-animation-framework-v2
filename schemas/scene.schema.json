@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "edu-animation-framework/scene.schema.json",
+  "title": "Semantic Scene Plan",
+  "description": "A scene plan describes WHAT happens in one lesson scene using semantic primitives — never renderer implementation details. Coordinate convention: meters, real-world laboratory scale; origin at the bench surface beneath the burner center; +Y toward the viewer; +Z up. The Blender adapter lives in renderers/blender/. Validation is enforced by tools/validate.mjs; the supported primitive set grows as renderer implementations land.",
+  "type": "object",
+  "required": ["id", "lessonId", "fps", "duration", "instances", "timeline"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "lessonId": { "type": "string" },
+    "renderer": { "type": "string", "enum": ["blender", "three", "remotion"] },
+    "fps": { "type": "integer", "minimum": 1 },
+    "duration": { "type": "number", "exclusiveMinimum": 0, "description": "Seconds." },
+    "instances": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["asset", "position"],
+        "properties": {
+          "asset": { "type": "string", "description": "Must exist in the assets/ registry." },
+          "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "rotationZ": { "type": "number", "description": "Degrees about +Z." }
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "properties": {
+        "shots": {
+          "type": "object",
+          "description": "Named camera poses; keys are semantic shot names (establishExperiment, focusOnRibbon, ...).",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["position", "target"],
+            "properties": {
+              "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+              "target": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+              "lens": { "type": "number", "description": "Focal length in mm." }
+            }
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["primitive", "start"],
+        "properties": {
+          "primitive": {
+            "type": "string",
+            "description": "Semantic animation primitive. Must be implemented by the target renderer."
+          },
+          "target": { "type": "string", "description": "Asset id of an instance in this scene." },
+          "start": { "type": "number", "minimum": 0 },
+          "duration": { "type": "number", "minimum": 0 },
+          "text": { "type": "string" },
+          "offset": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "color": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3, "description": "RGB 0..1, e.g. heat glow color." },
+          "strength": { "type": "number", "description": "Emission strength (heat/burn)." },
+          "look": { "type": "string", "description": "Named material look for transform (e.g. magnesium-oxide). Defined per renderer in semantic_primitives.LOOKS." },
+          "end": { "type": "number" },
+          "shot": { "type": "string", "description": "Named shot from camera.shots." }
+        }
+      }
+    }
+  }
+}

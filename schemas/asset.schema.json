@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "edu-animation-framework/asset.schema.json",
+  "title": "Educational Asset Metadata",
+  "description": "Metadata contract for every reusable asset in assets/. Each asset lives in its own directory containing this file, a deterministic build script, and generated outputs. Validation is currently enforced by tools/validate.mjs (hand-rolled subset of this schema); swap to ajv if the schema grows complex.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "category",
+    "version",
+    "semanticDescription",
+    "scaleConvention",
+    "provenance",
+    "rendererCompatibility"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Stable kebab-case identifier. Must match the directory name and must never be an implementation name like 'Cube.001'."
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "category": {
+      "type": "string",
+      "enum": ["chemistry", "physics", "biology", "mathematics", "shared"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["prop", "molecular", "diagram"],
+      "description": "prop = laboratory/world object, molecular = conceptual atom/molecule representation, diagram = 2D explanatory element."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "final"]
+    },
+    "semanticDescription": { "type": "string", "minLength": 1 },
+    "scaleConvention": {
+      "type": "object",
+      "required": ["unit", "basis"],
+      "properties": {
+        "unit": { "type": "string", "description": "World-unit meaning, e.g. 'meter'." },
+        "basis": {
+          "type": "string",
+          "enum": ["real-world-scale", "visualization-scale"],
+          "description": "'real-world-scale' for laboratory objects at approximately true size; 'visualization-scale' for deliberately rescaled molecular/conceptual models."
+        }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "description": "Approximate authored dimensions in scaleConvention units (informational)."
+    },
+    "simplifications": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Every deliberate deviation from physical reality MUST be listed here (AGENTS.md sections 4 and 17)."
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "look"],
+        "properties": {
+          "id": { "type": "string" },
+          "look": { "type": "string" }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["method", "generator"],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["procedural-blender-python", "ai-text-to-3d", "manual-authoring", "scanned-sourced"]
+        },
+        "generator": { "type": "string", "description": "Path of the deterministic build script relative to the asset directory." },
+        "generatedBy": { "type": "string" },
+        "source": { "type": "string", "description": "Required for external/scanned assets: origin URL or attribution." },
+        "license": { "type": "string", "description": "Required for external assets, e.g. CC-BY-4.0. Use 'project-original' for in-house procedural assets." },
+        "date": { "type": "string" }
+      }
+    },
+    "rendererCompatibility": {
+      "type": "object",
+      "required": ["blender"],
+      "properties": {
+        "blender": { "type": "boolean" },
+        "three": { "type": "string", "description": "How Three.js consumes this asset, e.g. path to exported .glb." },
+        "remotion": { "type": "string", "description": "How Remotion compositions consume this asset." }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "kind"],
+        "properties": {
+          "file": { "type": "string" },
+          "kind": { "type": "string", "enum": ["blender-scene", "glTF-binary", "preview-render"] }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+$" }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "bunsen-burner",
+  "name": "Bunsen Burner",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A standard laboratory Bunsen burner: cast base, vertical stem, adjustable air collar, and brass nozzle. Provides the flame used to heat and ignite the magnesium ribbon.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "totalHeight": 0.133
+  },
+  "simplifications": [
+    "Gas inlet hose and gas tap are omitted; lessons should imply the gas connection verbally if needed.",
+    "Air-collar adjustment ring is a static representation; no moving parts are authored yet.",
+    "Flame is intentionally NOT part of this asset; flames belong to animation primitives (heat/ignite) so intensity can be driven per scene."
+  ],
+  "materials": [
+    { "id": "burner-cast-iron", "look": "dark cast metal, metallic 0.8, roughness 0.45" },
+    { "id": "burner-brass", "look": "brass nozzle, metallic 1.0, roughness 0.30" }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_bunsen_burner.py",
+    "generatedBy": "AI coding agent (ox-alpha)",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/bunsen-burner.glb",
+    "remotion": "use out/preview.png or render frames from the .blend scene"
+  },
+  "outputs": [
+    { "file": "out/bunsen-burner.blend", "kind": "blender-scene" },
+    { "file": "out/bunsen-burner.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["laboratory", "equipment", "flame-source"]
+}
