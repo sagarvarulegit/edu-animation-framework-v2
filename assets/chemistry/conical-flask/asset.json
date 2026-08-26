@@ -1,0 +1,57 @@
+{
+  "id": "conical-flask",
+  "name": "Conical Flask (Erlenmeyer)",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "An Erlenmeyer conical flask with wide base and narrow neck, used in CBSE Class 10 chemistry for mixing, heating, and gas collection.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "height": 0.095,
+    "base-diameter": 0.08
+  },
+  "simplifications": [
+    "Simplified neck-to-body transition.",
+    "Glass thickness approximated."
+  ],
+  "materials": [
+    {
+      "id": "flask-glass",
+      "look": "transparent glass, transmission 0.9, roughness 0.05"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_flask.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/conical-flask.glb",
+    "remotion": "use out/preview.png or render frames"
+  },
+  "outputs": [
+    {
+      "file": "out/conical-flask.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/conical-flask.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "flask",
+    "erlenmeyer",
+    "glass",
+    "laboratory"
+  ]
+}

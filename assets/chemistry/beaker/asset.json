@@ -1,0 +1,57 @@
+{
+  "id": "beaker",
+  "name": "250ml Beaker",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A standard 250ml glass laboratory beaker with pour spout and graduation marks, used in CBSE Class 10 chemistry experiments for mixing, heating, and measuring liquids.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "height": 0.095,
+    "diameter": 0.065
+  },
+  "simplifications": [
+    "Graduation marks are decorative rings, not numerically accurate.",
+    "Beaker is shown as a solid glass shell rather than thin-walled."
+  ],
+  "materials": [
+    {
+      "id": "beaker-glass",
+      "look": "transparent glass, transmission 0.9, roughness 0.05"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_beaker.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/beaker.glb",
+    "remotion": "use out/preview.png or render frames"
+  },
+  "outputs": [
+    {
+      "file": "out/beaker.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/beaker.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "beaker",
+    "glass",
+    "laboratory",
+    "mixing"
+  ]
+}

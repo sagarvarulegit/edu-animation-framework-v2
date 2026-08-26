@@ -1,0 +1,57 @@
+{
+  "id": "plane-mirror",
+  "name": "Plane Mirror with Frame",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A flat rectangular plane mirror with wooden frame, used in CBSE Class 10 Ch9 to demonstrate reflection and image formation.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.12,
+    "height": 0.08
+  },
+  "simplifications": [
+    "Flat reflective surface; no slight curvature.",
+    "Frame simplified to 4 straight strips."
+  ],
+  "materials": [
+    {
+      "id": "mirror-surface",
+      "look": "silver reflective, metallic 1.0, roughness 0.02"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_plane_mirror.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/plane-mirror.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/plane-mirror.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/plane-mirror.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "mirror",
+    "plane-mirror",
+    "reflection",
+    "optics"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "retort-stand",
+  "name": "Retort Stand with Clamp",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "An iron retort stand with base plate, vertical rod, and adjustable clamp, used to hold test tubes and flasks during CBSE Class 10 experiments.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "height": 0.15,
+    "base-width": 0.1
+  },
+  "simplifications": [
+    "Clamp shown in fixed position.",
+    "No wingnut detail."
+  ],
+  "materials": [
+    {
+      "id": "stand-iron",
+      "look": "dark iron, metallic 0.8, roughness 0.45"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_stand.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/retort-stand.glb",
+    "remotion": "use out/preview.png or render frames"
+  },
+  "outputs": [
+    {
+      "file": "out/retort-stand.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/retort-stand.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "stand",
+    "clamp",
+    "iron",
+    "laboratory",
+    "support"
+  ]
+}

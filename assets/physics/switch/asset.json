@@ -1,0 +1,57 @@
+{
+  "id": "switch",
+  "name": "Knife Switch (Open)",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A simple single-pole knife switch in open position, used in CBSE Class 10 electricity to make/break circuits.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.04,
+    "depth": 0.02
+  },
+  "simplifications": [
+    "No mounting screws.",
+    "Arm angle simplified."
+  ],
+  "materials": [
+    {
+      "id": "switch-contact",
+      "look": "brass/copper contact"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_switch.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/switch.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/switch.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/switch.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "switch",
+    "knife-switch",
+    "circuit",
+    "electricity"
+  ]
+}

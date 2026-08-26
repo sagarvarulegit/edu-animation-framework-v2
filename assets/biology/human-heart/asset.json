@@ -1,0 +1,68 @@
+{
+  "id": "human-heart",
+  "name": "Human Heart (Cross-Section)",
+  "category": "biology",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A simplified cross-section of the human heart showing 4 chambers (right/left atrium, right/left ventricle), septum, aorta, vena cava, and pulmonary artery. Color-coded: red for oxygenated blood, blue for deoxygenated. Used in CBSE Class 10 Ch5 (Life Processes) and Ch6 (Control & Coordination).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "simplified",
+    "height": 0.1,
+    "width": 0.07
+  },
+  "simplifications": [
+    "Chambers shown as geometric shapes rather than organic curves.",
+    "Valves simplified.",
+    "Coronary arteries omitted.",
+    "Scale not anatomically precise."
+  ],
+  "materials": [
+    {
+      "id": "heart-muscle",
+      "look": "dark red muscle tissue"
+    },
+    {
+      "id": "heart-oxy",
+      "look": "bright red for oxygenated blood vessels"
+    },
+    {
+      "id": "heart-deoxy",
+      "look": "blue for deoxygenated blood vessels"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_heart.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/human-heart.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/human-heart.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/human-heart.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "heart",
+    "anatomy",
+    "circulation",
+    "chambers",
+    "blood"
+  ]
+}

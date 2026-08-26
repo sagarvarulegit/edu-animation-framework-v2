@@ -1,0 +1,61 @@
+{
+  "id": "battery",
+  "name": "Dry Cell Battery (AA)",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A standard AA dry cell battery with positive and negative terminals, used in CBSE Class 10 electricity experiments to provide EMF.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "height": 0.05,
+    "diameter": 0.014
+  },
+  "simplifications": [
+    "Simplified label without brand text.",
+    "Terminal details reduced."
+  ],
+  "materials": [
+    {
+      "id": "battery-body",
+      "look": "dark metallic cylinder"
+    },
+    {
+      "id": "battery-terminal",
+      "look": "brass terminal"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_battery.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/battery.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/battery.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/battery.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "battery",
+    "cell",
+    "electricity",
+    "emf"
+  ]
+}

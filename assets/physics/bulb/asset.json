@@ -1,0 +1,62 @@
+{
+  "id": "bulb",
+  "name": "Incandescent Light Bulb",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A small incandescent light bulb with glass globe, metal base, and visible filament, used in CBSE Class 10 electricity circuits to demonstrate current flow.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "height": 0.04,
+    "diameter": 0.03
+  },
+  "simplifications": [
+    "Screw thread simplified to smooth cylinder.",
+    "Filament shown as single rod rather than coiled wire."
+  ],
+  "materials": [
+    {
+      "id": "bulb-glass",
+      "look": "transparent glass globe"
+    },
+    {
+      "id": "bulb-filament",
+      "look": "tungsten filament, warm glow"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_bulb.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/bulb.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/bulb.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/bulb.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "bulb",
+    "lamp",
+    "light",
+    "electricity",
+    "filament"
+  ]
+}

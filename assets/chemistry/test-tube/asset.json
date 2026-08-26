@@ -1,0 +1,57 @@
+{
+  "id": "test-tube",
+  "name": "Test Tube",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A standard glass test tube with rounded bottom and rim, used in CBSE Class 10 chemistry for small-scale reactions and heating.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "height": 0.125,
+    "diameter": 0.018
+  },
+  "simplifications": [
+    "Single test tube shown; real experiments may use multiple.",
+    "Glass thickness approximated."
+  ],
+  "materials": [
+    {
+      "id": "test-tube-glass",
+      "look": "transparent glass, transmission 0.9, roughness 0.05"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_test_tube.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/test-tube.glb",
+    "remotion": "use out/preview.png or render frames"
+  },
+  "outputs": [
+    {
+      "file": "out/test-tube.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/test-tube.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "test-tube",
+    "glass",
+    "laboratory",
+    "reaction"
+  ]
+}

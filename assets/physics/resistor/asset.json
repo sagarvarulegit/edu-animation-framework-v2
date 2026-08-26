@@ -1,0 +1,57 @@
+{
+  "id": "resistor",
+  "name": "Through-Hole Resistor",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A standard axial through-hole resistor with 4 color bands (Red-Blue-Yellow-Gold = 260k\u03a9 \u00b15%), used in CBSE Class 10 electricity circuits.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "length": 0.006,
+    "diameter": 0.002
+  },
+  "simplifications": [
+    "Color band values are illustrative.",
+    "Lead length simplified."
+  ],
+  "materials": [
+    {
+      "id": "resistor-body",
+      "look": "tan/beige ceramic body"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_resistor.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/resistor.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/resistor.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/resistor.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "resistor",
+    "ohm",
+    "circuit",
+    "electricity"
+  ]
+}

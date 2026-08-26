@@ -1,0 +1,58 @@
+{
+  "id": "convex-lens",
+  "name": "Biconvex Lens",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A biconvex (converging) lens with transparent glass material (IOR 1.52), used in CBSE Class 10 Ch9-10 to demonstrate refraction and image formation.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "diameter": 0.08,
+    "thickness": 0.02
+  },
+  "simplifications": [
+    "Symmetric biconvex rather than plano-convex.",
+    "No mounting ring."
+  ],
+  "materials": [
+    {
+      "id": "lens-glass",
+      "look": "transparent glass, transmission 0.9, IOR 1.52"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_convex_lens.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/convex-lens.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/convex-lens.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/convex-lens.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "lens",
+    "convex",
+    "converging",
+    "optics",
+    "refraction"
+  ]
+}

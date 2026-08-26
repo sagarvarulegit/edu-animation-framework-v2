@@ -1,0 +1,62 @@
+{
+  "id": "connecting-wire",
+  "name": "Connecting Wire (Red)",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A red-insulated copper connecting wire with stripped ends, used to connect components in CBSE Class 10 electricity circuits.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "length": 0.15,
+    "diameter": 0.003
+  },
+  "simplifications": [
+    "Straight wire rather than coiled.",
+    "Single color (red) shown; black variant also common."
+  ],
+  "materials": [
+    {
+      "id": "wire-red",
+      "look": "red PVC insulation"
+    },
+    {
+      "id": "wire-copper",
+      "look": "bare copper conductor"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_wire.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/connecting-wire.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/connecting-wire.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/connecting-wire.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "wire",
+    "copper",
+    "circuit",
+    "electricity",
+    "conductor"
+  ]
+}

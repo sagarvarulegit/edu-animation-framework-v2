@@ -1,0 +1,58 @@
+{
+  "id": "glass-prism",
+  "name": "Equilateral Glass Prism",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "An equilateral triangular glass prism (side 6cm, depth 8cm) with IOR 1.52, used in CBSE Class 10 Ch10 to demonstrate dispersion of white light into spectrum (ROYGBIV).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "side": 0.06,
+    "depth": 0.08
+  },
+  "simplifications": [
+    "Equilateral triangle rather than 60\u00b0 prism angle.",
+    "No beveled edges."
+  ],
+  "materials": [
+    {
+      "id": "prism-glass",
+      "look": "transparent glass with slight blue tint, transmission 0.92"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_prism.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/glass-prism.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/glass-prism.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/glass-prism.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "prism",
+    "dispersion",
+    "spectrum",
+    "optics",
+    "light"
+  ]
+}

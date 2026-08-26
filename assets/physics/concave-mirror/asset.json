@@ -1,0 +1,57 @@
+{
+  "id": "concave-mirror",
+  "name": "Concave Mirror",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A concave (converging) mirror with inward-curving reflective surface, used in CBSE Class 10 Ch9-10 to demonstrate real/virtual images and focal point.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "diameter": 0.1
+  },
+  "simplifications": [
+    "Spherical approximation rather than parabolic.",
+    "No focal length label."
+  ],
+  "materials": [
+    {
+      "id": "concave-mirror-surface",
+      "look": "silver reflective, metallic 1.0, roughness 0.02"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_concave_mirror.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/concave-mirror.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/concave-mirror.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/concave-mirror.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "mirror",
+    "concave",
+    "converging",
+    "optics",
+    "focal-point"
+  ]
+}
