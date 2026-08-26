@@ -26,13 +26,13 @@ def build_prism():
     # Equilateral triangle cross-section
     bm = bmesh.new()
     # Front face vertices
-    v0 = bmesh.ops.create_vert(bm, co=(-side/2, 0, -h/3))["vert"]
-    v1 = bmesh.ops.create_vert(bm, co=(side/2, 0, -h/3))["vert"]
-    v2 = bmesh.ops.create_vert(bm, co=(0, 0, 2*h/3))["vert"]
+    v0 = bm.verts.new((-side/2, 0, -h/3))
+    v1 = bm.verts.new((side/2, 0, -h/3))
+    v2 = bm.verts.new((0, 0, 2*h/3))
     # Back face vertices
-    v3 = bmesh.ops.create_vert(bm, co=(-side/2, depth, -h/3))["vert"]
-    v4 = bmesh.ops.create_vert(bm, co=(side/2, depth, -h/3))["vert"]
-    v5 = bmesh.ops.create_vert(bm, co=(0, depth, 2*h/3))["vert"]
+    v3 = bm.verts.new((-side/2, depth, -h/3))
+    v4 = bm.verts.new((side/2, depth, -h/3))
+    v5 = bm.verts.new((0, depth, 2*h/3))
 
     # 5 faces
     bm.faces.new([v0, v1, v2])
