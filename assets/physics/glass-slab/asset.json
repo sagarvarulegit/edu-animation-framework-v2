@@ -1,0 +1,55 @@
+{
+  "id": "glass-slab",
+  "name": "Rectangular Glass Slab",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A rectangular glass slab (IOR 1.52) used to demonstrate refraction and lateral displacement. Used in CBSE Class 10 Ch9.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Perfect rectangular prism",
+    "No surface imperfections"
+  ],
+  "materials": [
+    {
+      "id": "clear glass",
+      "look": "clear glass"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_glass_slab.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/glass-slab.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/glass-slab.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/glass-slab.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "glass-slab",
+    "refraction",
+    "lateral-displacement",
+    "optics"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "concave-lens",
+  "name": "Biconcave Lens",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A biconcave (diverging) lens with transparent glass (IOR 1.52) and chrome edge ring. Used in CBSE Class 10 Ch9-10.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Symmetric biconcave",
+    "No mounting ring"
+  ],
+  "materials": [
+    {
+      "id": "clear glass",
+      "look": "clear glass"
+    },
+    {
+      "id": "chrome edge ring",
+      "look": "chrome edge ring"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_concave_lens.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/concave-lens.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/concave-lens.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/concave-lens.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "lens",
+    "concave",
+    "diverging",
+    "optics",
+    "refraction"
+  ]
+}

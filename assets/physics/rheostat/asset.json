@@ -1,0 +1,67 @@
+{
+  "id": "rheostat",
+  "name": "Rheostat (Variable Resistor)",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A sliding rheostat with ceramic base, copper wire coil, brass slider bar and contacts, and terminal posts. Used in CBSE Class 10 Ch11.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Simplified coil winding",
+    "No detailed contact spring"
+  ],
+  "materials": [
+    {
+      "id": "ceramic base",
+      "look": "ceramic base"
+    },
+    {
+      "id": "copper coil",
+      "look": "copper coil"
+    },
+    {
+      "id": "brass slider",
+      "look": "brass slider"
+    },
+    {
+      "id": "brass terminals",
+      "look": "brass terminals"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_rheostat.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/rheostat.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/rheostat.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/rheostat.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "rheostat",
+    "variable-resistor",
+    "circuit",
+    "current-control"
+  ]
+}

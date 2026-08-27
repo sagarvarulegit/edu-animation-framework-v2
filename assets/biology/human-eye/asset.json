@@ -1,0 +1,77 @@
+{
+  "id": "human-eye",
+  "name": "Human Eye (Cross-Section)",
+  "category": "biology",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "Cross-section of human eye showing sclera, iris, pupil, lens, retina, and optic nerve. Used in CBSE Class 10 Ch6 and Ch10.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Spherical rather than slightly oblong",
+    "No ciliary muscles or suspensory ligaments"
+  ],
+  "materials": [
+    {
+      "id": "off-white sclera",
+      "look": "off-white sclera"
+    },
+    {
+      "id": "blue iris",
+      "look": "blue iris"
+    },
+    {
+      "id": "black pupil",
+      "look": "black pupil"
+    },
+    {
+      "id": "transparent lens",
+      "look": "transparent lens"
+    },
+    {
+      "id": "pink retina",
+      "look": "pink retina"
+    },
+    {
+      "id": "yellow optic nerve",
+      "look": "yellow optic nerve"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_human_eye.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/human-eye.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/human-eye.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/human-eye.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "eye",
+    "iris",
+    "pupil",
+    "retina",
+    "optic-nerve",
+    "vision"
+  ]
+}

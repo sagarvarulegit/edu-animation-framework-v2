@@ -1,0 +1,64 @@
+{
+  "id": "brain",
+  "name": "Human Brain (Cross-Section)",
+  "category": "biology",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "Simplified cross-section showing cerebrum (2 hemispheres), cerebellum, and brain stem. Used in CBSE Class 10 Ch6 (Control & Coordination).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Geometric shapes rather than organic folds",
+    "No ventricles or detailed sulci/gyri"
+  ],
+  "materials": [
+    {
+      "id": "pinkish-grey cerebrum",
+      "look": "pinkish-grey cerebrum"
+    },
+    {
+      "id": "darker cerebellum",
+      "look": "darker cerebellum"
+    },
+    {
+      "id": "brown brain stem",
+      "look": "brown brain stem"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_brain.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/brain.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/brain.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/brain.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "brain",
+    "cerebrum",
+    "cerebellum",
+    "nervous-system",
+    "anatomy"
+  ]
+}

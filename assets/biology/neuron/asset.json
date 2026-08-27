@@ -1,0 +1,72 @@
+{
+  "id": "neuron",
+  "name": "Neuron (Nerve Cell)",
+  "category": "biology",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A neuron showing cell body (soma), nucleus, dendrites, axon with myelin sheath, and axon terminal. Used in CBSE Class 10 Ch6.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Straight axon rather than branching",
+    "Simplified myelin segments"
+  ],
+  "materials": [
+    {
+      "id": "yellow soma",
+      "look": "yellow soma"
+    },
+    {
+      "id": "blue axon",
+      "look": "blue axon"
+    },
+    {
+      "id": "white myelin",
+      "look": "white myelin"
+    },
+    {
+      "id": "green dendrites",
+      "look": "green dendrites"
+    },
+    {
+      "id": "purple nucleus",
+      "look": "purple nucleus"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_neuron.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/neuron.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/neuron.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/neuron.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "neuron",
+    "nerve-cell",
+    "axon",
+    "dendrite",
+    "myelin"
+  ]
+}

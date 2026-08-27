@@ -1,0 +1,72 @@
+{
+  "id": "voltmeter",
+  "name": "Voltmeter (0-3V)",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A DC voltmeter with black case, white dial, red needle, brass terminals, and blue 'V' label. Used in CBSE Class 10 Ch11 circuits.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Simplified dial markings",
+    "Different needle angle from ammeter for variety"
+  ],
+  "materials": [
+    {
+      "id": "black bakelite case",
+      "look": "black bakelite case"
+    },
+    {
+      "id": "white dial",
+      "look": "white dial"
+    },
+    {
+      "id": "red needle",
+      "look": "red needle"
+    },
+    {
+      "id": "brass terminals",
+      "look": "brass terminals"
+    },
+    {
+      "id": "blue label",
+      "look": "blue label"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_voltmeter.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/voltmeter.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/voltmeter.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/voltmeter.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "voltmeter",
+    "voltage",
+    "circuit",
+    "measurement",
+    "electricity"
+  ]
+}

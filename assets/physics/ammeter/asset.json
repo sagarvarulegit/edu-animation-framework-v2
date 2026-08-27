@@ -1,0 +1,72 @@
+{
+  "id": "ammeter",
+  "name": "Ammeter (0-1A)",
+  "category": "physics",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A DC ammeter with black case, white dial, red needle, brass terminals, and green 'A' label. Used in CBSE Class 10 Ch11 circuits.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Simplified dial markings",
+    "No scale numbers visible"
+  ],
+  "materials": [
+    {
+      "id": "black bakelite case",
+      "look": "black bakelite case"
+    },
+    {
+      "id": "white dial",
+      "look": "white dial"
+    },
+    {
+      "id": "red needle",
+      "look": "red needle"
+    },
+    {
+      "id": "brass terminals",
+      "look": "brass terminals"
+    },
+    {
+      "id": "green label",
+      "look": "green label"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_ammeter.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/ammeter.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/ammeter.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/ammeter.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "ammeter",
+    "current",
+    "circuit",
+    "measurement",
+    "electricity"
+  ]
+}

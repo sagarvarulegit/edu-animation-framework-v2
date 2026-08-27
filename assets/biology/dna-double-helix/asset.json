@@ -1,0 +1,64 @@
+{
+  "id": "dna-double-helix",
+  "name": "DNA Double Helix",
+  "category": "biology",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "Simplified DNA double helix with sugar-phosphate backbone and colored base pairs (AT=red, GC=blue). Used in CBSE Class 10 Ch7-8.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "educational-simplification"
+  },
+  "simplifications": [
+    "Straight ladder model rather than true helix twist",
+    "No major/minor grooves"
+  ],
+  "materials": [
+    {
+      "id": "orange backbone",
+      "look": "orange backbone"
+    },
+    {
+      "id": "red AT pairs",
+      "look": "red AT pairs"
+    },
+    {
+      "id": "blue GC pairs",
+      "look": "blue GC pairs"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_dna_double_helix.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-26"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/dna-double-helix.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/dna-double-helix.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/dna-double-helix.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "dna",
+    "double-helix",
+    "base-pairs",
+    "genetics",
+    "heredity"
+  ]
+}
