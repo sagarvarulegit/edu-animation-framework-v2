@@ -1,6 +1,5 @@
-import sys
+import sys, math
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 
@@ -8,80 +7,113 @@ ASSET_ID = "digestive-system"
 
 
 def build_digestive():
-    # Mouth/oral cavity: pink
-    mouth_mat = kit.add_material("mouth-pink", (0.85, 0.55, 0.50),
-                                 metallic=0.0, roughness=0.6)
-    # Esophagus: pale pink tube
-    esophagus_mat = kit.add_material("esophagus", (0.88, 0.65, 0.58),
-                                     metallic=0.0, roughness=0.55)
-    # Stomach: darker pink-red (muscular organ)
-    stomach_mat = kit.add_material("stomach", (0.75, 0.35, 0.30),
-                                   metallic=0.0, roughness=0.5)
-    # Small intestine: pale pink, coiled
-    small_int_mat = kit.add_material("small-intestine", (0.90, 0.72, 0.65),
-                                     metallic=0.0, roughness=0.55)
-    # Large intestine: darker, wider
-    large_int_mat = kit.add_material("large-intestine", (0.82, 0.58, 0.50),
-                                     metallic=0.0, roughness=0.6)
-    # Liver: dark reddish-brown (accessory organ)
-    liver_mat = kit.add_material("liver", (0.55, 0.20, 0.15),
-                                 metallic=0.0, roughness=0.7)
+    # Materials
+    esophagus_mat = kit.add_material("digest-esophagus", (0.78, 0.55, 0.50), metallic=0.0, roughness=0.6)
+    stomach_mat = kit.add_material("digest-stomach", (0.75, 0.45, 0.40), metallic=0.0, roughness=0.65)
+    small_int = kit.add_material("digest-small-int", (0.80, 0.60, 0.55), metallic=0.0, roughness=0.6)
+    large_int = kit.add_material("digest-large-int", (0.72, 0.50, 0.45), metallic=0.0, roughness=0.65)
+    liver_mat = kit.add_material("digest-liver", (0.55, 0.25, 0.20), metallic=0.0, roughness=0.6)
+    gallbladder = kit.add_material("digest-gall", (0.45, 0.55, 0.25), metallic=0.0, roughness=0.5)
+    pancreas_mat = kit.add_material("digest-pancreas", (0.85, 0.70, 0.50), metallic=0.0, roughness=0.55)
+    mouth_mat = kit.add_material("digest-mouth", (0.80, 0.55, 0.50), metallic=0.0, roughness=0.5)
+    rectum_mat = kit.add_material("digest-rectum", (0.65, 0.42, 0.38), metallic=0.0, roughness=0.65)
 
-    # === MOUTH (top) ===
-    mouth = kit.primitive_object(f"{ASSET_ID}-mouth", "cube", mouth_mat,
-                                 size=(0.022, 0.018, 0.014),
-                                 location=(0.0, 0.0, 0.155))
+    # Continuous alimentary canal from mouth to anus (vertical layout)
+    # Mouth (top)
+    kit.primitive_object(f"{ASSET_ID}-mouth", "cube", mouth_mat,
+                          size=(0.025, 0.015, 0.01),
+                          location=(0.0, 0.0, 0.12))
 
-    # === ESOPHAGUS (tube going down) ===
-    esophagus = kit.primitive_object(f"{ASSET_ID}-esophagus", "cylinder", esophagus_mat,
-                                      size=(0.009, 0.009, 0.045),
-                                      location=(0.0, 0.0, 0.125))
+    # Pharynx
+    kit.primitive_object(f"{ASSET_ID}-pharynx", "cylinder", esophagus_mat,
+                          size=(0.008, 0.008, 0.008),
+                          location=(0.0, 0.0, 0.11))
 
-    # === STOMACH (bean-shaped, larger) ===
-    stomach = kit.primitive_object(f"{ASSET_ID}-stomach", "cylinder", stomach_mat,
-                                   size=(0.040, 0.028, 0.035),
-                                   location=(0.012, 0.0, 0.095))
+    # Esophagus (tube down to stomach)
+    kit.primitive_object(f"{ASSET_ID}-esophagus", "cylinder", esophagus_mat,
+                          size=(0.006, 0.006, 0.035),
+                          location=(0.0, 0.0, 0.088))
 
-    # === LIVER (above stomach, right side) ===
-    liver = kit.primitive_object(f"{ASSET_ID}-liver", "cube", liver_mat,
-                                 size=(0.045, 0.020, 0.018),
-                                 location=(-0.015, 0.0, 0.115))
+    # Stomach (J-shaped, wider)
+    kit.primitive_object(f"{ASSET_ID}-stomach-body", "cylinder", stomach_mat,
+                          size=(0.020, 0.015, 0.025),
+                          location=(0.01, 0.0, 0.065))
+    # Stomach fundus (upper curve)
+    kit.primitive_object(f"{ASSET_ID}-stomach-fundus", "cylinder", stomach_mat,
+                          size=(0.015, 0.012, 0.01),
+                          location=(0.015, 0.0, 0.078))
 
-    # === SMALL INTESTINE (coiled tube, center) ===
-    small_parts = []
-    # Create a spiral-like arrangement
-    for i in range(8):
-        angle = i * 0.8
-        x = 0.005 + 0.010 * (i % 3) - 0.010
-        z = 0.055 - 0.006 * (i // 3)
-        si = kit.primitive_object(f"{ASSET_ID}-small-int-{i}", "cylinder", small_int_mat,
-                                   size=(0.007, 0.007, 0.028),
-                                   location=(x, 0.0, z),
-                                   rotation_euler=(0.0, 0.0, 0.4 * ((-1) ** i)))
-        small_parts.append(si)
+    # Liver (triangular, above stomach on right)
+    kit.primitive_object(f"{ASSET_ID}-liver", "cube", liver_mat,
+                          size=(0.035, 0.012, 0.015),
+                          location=(-0.005, 0.0, 0.085))
 
-    # === LARGE INTESTINE (wider tube, frames the small intestine) ===
-    large_parts = []
+    # Gallbladder (small pear shape under liver)
+    kit.primitive_object(f"{ASSET_ID}-gallbladder", "cylinder", gallbladder,
+                          size=(0.005, 0.005, 0.008),
+                          location=(0.01, 0.0, 0.075))
+
+    # Pancreas (leaf-shaped, behind stomach)
+    kit.primitive_object(f"{ASSET_ID}-pancreas", "cube", pancreas_mat,
+                          size=(0.030, 0.008, 0.006),
+                          location=(0.0, 0.0, 0.058))
+
+    # Duodenum (C-shaped curve from stomach)
+    kit.primitive_object(f"{ASSET_ID}-duodenum", "cylinder", small_int,
+                          size=(0.006, 0.006, 0.012),
+                          location=(0.0, 0.0, 0.052))
+
+    # Small intestine (coiled tubes — multiple loops)
+    coil_positions = [
+        (0.005, 0.035), (-0.005, 0.030), (0.008, 0.025),
+        (-0.008, 0.020), (0.003, 0.015), (-0.003, 0.010),
+        (0.006, 0.005), (-0.006, 0.000),
+    ]
+    for i, (x_off, z_pos) in enumerate(coil_positions):
+        kit.primitive_object(f"{ASSET_ID}-small-int-{i}", "cylinder", small_int,
+                              size=(0.005, 0.005, 0.008),
+                              location=(x_off, 0.0, z_pos))
+
+    # Large intestine (framing the small intestine)
     # Ascending colon (right side, going up)
-    large_parts.append(kit.primitive_object(f"{ASSET_ID}-large-asc", "cylinder", large_int_mat,
-                                             size=(0.012, 0.012, 0.040),
-                                             location=(0.025, 0.0, 0.055)))
-    # Transverse colon (top, going across)
-    large_parts.append(kit.primitive_object(f"{ASSET_ID}-large-trans", "cylinder", large_int_mat,
-                                             size=(0.012, 0.012, 0.050),
-                                             location=(0.0, 0.0, 0.078),
-                                             rotation_euler=(0.0, 1.57, 0.0)))
+    kit.primitive_object(f"{ASSET_ID}-ascending-colon", "cylinder", large_int,
+                          size=(0.008, 0.008, 0.04),
+                          location=(0.02, 0.0, 0.02),
+                          rotation_euler=(0.0, 0.0, 0.0))
+
+    # Transverse colon (across top)
+    kit.primitive_object(f"{ASSET_ID}-transverse-colon", "cylinder", large_int,
+                          size=(0.008, 0.008, 0.035),
+                          location=(0.0, 0.0, 0.045),
+                          rotation_euler=(0.0, 1.57, 0.0))
+
     # Descending colon (left side, going down)
-    large_parts.append(kit.primitive_object(f"{ASSET_ID}-large-desc", "cylinder", large_int_mat,
-                                             size=(0.012, 0.012, 0.040),
-                                             location=(-0.025, 0.0, 0.055)))
+    kit.primitive_object(f"{ASSET_ID}-descending-colon", "cylinder", large_int,
+                          size=(0.008, 0.008, 0.035),
+                          location=(-0.02, 0.0, 0.025))
 
-    # === RECTUM (bottom) ===
-    rectum = kit.primitive_object(f"{ASSET_ID}-rectum", "cylinder", large_int_mat,
-                                   size=(0.009, 0.009, 0.018),
-                                   location=(0.0, 0.0, 0.009))
+    # Sigmoid colon (curved at bottom)
+    kit.primitive_object(f"{ASSET_ID}-sigmoid", "cylinder", large_int,
+                          size=(0.007, 0.007, 0.01),
+                          location=(-0.01, 0.0, 0.005))
 
-    return [mouth, esophagus, stomach, liver] + small_parts + large_parts + [rectum]
+    # Rectum
+    kit.primitive_object(f"{ASSET_ID}-rectum", "cylinder", rectum_mat,
+                          size=(0.008, 0.008, 0.012),
+                          location=(0.0, 0.0, -0.005))
+
+    # Anus
+    kit.primitive_object(f"{ASSET_ID}-anus", "cylinder", rectum_mat,
+                          size=(0.005, 0.005, 0.003),
+                          location=(0.0, 0.0, -0.012))
+
+    # Appendix (small tube at caecum)
+    kit.primitive_object(f"{ASSET_ID}-appendix", "cylinder", large_int,
+                          size=(0.002, 0.002, 0.008),
+                          location=(0.018, 0.0, 0.002),
+                          rotation_euler=(0.0, 0.0, 0.5))
+
+    return []
 
 
 def main():

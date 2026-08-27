@@ -1,78 +1,112 @@
-import sys
+import sys, math
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
+import bpy, bmesh
+from mathutils import Vector
 
 ASSET_ID = "human-heart"
 
 
 def build_heart():
-    # Muscle tissue: deep reddish-brown (realistic)
-    muscle = kit.add_material("heart-muscle", (0.55, 0.12, 0.10),
-                              metallic=0.0, roughness=0.75)
-    # Oxygenated blood: bright red
-    oxygenated = kit.add_material("heart-oxy", (0.90, 0.18, 0.12),
-                                  metallic=0.0, roughness=0.6)
-    # Deoxygenated blood: deep blue-purple
-    deoxygenated = kit.add_material("heart-deoxy", (0.18, 0.22, 0.60),
-                                    metallic=0.0, roughness=0.6)
-    # Valve tissue: pale pink
-    valve = kit.add_material("heart-valve", (0.88, 0.72, 0.62),
-                             metallic=0.0, roughness=0.5)
-    # Label background
-    label_bg = kit.add_material("label-white", (0.95, 0.95, 0.95), roughness=0.4)
+    # Materials
+    muscle = kit.add_material("heart-muscle", (0.72, 0.15, 0.12), metallic=0.0, roughness=0.65)
+    oxygenated = kit.add_material("heart-oxy", (0.85, 0.12, 0.10), metallic=0.0, roughness=0.55)
+    deoxy = kit.add_material("heart-deoxy", (0.18, 0.25, 0.65), metallic=0.0, roughness=0.55)
+    septum = kit.add_material("heart-septum", (0.60, 0.12, 0.10), metallic=0.0, roughness=0.7)
+    valve = kit.add_material("heart-valve", (0.85, 0.75, 0.65), metallic=0.0, roughness=0.4)
+    vessel_wall = kit.add_material("heart-vessel", (0.70, 0.15, 0.12), metallic=0.0, roughness=0.6)
 
-    # === CHAMBERS (organic shapes using scaled cylinders) ===
+    # Heart outline using parametric heart shape (front view)
+    bm = bmesh.new()
+    # Heart shape parametric: x = 16sin^3(t), y = 13cos(t) - 5cos(2t) - 2cos(3t) - cos(4t)
+    # Scale down to ~0.08m
+    scale = 0.005
+    segments = 64
+    front_verts = []
+    back_verts = []
+    depth = 0.025  # half-depth of heart
 
-    # Right atrium (upper right, rounded)
-    ra = kit.primitive_object(f"{ASSET_ID}-right-atrium", "cylinder", deoxygenated,
-                              size=(0.025, 0.022, 0.020),
-                              location=(0.014, 0.0, 0.032))
+    for i in range(segments):
+        t = 2 * math.pi * i / segments
+        x = 16 * math.sin(t) ** 3 * scale
+        y = (13 * math.cos(t) - 5 * math.cos(2*t) - 2 * math.cos(3*t) - math.cos(4*t)) * scale
+        front_verts.append(bm.verts.new((x, y, depth)))
+        back_verts.append(bm.verts.new((x, y, -depth)))
 
-    # Left atrium (upper left, slightly smaller)
-    la = kit.primitive_object(f"{ASSET_ID}-left-atrium", "cylinder", oxygenated,
-                              size=(0.022, 0.020, 0.020),
-                              location=(-0.012, 0.0, 0.034))
+    bm.verts.ensure_lookup_table()
 
-    # Right ventricle (lower right, thicker walls)
-    rv = kit.primitive_object(f"{ASSET_ID}-right-ventricle", "cone", deoxygenated,
-                              size=(0.030, 0.015, 0.038),
-                              location=(0.010, 0.0, 0.008))
+    # Front face
+    front_faces = []
+    for i in range(segments):
+        j = (i + 1) % segments
+        face = bm.faces.new([front_verts[i], front_verts[j], back_verts[j], back_verts[i]])
+        front_faces.append(face)
 
-    # Left ventricle (lower left, thickest walls - pumps to body)
-    lv = kit.primitive_object(f"{ASSET_ID}-left-ventricle", "cone", oxygenated,
-                              size=(0.028, 0.012, 0.042),
-                              location=(-0.008, 0.0, 0.006))
+    # Create mesh
+    mesh = bpy.data.meshes.new(f"{ASSET_ID}-body")
+    bm.to_mesh(mesh)
+    bm.free()
+    obj = bpy.data.objects.new(f"{ASSET_ID}-body", mesh)
+    bpy.context.collection.objects.link(obj)
+    obj.data.materials.append(muscle)
 
-    # Septum (thick dividing wall)
-    septum = kit.primitive_object(f"{ASSET_ID}-septum", "cube", muscle,
-                                  size=(0.004, 0.022, 0.055),
-                                  location=(0.0, 0.0, 0.022))
+    # Interventricular septum (vertical divider inside)
+    kit.primitive_object(f"{ASSET_ID}-septum", "cube", septum,
+                          size=(0.002, 0.06, 0.045),
+                          location=(0.0, 0.0, 0.0))
 
-    # === VESSELS (color-coded for oxygenation) ===
+    # Right atrium (upper right, deoxygenated - blue)
+    kit.primitive_object(f"{ASSET_ID}-ra", "cylinder", deoxy,
+                          size=(0.025, 0.025, 0.015),
+                          location=(0.02, 0.025, 0.0))
 
-    # Aorta (large, from left ventricle, arching over)
-    aorta = kit.primitive_object(f"{ASSET_ID}-aorta", "cylinder", oxygenated,
-                                  size=(0.014, 0.014, 0.025),
-                                  location=(-0.006, 0.0, 0.060))
+    # Left atrium (upper left, oxygenated - red)
+    kit.primitive_object(f"{ASSET_ID}-la", "cylinder", oxygenated,
+                          size=(0.025, 0.025, 0.015),
+                          location=(-0.02, 0.025, 0.0))
 
-    # Superior vena cava (into right atrium, blue)
-    svc = kit.primitive_object(f"{ASSET_ID}-svc", "cylinder", deoxygenated,
-                               size=(0.010, 0.010, 0.022),
-                               location=(0.016, 0.0, 0.055))
+    # Right ventricle (lower right, blue)
+    kit.primitive_object(f"{ASSET_ID}-rv", "cylinder", deoxy,
+                          size=(0.028, 0.028, 0.02),
+                          location=(0.015, -0.01, 0.0))
 
-    # Pulmonary artery (from right ventricle, blue - goes to lungs)
-    pa = kit.primitive_object(f"{ASSET_ID}-pulmonary-artery", "cylinder", deoxygenated,
-                              size=(0.011, 0.011, 0.020),
-                              location=(0.006, 0.0, 0.055))
+    # Left ventricle (lower left, red - thicker wall)
+    kit.primitive_object(f"{ASSET_ID}-lv", "cylinder", oxygenated,
+                          size=(0.030, 0.030, 0.025),
+                          location=(-0.015, -0.01, 0.0))
 
-    # Pulmonary veins (into left atrium, red - from lungs)
-    pv = kit.primitive_object(f"{ASSET_ID}-pulmonary-veins", "cylinder", oxygenated,
-                              size=(0.008, 0.008, 0.015),
-                              location=(-0.014, 0.0, 0.050))
+    # Aorta (curved arch from left ventricle)
+    kit.primitive_object(f"{ASSET_ID}-aorta", "cylinder", oxygenated,
+                          size=(0.012, 0.012, 0.04),
+                          location=(-0.01, 0.04, 0.0),
+                          rotation_euler=(0.3, 0.0, 0.0))
 
-    return [ra, la, rv, lv, septum, aorta, svc, pa, pv]
+    # Pulmonary artery (from right ventricle)
+    kit.primitive_object(f"{ASSET_ID}-pulmonary-artery", "cylinder", deoxy,
+                          size=(0.010, 0.010, 0.035),
+                          location=(0.01, 0.035, 0.0),
+                          rotation_euler=(-0.2, 0.0, 0.0))
+
+    # Superior vena cava (entering right atrium)
+    kit.primitive_object(f"{ASSET_ID}-svc", "cylinder", deoxy,
+                          size=(0.008, 0.008, 0.025),
+                          location=(0.025, 0.04, 0.0))
+
+    # Inferior vena cava
+    kit.primitive_object(f"{ASSET_ID}-ivc", "cylinder", deoxy,
+                          size=(0.008, 0.008, 0.02),
+                          location=(0.02, -0.03, 0.0))
+
+    # Atrioventricular valves (small discs)
+    kit.primitive_object(f"{ASSET_ID}-tricuspid", "cylinder", valve,
+                          size=(0.015, 0.015, 0.003),
+                          location=(0.015, 0.01, 0.0))
+    kit.primitive_object(f"{ASSET_ID}-mitral", "cylinder", valve,
+                          size=(0.015, 0.015, 0.003),
+                          location=(-0.015, 0.01, 0.0))
+
+    return [obj]
 
 
 def main():
