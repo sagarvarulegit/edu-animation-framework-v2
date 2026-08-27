@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 
@@ -8,45 +7,43 @@ ASSET_ID = "resistor"
 
 
 def build_resistor():
-    # Tan/beige ceramic body (real resistors)
-    body_mat = kit.add_material("resistor-body", (0.82, 0.72, 0.55),
-                                metallic=0.0, roughness=0.65)
-    # Silver wire leads
-    wire_mat = kit.add_material("resistor-wire", (0.72, 0.72, 0.74),
-                                metallic=0.95, roughness=0.2)
+    # Body: tan/beige
+    body_mat = kit.add_material("resistor-body", (0.82, 0.75, 0.55), metallic=0.0, roughness=0.6)
+    # Color bands: Brown, Black, Red, Gold (1kΩ)
+    brown = kit.add_material("band-brown", (0.45, 0.22, 0.08), metallic=0.0, roughness=0.4)
+    black = kit.add_material("band-black", (0.05, 0.05, 0.05), metallic=0.0, roughness=0.4)
+    red = kit.add_material("band-red", (0.80, 0.12, 0.10), metallic=0.0, roughness=0.4)
+    gold = kit.add_material("band-gold", (0.85, 0.72, 0.20), metallic=0.8, roughness=0.25)
+    # Wire leads: silver
+    lead = kit.add_material("resistor-lead", (0.75, 0.75, 0.78), metallic=0.9, roughness=0.3)
 
-    # Color bands (standard resistor code: Brown-Black-Red-Gold = 1kΩ ±5%)
-    band_colors = [
-        (0.60, 0.30, 0.10, "Brown"),    # 1
-        (0.05, 0.05, 0.05, "Black"),    # 0
-        (0.85, 0.10, 0.10, "Red"),      # ×100
-        (0.80, 0.65, 0.15, "Gold"),     # ±5%
-    ]
-
-    # Body (larger for visibility: 8mm x 3mm)
+    # Axial horizontal body (correct proportions: 7mm long, 2.5mm diameter)
     body = kit.primitive_object(f"{ASSET_ID}-body", "cylinder", body_mat,
-                                size=(0.008, 0.008, 0.003),
-                                location=(0.0, 0.0, 0.0))
+                                 size=(0.0025, 0.0025, 0.007),
+                                 location=(0.0, 0.0, 0.0),
+                                 rotation_euler=(0.0, 1.57, 0.0))  # Horizontal along X
 
-    # Color bands (visible rings on body)
-    bands = []
-    offsets = [-0.0009, -0.0003, 0.0003, 0.0009]
-    for i, (off, (r, g, b, name)) in enumerate(zip(offsets, band_colors)):
-        mat = kit.add_material(f"band-{name}", (r, g, b), roughness=0.5)
-        band = kit.primitive_object(f"{ASSET_ID}-band-{i}", "cylinder", mat,
-                                     size=(0.0085, 0.0085, 0.0004),
-                                     location=(0.0, 0.0, off))
-        bands.append(band)
+    # Color bands (thin coaxial rings along the body)
+    band_positions = [-0.002, -0.0005, 0.001, 0.0025]
+    band_mats = [brown, black, red, gold]
+    for i, (pos, mat) in enumerate(zip(band_positions, band_mats)):
+        kit.primitive_object(f"{ASSET_ID}-band-{i}", "cylinder", mat,
+                              size=(0.0028, 0.0028, 0.0005),
+                              location=(pos, 0.0, 0.0),
+                              rotation_euler=(0.0, 1.57, 0.0))
 
-    # Wire leads (thicker, longer for visibility)
-    lead_l = kit.primitive_object(f"{ASSET_ID}-lead-left", "cylinder", wire_mat,
-                                   size=(0.0012, 0.0012, 0.012),
-                                   location=(0.0, 0.0, -0.0075))
-    lead_r = kit.primitive_object(f"{ASSET_ID}-lead-right", "cylinder", wire_mat,
-                                   size=(0.0012, 0.0012, 0.012),
-                                   location=(0.0, 0.0, 0.0075))
+    # Wire leads extending horizontally from both ends
+    kit.primitive_object(f"{ASSET_ID}-lead-left", "cylinder", lead,
+                          size=(0.0005, 0.0005, 0.015),
+                          location=(-0.011, 0.0, 0.0),
+                          rotation_euler=(0.0, 1.57, 0.0))
 
-    return [body] + bands + [lead_l, lead_r]
+    kit.primitive_object(f"{ASSET_ID}-lead-right", "cylinder", lead,
+                          size=(0.0005, 0.0005, 0.015),
+                          location=(0.011, 0.0, 0.0),
+                          rotation_euler=(0.0, 1.57, 0.0))
+
+    return [body]
 
 
 def main():
@@ -55,7 +52,7 @@ def main():
     objects = build_resistor()
     kit.setup_world_and_light()
     kit.configure_render()
-    kit.frame_camera(objects, lens=100.0)  # Macro view
+    kit.frame_camera(objects)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")
     kit.render_preview(out / "preview.png")

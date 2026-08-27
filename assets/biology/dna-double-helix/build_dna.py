@@ -52,12 +52,10 @@ def build_dna():
                                   location=(mx, y, mz),
                                   rotation_euler=(0.0, 0.0, angle))
 
-    # Return a dummy object for camera framing
-    dummy = kit.primitive_object(f"{ASSET_ID}-frame-helper", "cube",
-                                  kit.add_material("_helper", (0, 0, 0)),
-                                  size=(0.05, 0.15, 0.05),
-                                  location=(0.0, 0.0, 0.0))
-    return [dummy]
+    # Return objects for camera framing (collect all backbone parts)
+    import bpy
+    objects = [o for o in bpy.context.collection.objects if o.name.startswith(ASSET_ID)]
+    return objects if objects else []
 
 
 def main():

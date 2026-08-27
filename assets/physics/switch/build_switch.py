@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 
@@ -8,49 +7,55 @@ ASSET_ID = "switch"
 
 
 def build_switch():
-    # Bakelite base (dark brown, like real switches)
-    base_mat = kit.add_material("switch-bakelite", (0.25, 0.15, 0.08),
-                                metallic=0.0, roughness=0.7)
-    # Brass contacts (bright, visible)
-    contact_mat = kit.add_material("switch-brass", (0.85, 0.65, 0.20),
-                                   metallic=0.95, roughness=0.2)
+    # Bakelite base: dark brown/black
+    base_mat = kit.add_material("switch-base", (0.15, 0.12, 0.10), metallic=0.0, roughness=0.7)
+    # Brass contacts
+    contact = kit.add_material("switch-contact", (0.82, 0.62, 0.22), metallic=0.9, roughness=0.25)
     # Steel arm
-    arm_mat = kit.add_material("switch-steel", (0.60, 0.60, 0.62),
-                               metallic=0.9, roughness=0.3)
-    # Red indicator (shows switch state)
-    indicator_mat = kit.add_material("switch-red", (0.85, 0.15, 0.10),
-                                     metallic=0.0, roughness=0.5)
+    arm = kit.add_material("switch-arm", (0.65, 0.65, 0.68), metallic=0.85, roughness=0.3)
+    # Red indicator
+    indicator = kit.add_material("switch-indicator", (0.85, 0.12, 0.10), metallic=0.0, roughness=0.4)
 
-    # Base plate (bakelite)
-    base = kit.primitive_object(f"{ASSET_ID}-base", "cube", base_mat,
-                                size=(0.05, 0.025, 0.005),
-                                location=(0.0, 0.0, 0.0025))
+    # Base plate
+    kit.primitive_object(f"{ASSET_ID}-base", "cube", base_mat,
+                          size=(0.04, 0.015, 0.025),
+                          location=(0.0, 0.0, 0.0))
 
-    # Fixed contact points (two brass cylinders)
-    contact_l = kit.primitive_object(f"{ASSET_ID}-contact-left", "cylinder", contact_mat,
-                                      size=(0.006, 0.006, 0.005),
-                                      location=(-0.012, 0.0, 0.0075))
-    contact_r = kit.primitive_object(f"{ASSET_ID}-contact-right", "cylinder", contact_mat,
-                                      size=(0.006, 0.006, 0.005),
-                                      location=(0.012, 0.0, 0.0075))
+    # Fixed contact (bottom)
+    kit.primitive_object(f"{ASSET_ID}-contact-fixed", "cylinder", contact,
+                          size=(0.004, 0.004, 0.003),
+                          location=(0.01, 0.005, 0.008))
 
-    # Pivoting arm (in open position, angled up at 30°)
-    arm = kit.primitive_object(f"{ASSET_ID}-arm", "cube", arm_mat,
-                               size=(0.03, 0.004, 0.004),
-                               location=(0.0, 0.0, 0.015),
-                               rotation_euler=(0.0, 0.0, 0.5))
+    # Pivot contact (hinge point)
+    kit.primitive_object(f"{ASSET_ID}-contact-pivot", "cylinder", contact,
+                          size=(0.004, 0.004, 0.003),
+                          location=(-0.01, 0.005, 0.008))
 
-    # Pivot point (brass)
-    pivot = kit.primitive_object(f"{ASSET_ID}-pivot", "cylinder", contact_mat,
-                                  size=(0.007, 0.007, 0.005),
-                                  location=(-0.012, 0.0, 0.010))
+    # Knife arm — tilted UPWARD along Y-axis (open position)
+    kit.primitive_object(f"{ASSET_ID}-arm", "cube", arm,
+                          size=(0.022, 0.003, 0.002),
+                          location=(-0.005, 0.008, 0.014),
+                          rotation_euler=(0.0, 0.6, 0.0))  # Tilt up along Y
+
+    # Handle grip (insulated end)
+    kit.primitive_object(f"{ASSET_ID}-grip", "cube", indicator,
+                          size=(0.005, 0.005, 0.005),
+                          location=(0.008, 0.008, 0.018))
 
     # Red indicator dot
-    indicator = kit.primitive_object(f"{ASSET_ID}-indicator", "cylinder", indicator_mat,
-                                      size=(0.004, 0.004, 0.001),
-                                      location=(0.02, 0.0, 0.006))
+    kit.primitive_object(f"{ASSET_ID}-indicator", "cylinder", indicator,
+                          size=(0.003, 0.003, 0.001),
+                          location=(0.0, 0.008, 0.008))
 
-    return [base, contact_l, contact_r, arm, pivot, indicator]
+    # Terminal posts
+    kit.primitive_object(f"{ASSET_ID}-terminal-1", "cylinder", contact,
+                          size=(0.004, 0.004, 0.008),
+                          location=(-0.015, 0.0, -0.01))
+    kit.primitive_object(f"{ASSET_ID}-terminal-2", "cylinder", contact,
+                          size=(0.004, 0.004, 0.008),
+                          location=(0.015, 0.0, -0.01))
+
+    return []
 
 
 def main():

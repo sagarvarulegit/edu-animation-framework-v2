@@ -18,7 +18,7 @@ def build_neuron():
     # Nucleus: dark purple
     nucleus = kit.add_material("neuron-nucleus", (0.50, 0.25, 0.55), metallic=0.0, roughness=0.6)
 
-    # Cell body (soma) - round
+    # Cell body (soma) - round, horizontal
     soma_obj = kit.primitive_object(f"{ASSET_ID}-soma", "cylinder", soma,
                                      size=(0.025, 0.025, 0.02),
                                      location=(0.0, 0.0, 0.0))
@@ -28,29 +28,35 @@ def build_neuron():
                                         size=(0.012, 0.012, 0.012),
                                         location=(0.0, 0.0, 0.0))
 
-    # Axon (long cable going right)
+    # Axon (long cable extending RIGHT along X-axis)
     axon_obj = kit.primitive_object(f"{ASSET_ID}-axon", "cylinder", axon,
                                      size=(0.005, 0.005, 0.10),
-                                     location=(0.06, 0.0, 0.0))
+                                     location=(0.06, 0.0, 0.0),
+                                     rotation_euler=(0.0, 1.57, 0.0))  # Horizontal
 
-    # Myelin sheath segments (white beads along axon)
+    # Myelin sheath segments (white beads along axon, horizontal)
     for i in range(5):
         x = 0.02 + i * 0.02
         kit.primitive_object(f"{ASSET_ID}-myelin-{i}", "cylinder", myelin,
                               size=(0.008, 0.008, 0.012),
-                              location=(x, 0.0, 0.0))
+                              location=(x, 0.0, 0.0),
+                              rotation_euler=(0.0, 1.57, 0.0))
 
-    # Dendrites (branching from soma, left side)
-    for i, angle in enumerate([0.3, 0.0, -0.3]):
+    # Dendrites (branching from soma, extending LEFT and radially)
+    import math
+    for i, angle in enumerate([0.3, 0.0, -0.3, 0.6, -0.6]):
         kit.primitive_object(f"{ASSET_ID}-dendrite-{i}", "cylinder", dendrite,
                               size=(0.003, 0.003, 0.025),
                               location=(-0.02, 0.0, 0.0),
-                              rotation_euler=(0.0, 0.0, 3.14 + angle))
+                              rotation_euler=(0.0, 1.57, angle))
 
-    # Axon terminal (right end)
-    kit.primitive_object(f"{ASSET_ID}-terminal", "cylinder", soma,
-                          size=(0.008, 0.008, 0.008),
-                          location=(0.11, 0.0, 0.0))
+    # Axon terminal (right end, branching)
+    kit.primitive_object(f"{ASSET_ID}-terminal-1", "cylinder", soma,
+                          size=(0.005, 0.005, 0.008),
+                          location=(0.11, 0.0, 0.003))
+    kit.primitive_object(f"{ASSET_ID}-terminal-2", "cylinder", soma,
+                          size=(0.005, 0.005, 0.008),
+                          location=(0.11, 0.0, -0.003))
 
     return [soma_obj, nucleus_obj, axon_obj]
 

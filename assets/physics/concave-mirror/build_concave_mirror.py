@@ -1,70 +1,65 @@
-import sys
+import sys, math
 from pathlib import Path
-import math
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 import bpy, bmesh
-from mathutils import Vector
 
 ASSET_ID = "concave-mirror"
 
 
-def build_concave_mirror():
-    # Bright silver reflective surface
-    mirror_mat = kit.add_material("concave-mirror-surface", (0.90, 0.92, 0.95),
-                                  metallic=1.0, roughness=0.01)
-    # Dark backing
-    back_mat = kit.add_material("concave-mirror-back", (0.12, 0.12, 0.14),
-                                metallic=0.3, roughness=0.7)
-    # Frame ring
-    frame_mat = kit.add_material("concave-frame", (0.55, 0.38, 0.22),
-                                 metallic=0.0, roughness=0.6)
+def build_mirror():
+    silver = kit.add_material("mirror-silver", (0.92, 0.92, 0.94), metallic=1.0, roughness=0.02)
+    back = kit.add_material("mirror-back", (0.08, 0.08, 0.08), metallic=0.0, roughness=0.8)
+    frame = kit.add_material("mirror-frame", (0.55, 0.35, 0.18), metallic=0.0, roughness=0.6)
 
-    radius = 0.055
+    # 3D spherical concave dish using bmesh
+    bm = bmesh.new()
+    radius = 0.05  # dish radius
+    depth = 0.012  # concavity depth
     segments = 48
 
-    # Create concave curved surface using bmesh
-    bm = bmesh.new()
+    # Create concave dish surface (front = silver, back = dark)
     for i in range(segments + 1):
         angle = math.pi * i / segments - math.pi / 2
-        x = radius * math.cos(angle)
-        z = radius * math.sin(angle) * 0.25  # shallow curve
-        bmesh.ops.create_vert(bm, co=(x, 0, z))
-        bmesh.ops.create_vert(bm, co=(x, 0.004, z))
+        r = radius * math.cos(angle)
+        z = -depth * (math.cos(angle) ** 2)  # parabolic concavity
+        bm.verts.new((r, 0, z))
+        bm.verts.new((-r, 0, z))
 
     verts = bm.verts[:]
     for i in range(segments):
-        v0 = verts[i * 2]
-        v1 = verts[i * 2 + 1]
-        v2 = verts[(i + 1) * 2]
-        v3 = verts[(i + 1) * 2 + 1]
-        bm.faces.new([v0, v2, v3, v1])
+        bm.faces.new([verts[i * 2], verts[i * 2 + 1],
+                       verts[(i + 1) * 2 + 1], verts[(i + 1) * 2]])
 
-    mesh = bpy.data.meshes.new(f"{ASSET_ID}-surface")
+    mesh = bpy.data.meshes.new(f"{ASSET_ID}-dish")
     bm.to_mesh(mesh)
     bm.free()
-    obj = bpy.data.objects.new(f"{ASSET_ID}-surface", mesh)
-    bpy.context.collection.objects.link(obj)
-    obj.data.materials.append(mirror_mat)
+    dish = bpy.data.objects.new(f"{ASSET_ID}-dish", mesh)
+    bpy.context.collection.objects.link(dish)
+    dish.data.materials.append(silver)
 
-    # Back plate (dark, flat)
-    back = kit.primitive_object(f"{ASSET_ID}-back", "cylinder", back_mat,
-                                size=(0.11, 0.11, 0.005),
-                                location=(0.003, 0.0, 0.0))
+    # Circular frame ring
+    frame_ring = kit.primitive_object(f"{ASSET_ID}-frame", "cylinder", frame,
+                                       size=(0.105, 0.105, 0.005),
+                                       location=(0.0, 0.0, 0.0))
 
-    # Frame ring around edge
-    frame = kit.primitive_object(f"{ASSET_ID}-frame", "cylinder", frame_mat,
-                                  size=(0.115, 0.115, 0.008),
-                                  location=(0.0, 0.0, 0.0))
+    # Stand rod
+    stand = kit.primitive_object(f"{ASSET_ID}-stand", "cylinder", frame,
+                                  size=(0.005, 0.005, 0.06),
+                                  location=(0.0, 0.0, -0.03))
 
-    return [obj, back, frame]
+    # Base
+    base = kit.primitive_object(f"{ASSET_ID}-base", "cylinder", frame,
+                                 size=(0.03, 0.03, 0.005),
+                                 location=(0.0, 0.0, -0.06))
+
+    return [dish, frame_ring, stand, base]
 
 
 def main():
     out = kit.output_dir(Path(__file__).resolve().parent / "out")
     kit.reset_scene()
-    objects = build_concave_mirror()
+    objects = build_mirror()
     kit.setup_world_and_light()
     kit.configure_render()
     kit.frame_camera(objects)

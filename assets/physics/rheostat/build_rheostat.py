@@ -47,11 +47,9 @@ def build_rheostat():
                           size=(0.005, 0.005, 0.01),
                           location=(0.035, 0.01, 0.0))
 
-    dummy = kit.primitive_object(f"{ASSET_ID}-frame-helper", "cube",
-                                  kit.add_material("_helper", (0, 0, 0)),
-                                  size=(0.10, 0.03, 0.05),
-                                  location=(0.0, 0.0, 0.0))
-    return [dummy]
+    import bpy
+    objects = [o for o in bpy.context.collection.objects if o.name.startswith(ASSET_ID)]
+    return objects if objects else []
 
 
 def main():

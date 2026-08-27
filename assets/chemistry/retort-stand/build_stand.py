@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 
@@ -8,39 +7,47 @@ ASSET_ID = "retort-stand"
 
 
 def build_stand():
-    # Iron: brighter, more visible against dark backgrounds
-    iron = kit.add_material("stand-iron", (0.25, 0.25, 0.28),
-                            metallic=0.85, roughness=0.4)
-    # Chrome highlight for clamp
-    chrome = kit.add_material("stand-chrome", (0.65, 0.65, 0.68),
-                              metallic=0.95, roughness=0.15)
+    # Brighter iron
+    iron = kit.add_material("stand-iron", (0.30, 0.30, 0.32), metallic=0.8, roughness=0.45)
+    # Chrome rod
+    chrome = kit.add_material("stand-chrome", (0.72, 0.72, 0.74), metallic=0.95, roughness=0.1)
+    # Clamp
+    clamp = kit.add_material("stand-clamp", (0.65, 0.65, 0.68), metallic=0.85, roughness=0.3)
 
-    # Heavy base plate (wider for stability)
-    base = kit.primitive_object(f"{ASSET_ID}-base", "cube", iron,
-                                size=(0.12, 0.08, 0.010),
-                                location=(0.0, 0.0, 0.005))
+    # Heavy base plate — rod at REAR CENTER (not middle)
+    kit.primitive_object(f"{ASSET_ID}-base", "cube", iron,
+                          size=(0.08, 0.005, 0.05),
+                          location=(0.0, 0.0, 0.0))
 
-    # Vertical rod (thicker for visibility)
-    rod = kit.primitive_object(f"{ASSET_ID}-rod", "cylinder", chrome,
-                               size=(0.008, 0.008, 0.16),
-                               location=(0.0, 0.0, 0.09))
+    # Vertical rod — positioned at rear edge of base
+    kit.primitive_object(f"{ASSET_ID}-rod", "cylinder", chrome,
+                          size=(0.004, 0.004, 0.10),
+                          location=(0.0, 0.02, 0.05))
+
+    # Bosshead (clamp connector sleeve)
+    kit.primitive_object(f"{ASSET_ID}-bosshead", "cube", clamp,
+                          size=(0.008, 0.008, 0.008),
+                          location=(0.0, 0.016, 0.06))
 
     # Clamp arm (horizontal)
-    clamp = kit.primitive_object(f"{ASSET_ID}-clamp-arm", "cube", chrome,
-                                 size=(0.06, 0.010, 0.010),
-                                 location=(0.03, 0.0, 0.14))
+    kit.primitive_object(f"{ASSET_ID}-clamp-arm", "cube", clamp,
+                          size=(0.03, 0.004, 0.004),
+                          location=(-0.015, 0.012, 0.06))
 
-    # Clamp jaw (vertical piece)
-    jaw = kit.primitive_object(f"{ASSET_ID}-clamp-jaw", "cube", chrome,
-                               size=(0.010, 0.024, 0.010),
-                               location=(0.06, 0.0, 0.128))
+    # Clamp jaws (3-prong style)
+    kit.primitive_object(f"{ASSET_ID}-jaw-top", "cube", clamp,
+                          size=(0.015, 0.003, 0.003),
+                          location=(-0.025, 0.012, 0.063))
+    kit.primitive_object(f"{ASSET_ID}-jaw-bottom", "cube", clamp,
+                          size=(0.015, 0.003, 0.003),
+                          location=(-0.025, 0.012, 0.057))
 
-    # Wingnut (small detail)
-    wingnut = kit.primitive_object(f"{ASSET_ID}-wingnut", "cylinder", iron,
-                                    size=(0.012, 0.012, 0.004),
-                                    location=(0.06, 0.012, 0.14))
+    # Thumbscrew
+    kit.primitive_object(f"{ASSET_ID}-thumbscrew", "cylinder", chrome,
+                          size=(0.005, 0.005, 0.005),
+                          location=(0.0, 0.010, 0.06))
 
-    return [base, rod, clamp, jaw, wingnut]
+    return []
 
 
 def main():

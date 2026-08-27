@@ -1,60 +1,54 @@
-import sys
+import sys, math
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
+import bpy, bmesh
 
 ASSET_ID = "conical-flask"
 
 
 def build_flask():
-    glass = kit.add_material("flask-glass", (0.82, 0.88, 0.82),
-                             metallic=0.0, roughness=0.06)
+    # Warm green glass
+    glass = kit.add_material("flask-glass", (0.75, 0.85, 0.78), metallic=0.0, roughness=0.1)
     glass.use_nodes = True
     bsdf = glass.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Transmission Weight"].default_value = 0.85
+    bsdf.inputs["Transmission Weight"].default_value = 0.88
     bsdf.inputs["IOR"].default_value = 1.52
 
-    # Liquid: pale yellow (acid solution)
-    liquid = kit.add_material("flask-liquid", (0.95, 0.90, 0.50),
-                              metallic=0.0, roughness=0.15)
-    liquid.use_nodes = True
-    bsdf_l = liquid.node_tree.nodes["Principled BSDF"]
-    bsdf_l.inputs["Transmission Weight"].default_value = 0.65
+    # Liquid: pale yellow (dilute acid)
+    liquid = kit.add_material("flask-liquid", (0.92, 0.88, 0.45), metallic=0.0, roughness=0.2)
 
-    mark_mat = kit.add_material("flask-marks", (0.15, 0.35, 0.15), roughness=0.5)
+    # Graduation marks: white tick marks (not 360° rings)
+    mark = kit.add_material("flask-mark", (0.85, 0.85, 0.80), metallic=0.0, roughness=0.4)
 
-    # Wide cone base (real Erlenmeyer proportions)
-    cone = kit.primitive_object(f"{ASSET_ID}-cone", "cone", glass,
-                                size=(0.09, 0.03, 0.055),
-                                location=(0.0, 0.0, 0.0275))
+    # Flask body: wide cone base → narrow cylindrical neck
+    # Base cone
+    cone = kit.primitive_object(f"{ASSET_ID}-body", "cylinder", glass,
+                                 size=(0.04, 0.03, 0.05),
+                                 location=(0.0, 0.0, 0.025))
 
-    # Liquid in cone
-    liquid_cone = kit.primitive_object(f"{ASSET_ID}-liquid-cone", "cone", liquid,
-                                        size=(0.07, 0.02, 0.035),
-                                        location=(0.0, 0.0, 0.0175))
-
-    # Narrow cylindrical neck (longer, more realistic)
+    # Neck (narrow cylinder on top)
     neck = kit.primitive_object(f"{ASSET_ID}-neck", "cylinder", glass,
-                                size=(0.028, 0.028, 0.05),
-                                location=(0.0, 0.0, 0.08))
+                                 size=(0.012, 0.012, 0.03),
+                                 location=(0.0, 0.0, 0.07))
 
-    # Flat bottom
-    base = kit.primitive_object(f"{ASSET_ID}-base", "cylinder", glass,
-                                size=(0.09, 0.09, 0.005),
-                                location=(0.0, 0.0, 0.0025))
-
-    # Rim (thickened lip)
+    # Rim at top
     rim = kit.primitive_object(f"{ASSET_ID}-rim", "cylinder", glass,
-                               size=(0.032, 0.032, 0.005),
-                               location=(0.0, 0.0, 0.105))
+                                size=(0.015, 0.015, 0.003),
+                                location=(0.0, 0.0, 0.086))
 
-    # Graduation mark
-    mark = kit.primitive_object(f"{ASSET_ID}-mark", "cylinder", mark_mat,
-                                size=(0.092, 0.075, 0.001),
-                                location=(0.0, 0.0, 0.04))
+    # Liquid inside (partial fill)
+    liquid_obj = kit.primitive_object(f"{ASSET_ID}-liquid", "cylinder", liquid,
+                                       size=(0.035, 0.028, 0.035),
+                                       location=(0.0, 0.0, 0.018))
 
-    return [cone, liquid_cone, neck, base, rim, mark]
+    # Graduation marks: thin horizontal rings at different heights (1-sided look)
+    for i, h in enumerate([0.01, 0.02, 0.03, 0.04]):
+        kit.primitive_object(f"{ASSET_ID}-mark-{i}", "cylinder", mark,
+                              size=(0.035 - i * 0.003, 0.035 - i * 0.003, 0.001),
+                              location=(0.0, 0.0, h))
+
+    return [cone, neck, rim, liquid_obj]
 
 
 def main():

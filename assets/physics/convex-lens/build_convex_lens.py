@@ -1,7 +1,5 @@
-import sys
+import sys, math
 from pathlib import Path
-import math
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 import bpy, bmesh
@@ -11,40 +9,34 @@ ASSET_ID = "convex-lens"
 
 
 def build_lens():
-    # Clear glass with slight blue tint (like real optical glass)
-    glass = kit.add_material("lens-glass", (0.88, 0.92, 0.96),
-                             metallic=0.0, roughness=0.03)
+    glass = kit.add_material("convex-lens-glass", (0.88, 0.92, 0.96), metallic=0.0, roughness=0.03)
     glass.use_nodes = True
     bsdf = glass.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Transmission Weight"].default_value = 0.92
     bsdf.inputs["IOR"].default_value = 1.52
 
-    # Edge ring (visible rim)
-    edge_mat = kit.add_material("lens-edge", (0.70, 0.70, 0.72),
-                                metallic=0.8, roughness=0.3)
+    edge_mat = kit.add_material("convex-lens-edge", (0.70, 0.70, 0.72), metallic=0.8, roughness=0.3)
 
-    radius = 0.04
-    thickness = 0.022
+    # Biconvex lens: thick at center, thin at edges — use UV sphere approach
+    # Create a lens by intersecting two spheres
+    radius = 0.04  # lens radius
+    thickness = 0.012  # max thickness at center
     segments = 48
 
-    # Biconvex lens from bmesh
+    # Build lens profile and revolve
     bm = bmesh.new()
     for i in range(segments + 1):
         angle = math.pi * i / segments - math.pi / 2
         y = radius * math.sin(angle)
-        # Biconvex: thickest at center, thin at edges
         edge_dist = abs(math.cos(angle))
-        x = thickness / 2 * (1 - edge_dist * 0.85)
-        bmesh.ops.create_vert(bm, co=(-x, y, 0))
-        bmesh.ops.create_vert(bm, co=(x, y, 0))
+        x = thickness / 2 * (0.1 + edge_dist * 0.9)  # Convex: thick center
+        bm.verts.new((x, y, 0))
+        bm.verts.new((-x, y, 0))
 
     verts = bm.verts[:]
     for i in range(segments):
-        v0 = verts[i * 2]
-        v1 = verts[i * 2 + 1]
-        v2 = verts[(i + 1) * 2]
-        v3 = verts[(i + 1) * 2 + 1]
-        bm.faces.new([v0, v1, v3, v2])
+        bm.faces.new([verts[i * 2], verts[i * 2 + 1],
+                       verts[(i + 1) * 2 + 1], verts[(i + 1) * 2]])
 
     mesh = bpy.data.meshes.new(f"{ASSET_ID}-body")
     bm.to_mesh(mesh)
@@ -53,7 +45,7 @@ def build_lens():
     bpy.context.collection.objects.link(obj)
     obj.data.materials.append(glass)
 
-    # Edge ring
+    # Chrome edge ring
     edge = kit.primitive_object(f"{ASSET_ID}-edge", "cylinder", edge_mat,
                                  size=(0.082, 0.082, 0.003),
                                  location=(0.0, 0.0, 0.0))

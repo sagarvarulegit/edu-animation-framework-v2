@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 
@@ -8,42 +7,40 @@ ASSET_ID = "test-tube"
 
 
 def build_test_tube():
-    # Glass: warmer tone like real borosilicate
-    glass = kit.add_material("test-tube-glass", (0.80, 0.87, 0.82),
-                             metallic=0.0, roughness=0.06)
+    # Warm green glass
+    glass = kit.add_material("tube-glass", (0.75, 0.85, 0.78), metallic=0.0, roughness=0.08)
     glass.use_nodes = True
     bsdf = glass.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Transmission Weight"].default_value = 0.88
     bsdf.inputs["IOR"].default_value = 1.52
 
-    # Liquid: bright orange (iodine solution - common CBSE experiment)
-    liquid = kit.add_material("test-tube-liquid", (0.90, 0.45, 0.10),
-                              metallic=0.0, roughness=0.15)
-    liquid.use_nodes = True
-    bsdf_l = liquid.node_tree.nodes["Principled BSDF"]
-    bsdf_l.inputs["Transmission Weight"].default_value = 0.7
+    # Orange iodine liquid
+    liquid = kit.add_material("tube-liquid", (0.85, 0.45, 0.10), metallic=0.0, roughness=0.2)
 
-    # Glass cylinder body (wider for visibility)
-    body = kit.primitive_object(f"{ASSET_ID}-body", "cylinder", glass,
-                                size=(0.024, 0.024, 0.14),
-                                location=(0.0, 0.0, 0.07))
+    # Rim (slightly wider than body)
+    rim = kit.add_material("tube-rim", (0.70, 0.80, 0.73), metallic=0.0, roughness=0.1)
+
+    # Tube body (cylindrical)
+    kit.primitive_object(f"{ASSET_ID}-body", "cylinder", glass,
+                          size=(0.008, 0.008, 0.08),
+                          location=(0.0, 0.0, 0.04))
+
+    # Smooth hemispherical bottom (using a sphere cut in half)
+    kit.primitive_object(f"{ASSET_ID}-bottom", "cylinder", glass,
+                          size=(0.008, 0.008, 0.008),
+                          location=(0.0, 0.0, 0.0))
+
+    # Rim at top (slightly wider)
+    kit.primitive_object(f"{ASSET_ID}-rim", "cylinder", rim,
+                          size=(0.009, 0.009, 0.003),
+                          location=(0.0, 0.0, 0.082))
 
     # Liquid inside (partial fill)
-    liquid_level = kit.primitive_object(f"{ASSET_ID}-liquid", "cylinder", liquid,
-                                         size=(0.020, 0.020, 0.08),
-                                         location=(0.0, 0.0, 0.042))
+    kit.primitive_object(f"{ASSET_ID}-liquid", "cylinder", liquid,
+                          size=(0.006, 0.006, 0.035),
+                          location=(0.0, 0.0, 0.018))
 
-    # Rounded bottom (hemisphere approximation)
-    bottom = kit.primitive_object(f"{ASSET_ID}-bottom", "cone", glass,
-                                  size=(0.024, 0.005, 0.018),
-                                  location=(0.0, 0.0, 0.009))
-
-    # Rim (thickened top edge)
-    rim = kit.primitive_object(f"{ASSET_ID}-rim", "cylinder", glass,
-                               size=(0.028, 0.028, 0.006),
-                               location=(0.0, 0.0, 0.143))
-
-    return [body, liquid_level, bottom, rim]
+    return []
 
 
 def main():

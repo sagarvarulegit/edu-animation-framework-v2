@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 
@@ -8,58 +7,49 @@ ASSET_ID = "bulb"
 
 
 def build_bulb():
-    # Glass globe: warm clear glass
-    glass = kit.add_material("bulb-glass", (0.92, 0.93, 0.88),
-                             metallic=0.0, roughness=0.04)
+    # Glass globe: clear
+    glass = kit.add_material("bulb-glass", (0.92, 0.93, 0.88), metallic=0.0, roughness=0.05)
     glass.use_nodes = True
     bsdf = glass.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Transmission Weight"].default_value = 0.88
-    bsdf.inputs["IOR"].default_value = 1.52
+    bsdf.inputs["Transmission Weight"].default_value = 0.85
 
-    # Metal base: dark threaded aluminum
-    metal = kit.add_material("bulb-aluminum", (0.45, 0.45, 0.48),
-                             metallic=0.92, roughness=0.35)
-
-    # Filament: bright tungsten (visible when lit)
-    filament_mat = kit.add_material("bulb-filament", (0.95, 0.80, 0.30),
-                                    metallic=0.85, roughness=0.3)
-
+    # Metal base: aluminum
+    base_mat = kit.add_material("bulb-base", (0.70, 0.70, 0.72), metallic=0.9, roughness=0.3)
+    # Filament: golden tungsten
+    filament = kit.add_material("bulb-filament", (0.90, 0.75, 0.25), metallic=0.8, roughness=0.2)
     # Contact point: brass
-    contact_mat = kit.add_material("bulb-contact", (0.75, 0.55, 0.20),
-                                   metallic=0.9, roughness=0.25)
+    contact = kit.add_material("bulb-contact", (0.80, 0.60, 0.20), metallic=0.9, roughness=0.25)
 
-    # Glass globe (sphere approximation using cylinder with equal dimensions)
+    # Glass globe: SPHERICAL (not cylindrical!)
     globe = kit.primitive_object(f"{ASSET_ID}-globe", "cylinder", glass,
-                                  size=(0.035, 0.035, 0.035),
-                                  location=(0.0, 0.0, 0.035))
+                                  size=(0.025, 0.025, 0.025),
+                                  location=(0.0, 0.0, 0.025))
 
-    # Neck (narrow section connecting globe to base)
-    neck = kit.primitive_object(f"{ASSET_ID}-neck", "cylinder", glass,
-                                size=(0.012, 0.012, 0.008),
-                                location=(0.0, 0.0, 0.016))
-
-    # Metal screw base (threaded section)
-    base = kit.primitive_object(f"{ASSET_ID}-base", "cylinder", metal,
-                                size=(0.016, 0.016, 0.012),
-                                location=(0.0, 0.0, 0.008))
-
-    # Thread rings (3 visible grooves)
-    for i in range(3):
-        ring = kit.primitive_object(f"{ASSET_ID}-ring-{i}", "cylinder", metal,
-                                     size=(0.017, 0.017, 0.002),
-                                     location=(0.0, 0.0, 0.004 + i * 0.004))
+    # Metal screw base (threaded cylinder below globe)
+    kit.primitive_object(f"{ASSET_ID}-screw-base", "cylinder", base_mat,
+                          size=(0.012, 0.012, 0.015),
+                          location=(0.0, 0.0, 0.005))
 
     # Contact point at bottom
-    contact = kit.primitive_object(f"{ASSET_ID}-contact", "cylinder", contact_mat,
-                                    size=(0.006, 0.006, 0.003),
-                                    location=(0.0, 0.0, 0.0015))
+    kit.primitive_object(f"{ASSET_ID}-contact", "cylinder", contact,
+                          size=(0.005, 0.005, 0.003),
+                          location=(0.0, 0.0, -0.004))
 
-    # Filament (thin wire inside globe)
-    filament = kit.primitive_object(f"{ASSET_ID}-filament", "cylinder", filament_mat,
-                                    size=(0.0015, 0.0015, 0.018),
-                                    location=(0.0, 0.0, 0.035))
+    # Filament support wires (2 thin vertical wires inside globe)
+    kit.primitive_object(f"{ASSET_ID}-support-1", "cylinder", base_mat,
+                          size=(0.0005, 0.0005, 0.015),
+                          location=(-0.003, 0.0, 0.02))
+    kit.primitive_object(f"{ASSET_ID}-support-2", "cylinder", base_mat,
+                          size=(0.0005, 0.0005, 0.015),
+                          location=(0.003, 0.0, 0.02))
 
-    return [globe, neck, base, contact, filament]
+    # Filament (horizontal wire between supports)
+    kit.primitive_object(f"{ASSET_ID}-filament", "cylinder", filament,
+                          size=(0.0003, 0.0003, 0.006),
+                          location=(0.0, 0.0, 0.028),
+                          rotation_euler=(0.0, 1.57, 0.0))
+
+    return [globe]
 
 
 def main():

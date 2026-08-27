@@ -69,11 +69,9 @@ def build_circuit():
                           location=(-0.05, 0.01, -0.015),
                           rotation_euler=(1.57, 0.0, 0.0))
 
-    dummy = kit.primitive_object(f"{ASSET_ID}-frame-helper", "cube",
-                                  kit.add_material("_helper", (0, 0, 0)),
-                                  size=(0.18, 0.02, 0.12),
-                                  location=(0.0, 0.0, 0.0))
-    return [dummy]
+    import bpy
+    objects = [o for o in bpy.context.collection.objects if o.name.startswith(ASSET_ID)]
+    return objects if objects else []
 
 
 def main():
