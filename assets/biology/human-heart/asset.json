@@ -2,41 +2,86 @@
   "id": "human-heart",
   "name": "Human Heart (Anatomical)",
   "category": "biology",
-  "type": "anatomical-model",
-  "version": "4.0",
-  "status": "production",
-  "semanticDescription": "Anatomical human heart with Skin modifier + Subdivision Surface for organic shape. External view with all major blood vessels, coronary arteries, and epicardial fat.",
-  "scaleConvention": "Approximate real-world scale (12cm tall)",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Anatomical human heart with anterior view and 4-chamber internal structures, coronary vessels, and great vessels.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale"
+  },
+  "simplifications": [
+    "Valve leaflets stylized for clean animation",
+    "Vessel branching truncated to primary trunks"
+  ],
   "materials": [
-    "heart-myocardium (0.65, 0.16, 0.12) \u2014 dark red muscle",
-    "heart-oxy (0.82, 0.15, 0.12) \u2014 bright red oxygenated vessels",
-    "heart-deoxy (0.22, 0.30, 0.70) \u2014 blue deoxygenated vessels",
-    "heart-aorta (0.72, 0.18, 0.14) \u2014 aortic vessels",
-    "heart-pulmonary (0.32, 0.38, 0.72) \u2014 pulmonary vessels",
-    "heart-coronary (0.90, 0.30, 0.25) \u2014 coronary arteries",
-    "heart-fat (0.85, 0.75, 0.42) \u2014 epicardial fat"
+    {
+      "id": "heart-myocardium",
+      "look": "Dark crimson myocardium muscle (0.65, 0.16, 0.12)"
+    },
+    {
+      "id": "heart-oxy",
+      "look": "Bright red oxygenated vessels / pulmonary veins (0.82, 0.15, 0.12)"
+    },
+    {
+      "id": "heart-deoxy",
+      "look": "Blue deoxygenated vessels / vena cava (0.22, 0.30, 0.70)"
+    },
+    {
+      "id": "heart-aorta",
+      "look": "Aortic arch and ascending/descending aorta (0.72, 0.18, 0.14)"
+    },
+    {
+      "id": "heart-pulmonary",
+      "look": "Pulmonary trunk and arteries (0.32, 0.38, 0.72)"
+    },
+    {
+      "id": "heart-coronary",
+      "look": "Coronary arteries LAD/RCA (0.90, 0.30, 0.25)"
+    },
+    {
+      "id": "heart-fat",
+      "look": "Epicardial fat tissue (0.85, 0.75, 0.42)"
+    },
+    {
+      "id": "heart-valve",
+      "look": "Fibrous valve tissue (0.90, 0.88, 0.82)"
+    }
   ],
-  "vessels": [
-    "Aorta (ascending, arch with 3 branches, descending)",
-    "Pulmonary trunk + left/right pulmonary arteries",
-    "Superior/Inferior vena cava",
-    "Left/right pulmonary veins (4 total)",
-    "Coronary arteries (LAD, RCA, circumflex)"
-  ],
-  "rendererCompatibility": [
-    "blender",
-    "three.js",
-    "remotion"
-  ],
+  "provenance": {
+    "method": "scanned-sourced",
+    "generator": "tools/extract_z_anatomy_heart.py",
+    "source": "Z-Anatomy (Models-of-human-anatomy)",
+    "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+    "license": "CC-BY-SA-4.0",
+    "authors": "Gauthier Kervyn / Z-Anatomy Community",
+    "date": "2026-08-27"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/human-heart.glb",
+    "remotion": "use out/preview.png"
+  },
   "outputs": [
-    "*.blend",
-    "*.glb",
-    "preview.png"
+    {
+      "file": "out/human-heart.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/human-heart.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
   ],
   "tags": [
     "anatomy",
     "circulatory-system",
+    "heart",
     "CBSE-class-10",
-    "science-ch5"
+    "science-ch5",
+    "z-anatomy"
   ]
 }

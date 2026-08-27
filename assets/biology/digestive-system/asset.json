@@ -1,38 +1,31 @@
 {
   "id": "digestive-system",
-  "name": "Human Digestive System",
+  "name": "Human Digestive System (Gastrointestinal Tract & Accessory Organs)",
   "category": "biology",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A simplified human digestive tract showing mouth, esophagus, stomach, small intestine (coiled), large intestine, and rectum. Used in CBSE Class 10 Ch5 (Life Processes) to explain nutrition and digestion.",
+  "version": "0.2.0",
+  "status": "reviewed",
+  "semanticDescription": "Anatomically accurate 3D model of the human digestive system including Esophagus, Stomach, Liver, Gallbladder, Pancreas, Small Intestine (Jejunum), Large Intestine (Transverse & Sigmoid Colon), and Vermiform Appendix. Extracted from Z-Anatomy. Aligned with CBSE Class 10 Life Processes (Nutrition).",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "simplified",
-    "height": 0.15,
-    "width": 0.05
+    "basis": "real-world-scale"
   },
-  "simplifications": [
-    "Organs shown as geometric primitives rather than anatomical shapes.",
-    "Liver, pancreas, and gallbladder omitted (add as separate models).",
-    "Intestinal folds (villi) not shown at this scale."
-  ],
   "materials": [
-    {
-      "id": "digestive-tract",
-      "look": "pinkish-beige tissue"
-    },
-    {
-      "id": "stomach-lining",
-      "look": "darker pink for stomach interior"
-    }
+    { "id": "gi-esophagus", "look": "Soft pinkish muscular swallowing tube" },
+    { "id": "gi-stomach", "look": "Coral muscular digestive reservoir" },
+    { "id": "gi-liver", "look": "Reddish-brown hepatic metabolic gland" },
+    { "id": "gi-gallbladder", "look": "Emerald green bile storage sac" },
+    { "id": "gi-pancreas", "look": "Golden-amber exocrine/endocrine gland" },
+    { "id": "gi-small-intestine", "look": "Warm pink nutrient absorption loops" },
+    { "id": "gi-large-intestine", "look": "Tan segmented water absorption colon" }
   ],
   "provenance": {
-    "method": "procedural-blender-python",
-    "generator": "build_digestive.py",
-    "generatedBy": "AI coding agent",
-    "license": "project-original",
-    "date": "2026-08-26"
+    "method": "scanned-sourced",
+    "source": "https://github.com/Z-Anatomy/Z-Anatomy",
+    "generator": "tools/extract_z_anatomy_digestive.py",
+    "generatedBy": "Z-Anatomy (CC BY-SA 4.0)",
+    "license": "CC BY-SA 4.0",
+    "date": "2026-08-27"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -40,24 +33,18 @@
     "remotion": "use out/preview.png"
   },
   "outputs": [
-    {
-      "file": "out/digestive-system.blend",
-      "kind": "blender-scene"
-    },
-    {
-      "file": "out/digestive-system.glb",
-      "kind": "glTF-binary"
-    },
-    {
-      "file": "out/preview.png",
-      "kind": "preview-render"
-    }
+    { "file": "out/digestive-system.blend", "kind": "blender-scene" },
+    { "file": "out/digestive-system.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
   ],
   "tags": [
-    "digestive",
+    "digestive-system",
     "stomach",
+    "liver",
+    "pancreas",
     "intestine",
     "nutrition",
-    "anatomy"
+    "life-processes",
+    "cbse-class-10"
   ]
 }

@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs & caches
+dist/
+dist-ssr/
+*.local
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Blender backup & temp files
+*.blend1
+*.blend2
+*.blend@
+
+# Large raw extracted external sources
+assets/biology/human-heart/source/
+
+# Logs & Environment
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.DS_Store
+Thumbs.db

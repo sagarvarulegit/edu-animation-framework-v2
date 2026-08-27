@@ -1,0 +1,52 @@
+{
+  "id": "biology.human-heart-double-circulation",
+  "title": "Double Circulation in the Human Heart",
+  "subject": "biology",
+  "grade": 10,
+  "curriculum": "CBSE",
+  "status": "foundation",
+  "learningObjectives": [
+    "Identify the 4 chambers of the human heart (Right Atrium, Right Ventricle, Left Atrium, Left Ventricle).",
+    "Trace the deoxygenated blood pathway from Vena Cava through the Right Heart to the Pulmonary Artery and Lungs.",
+    "Trace the oxygenated blood pathway from Pulmonary Veins through the Left Heart to the Aorta and Body.",
+    "Understand why mammalian circulation is called 'Double Circulation' (Pulmonary and Systemic circuits).",
+    "Observe how heart valves prevent the backflow of blood during systole and diastole."
+  ],
+  "scenes": [
+    {
+      "id": "01-cardiac-anatomy",
+      "purpose": "Establish the 3D heart anatomy, identifying the 4 chambers, great vessels, and pericardial orientation.",
+      "assets": [
+        "human-heart"
+      ]
+    },
+    {
+      "id": "02-pulmonary-circulation",
+      "purpose": "Trace deoxygenated blood flow from superior/inferior vena cava into the right atrium, right ventricle, and through the pulmonary arteries to the lungs.",
+      "assets": [
+        "human-heart"
+      ]
+    },
+    {
+      "id": "03-systemic-circulation",
+      "purpose": "Trace oxygen-rich blood returning via pulmonary veins into the left atrium, thick muscular left ventricle, and pumped through the aorta into systemic circulation.",
+      "assets": [
+        "human-heart"
+      ]
+    },
+    {
+      "id": "04-valvular-action-and-cycle",
+      "purpose": "Visualize the coordinated action of tricuspid, bicuspid (mitral), and semilunar valves during cardiac cycle (systole and diastole).",
+      "assets": [
+        "human-heart"
+      ]
+    },
+    {
+      "id": "05-double-circulation-summary",
+      "purpose": "Consolidate the concept of double circulation with circuit flow schematic and summary.",
+      "assets": [
+        "human-heart"
+      ]
+    }
+  ]
+}

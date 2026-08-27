@@ -1,0 +1,64 @@
+{
+  "id": "01-cardiac-anatomy",
+  "lessonId": "biology.human-heart-double-circulation",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 8,
+  "purpose": "Establish the 3D heart anatomy, identifying the 4 chambers, great vessels, and pericardial orientation.",
+  "instances": [
+    {
+      "asset": "human-heart",
+      "position": [0.0, 0.0, 0.0]
+    }
+  ],
+  "camera": {
+    "shots": {
+      "establishHeart": {
+        "position": [0.28, -0.38, 0.18],
+        "target": [0.0, 0.0, 0.0],
+        "lens": 50
+      },
+      "focusGreatVessels": {
+        "position": [0.0, -0.32, 0.22],
+        "target": [0.0, 0.0, 0.04],
+        "lens": 50
+      }
+    }
+  },
+  "timeline": [
+    {
+      "primitive": "cameraMove",
+      "shot": "establishHeart",
+      "start": 0.0,
+      "duration": 0.04
+    },
+    {
+      "primitive": "appear",
+      "target": "human-heart",
+      "start": 0.0,
+      "duration": 0.8
+    },
+    {
+      "primitive": "showLabel",
+      "target": "human-heart",
+      "text": "Human Heart (4 Chambers & Great Vessels)",
+      "start": 1.2,
+      "end": 4.5,
+      "offset": [0.0, 0.0, 0.09]
+    },
+    {
+      "primitive": "cameraMove",
+      "shot": "focusGreatVessels",
+      "start": 4.8,
+      "duration": 1.5
+    },
+    {
+      "primitive": "showLabel",
+      "target": "human-heart",
+      "text": "Aorta & Pulmonary Arteries",
+      "start": 5.5,
+      "end": 7.8,
+      "offset": [0.0, 0.0, 0.09]
+    }
+  ]
+}

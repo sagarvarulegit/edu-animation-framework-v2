@@ -1,0 +1,64 @@
+{
+  "id": "03-systemic-circulation",
+  "lessonId": "biology.human-heart-double-circulation",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 7,
+  "purpose": "Trace oxygen-rich blood returning via pulmonary veins into the left atrium, thick muscular left ventricle, and pumped through the aorta into systemic circulation.",
+  "instances": [
+    {
+      "asset": "human-heart",
+      "position": [0.0, 0.0, 0.0]
+    }
+  ],
+  "camera": {
+    "shots": {
+      "focusLeftSide": {
+        "position": [0.24, -0.32, 0.08],
+        "target": [0.02, 0.0, 0.0],
+        "lens": 50
+      },
+      "zoomAorticArch": {
+        "position": [0.08, -0.22, 0.18],
+        "target": [0.01, 0.0, 0.05],
+        "lens": 55
+      }
+    }
+  },
+  "timeline": [
+    {
+      "primitive": "cameraMove",
+      "shot": "focusLeftSide",
+      "start": 0.0,
+      "duration": 0.04
+    },
+    {
+      "primitive": "appear",
+      "target": "human-heart",
+      "start": 0.0,
+      "duration": 0.5
+    },
+    {
+      "primitive": "showLabel",
+      "target": "human-heart",
+      "text": "1. Oxygenated blood returns via Pulmonary Veins -> Left Heart",
+      "start": 0.6,
+      "end": 3.4,
+      "offset": [0.05, 0.0, 0.02]
+    },
+    {
+      "primitive": "cameraMove",
+      "shot": "zoomAorticArch",
+      "start": 3.5,
+      "duration": 1.2
+    },
+    {
+      "primitive": "showLabel",
+      "target": "human-heart",
+      "text": "2. High-pressure pump to body via Aorta",
+      "start": 4.0,
+      "end": 6.8,
+      "offset": [0.02, 0.0, 0.08]
+    }
+  ]
+}

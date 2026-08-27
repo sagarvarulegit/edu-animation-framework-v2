@@ -1,0 +1,64 @@
+{
+  "id": "02-pulmonary-circulation",
+  "lessonId": "biology.human-heart-double-circulation",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 7,
+  "purpose": "Trace deoxygenated blood flow from superior/inferior vena cava into the right atrium, right ventricle, and through the pulmonary arteries to the lungs.",
+  "instances": [
+    {
+      "asset": "human-heart",
+      "position": [0.0, 0.0, 0.0]
+    }
+  ],
+  "camera": {
+    "shots": {
+      "focusRightSide": {
+        "position": [-0.18, -0.32, 0.08],
+        "target": [-0.02, 0.0, 0.0],
+        "lens": 50
+      },
+      "zoomPulmonaryArtery": {
+        "position": [-0.10, -0.22, 0.16],
+        "target": [-0.01, 0.0, 0.04],
+        "lens": 55
+      }
+    }
+  },
+  "timeline": [
+    {
+      "primitive": "cameraMove",
+      "shot": "focusRightSide",
+      "start": 0.0,
+      "duration": 0.04
+    },
+    {
+      "primitive": "appear",
+      "target": "human-heart",
+      "start": 0.0,
+      "duration": 0.5
+    },
+    {
+      "primitive": "showLabel",
+      "target": "human-heart",
+      "text": "1. Vena Cava -> Right Atrium & Ventricle",
+      "start": 0.6,
+      "end": 3.4,
+      "offset": [-0.05, 0.0, 0.02]
+    },
+    {
+      "primitive": "cameraMove",
+      "shot": "zoomPulmonaryArtery",
+      "start": 3.5,
+      "duration": 1.2
+    },
+    {
+      "primitive": "showLabel",
+      "target": "human-heart",
+      "text": "2. Deoxygenated blood pumped to Lungs via Pulmonary Artery",
+      "start": 4.0,
+      "end": 6.8,
+      "offset": [-0.02, 0.0, 0.08]
+    }
+  ]
+}

@@ -1,51 +1,30 @@
 {
   "id": "human-eye",
-  "name": "Human Eye (Cross-Section)",
+  "name": "Human Eyeball (Cornea, Lens, Retina & Optic Nerve)",
   "category": "biology",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "Cross-section of human eye showing sclera, iris, pupil, lens, retina, and optic nerve. Used in CBSE Class 10 Ch6 and Ch10.",
+  "version": "0.2.0",
+  "status": "reviewed",
+  "semanticDescription": "Anatomically accurate 3D model of the human eyeball with Cornea, Sclera, Iris, Crystalline Biconvex Lens, Retina, Vitreous Body, and Cranial Optic Nerve II. Sourced from Z-Anatomy. Aligned with CBSE Class 10 Physics/Biology (Human Eye and Colorful World).",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "real-world-scale"
   },
-  "simplifications": [
-    "Spherical rather than slightly oblong",
-    "No ciliary muscles or suspensory ligaments"
-  ],
   "materials": [
-    {
-      "id": "off-white sclera",
-      "look": "off-white sclera"
-    },
-    {
-      "id": "blue iris",
-      "look": "blue iris"
-    },
-    {
-      "id": "black pupil",
-      "look": "black pupil"
-    },
-    {
-      "id": "transparent lens",
-      "look": "transparent lens"
-    },
-    {
-      "id": "pink retina",
-      "look": "pink retina"
-    },
-    {
-      "id": "yellow optic nerve",
-      "look": "yellow optic nerve"
-    }
+    { "id": "eye-cornea", "look": "Transparent refractive anterior window" },
+    { "id": "eye-sclera", "look": "Clean anatomical off-white protective outer tunic" },
+    { "id": "eye-iris", "look": "Hazel iris sphincter diaphragm" },
+    { "id": "eye-lens", "look": "Clear biconvex crystalline lens" },
+    { "id": "eye-retina", "look": "Orange-red sensory photoreceptor layer" },
+    { "id": "eye-optic-nerve", "look": "Ivory cranial nerve pathway to visual cortex" }
   ],
   "provenance": {
-    "method": "procedural-blender-python",
-    "generator": "build_human_eye.py",
-    "generatedBy": "AI coding agent",
-    "license": "project-original",
-    "date": "2026-08-26"
+    "method": "scanned-sourced",
+    "source": "https://github.com/Z-Anatomy/Z-Anatomy",
+    "generator": "tools/extract_z_anatomy_eye.py",
+    "generatedBy": "Z-Anatomy (CC BY-SA 4.0)",
+    "license": "CC BY-SA 4.0",
+    "date": "2026-08-27"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -53,25 +32,18 @@
     "remotion": "use out/preview.png"
   },
   "outputs": [
-    {
-      "file": "out/human-eye.blend",
-      "kind": "blender-scene"
-    },
-    {
-      "file": "out/human-eye.glb",
-      "kind": "glTF-binary"
-    },
-    {
-      "file": "out/preview.png",
-      "kind": "preview-render"
-    }
+    { "file": "out/human-eye.blend", "kind": "blender-scene" },
+    { "file": "out/human-eye.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
   ],
   "tags": [
     "eye",
-    "iris",
-    "pupil",
+    "human-eye",
+    "cornea",
+    "lens",
     "retina",
     "optic-nerve",
-    "vision"
+    "optics",
+    "cbse-class-10"
   ]
 }
