@@ -1,68 +1,42 @@
 {
   "id": "human-heart",
-  "name": "Human Heart (Cross-Section)",
+  "name": "Human Heart (Anatomical)",
   "category": "biology",
-  "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A simplified cross-section of the human heart showing 4 chambers (right/left atrium, right/left ventricle), septum, aorta, vena cava, and pulmonary artery. Color-coded: red for oxygenated blood, blue for deoxygenated. Used in CBSE Class 10 Ch5 (Life Processes) and Ch6 (Control & Coordination).",
-  "scaleConvention": {
-    "unit": "meter",
-    "basis": "simplified",
-    "height": 0.1,
-    "width": 0.07
-  },
-  "simplifications": [
-    "Chambers shown as geometric shapes rather than organic curves.",
-    "Valves simplified.",
-    "Coronary arteries omitted.",
-    "Scale not anatomically precise."
-  ],
+  "type": "anatomical-model",
+  "version": "4.0",
+  "status": "production",
+  "semanticDescription": "Anatomical human heart with Skin modifier + Subdivision Surface for organic shape. External view with all major blood vessels, coronary arteries, and epicardial fat.",
+  "scaleConvention": "Approximate real-world scale (12cm tall)",
   "materials": [
-    {
-      "id": "heart-muscle",
-      "look": "dark red muscle tissue"
-    },
-    {
-      "id": "heart-oxy",
-      "look": "bright red for oxygenated blood vessels"
-    },
-    {
-      "id": "heart-deoxy",
-      "look": "blue for deoxygenated blood vessels"
-    }
+    "heart-myocardium (0.65, 0.16, 0.12) \u2014 dark red muscle",
+    "heart-oxy (0.82, 0.15, 0.12) \u2014 bright red oxygenated vessels",
+    "heart-deoxy (0.22, 0.30, 0.70) \u2014 blue deoxygenated vessels",
+    "heart-aorta (0.72, 0.18, 0.14) \u2014 aortic vessels",
+    "heart-pulmonary (0.32, 0.38, 0.72) \u2014 pulmonary vessels",
+    "heart-coronary (0.90, 0.30, 0.25) \u2014 coronary arteries",
+    "heart-fat (0.85, 0.75, 0.42) \u2014 epicardial fat"
   ],
-  "provenance": {
-    "method": "procedural-blender-python",
-    "generator": "build_heart.py",
-    "generatedBy": "AI coding agent",
-    "license": "project-original",
-    "date": "2026-08-26"
-  },
-  "rendererCompatibility": {
-    "blender": true,
-    "three": "import out/human-heart.glb",
-    "remotion": "use out/preview.png"
-  },
+  "vessels": [
+    "Aorta (ascending, arch with 3 branches, descending)",
+    "Pulmonary trunk + left/right pulmonary arteries",
+    "Superior/Inferior vena cava",
+    "Left/right pulmonary veins (4 total)",
+    "Coronary arteries (LAD, RCA, circumflex)"
+  ],
+  "rendererCompatibility": [
+    "blender",
+    "three.js",
+    "remotion"
+  ],
   "outputs": [
-    {
-      "file": "out/human-heart.blend",
-      "kind": "blender-scene"
-    },
-    {
-      "file": "out/human-heart.glb",
-      "kind": "glTF-binary"
-    },
-    {
-      "file": "out/preview.png",
-      "kind": "preview-render"
-    }
+    "*.blend",
+    "*.glb",
+    "preview.png"
   ],
   "tags": [
-    "heart",
     "anatomy",
-    "circulation",
-    "chambers",
-    "blood"
+    "circulatory-system",
+    "CBSE-class-10",
+    "science-ch5"
   ]
 }

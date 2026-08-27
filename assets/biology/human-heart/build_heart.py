@@ -49,7 +49,8 @@ def build_heart():
     v_left_mid = bm.verts.new((-0.022, 0.004, -0.005))     # LV (anterior)
     v_left_lower = bm.verts.new((-0.015, 0.003, -0.022))   # Lower LV
 
-    # Connect skeleton edges
+    # Connect skeleton edges — minimal connectivity to avoid skin pinching
+    # Only essential connections: spine + side borders (no cross-connections)
     bm.edges.new([v_top, v_upper_mid])
     bm.edges.new([v_upper_mid, v_mid])
     bm.edges.new([v_mid, v_lower_mid])
@@ -62,12 +63,9 @@ def build_heart():
     bm.edges.new([v_left_upper, v_left_mid])
     bm.edges.new([v_left_mid, v_left_lower])
     bm.edges.new([v_left_lower, v_apex])
-    bm.edges.new([v_upper_mid, v_right_upper])
-    bm.edges.new([v_upper_mid, v_left_upper])
+    # Single cross-connection at center only (reduces pinching)
     bm.edges.new([v_mid, v_right_mid])
     bm.edges.new([v_mid, v_left_mid])
-    bm.edges.new([v_lower_mid, v_right_lower])
-    bm.edges.new([v_lower_mid, v_left_lower])
 
     mesh = bpy.data.meshes.new(f"{ASSET_ID}-skeleton")
     bm.to_mesh(mesh)
