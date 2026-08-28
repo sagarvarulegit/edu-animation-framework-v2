@@ -1,0 +1,16 @@
+{
+  "id": "05-chemical-equation",
+  "lessonId": "chemistry.magnesium-ribbon",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 6,
+  "purpose": "Connect the observation to the balanced chemical equation for magnesium oxide formation.",
+  "instances": [],
+  "camera": { "shots": { "equation": { "position": [0.0, -0.70, 0.16], "target": [0.0, 0.0, 0.03], "lens": 50 } } },
+  "timeline": [
+    { "primitive": "cameraMove", "shot": "equation", "start": 0.0, "duration": 0.04 },
+    { "primitive": "showEquation", "id": "word-equation", "text": "Magnesium + Oxygen → Magnesium oxide", "position": [0.0, 0.0, 0.075], "size": 0.011, "start": 0.35, "end": 2.4 },
+    { "primitive": "showEquation", "id": "balanced-equation", "text": "2Mg + O₂ → 2MgO", "position": [0.0, 0.0, 0.025], "size": 0.016, "start": 2.4, "end": 5.8 },
+    { "primitive": "showEquation", "id": "recap", "text": "Bright white light → white magnesium oxide", "position": [0.0, 0.0, -0.025], "size": 0.009, "start": 3.5, "end": 5.8 }
+  ]
+}

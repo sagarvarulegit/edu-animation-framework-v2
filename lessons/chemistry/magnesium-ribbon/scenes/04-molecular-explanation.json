@@ -1,0 +1,24 @@
+{
+  "id": "04-molecular-explanation",
+  "lessonId": "chemistry.magnesium-ribbon",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 6,
+  "purpose": "Conceptually show magnesium reacting with oxygen to form magnesium oxide; this is a model, not a view at physical scale.",
+  "instances": [],
+  "camera": { "shots": { "conceptualReaction": { "position": [0.0, -0.68, 0.24], "target": [0.0, 0.0, 0.01], "lens": 48 } } },
+  "timeline": [
+    { "primitive": "cameraMove", "shot": "conceptualReaction", "start": 0.0, "duration": 0.04 },
+    { "primitive": "showMolecule", "id": "mg-left", "model": "magnesium", "position": [-0.11, 0.0, 0.0], "start": 0.3, "duration": 0.45 },
+    { "primitive": "showMolecule", "id": "oxygen", "model": "oxygen", "position": [0.0, 0.0, 0.0], "start": 0.7, "duration": 0.45 },
+    { "primitive": "showMolecule", "id": "mg-right", "model": "magnesium", "position": [0.11, 0.0, 0.0], "start": 1.1, "duration": 0.45 },
+    { "primitive": "showEquation", "id": "concept-note", "text": "Conceptual model — not to scale", "position": [0.0, 0.0, 0.095], "size": 0.009, "start": 0.3, "end": 5.8 },
+    { "primitive": "move", "target": "mg-left", "offset": [0.055, 0.0, 0.0], "start": 2.0, "duration": 0.8 },
+    { "primitive": "move", "target": "mg-right", "offset": [-0.055, 0.0, 0.0], "start": 2.0, "duration": 0.8 },
+    { "primitive": "disappear", "target": "mg-left", "start": 2.9, "duration": 0.35 },
+    { "primitive": "disappear", "target": "oxygen", "start": 2.9, "duration": 0.35 },
+    { "primitive": "disappear", "target": "mg-right", "start": 2.9, "duration": 0.35 },
+    { "primitive": "showMolecule", "id": "mgo-left", "model": "magnesium-oxide", "position": [-0.055, 0.0, 0.0], "start": 3.2, "duration": 0.45 },
+    { "primitive": "showMolecule", "id": "mgo-right", "model": "magnesium-oxide", "position": [0.055, 0.0, 0.0], "start": 3.5, "duration": 0.45 }
+  ]
+}

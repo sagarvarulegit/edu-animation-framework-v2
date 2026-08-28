@@ -8,10 +8,17 @@
     "build:magnesium-ribbon": "blender --background --python assets/chemistry/magnesium-ribbon/build_magnesium_ribbon.py",
     "build:laboratory-tongs": "blender --background --python assets/chemistry/laboratory-tongs/build_laboratory_tongs.py",
     "build:bunsen-burner": "blender --background --python assets/chemistry/bunsen-burner/build_bunsen_burner.py",
+    "build:watch-glass": "blender --background --python assets/chemistry/watch-glass/build_watch_glass.py",
+    "build:magnesium-oxide": "blender --background --python assets/chemistry/magnesium-oxide/build_magnesium_oxide.py",
+    "build:dropper": "blender --background --python assets/chemistry/dropper/build_dropper.py",
+    "build:lab-core-kit": "npm run build:bunsen-burner && blender --background --python assets/chemistry/test-tube/build_test_tube.py && blender --background --python assets/chemistry/beaker/build_beaker.py && blender --background --python assets/chemistry/laboratory-tongs/build_laboratory_tongs.py && blender --background --python assets/chemistry/retort-stand/build_stand.py && npm run build:dropper && npm run build:watch-glass && npm run build:magnesium-oxide",
     "render:scene01-introduction": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/01-introduction.json --qa-frames 12,60,96,143 --width 960 --height 540 --samples 48",
     "render:scene02-heating": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/02-heating.json --qa-frames 18,44,80,140 --width 960 --height 540 --samples 48",
     "render:scene03-burning": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/03-burning.json --qa-frames 12,62,130,191 --width 960 --height 540 --samples 48",
+    "render:scene04-molecular-explanation": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/04-molecular-explanation.json --qa-frames 12,36,72,120 --width 960 --height 540 --samples 48",
+    "render:scene05-chemical-equation": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/05-chemical-equation.json --qa-frames 12,36,84,132 --width 960 --height 540 --samples 48",
+    "render:all-magnesium-ribbon": "npm run render:scene01-introduction && npm run render:scene02-heating && npm run render:scene03-burning && npm run render:scene04-molecular-explanation && npm run render:scene05-chemical-equation",
     "interactive:viewer": "npm run dev --prefix apps/interactive-viewer",
-    "test": "echo \"Tests not implemented yet\""
+    "test": "node tools/validate.mjs"
   }
 }

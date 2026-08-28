@@ -1,0 +1,10 @@
+{
+  "id": "magnesium-oxide", "name": "Magnesium Oxide Powder", "category": "chemistry", "type": "prop", "version": "0.1.0", "status": "draft",
+  "semanticDescription": "A white powder heap representing magnesium oxide, the product formed when magnesium burns in oxygen from air.",
+  "scaleConvention": { "unit": "meter", "basis": "visualization-scale" },
+  "simplifications": ["The granular heap is a pedagogical visual representation, not a measured mass of product."],
+  "provenance": { "method": "procedural-blender-python", "generator": "build_magnesium_oxide.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-08-28" },
+  "rendererCompatibility": { "blender": true, "three": "import out/magnesium-oxide.glb", "remotion": "use out/preview.png" },
+  "outputs": [{ "file": "out/magnesium-oxide.blend", "kind": "blender-scene" }, { "file": "out/magnesium-oxide.glb", "kind": "glTF-binary" }, { "file": "out/preview.png", "kind": "preview-render" }],
+  "tags": ["magnesium", "magnesium-oxide", "mgo", "powder", "reaction-product"]
+}

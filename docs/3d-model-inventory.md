@@ -350,12 +350,18 @@
 
 ---
 
-## Existing Models (Already Built in edu-animation-framework-v2)
+## Core Lab Kit (Procedural Blender Assets)
 
 | Model | Status |
 |-------|--------|
 | `lab-bunsen-burner` | ✅ Built (.blend + .glb) |
+| `lab-test-tube` | ✅ Built (.blend + .glb) |
+| `lab-beaker` | ✅ Built (.blend + .glb) |
 | `lab-tongs` | ✅ Built (.blend + .glb) |
+| `lab-iron-stand` | ✅ Built (.blend + .glb) |
+| `lab-dropper` | ✅ Built (.blend + .glb) |
 | `chem-magnesium-ribbon` | ✅ Built (.blend + .glb) |
+| `chem-watch-glass` | ✅ Built (.blend + .glb) |
+| `chem-magnesium-oxide` | ✅ Built (.blend + .glb) |
 
-**Remaining: 147 models to build.**
+**Remaining: 144 models to build.**

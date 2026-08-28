@@ -1,0 +1,15 @@
+{
+  "id": "dropper",
+  "name": "Pasteur Dropper / Pipette",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "0.1.0",
+  "status": "draft",
+  "semanticDescription": "A glass Pasteur dropper with blue rubber bulb and visible coloured solution, suitable for adding small quantities of liquid to a laboratory vessel.",
+  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "length": 0.19 },
+  "simplifications": ["Solution colour is illustrative and should be overridden by lesson context."],
+  "provenance": { "method": "procedural-blender-python", "generator": "build_dropper.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-08-28" },
+  "rendererCompatibility": { "blender": true, "three": "import out/dropper.glb", "remotion": "use out/preview.png or render frames" },
+  "outputs": [{ "file": "out/dropper.blend", "kind": "blender-scene" }, { "file": "out/dropper.glb", "kind": "glTF-binary" }, { "file": "out/preview.png", "kind": "preview-render" }],
+  "tags": ["dropper", "pipette", "glass", "laboratory", "liquid"]
+}

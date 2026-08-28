@@ -89,6 +89,7 @@ const PROVENANCE_METHODS = [
 const OUTPUT_KINDS = ["blender-scene", "glTF-binary", "preview-render"];
 const SUPPORTED_PRIMITIVES = [
   "appear",
+  "disappear",
   "cameraMove",
   "showLabel",
   "move",
@@ -96,6 +97,8 @@ const SUPPORTED_PRIMITIVES = [
   "showFlame",
   "burn",
   "transform",
+  "showMolecule",
+  "showEquation",
 ];
 
 function numberArray(value, length, file, label) {
@@ -123,8 +126,8 @@ function validateScenePlan(file, assetRegistry) {
   }
 
   const instanceIds = new Set();
-  if (!isArr(data.instances) || data.instances.length < 1) {
-    fail(file, '"instances" must be a non-empty array');
+  if (!isArr(data.instances)) {
+    fail(file, '"instances" must be an array');
   } else {
     for (const [index, instance] of data.instances.entries()) {
       const label = `instances[${index}]`;
@@ -204,7 +207,21 @@ function validateScenePlan(file, assetRegistry) {
       fail(file, `${label}.strength must be a number >= 0`);
     }
 
-    if (entry.primitive === "appear" || entry.primitive === "move" ||
+    if (entry.primitive === "showMolecule") {
+      if (!isStr(entry.id) || !isStr(entry.model) || !('position' in entry)) {
+        fail(file, `${label} (showMolecule) requires id, model, and position`);
+      } else {
+        instanceIds.add(entry.id);
+        numberArray(entry.position, 3, file, `${label}.position`);
+      }
+    } else if (entry.primitive === "showEquation") {
+      if (!isStr(entry.id) || !isStr(entry.text) || !('position' in entry) || typeof entry.end !== "number") {
+        fail(file, `${label} (showEquation) requires id, text, position, and end`);
+      } else {
+        instanceIds.add(entry.id);
+        numberArray(entry.position, 3, file, `${label}.position`);
+      }
+    } else if (entry.primitive === "appear" || entry.primitive === "disappear" || entry.primitive === "move" ||
         entry.primitive === "heat" || entry.primitive === "burn") {
       if (!isStr(entry.target) || !instanceIds.has(entry.target)) {
         fail(file, `${label}.target "${entry.target}" is not an instance in this scene`);

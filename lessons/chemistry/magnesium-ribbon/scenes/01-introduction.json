@@ -7,20 +7,21 @@
   "purpose": "Establish the laboratory experiment: burner on the bench, tongs holding a magnesium ribbon above the nozzle.",
   "instances": [
     { "asset": "bunsen-burner", "position": [0.0, 0.0, 0.0] },
-    { "asset": "laboratory-tongs", "position": [0.18, 0.0, 0.175], "rotationZ": 180 },
-    { "asset": "magnesium-ribbon", "position": [0.0, 0.0, 0.175] }
+    { "asset": "laboratory-tongs", "position": [0.18, 0.0, 0.175], "rotationZ": 0 },
+    { "asset": "magnesium-ribbon", "position": [0.0, 0.0, 0.175] },
+    { "asset": "watch-glass", "position": [0.075, -0.04, 0.0] }
   ],
   "camera": {
     "shots": {
       "establishExperiment": {
-        "position": [0.5, -0.66, 0.36],
-        "target": [0.07, 0.0, 0.12],
-        "lens": 50
+        "position": [0.52, -0.72, 0.33],
+        "target": [0.05, 0.0, 0.11],
+        "lens": 45
       },
       "focusOnRibbon": {
-        "position": [0.17, -0.23, 0.225],
-        "target": [0.0, 0.0, 0.18],
-        "lens": 55
+        "position": [0.42, -0.56, 0.28],
+        "target": [0.05, 0.0, 0.14],
+        "lens": 50
       }
     }
   },
@@ -29,6 +30,7 @@
     { "primitive": "appear", "target": "bunsen-burner", "start": 0.0, "duration": 0.5 },
     { "primitive": "appear", "target": "laboratory-tongs", "start": 0.3, "duration": 0.5 },
     { "primitive": "appear", "target": "magnesium-ribbon", "start": 0.6, "duration": 0.5 },
+    { "primitive": "appear", "target": "watch-glass", "start": 0.75, "duration": 0.45 },
     { "primitive": "cameraMove", "shot": "focusOnRibbon", "start": 1.8, "duration": 1.4 },
     { "primitive": "showLabel", "target": "magnesium-ribbon", "text": "Magnesium ribbon", "start": 2.4, "end": 5.6, "offset": [0.0, 0.0, 0.035] }
   ]

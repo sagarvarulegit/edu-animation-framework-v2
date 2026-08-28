@@ -44,7 +44,18 @@ def appear(target, start, duration, fps):
     target.scale = (1.0, 1.0, 1.0)
     target.keyframe_insert("scale", frame=f1)
     for i in range(3):
-        _key_easing(target, "scale", i, f0, "EASE_OUT")
+            _key_easing(target, "scale", i, f0, "EASE_OUT")
+
+
+def disappear(target, start, duration, fps):
+    f0 = max(1, round(start * fps))
+    f1 = max(f0 + 1, round((start + duration) * fps))
+    target.scale = (1.0, 1.0, 1.0)
+    target.keyframe_insert("scale", frame=f0)
+    target.scale = (0.0001, 0.0001, 0.0001)
+    target.keyframe_insert("scale", frame=f1)
+    for i in range(3):
+        _key_easing(target, "scale", i, f0, "EASE_IN")
 
 
 def camera_move(cam_obj, cam_data, from_shot, to_shot, start, duration, fps):
@@ -83,6 +94,49 @@ def show_label(text, location, end, cam, name="edu-label"):
     track.track_axis = "TRACK_Z"
     track.up_axis = "UP_Y"
     return obj
+
+
+def show_equation(text, location, cam, name, size=0.026):
+    obj = show_label(text, location, 0, cam, name=f"equation-{name}")
+    obj.data.size = size
+    obj.data.extrude = 0.0003
+    return obj
+
+
+def show_molecule(model, name, position):
+    """Create a labeled-by-colour conceptual molecular model, never a scale claim."""
+    parent = bpy.data.objects.new(f"molecule-{name}", None)
+    bpy.context.collection.objects.link(parent)
+    parent.location = Vector(position)
+    magnesium = kit.add_material(f"molecule-{name}-magnesium", (0.22, 0.58, 0.38), 0.15, 0.32)
+    oxygen = kit.add_material(f"molecule-{name}-oxygen", (0.85, 0.12, 0.12), 0.05, 0.28)
+    bond = kit.add_material(f"molecule-{name}-bond", (0.32, 0.35, 0.40), 0.7, 0.25)
+
+    def sphere(part, material, location, diameter=0.025):
+        obj = kit.primitive_object(f"{name}-{part}", "uv_sphere", material, size=(diameter, diameter, diameter), location=location)
+        obj.parent = parent
+        return obj
+
+    def connector(part, a, b):
+        start, end = Vector(a), Vector(b)
+        vector = end - start
+        obj = kit.primitive_object(f"{name}-{part}", "cylinder", bond, size=(0.005, 0.005, vector.length), location=(start + end) / 2)
+        obj.rotation_euler = Vector((0, 0, 1)).rotation_difference(vector).to_euler()
+        obj.parent = parent
+
+    if model == "magnesium":
+        sphere("mg", magnesium, (0, 0, 0), 0.030)
+    elif model == "oxygen":
+        sphere("o-left", oxygen, (-0.018, 0, 0))
+        sphere("o-right", oxygen, (0.018, 0, 0))
+        connector("o-bond", (-0.010, 0, 0), (0.010, 0, 0))
+    elif model == "magnesium-oxide":
+        sphere("mg", magnesium, (-0.016, 0, 0), 0.030)
+        sphere("o", oxygen, (0.016, 0, 0))
+        connector("mg-o-bond", (-0.004, 0, 0), (0.004, 0, 0))
+    else:
+        raise ValueError(f"unsupported conceptual molecule model: {model}")
+    return parent
 
 
 def label_pop(obj, start, end, fps):

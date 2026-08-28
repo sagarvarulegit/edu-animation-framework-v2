@@ -18,20 +18,35 @@
       "assets": [
         "magnesium-ribbon",
         "laboratory-tongs",
-        "bunsen-burner"
+        "bunsen-burner",
+        "watch-glass"
       ]
     },
     {
       "id": "heating",
-      "purpose": "Show the ribbon being heated."
+      "purpose": "Show the ribbon being heated.",
+      "assets": [
+        "magnesium-ribbon",
+        "laboratory-tongs",
+        "bunsen-burner",
+        "watch-glass"
+      ]
     },
     {
       "id": "burning",
-      "purpose": "Show bright white combustion and formation of product."
+      "purpose": "Show bright white combustion and formation of product.",
+      "assets": [
+        "magnesium-ribbon",
+        "laboratory-tongs",
+        "bunsen-burner",
+        "watch-glass",
+        "magnesium-oxide"
+      ]
     },
     {
       "id": "molecular-explanation",
-      "purpose": "Conceptually visualize magnesium reacting with oxygen."
+      "purpose": "Conceptually visualize magnesium reacting with oxygen.",
+      "assets": ["magnesium-oxide"]
     },
     {
       "id": "chemical-equation",

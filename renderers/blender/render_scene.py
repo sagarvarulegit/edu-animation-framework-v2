@@ -37,20 +37,20 @@ def asset_registry():
 
 
 def append_asset(asset_dir, asset_id):
-    before = set(bpy.data.objects)
     blend_file = asset_dir / "out" / f"{asset_id}.blend"
     with bpy.data.libraries.load(str(blend_file), link=False) as (source, destination):
         destination.objects = source.objects
     scene_collection = bpy.context.scene.collection
-    loaded = [obj for obj in bpy.data.objects if obj not in before]
-    meshes = []
-    for obj in loaded:
-        if obj.type == "MESH":
+    renderables = []
+    for obj in destination.objects:
+        if obj is None:
+            continue
+        # Asset cameras and studio lights must not override the lesson camera/lighting;
+        # meshes and curves are both required for reusable apparatus such as the tongs.
+        if obj.type in {"MESH", "CURVE", "EMPTY"}:
             scene_collection.objects.link(obj)
-            meshes.append(obj)
-        else:
-            bpy.data.objects.remove(obj)
-    return meshes
+            renderables.append(obj)
+    return renderables
 
 
 def build_instances(scene, registry):
@@ -99,6 +99,8 @@ def apply_timeline(scene, parents, cam, cam_data):
             current_shot = shot
         elif primitive == "appear":
             prim.appear(parents[entry["target"]], entry["start"], entry.get("duration", 0.5), fps)
+        elif primitive == "disappear":
+            prim.disappear(parents[entry["target"]], entry["start"], entry.get("duration", 0.5), fps)
         elif primitive == "move":
             prim.move(parents[entry["target"]], entry["start"], entry["duration"],
                       Vector(entry["offset"]), fps)
@@ -121,6 +123,14 @@ def apply_timeline(scene, parents, cam, cam_data):
                                     entry["end"], cam,
                                     name=f"label-{entry['target']}")
             prim.label_pop(label, entry["start"], entry["end"], fps)
+        elif primitive == "showMolecule":
+            molecule = prim.show_molecule(entry["model"], entry["id"], entry["position"])
+            parents[entry["id"]] = molecule
+            prim.appear(molecule, entry["start"], entry.get("duration", 0.45), fps)
+        elif primitive == "showEquation":
+            equation = prim.show_equation(entry["text"], entry["position"], cam, entry["id"], entry.get("size", 0.026))
+            parents[entry["id"]] = equation
+            prim.label_pop(equation, entry["start"], entry["end"], fps)
         else:
             raise ValueError(f"primitive not implemented in blender renderer: {primitive}")
 

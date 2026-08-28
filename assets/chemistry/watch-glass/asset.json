@@ -1,0 +1,10 @@
+{
+  "id": "watch-glass", "name": "Watch Glass (80 mm)", "category": "chemistry", "type": "prop", "version": "0.1.0", "status": "draft",
+  "semanticDescription": "A shallow borosilicate watch glass used to hold or collect small quantities of solids during a chemistry experiment.",
+  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "diameter": 0.082 },
+  "simplifications": ["Glass thickness is slightly exaggerated for visual clarity."],
+  "provenance": { "method": "procedural-blender-python", "generator": "build_watch_glass.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-08-28" },
+  "rendererCompatibility": { "blender": true, "three": "import out/watch-glass.glb", "remotion": "use out/preview.png" },
+  "outputs": [{ "file": "out/watch-glass.blend", "kind": "blender-scene" }, { "file": "out/watch-glass.glb", "kind": "glTF-binary" }, { "file": "out/preview.png", "kind": "preview-render" }],
+  "tags": ["watch-glass", "laboratory", "glass", "solid-collection"]
+}
