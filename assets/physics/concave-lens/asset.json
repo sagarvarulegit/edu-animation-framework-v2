@@ -8,7 +8,7 @@
   "semanticDescription": "A biconcave (diverging) lens with transparent glass (IOR 1.52) and chrome edge ring. Used in CBSE Class 10 Ch9-10.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Symmetric biconcave",

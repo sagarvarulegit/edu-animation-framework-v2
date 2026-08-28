@@ -8,7 +8,7 @@
   "semanticDescription": "Simplified DNA double helix with sugar-phosphate backbone and colored base pairs (AT=red, GC=blue). Used in CBSE Class 10 Ch7-8.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Straight ladder model rather than true helix twist",

@@ -8,7 +8,7 @@
   "semanticDescription": "A DC ammeter with black case, white dial, red needle, brass terminals, and green 'A' label. Used in CBSE Class 10 Ch11 circuits.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Simplified dial markings",

@@ -8,7 +8,7 @@
   "semanticDescription": "A complete simple circuit on a breadboard: battery, bulb, switch, ammeter, connected by red wires. Used in CBSE Class 10 Ch11.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Flat layout rather than 3D wiring",

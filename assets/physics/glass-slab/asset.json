@@ -8,7 +8,7 @@
   "semanticDescription": "A rectangular glass slab (IOR 1.52) used to demonstrate refraction and lateral displacement. Used in CBSE Class 10 Ch9.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Perfect rectangular prism",

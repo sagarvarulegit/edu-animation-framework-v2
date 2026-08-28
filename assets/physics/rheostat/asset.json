@@ -8,7 +8,7 @@
   "semanticDescription": "A sliding rheostat with ceramic base, copper wire coil, brass slider bar and contacts, and terminal posts. Used in CBSE Class 10 Ch11.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Simplified coil winding",

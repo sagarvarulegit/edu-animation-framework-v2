@@ -8,7 +8,7 @@
   "semanticDescription": "A neuron showing cell body (soma), nucleus, dendrites, axon with myelin sheath, and axon terminal. Used in CBSE Class 10 Ch6.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "educational-simplification"
+    "basis": "visualization-scale"
   },
   "simplifications": [
     "Straight axon rather than branching",
