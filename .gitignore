@@ -16,6 +16,8 @@ __pycache__/
 *.blend1
 *.blend2
 *.blend@
+frames/
+frames_*/
 
 # Large raw extracted external sources
 assets/biology/human-heart/source/

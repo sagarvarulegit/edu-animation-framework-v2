@@ -53,6 +53,7 @@
             "description": "Semantic animation primitive. Must be implemented by the target renderer."
           },
           "target": { "type": "string", "description": "Asset id of an instance in this scene." },
+          "source": { "type": "string", "description": "Source asset id for particle/transfer action (e.g. ribbon to watch glass)." },
           "start": { "type": "number", "minimum": 0 },
           "duration": { "type": "number", "minimum": 0 },
           "text": { "type": "string" },

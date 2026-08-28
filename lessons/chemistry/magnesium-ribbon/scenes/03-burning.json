@@ -4,13 +4,13 @@
   "renderer": "blender",
   "fps": 24,
   "duration": 8,
-  "purpose": "The ribbon ignites and burns with a dazzling white light. The resulting white magnesium oxide is collected in the watch glass.",
+  "purpose": "The ribbon ignites and burns with a dazzling white light. The resulting white magnesium oxide ash is actively collected in the watch glass below.",
   "instances": [
-    { "asset": "bunsen-burner", "position": [0.0, 0.0, 0.0] },
+    { "asset": "bunsen-burner", "position": [0.0, 0.0, 0.004] },
     { "asset": "laboratory-tongs", "position": [0.18, 0.0, 0.145], "rotationZ": 0 },
     { "asset": "magnesium-ribbon", "position": [0.0, 0.0, 0.145] },
-    { "asset": "watch-glass", "position": [0.075, -0.04, 0.0] },
-    { "asset": "magnesium-oxide", "position": [0.075, -0.04, 0.012] }
+    { "asset": "watch-glass", "position": [0.065, -0.02, 0.004] },
+    { "asset": "magnesium-oxide", "position": [0.065, -0.02, 0.012] }
   ],
   "camera": {
     "shots": {
@@ -20,21 +20,21 @@
         "lens": 52
       },
       "revealProduct": {
-        "position": [0.52, -0.72, 0.33],
-        "target": [0.05, 0.0, 0.08],
-        "lens": 45
+        "position": [0.36, -0.44, 0.22],
+        "target": [0.065, -0.02, 0.02],
+        "lens": 56
       }
     }
   },
   "timeline": [
     { "primitive": "cameraMove", "shot": "focusOnFlame", "start": 0.0, "duration": 0.04 },
-    { "primitive": "showFlame", "target": "bunsen-burner", "offset": [0.0, 0.0, 0.135], "start": 0.0, "duration": 0.04, "end": 5.4 },
-    { "primitive": "heat", "target": "magnesium-ribbon", "color": [1.0, 0.3, 0.05], "strength": 1.5, "start": 0.2, "duration": 0.8 },
-    { "primitive": "burn", "target": "magnesium-ribbon", "strength": 14, "start": 1.0, "duration": 4.5 },
-    { "primitive": "showLabel", "target": "magnesium-ribbon", "text": "Dazzling white light!", "start": 1.6, "end": 4.6, "offset": [0.0, 0.0, 0.04] },
-    { "primitive": "disappear", "target": "magnesium-ribbon", "start": 4.9, "duration": 0.5 },
-    { "primitive": "appear", "target": "magnesium-oxide", "start": 5.0, "duration": 0.65 },
-    { "primitive": "cameraMove", "shot": "revealProduct", "start": 5.6, "duration": 1.6 },
-    { "primitive": "showLabel", "target": "magnesium-oxide", "text": "Magnesium oxide — white solid", "start": 6.4, "end": 7.8, "offset": [0.0, 0.0, 0.035] }
+    { "primitive": "showFlame", "target": "bunsen-burner", "offset": [0.0, 0.0, 0.135], "start": 0.0, "duration": 0.04, "end": 5.0 },
+    { "primitive": "heat", "target": "magnesium-ribbon", "color": [1.0, 0.3, 0.05], "strength": 2.0, "start": 0.2, "duration": 0.8 },
+    { "primitive": "burn", "target": "magnesium-ribbon", "strength": 18, "start": 1.0, "duration": 4.2 },
+    { "primitive": "collectAsh", "source": "magnesium-ribbon", "target": "magnesium-oxide", "start": 1.5, "duration": 3.5 },
+    { "primitive": "showLabel", "target": "magnesium-ribbon", "text": "Dazzling white flame!", "start": 1.6, "end": 4.4, "offset": [0.0, 0.0, 0.04] },
+    { "primitive": "disappear", "target": "magnesium-ribbon", "start": 4.7, "duration": 0.4 },
+    { "primitive": "cameraMove", "shot": "revealProduct", "start": 5.2, "duration": 1.5 },
+    { "primitive": "showLabel", "target": "magnesium-oxide", "text": "Collected White Ash (MgO)", "start": 5.8, "end": 7.8, "offset": [0.0, 0.0, 0.035] }
   ]
 }

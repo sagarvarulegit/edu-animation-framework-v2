@@ -169,24 +169,36 @@ def setup_world_and_light():
     world = bpy.data.worlds.new("edu_world")
     world.use_nodes = True
     background = world.node_tree.nodes["Background"]
-    background.inputs[0].default_value = (0.94, 0.95, 0.97, 1.0)
-    background.inputs[1].default_value = 0.65
+    # Deep dark slate studio background (#0a0f1d) for pristine visual contrast
+    background.inputs[0].default_value = (0.015, 0.020, 0.030, 1.0)
+    background.inputs[1].default_value = 0.20
     bpy.context.scene.world = world
 
-    # Key light with high radius for soft realistic contact shadows
+    # Key light: Focused soft studio key light
     sun_data = bpy.data.lights.new("edu_key_light", type="SUN")
-    sun_data.energy = 4.0
+    sun_data.energy = 2.4
+    sun_data.color = (1.0, 0.97, 0.92)
     sun = bpy.data.objects.new("edu_key_light", sun_data)
     bpy.context.collection.objects.link(sun)
-    direction = Vector((-0.45, -0.65, -1.0)).normalized()
+    direction = Vector((-0.45, -0.65, -0.90)).normalized()
     sun.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
 
-    # Warm rim/fill light for edge definition on glassware and metals
+    # Rim light: Crisp cool contour rim light for edge definition on glassware and metals
+    rim_data = bpy.data.lights.new("edu_rim_light", type="SUN")
+    rim_data.energy = 2.0
+    rim_data.color = (0.75, 0.88, 1.0)
+    rim = bpy.data.objects.new("edu_rim_light", rim_data)
+    bpy.context.collection.objects.link(rim)
+    rim_direction = Vector((0.75, 0.60, -0.60)).normalized()
+    rim.rotation_euler = rim_direction.to_track_quat("-Z", "Y").to_euler()
+
+    # Subtle soft fill light
     fill_data = bpy.data.lights.new("edu_fill_light", type="SUN")
-    fill_data.energy = 1.6
+    fill_data.energy = 0.8
+    fill_data.color = (0.90, 0.92, 0.98)
     fill = bpy.data.objects.new("edu_fill_light", fill_data)
     bpy.context.collection.objects.link(fill)
-    fill_direction = Vector((0.75, 0.60, -0.70)).normalized()
+    fill_direction = Vector((0.30, -0.80, -0.40)).normalized()
     fill.rotation_euler = fill_direction.to_track_quat("-Z", "Y").to_euler()
 
 

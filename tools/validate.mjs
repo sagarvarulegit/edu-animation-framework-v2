@@ -96,6 +96,7 @@ const SUPPORTED_PRIMITIVES = [
   "heat",
   "showFlame",
   "burn",
+  "collectAsh",
   "transform",
   "showMolecule",
   "showEquation",
@@ -222,12 +223,15 @@ function validateScenePlan(file, assetRegistry) {
         numberArray(entry.position, 3, file, `${label}.position`);
       }
     } else if (entry.primitive === "appear" || entry.primitive === "disappear" || entry.primitive === "move" ||
-        entry.primitive === "heat" || entry.primitive === "burn") {
+        entry.primitive === "heat" || entry.primitive === "burn" || entry.primitive === "collectAsh") {
       if (!isStr(entry.target) || !instanceIds.has(entry.target)) {
         fail(file, `${label}.target "${entry.target}" is not an instance in this scene`);
       }
       if (entry.primitive === "move" && !("offset" in entry)) {
         fail(file, `${label} (move) requires "offset"`);
+      }
+      if (entry.primitive === "collectAsh" && entry.source && (!isStr(entry.source) || !instanceIds.has(entry.source))) {
+        fail(file, `${label}.source "${entry.source}" is not an instance in this scene`);
       }
     } else if (entry.primitive === "showFlame") {
       if (!isStr(entry.target) || !instanceIds.has(entry.target)) {
@@ -416,6 +420,49 @@ function validateLesson(file, assetRegistry) {
   });
 }
 
+function validateNarration(file) {
+  const data = loadJson(file);
+  if (!data) return;
+
+  if (!required(data, ["lessonId", "fps", "totalDurationSeconds", "scenes"], file)) return;
+  patternField(data, "lessonId", LESSON_ID, file);
+
+  if (!Number.isInteger(data.fps) || data.fps <= 0) {
+    fail(file, '"fps" must be a positive integer');
+  }
+
+  if (typeof data.totalDurationSeconds !== "number" || data.totalDurationSeconds <= 0) {
+    fail(file, '"totalDurationSeconds" must be a positive number');
+  }
+
+  if (!isArr(data.scenes) || data.scenes.length === 0) {
+    fail(file, '"scenes" must be a non-empty array');
+    return;
+  }
+
+  data.scenes.forEach((scene, index) => {
+    const label = `scenes[${index}]`;
+    if (!isObj(scene)) {
+      fail(file, `${label} must be an object`);
+      return;
+    }
+    if (!required(scene, ["id", "startFrame", "endFrame", "cues"], file)) return;
+    if (!isArr(scene.cues)) {
+      fail(file, `${label}.cues must be an array`);
+      return;
+    }
+    scene.cues.forEach((cue, cueIdx) => {
+      const cueLabel = `${label}.cues[${cueIdx}]`;
+      if (!required(cue, ["start", "end", "speaker", "text"], file)) return;
+      if (typeof cue.start !== "number" || typeof cue.end !== "number" || cue.start >= cue.end) {
+        fail(file, `${cueLabel} invalid start/end timestamps`);
+      }
+      strField(cue, "speaker", file);
+      strField(cue, "text", file);
+    });
+  });
+}
+
 function walk(dir, predicate, acc = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name === "node_modules" || entry.name === "out") continue;
@@ -434,16 +481,20 @@ for (const file of assetFiles) validateAsset(file, assetRegistry);
 const lessonFiles = walk(join(ROOT, "lessons"), (name) => name === "lesson.json");
 for (const file of lessonFiles) validateLesson(file, assetRegistry);
 
-const sceneFiles = walk(join(ROOT, "lessons"), (name) => name.endsWith(".json") && name !== "lesson.json");
+const narrationFiles = walk(join(ROOT, "lessons"), (name) => name === "narration.json");
+for (const file of narrationFiles) validateNarration(file);
+
+const sceneFiles = walk(join(ROOT, "lessons"), (name) => name.endsWith(".json") && name !== "lesson.json" && name !== "narration.json");
 for (const file of sceneFiles) validateScenePlan(file, assetRegistry);
 
 if (lessonFiles.length === 0) warnFile(ROOT, "no lesson.json files found under lessons/");
 if (assetFiles.length === 0) warnFile(ROOT, "no asset.json files found under assets/");
 
-console.log(`Lessons checked : ${lessonFiles.length}`);
-console.log(`Assets checked  : ${assetFiles.length}`);
-console.log(`Scene plans     : ${sceneFiles.length}`);
-console.log(`Asset registry  : ${[...assetRegistry.keys()].join(", ") || "(empty)"}`);
+console.log(`Lessons checked   : ${lessonFiles.length}`);
+console.log(`Assets checked    : ${assetFiles.length}`);
+console.log(`Scene plans       : ${sceneFiles.length}`);
+console.log(`Narration scripts : ${narrationFiles.length}`);
+console.log(`Asset registry    : ${[...assetRegistry.keys()].join(", ") || "(empty)"}`);
 
 if (warnings.length > 0) {
   console.log(`\nWarnings (${warnings.length}):`);

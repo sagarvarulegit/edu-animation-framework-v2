@@ -69,10 +69,11 @@ def build_instances(scene, registry):
 
 
 def build_bench():
-    material = kit.add_material("bench-surface", (0.35, 0.30, 0.26),
-                                metallic=0.0, roughness=0.85)
-    kit.primitive_object("bench-plane", "cube", material,
-                         size=(1.4, 1.4, 0.01), location=(0.05, -0.05, -0.005))
+    # Seamless dark charcoal / slate laboratory work surface
+    bench_mat = kit.add_material("bench-surface", (0.018, 0.022, 0.030),
+                                 metallic=0.02, roughness=0.60)
+    kit.primitive_object("bench-plane", "cube", bench_mat,
+                         size=(3.0, 3.0, 0.02), location=(0.0, 0.0, -0.010))
 
 
 def build_camera():
@@ -110,6 +111,10 @@ def apply_timeline(scene, parents, cam, cam_data):
         elif primitive == "burn":
             prim.burn(parents[entry["target"]], entry["start"], entry["duration"],
                       entry.get("strength", 40.0), fps)
+        elif primitive == "collectAsh":
+            source_obj = parents.get(entry.get("source", entry["target"]))
+            target_obj = parents[entry["target"]]
+            prim.collect_ash(source_obj, target_obj, entry["start"], entry["duration"], fps)
         elif primitive == "showFlame":
             prim.show_flame(parents[entry["target"]],
                             Vector(entry.get("offset", (0.0, 0.0, 0.135))),
@@ -151,14 +156,31 @@ def render_qa_stills(frames, out_dir, scene_name):
         bpy.ops.render.render(write_still=True)
 
 
-def render_video(out_dir, scene_name):
-    frames_dir = out_dir / "frames"
+import subprocess
+
+
+def render_video(out_dir, scene_name, fps):
+    frames_dir = out_dir / f"frames_{scene_name}"
     frames_dir.mkdir(parents=True, exist_ok=True)
     render = bpy.context.scene.render
     render.image_settings.file_format = "PNG"
     render.filepath = str(frames_dir / "frame_")
     bpy.context.scene.frame_set(bpy.context.scene.frame_start)
     bpy.ops.render.render(animation=True)
+
+    mp4_path = out_dir / f"{scene_name}.mp4"
+    pattern = str(frames_dir / "frame_%04d.png")
+    cmd = [
+        "ffmpeg", "-y", "-framerate", str(fps),
+        "-i", pattern,
+        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18",
+        str(mp4_path)
+    ]
+    try:
+        subprocess.run(cmd, check=True)
+        print(f"Rendered video saved: {mp4_path}")
+    except Exception as e:
+        print(f"FFmpeg encoding notice: {e}")
 
 
 def main():
@@ -186,7 +208,7 @@ def main():
         render_qa_stills(frames, out_dir, scene_name)
 
     if args.video:
-        render_video(out_dir, scene_name)
+        render_video(out_dir, scene_name, scene["fps"])
 
     if not args.qa_frames and not args.video:
         kit.save_blend(out_dir / f"{scene_name}.blend")

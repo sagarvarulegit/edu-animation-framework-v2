@@ -83,8 +83,10 @@ def show_label(text, location, end, cam, name="edu-label"):
     material = bpy.data.materials.new(f"{name}-ink")
     material.use_nodes = True
     bsdf = material.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Base Color"].default_value = (0.05, 0.05, 0.06, 1.0)
-    bsdf.inputs["Roughness"].default_value = 0.6
+    bsdf.inputs["Base Color"].default_value = (0.95, 0.96, 0.98, 1.0)
+    bsdf.inputs["Roughness"].default_value = 0.3
+    bsdf.inputs["Emission Color"].default_value = (0.95, 0.96, 0.98, 1.0)
+    bsdf.inputs["Emission Strength"].default_value = 1.0
     curve.materials.append(material)
     obj = bpy.data.objects.new(name, curve)
     bpy.context.collection.objects.link(obj)
@@ -191,6 +193,8 @@ def heat(parent, start, duration, color, strength, fps):
         emission.keyframe_insert("default_value", frame=f1)
 
 
+import math
+
 def burn(parent, start, duration, strength, fps):
     f0 = max(1, round(start * fps))
     f1 = max(f0 + 1, round((start + duration) * fps))
@@ -208,15 +212,15 @@ def burn(parent, start, duration, strength, fps):
 
     light_data = bpy.data.lights.new("burn-glow", type="POINT")
     light_data.energy = 0.0
-    light_data.color = (1.0, 0.98, 0.92)
-    light_data.shadow_soft_size = 0.01
+    light_data.color = (1.0, 0.98, 0.95)
+    light_data.shadow_soft_size = 0.015
     light = bpy.data.objects.new("burn-glow", light_data)
     bpy.context.collection.objects.link(light)
     light.parent = parent
     light.location = (0.0, 0.0, 0.0)
     light_data.energy = 0.0
     light_data.keyframe_insert("energy", frame=f0)
-    light_data.energy = strength * 3.0
+    light_data.energy = strength * 4.0
     light_data.keyframe_insert("energy", frame=f_peak)
     light_data.energy = strength * 0.2
     light_data.keyframe_insert("energy", frame=f1)
@@ -227,34 +231,37 @@ def show_flame(parent, offset, entry, fps):
     bpy.context.collection.objects.link(flame)
     flame.location = Vector(parent.location) + Vector(offset)
 
-    outer = kit.add_material("flame-outer-blue", (0.05, 0.10, 0.30),
-                             metallic=0.0, roughness=0.5)
+    # Outer luminous yellow-amber flame envelope
+    outer = kit.add_material("flame-outer-yellow", (1.0, 0.65, 0.02),
+                             metallic=0.0, roughness=0.3)
     outer_bsdf = outer.node_tree.nodes.get("Principled BSDF")
-    outer_bsdf.inputs["Emission Color"].default_value = (0.15, 0.40, 1.0, 1.0)
-    outer_bsdf.inputs["Emission Strength"].default_value = 6.0
+    outer_bsdf.inputs["Emission Color"].default_value = (1.0, 0.68, 0.05, 1.0)
+    outer_bsdf.inputs["Emission Strength"].default_value = 14.0
     cone_outer = kit.primitive_object("flame-outer", "cone", outer,
-                                      size=(0.012, 0.003, 0.040),
-                                      location=(0.0, 0.0, 0.020))
+                                      size=(0.014, 0.003, 0.046),
+                                      location=(0.0, 0.0, 0.023))
     cone_outer.parent = flame
 
-    inner = kit.add_material("flame-inner-bright", (0.60, 0.75, 1.0),
-                             metallic=0.0, roughness=0.5)
+    # Inner bright golden-yellow core
+    inner = kit.add_material("flame-inner-gold", (1.0, 0.85, 0.15),
+                             metallic=0.0, roughness=0.3)
     inner_bsdf = inner.node_tree.nodes.get("Principled BSDF")
-    inner_bsdf.inputs["Emission Color"].default_value = (0.75, 0.85, 1.0, 1.0)
-    inner_bsdf.inputs["Emission Strength"].default_value = 22.0
+    inner_bsdf.inputs["Emission Color"].default_value = (1.0, 0.90, 0.25, 1.0)
+    inner_bsdf.inputs["Emission Strength"].default_value = 20.0
     cone_inner = kit.primitive_object("flame-inner", "cone", inner,
-                                      size=(0.006, 0.0015, 0.024),
-                                      location=(0.0, 0.0, 0.012))
+                                      size=(0.007, 0.0015, 0.026),
+                                      location=(0.0, 0.0, 0.013))
     cone_inner.parent = flame
 
+    # Warm golden point light casting illumination on the burner & surroundings
     light_data = bpy.data.lights.new("flame-light", type="POINT")
-    light_data.energy = 4.0
-    light_data.color = (0.55, 0.65, 1.0)
-    light_data.shadow_soft_size = 0.015
+    light_data.energy = 3.5
+    light_data.color = (1.0, 0.70, 0.15)
+    light_data.shadow_soft_size = 0.02
     light = bpy.data.objects.new("flame-light", light_data)
     bpy.context.collection.objects.link(light)
     light.parent = flame
-    light.location = (0.0, 0.0, 0.018)
+    light.location = (0.0, 0.0, 0.022)
 
     start = entry["start"]
     end = entry.get("end")
@@ -262,6 +269,71 @@ def show_flame(parent, offset, entry, fps):
         label_pop(flame, start, end, fps)
     else:
         appear(flame, start, entry.get("duration", 0.5), fps)
+
+
+def collect_ash(source_parent, target_parent, start, duration, fps):
+    """
+    Animates the physical collection of white magnesium oxide ash:
+    1. Spawns cascading white ash flakes dropping from the burning ribbon into the watch glass.
+    2. Gradually grows the white MgO powder mound inside the watch glass bowl from 0 to full size.
+    """
+    f0 = max(1, round(start * fps))
+    f1 = max(f0 + 1, round((start + duration) * fps))
+
+    # 1. Animate target MgO powder heap scaling up inside the watch glass
+    target_parent.scale = (0.0001, 0.0001, 0.0001)
+    target_parent.keyframe_insert("scale", frame=f0)
+    f_mid = f0 + round(0.5 * (f1 - f0))
+    target_parent.scale = (0.55, 0.55, 0.55)
+    target_parent.keyframe_insert("scale", frame=f_mid)
+    target_parent.scale = (1.0, 1.0, 1.0)
+    target_parent.keyframe_insert("scale", frame=f1)
+    for i in range(3):
+        _key_easing(target_parent, "scale", i, f0, "EASE_OUT")
+
+    # 2. Spawn cascading falling ash flakes from source down into the target watch glass
+    ash_mat = kit.add_material("falling-ash-flake", (0.98, 0.98, 0.97), metallic=0.0, roughness=0.9)
+    ash_bsdf = ash_mat.node_tree.nodes.get("Principled BSDF")
+    ash_bsdf.inputs["Emission Color"].default_value = (1.0, 1.0, 1.0, 1.0)
+    ash_bsdf.inputs["Emission Strength"].default_value = 5.0
+
+    dst_pos = Vector(target_parent.location)
+    src_pos = Vector((dst_pos.x, dst_pos.y, 0.145))
+
+    num_flakes = 24
+    for i in range(num_flakes):
+        flake = kit.primitive_object(f"ash-flake-{i:02d}", "uv_sphere", ash_mat,
+                                     size=(0.0032, 0.0032, 0.0032),
+                                     location=(0.0, 0.0, 0.0))
+        
+        flake_t_start = start + (i / num_flakes) * (duration * 0.80)
+        flake_dur = 0.40 + (i % 4) * 0.08
+        
+        ff0 = max(1, round(flake_t_start * fps))
+        ff1 = max(ff0 + 1, round((flake_t_start + flake_dur) * fps))
+        
+        angle = i * 2.39996
+        rad = 0.006 + (i % 4) * 0.003
+        spawn_loc = Vector((src_pos.x + math.cos(angle) * rad,
+                            src_pos.y + math.sin(angle) * rad,
+                            src_pos.z - 0.005))
+        land_loc = Vector((dst_pos.x + math.cos(angle) * (rad * 0.6),
+                           dst_pos.y + math.sin(angle) * (rad * 0.6),
+                           dst_pos.z + 0.003))
+        
+        flake.location = spawn_loc
+        flake.scale = (0.0001, 0.0001, 0.0001)
+        flake.keyframe_insert("location", frame=ff0)
+        flake.keyframe_insert("scale", frame=ff0)
+        
+        ff_pop = ff0 + 2
+        flake.scale = (1.0, 1.0, 1.0)
+        flake.keyframe_insert("scale", frame=ff_pop)
+        
+        flake.location = land_loc
+        flake.keyframe_insert("location", frame=ff1)
+        flake.scale = (0.0001, 0.0001, 0.0001)
+        flake.keyframe_insert("scale", frame=ff1)
 
 
 def transform(parent, look, start, fps):

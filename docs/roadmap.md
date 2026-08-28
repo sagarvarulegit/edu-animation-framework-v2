@@ -29,11 +29,12 @@
 
 ## Milestone 4 — Video
 
-- [ ] Remotion project
-- [ ] caption system
-- [ ] equation component
-- [ ] narration timing
-- [ ] magnesium final video
+- [x] Remotion project (`apps/video-composer` — 1080p 30fps hybrid 3D+2D composition studio)
+- [x] caption system (`CaptionsOverlay.tsx` with karaoke-style word-level timestamp highlighting)
+- [x] equation component (`AnimatedEquation.tsx` with Word → Skeletal → Balanced 2Mg + O₂ → 2MgO transitions)
+- [x] narration timing (`lessons/chemistry/magnesium-ribbon/narration.json` validated via `validate.mjs`)
+- [x] atomic mechanism visualization (`MolecularDiagramCard.tsx` 2D valence electron transfer animation)
+- [x] magnesium final video (`MagnesiumRibbonLesson.tsx` master composition assembling 5 scenes + outro)
 
 ## Milestone 5 — Reusable science library
 

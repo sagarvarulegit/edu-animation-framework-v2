@@ -6,10 +6,10 @@
   "duration": 6,
   "purpose": "The burner flame appears and the tongs lower the ribbon into it; the ribbon warms up with a dull glow. Continues directly from the end of 01-introduction.",
   "instances": [
-    { "asset": "bunsen-burner", "position": [0.0, 0.0, 0.0] },
+    { "asset": "bunsen-burner", "position": [0.0, 0.0, 0.004] },
     { "asset": "laboratory-tongs", "position": [0.18, 0.0, 0.175], "rotationZ": 0 },
     { "asset": "magnesium-ribbon", "position": [0.0, 0.0, 0.175] },
-    { "asset": "watch-glass", "position": [0.075, -0.04, 0.0] }
+    { "asset": "watch-glass", "position": [0.065, -0.02, 0.004] }
   ],
   "camera": {
     "shots": {

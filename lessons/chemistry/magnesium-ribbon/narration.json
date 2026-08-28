@@ -1,0 +1,273 @@
+{
+  "lessonId": "chemistry.magnesium-ribbon",
+  "fps": 30,
+  "totalDurationSeconds": 88,
+  "totalFrames": 2640,
+  "scenes": [
+    {
+      "id": "scene01-intro",
+      "name": "Introduction & Setup",
+      "startFrame": 0,
+      "endFrame": 420,
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 4.0,
+          "speaker": "Teacher",
+          "concept": "Chapter 1: Chemical Reactions",
+          "text": "Welcome to CBSE Class 10 Chemistry. Today we observe the burning of magnesium ribbon in air.",
+          "words": [
+            {"word": "Welcome", "start": 0.0, "end": 0.5},
+            {"word": "to", "start": 0.5, "end": 0.7},
+            {"word": "CBSE", "start": 0.7, "end": 1.2},
+            {"word": "Class", "start": 1.2, "end": 1.5},
+            {"word": "10", "start": 1.5, "end": 1.8},
+            {"word": "Chemistry.", "start": 1.8, "end": 2.5},
+            {"word": "Today", "start": 2.6, "end": 2.9},
+            {"word": "we", "start": 2.9, "end": 3.1},
+            {"word": "observe", "start": 3.1, "end": 3.4},
+            {"word": "the", "start": 3.4, "end": 3.5},
+            {"word": "burning", "start": 3.5, "end": 3.7},
+            {"word": "of", "start": 3.7, "end": 3.8},
+            {"word": "magnesium", "start": 3.8, "end": 4.0}
+          ]
+        },
+        {
+          "start": 4.0,
+          "end": 14.0,
+          "speaker": "Teacher",
+          "concept": "Apparatus Setup",
+          "text": "In our laboratory setup, a strip of magnesium ribbon is held with tongs above a Bunsen burner, with a watch glass placed below.",
+          "words": [
+            {"word": "In", "start": 4.0, "end": 4.2},
+            {"word": "our", "start": 4.2, "end": 4.4},
+            {"word": "laboratory", "start": 4.4, "end": 5.1},
+            {"word": "setup,", "start": 5.1, "end": 5.7},
+            {"word": "a", "start": 5.8, "end": 6.0},
+            {"word": "strip", "start": 6.0, "end": 6.3},
+            {"word": "of", "start": 6.3, "end": 6.5},
+            {"word": "magnesium", "start": 6.5, "end": 7.0},
+            {"word": "ribbon", "start": 7.0, "end": 7.5},
+            {"word": "is", "start": 7.6, "end": 7.8},
+            {"word": "held", "start": 7.8, "end": 8.1},
+            {"word": "with", "start": 8.1, "end": 8.3},
+            {"word": "tongs", "start": 8.3, "end": 8.8},
+            {"word": "above", "start": 8.9, "end": 9.3},
+            {"word": "a", "start": 9.3, "end": 9.4},
+            {"word": "Bunsen", "start": 9.4, "end": 9.8},
+            {"word": "burner,", "start": 9.8, "end": 10.5},
+            {"word": "with", "start": 10.6, "end": 10.9},
+            {"word": "a", "start": 10.9, "end": 11.0},
+            {"word": "watch", "start": 11.0, "end": 11.4},
+            {"word": "glass", "start": 11.4, "end": 11.9},
+            {"word": "placed", "start": 12.0, "end": 12.5},
+            {"word": "below.", "start": 12.5, "end": 13.5}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene02-heating",
+      "name": "Heating in Flame",
+      "startFrame": 420,
+      "endFrame": 840,
+      "cues": [
+        {
+          "start": 14.0,
+          "end": 28.0,
+          "speaker": "Teacher",
+          "concept": "Thermal Ignition",
+          "text": "The Bunsen burner is ignited and the ribbon is heated. Heat energy supplies the activation energy needed to ignite the metal.",
+          "words": [
+            {"word": "The", "start": 14.0, "end": 14.3},
+            {"word": "Bunsen", "start": 14.3, "end": 14.8},
+            {"word": "burner", "start": 14.8, "end": 15.3},
+            {"word": "is", "start": 15.3, "end": 15.5},
+            {"word": "ignited", "start": 15.5, "end": 16.2},
+            {"word": "and", "start": 16.3, "end": 16.5},
+            {"word": "the", "start": 16.5, "end": 16.7},
+            {"word": "ribbon", "start": 16.7, "end": 17.2},
+            {"word": "is", "start": 17.2, "end": 17.4},
+            {"word": "heated.", "start": 17.4, "end": 18.2},
+            {"word": "Heat", "start": 18.5, "end": 18.9},
+            {"word": "energy", "start": 18.9, "end": 19.4},
+            {"word": "supplies", "start": 19.5, "end": 20.1},
+            {"word": "the", "start": 20.1, "end": 20.3},
+            {"word": "activation", "start": 20.3, "end": 21.0},
+            {"word": "energy", "start": 21.0, "end": 21.6},
+            {"word": "needed", "start": 21.8, "end": 22.3},
+            {"word": "to", "start": 22.3, "end": 22.5},
+            {"word": "ignite", "start": 22.5, "end": 23.0},
+            {"word": "the", "start": 23.0, "end": 23.2},
+            {"word": "metal.", "start": 23.2, "end": 24.5}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene03-burning",
+      "name": "Dazzling Combustion",
+      "startFrame": 840,
+      "endFrame": 1440,
+      "cues": [
+        {
+          "start": 28.0,
+          "end": 38.0,
+          "speaker": "Teacher",
+          "concept": "Observation: Dazzling White Flame",
+          "text": "Magnesium burns with a dazzling white flame, releasing immense light and heat energy!",
+          "words": [
+            {"word": "Magnesium", "start": 28.0, "end": 28.6},
+            {"word": "burns", "start": 28.6, "end": 29.1},
+            {"word": "with", "start": 29.1, "end": 29.3},
+            {"word": "a", "start": 29.3, "end": 29.4},
+            {"word": "dazzling", "start": 29.4, "end": 30.0},
+            {"word": "white", "start": 30.0, "end": 30.4},
+            {"word": "flame,", "start": 30.4, "end": 31.2},
+            {"word": "releasing", "start": 31.4, "end": 32.0},
+            {"word": "immense", "start": 32.0, "end": 32.6},
+            {"word": "light", "start": 32.6, "end": 33.1},
+            {"word": "and", "start": 33.1, "end": 33.3},
+            {"word": "heat", "start": 33.3, "end": 33.7},
+            {"word": "energy!", "start": 33.7, "end": 34.8}
+          ]
+        },
+        {
+          "start": 38.0,
+          "end": 48.0,
+          "speaker": "Teacher",
+          "concept": "Product: Magnesium Oxide",
+          "text": "The reaction produces a white powder collected in the watch glass: Magnesium Oxide (MgO).",
+          "words": [
+            {"word": "The", "start": 38.0, "end": 38.2},
+            {"word": "reaction", "start": 38.2, "end": 38.7},
+            {"word": "produces", "start": 38.7, "end": 39.3},
+            {"word": "a", "start": 39.3, "end": 39.4},
+            {"word": "white", "start": 39.4, "end": 39.8},
+            {"word": "powder", "start": 39.8, "end": 40.4},
+            {"word": "collected", "start": 40.5, "end": 41.1},
+            {"word": "in", "start": 41.1, "end": 41.3},
+            {"word": "the", "start": 41.3, "end": 41.4},
+            {"word": "watch", "start": 41.4, "end": 41.8},
+            {"word": "glass:", "start": 41.8, "end": 42.5},
+            {"word": "Magnesium", "start": 42.7, "end": 43.4},
+            {"word": "Oxide.", "start": 43.4, "end": 44.5}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene04-molecular",
+      "name": "Atomic Electron Transfer",
+      "startFrame": 1440,
+      "endFrame": 2040,
+      "cues": [
+        {
+          "start": 48.0,
+          "end": 58.0,
+          "speaker": "Teacher",
+          "concept": "Ionic Bond Formation",
+          "text": "At the atomic level, each Magnesium atom has 2 valence electrons and transfers them to Oxygen.",
+          "words": [
+            {"word": "At", "start": 48.0, "end": 48.2},
+            {"word": "the", "start": 48.2, "end": 48.4},
+            {"word": "atomic", "start": 48.4, "end": 48.9},
+            {"word": "level,", "start": 48.9, "end": 49.5},
+            {"word": "each", "start": 49.6, "end": 49.9},
+            {"word": "Magnesium", "start": 49.9, "end": 50.6},
+            {"word": "atom", "start": 50.6, "end": 51.0},
+            {"word": "has", "start": 51.0, "end": 51.3},
+            {"word": "2", "start": 51.3, "end": 51.6},
+            {"word": "valence", "start": 51.6, "end": 52.1},
+            {"word": "electrons", "start": 52.1, "end": 52.8},
+            {"word": "and", "start": 52.9, "end": 53.1},
+            {"word": "transfers", "start": 53.1, "end": 53.8},
+            {"word": "them", "start": 53.8, "end": 54.1},
+            {"word": "to", "start": 54.1, "end": 54.3},
+            {"word": "Oxygen.", "start": 54.3, "end": 55.2}
+          ]
+        },
+        {
+          "start": 58.0,
+          "end": 68.0,
+          "speaker": "Teacher",
+          "concept": "Cation & Anion Attraction",
+          "text": "Magnesium forms Mg²⁺ cations and Oxygen forms O²⁻ anions, creating an electrostatic ionic crystal lattice.",
+          "words": [
+            {"word": "Magnesium", "start": 58.0, "end": 58.6},
+            {"word": "forms", "start": 58.6, "end": 59.0},
+            {"word": "Mg²⁺", "start": 59.0, "end": 59.7},
+            {"word": "cations", "start": 59.7, "end": 60.3},
+            {"word": "and", "start": 60.4, "end": 60.6},
+            {"word": "Oxygen", "start": 60.6, "end": 61.1},
+            {"word": "forms", "start": 61.1, "end": 61.5},
+            {"word": "O²⁻", "start": 61.5, "end": 62.2},
+            {"word": "anions,", "start": 62.2, "end": 62.8},
+            {"word": "creating", "start": 62.9, "end": 63.5},
+            {"word": "a", "start": 63.5, "end": 63.6},
+            {"word": "stable", "start": 63.6, "end": 64.1},
+            {"word": "ionic", "start": 64.1, "end": 64.6},
+            {"word": "lattice.", "start": 64.6, "end": 65.8}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene05-equation",
+      "name": "Chemical Equation & Summary",
+      "startFrame": 2040,
+      "endFrame": 2640,
+      "cues": [
+        {
+          "start": 68.0,
+          "end": 78.0,
+          "speaker": "Teacher",
+          "concept": "Combination Reaction",
+          "text": "We express this as a balanced chemical equation: 2Mg + O₂ → 2MgO. This is a classic combination reaction.",
+          "words": [
+            {"word": "We", "start": 68.0, "end": 68.3},
+            {"word": "express", "start": 68.3, "end": 68.8},
+            {"word": "this", "start": 68.8, "end": 69.1},
+            {"word": "as", "start": 69.1, "end": 69.3},
+            {"word": "a", "start": 69.3, "end": 69.4},
+            {"word": "balanced", "start": 69.4, "end": 70.0},
+            {"word": "equation:", "start": 70.0, "end": 70.8},
+            {"word": "2Mg", "start": 71.0, "end": 71.6},
+            {"word": "plus", "start": 71.6, "end": 71.9},
+            {"word": "O₂", "start": 71.9, "end": 72.5},
+            {"word": "yields", "start": 72.5, "end": 72.9},
+            {"word": "2MgO.", "start": 72.9, "end": 73.8},
+            {"word": "This", "start": 74.0, "end": 74.3},
+            {"word": "is", "start": 74.3, "end": 74.5},
+            {"word": "a", "start": 74.5, "end": 74.6},
+            {"word": "combination", "start": 74.6, "end": 75.3},
+            {"word": "reaction.", "start": 75.3, "end": 76.5}
+          ]
+        },
+        {
+          "start": 78.0,
+          "end": 88.0,
+          "speaker": "Teacher",
+          "concept": "CBSE Board Exam Tip",
+          "text": "CBSE Exam Tip: Always clean the ribbon with sandpaper before burning to remove the unreactive basic magnesium carbonate layer!",
+          "words": [
+            {"word": "Exam", "start": 78.0, "end": 78.4},
+            {"word": "Tip:", "start": 78.4, "end": 79.0},
+            {"word": "Always", "start": 79.2, "end": 79.7},
+            {"word": "clean", "start": 79.7, "end": 80.1},
+            {"word": "the", "start": 80.1, "end": 80.3},
+            {"word": "ribbon", "start": 80.3, "end": 80.8},
+            {"word": "with", "start": 80.8, "end": 81.1},
+            {"word": "sandpaper", "start": 81.1, "end": 81.9},
+            {"word": "to", "start": 82.0, "end": 82.2},
+            {"word": "remove", "start": 82.2, "end": 82.7},
+            {"word": "the", "start": 82.7, "end": 82.9},
+            {"word": "protective", "start": 82.9, "end": 83.6},
+            {"word": "oxide", "start": 83.6, "end": 84.1},
+            {"word": "layer!", "start": 84.1, "end": 85.0}
+          ]
+        }
+      ]
+    }
+  ]
+}

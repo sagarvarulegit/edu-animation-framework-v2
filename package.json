@@ -19,6 +19,9 @@
     "render:scene05-chemical-equation": "blender --background --python renderers/blender/render_scene.py -- --scene lessons/chemistry/magnesium-ribbon/scenes/05-chemical-equation.json --qa-frames 12,36,84,132 --width 960 --height 540 --samples 48",
     "render:all-magnesium-ribbon": "npm run render:scene01-introduction && npm run render:scene02-heating && npm run render:scene03-burning && npm run render:scene04-molecular-explanation && npm run render:scene05-chemical-equation",
     "interactive:viewer": "npm run dev --prefix apps/interactive-viewer",
+    "video:composer": "npm run dev --prefix apps/video-composer",
+    "video:studio": "npm run dev --prefix apps/video-composer",
+    "video:render": "npm run build --prefix apps/video-composer",
     "test": "node tools/validate.mjs"
   }
 }
