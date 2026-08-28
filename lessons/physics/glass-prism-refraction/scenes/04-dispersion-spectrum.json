@@ -1,0 +1,32 @@
+{
+  "id": "04-dispersion-spectrum",
+  "lessonId": "physics.glass-prism-refraction",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 6.5,
+  "purpose": "Demonstrate the dispersion of white light into 7 constituent colors (VIBGYOR) on the observation screen.",
+  "instances": [
+    { "asset": "glass-prism-refraction", "position": [0.0, 0.0, 0.0] }
+  ],
+  "camera": {
+    "shots": {
+      "focusOnScreen": {
+        "position": [0.18, -0.16, 0.12],
+        "target": [0.10, -0.02, 0.03],
+        "lens": 55
+      },
+      "finalCompleteOverview": {
+        "position": [0.26, -0.34, 0.26],
+        "target": [0.0, 0.0, 0.03],
+        "lens": 46
+      }
+    }
+  },
+  "timeline": [
+    { "primitive": "cameraMove", "shot": "focusOnScreen", "start": 0.0, "duration": 0.04 },
+    { "primitive": "appear", "target": "glass-prism-refraction", "start": 0.0, "duration": 0.4 },
+    { "primitive": "showLabel", "target": "glass-prism-refraction", "text": "Dispersion: Spectrum (VIBGYOR) on Screen", "start": 0.8, "end": 3.8, "offset": [0.08, -0.01, 0.06] },
+    { "primitive": "cameraMove", "shot": "finalCompleteOverview", "start": 2.4, "duration": 1.6 },
+    { "primitive": "showLabel", "target": "glass-prism-refraction", "text": "Red deviates least • Violet deviates most", "start": 3.8, "end": 6.2, "offset": [0.0, 0.04, 0.08] }
+  ]
+}

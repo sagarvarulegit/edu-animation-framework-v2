@@ -1,0 +1,105 @@
+{
+  "id": "glass-prism-refraction",
+  "name": "Refraction Through Glass Prism Experiment Setup",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "Complete assembled laboratory experiment setup for studying refraction of light through a triangular glass prism as specified in CBSE Class 10 Physics (Light - Reflection & Refraction / Colourful World). Includes wooden drawing board with pinned white sheet, equilateral crown glass prism (n=1.517), collimated ray box light source, optical alignment pins (P1, P2, P3, P4), Snell's law calculated incident, refracted, and emergent light beams, surface normals, straight-line ray extensions, and the angle of deviation (D) indicator with an observation screen.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "boardWidth": 0.32,
+    "boardLength": 0.24,
+    "prismSide": 0.08,
+    "prismHeight": 0.06
+  },
+  "simplifications": [
+    "Ray beam thickness is slightly exaggerated (1.2mm radius) so that light paths remain distinct and clearly readable across 3D camera angles and educational video renders.",
+    "Angle indicator arcs and text notations are included as 3D visual markers for pedagogical clarity."
+  ],
+  "materials": [
+    { "id": "drawing-board-wood", "look": "polished laboratory beechwood drawing board with subtle grain texture" },
+    { "id": "paper-sheet", "look": "bright white matte drawing paper sheet" },
+    { "id": "optical-prism-glass", "look": "ultra-clear optical crown glass (Schott N-BK7, IOR 1.517, transmission 0.98)" },
+    { "id": "incident-ray-beam", "look": "glowing ruby laser/collimated beam (emission 18.0, pure monochromatic red)" },
+    { "id": "refracted-ray-beam", "look": "transmitted optical ray inside glass medium with internal glow" },
+    { "id": "emergent-ray-beam", "look": "deviated emergent light beam exiting into air" },
+    { "id": "extended-dashed-ray", "look": "luminous gold dashed path marking original incident direction and backward emergent extrapolation" },
+    { "id": "surface-normal", "look": "cyan luminous dashed normal lines perpendicular to refracting facets" },
+    { "id": "optical-pins", "look": "polished chrome steel pins with crimson spherical heads" },
+    { "id": "deviation-arc", "look": "amber angular arc highlighting angle of deviation D and angle of prism A" },
+    { "id": "observation-screen", "look": "white matte projection screen displaying rainbow spectrum dispersion" }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_glass_prism_refraction.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-28"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/glass-prism-refraction.glb",
+    "remotion": "use out/preview.png or render frames from the .blend scene"
+  },
+  "outputs": [
+    { "file": "out/glass-prism-refraction.blend", "kind": "blender-scene" },
+    { "file": "out/glass-prism-refraction.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "physical_dimensions": {
+    "width_mm": 320.0,
+    "height_mm": 65.0,
+    "depth_mm": 240.0,
+    "weight_g": 380.0
+  },
+  "material_specs": {
+    "transmission": 0.98,
+    "ior": 1.517,
+    "roughness": 0.015,
+    "metalness": 0.02,
+    "attenuation_color": "#e0f2fe"
+  },
+  "anchor_points": {
+    "torch_emitter": [-0.14, -0.045, 0.035],
+    "ray_entry_face_AB": [-0.02, 0.015, 0.035],
+    "ray_exit_face_AC": [0.025, -0.01, 0.035],
+    "screen_center": [0.145, -0.045, 0.038],
+    "apex_A": [0.0, 0.032, 0.065]
+  },
+  "interactive_states": [
+    {
+      "state": "unlit",
+      "label": "1. Apparatus Setup",
+      "description": "Equilateral glass prism placed on white drawing sheet pinned to wooden bench."
+    },
+    {
+      "state": "incident_beam",
+      "label": "2. White Light Torch On",
+      "description": "Collimated composite white light beam directed at face AB at incident angle i = 48°."
+    },
+    {
+      "state": "refraction",
+      "label": "3. Internal Refraction",
+      "description": "Light slows down in denser crown glass (n = 1.517) and refracts towards the normal."
+    },
+    {
+      "state": "dispersed_vibgyor",
+      "label": "4. 7-Color Rainbow Dispersion",
+      "description": "Rays exit into air and fan out into 7 spectral colors (VIBGYOR) on the observation screen."
+    }
+  ],
+  "cbse_mapping": {
+    "class": 10,
+    "chapter": "Chapter 11: Human Eye and the Colourful World",
+    "ncert_activity": "Activity 11.2 - Refraction of Light Through a Prism",
+    "key_formulas": [
+      "Snell's Law: n = sin(i) / sin(r1)",
+      "Prism Angle Relation: A + D = i + e",
+      "Cauchy's Dispersion Relation: n(λ) = A_c + B_c / λ²"
+    ],
+    "exam_takeaways": "Violet light (400nm) travels slowest in glass and deviates most (42.6°). Red light (700nm) travels fastest and deviates least (37.8°)."
+  },
+  "tags": ["prism", "refraction", "optics", "light", "dispersion", "snell", "physics", "cbse"]
+}

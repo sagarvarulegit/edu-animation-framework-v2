@@ -21,11 +21,11 @@
 
 ## Milestone 3 — Interactive
 
-- [ ] React Three Fiber application
-- [ ] reusable 3D components
-- [ ] experiment controls
-- [ ] reset/state system
-- [ ] magnesium interactive lesson
+- [x] React Three Fiber application (`apps/interactive-viewer`)
+- [x] reusable 3D components (`PrismRefractionModel`, `MagnesiumBurningModel`, `HeartModel`)
+- [x] experiment controls (monochromatic vs dispersion, normals/extensions/pins toggles, reaction stages, vascular circuit filters)
+- [x] reset/state system
+- [x] magnesium interactive lesson & prism refraction interactive lesson
 
 ## Milestone 4 — Video
 
@@ -37,9 +37,11 @@
 
 ## Milestone 5 — Reusable science library
 
+- [x] assembled experiment templates: `glass-prism-refraction`, `magnesium-burning-setup`, `full-circuit`
 - [ ] atoms
 - [ ] molecules
-- [ ] laboratory equipment
-- [ ] physics components
-- [ ] biology components
+- [x] laboratory equipment (bunsen-burner, tongs, beaker, test-tube, flask, retort-stand, watch-glass)
+- [x] physics components (ammeter, battery, bulb, lens, mirror, prism, resistor, rheostat, switch, voltmeter)
+- [x] biology components (brain, heart, eye, digestive-system, dna, neuron)
 - [ ] mathematical visualization components
+

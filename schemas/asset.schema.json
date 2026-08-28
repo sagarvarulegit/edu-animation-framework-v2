@@ -95,6 +95,61 @@
         "remotion": { "type": "string", "description": "How Remotion compositions consume this asset." }
       }
     },
+    "physical_dimensions": {
+      "type": "object",
+      "properties": {
+        "width_mm": { "type": "number" },
+        "height_mm": { "type": "number" },
+        "depth_mm": { "type": "number" },
+        "weight_g": { "type": "number" },
+        "volume_ml": { "type": "number" }
+      }
+    },
+    "material_specs": {
+      "type": "object",
+      "properties": {
+        "transmission": { "type": "number" },
+        "ior": { "type": "number" },
+        "roughness": { "type": "number" },
+        "metalness": { "type": "number" },
+        "attenuation_color": { "type": "string" }
+      }
+    },
+    "anchor_points": {
+      "type": "object",
+      "description": "Named 3D snap coordinates for rays, wires, flames, connectors, and detectors",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "number" },
+        "minItems": 3,
+        "maxItems": 3
+      }
+    },
+    "interactive_states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["state", "label", "description"],
+        "properties": {
+          "state": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "cbse_mapping": {
+      "type": "object",
+      "properties": {
+        "class": { "type": "integer" },
+        "chapter": { "type": "string" },
+        "ncert_activity": { "type": "string" },
+        "key_formulas": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "exam_takeaways": { "type": "string" }
+      }
+    },
     "outputs": {
       "type": "array",
       "items": {

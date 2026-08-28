@@ -1,0 +1,37 @@
+{
+  "id": "physics.glass-prism-refraction",
+  "title": "Refraction of Light Through a Triangular Glass Prism",
+  "subject": "physics",
+  "grade": 10,
+  "curriculum": "CBSE",
+  "status": "final",
+  "learningObjectives": [
+    "Understand the optical anatomy of an equilateral triangular glass prism including refracting faces, refracting edge, and angle of prism (A).",
+    "Trace the path of an incident light ray (PE) undergoing double refraction: entering glass from air (bending towards normal N1N1') and exiting glass into air (bending away from normal N2N2').",
+    "Identify and define the Angle of Incidence (i), Angle of Refraction (r), Angle of Emergence (e), and Angle of Deviation (D).",
+    "Verify the fundamental geometric relation for a prism: A + D = i + e.",
+    "Explain the cause of dispersion of white light into a 7-colour spectrum (ROYGBIV / VIBGYOR) due to wavelength-dependent refractive indices."
+  ],
+  "scenes": [
+    {
+      "id": "01-bench-setup",
+      "purpose": "Introduce the drawing board, white paper sheet fixed with pins, and placement of the triangular glass prism with its boundary outline traced.",
+      "assets": ["glass-prism-refraction"]
+    },
+    {
+      "id": "02-ray-tracing",
+      "purpose": "Fix optical pins P1 and P2 on the incident beam line, erect normal N1N1', and trace the refracted ray EF travelling through the denser glass medium.",
+      "assets": ["glass-prism-refraction"]
+    },
+    {
+      "id": "03-angle-of-deviation",
+      "purpose": "Fix pins P3 and P4 on the emergent ray FS, erect normal N2N2', extend incident and emergent rays to deviation vertex G, and highlight the Angle of Deviation (D).",
+      "assets": ["glass-prism-refraction"]
+    },
+    {
+      "id": "04-dispersion-spectrum",
+      "purpose": "Demonstrate the dispersion of a composite white light beam into the seven constituent spectrum colours (VIBGYOR) on the observation screen.",
+      "assets": ["glass-prism-refraction"]
+    }
+  ]
+}

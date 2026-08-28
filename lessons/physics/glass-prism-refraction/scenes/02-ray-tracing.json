@@ -1,0 +1,32 @@
+{
+  "id": "02-ray-tracing",
+  "lessonId": "physics.glass-prism-refraction",
+  "renderer": "blender",
+  "fps": 24,
+  "duration": 6.5,
+  "purpose": "Trace the incident ray PE with pins P1, P2, draw normal N1N1' on face AB, and trace the refracted ray EF bending towards normal inside glass.",
+  "instances": [
+    { "asset": "glass-prism-refraction", "position": [0.0, 0.0, 0.0] }
+  ],
+  "camera": {
+    "shots": {
+      "focusOnRefractionFace1": {
+        "position": [-0.14, -0.22, 0.16],
+        "target": [-0.02, 0.01, 0.025],
+        "lens": 55
+      },
+      "topDownOptics": {
+        "position": [0.0, -0.04, 0.28],
+        "target": [0.0, 0.0, 0.025],
+        "lens": 50
+      }
+    }
+  },
+  "timeline": [
+    { "primitive": "cameraMove", "shot": "focusOnRefractionFace1", "start": 0.0, "duration": 0.04 },
+    { "primitive": "appear", "target": "glass-prism-refraction", "start": 0.0, "duration": 0.4 },
+    { "primitive": "showLabel", "target": "glass-prism-refraction", "text": "Incident Ray (i = 48°)", "start": 0.8, "end": 3.6, "offset": [-0.06, -0.02, 0.06] },
+    { "primitive": "cameraMove", "shot": "topDownOptics", "start": 2.2, "duration": 1.6 },
+    { "primitive": "showLabel", "target": "glass-prism-refraction", "text": "Refracted Ray bends towards normal (r = 29.3°)", "start": 3.8, "end": 6.2, "offset": [0.0, 0.04, 0.06] }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "magnesium-burning-setup",
+  "name": "Burning of Magnesium Ribbon Complete Lab Bench Setup",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "Complete assembled laboratory experiment setup for the burning of magnesium ribbon in air (CBSE Class 10 Chemistry, Chapter 1: Chemical Reactions and Equations, Activity 1.1). Contains a laboratory bench with heat-resistant ceramic tile, a high-fidelity Bunsen burner with gas inlet hose and adjustable air collar, crucible tongs holding a strip of silvery magnesium ribbon, a watch glass placed beneath to collect the white magnesium oxide (MgO) powder ash, and sandpaper for pre-reaction oxide cleaning.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "benchWidth": 0.40,
+    "benchLength": 0.30,
+    "burnerHeight": 0.133,
+    "watchGlassDiameter": 0.08
+  },
+  "simplifications": [
+    "Ribbon thickness is slightly exaggerated (1.5mm) for visual clarity at standard camera distances.",
+    "The watch glass contains a collected heap of white magnesium oxide powder representing the post-combustion state."
+  ],
+  "materials": [
+    { "id": "bench-wood", "look": "dark polished laboratory benchtop with chemical-resistant matte finish" },
+    { "id": "ceramic-tile", "look": "white heat-resistant glazed ceramic safety tile" },
+    { "id": "burner-cast-iron", "look": "dark cast-iron flanged base with heavy textured finish" },
+    { "id": "burner-brass", "look": "machined brass air-collar with knurled grip rings" },
+    { "id": "burner-nickel", "look": "polished nickel-plated brass mixing barrel" },
+    { "id": "gas-hose", "look": "heavy-duty orange reinforced laboratory rubber hose" },
+    { "id": "tongs-steel", "look": "polished stainless steel crucible tongs with pivot hinge" },
+    { "id": "magnesium-ribbon", "look": "lustrous silvery elemental magnesium metal strip" },
+    { "id": "watch-glass", "look": "concave borosilicate laboratory watch glass" },
+    { "id": "magnesium-oxide-powder", "look": "fluffy brilliant-white magnesium oxide (MgO) ash powder" },
+    { "id": "sandpaper", "look": "abrasive grey silicon carbide sandpaper sheet" }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_magnesium_burning_setup.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-28"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/magnesium-burning-setup.glb",
+    "remotion": "use out/preview.png or render frames from the .blend scene"
+  },
+  "outputs": [
+    { "file": "out/magnesium-burning-setup.blend", "kind": "blender-scene" },
+    { "file": "out/magnesium-burning-setup.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["chemistry", "magnesium", "combustion", "flame", "laboratory", "cbse", "reactions", "oxidation"]
+}
