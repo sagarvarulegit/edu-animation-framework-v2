@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import type { AssetRegistryItem } from '../data/assetRegistry';
+import { BohrAtomModel } from './BohrAtomModel';
+import { IonicReaction3DModel } from './IonicReaction3DModel';
 
 export interface AssetStudioInspectorProps {
   asset: AssetRegistryItem;
@@ -376,6 +378,44 @@ export function AssetStudioInspector({
               <meshStandardMaterial color="#ffffff" roughness={0.9} />
             </mesh>
           )}
+        </group>
+      )}
+
+      {/* --- ASSET: magnesium-atom --- */}
+      {asset.id === 'magnesium-atom' && (
+        <group position={[0, 0, 0.08]} rotation={[Math.PI / 2, 0, 0]}>
+          <BohrAtomModel
+            element="Mg"
+            charge={stateIndex === 2 ? 2 : 0}
+            highlightValence={stateIndex < 2}
+            orbitSpeedMultiplier={stateIndex === 1 ? 2.0 : 1.0}
+            showNucleusDetails={true}
+            showShellLabels={true}
+          />
+        </group>
+      )}
+
+      {/* --- ASSET: oxygen-atom --- */}
+      {asset.id === 'oxygen-atom' && (
+        <group position={[0, 0, 0.08]} rotation={[Math.PI / 2, 0, 0]}>
+          <BohrAtomModel
+            element="O"
+            charge={stateIndex === 2 ? -2 : 0}
+            highlightValence={stateIndex < 2}
+            orbitSpeedMultiplier={stateIndex === 1 ? 2.0 : 1.0}
+            showNucleusDetails={true}
+            showShellLabels={true}
+          />
+        </group>
+      )}
+
+      {/* --- ASSET: magnesium-oxide-lattice --- */}
+      {asset.id === 'magnesium-oxide-lattice' && (
+        <group position={[0, 0, 0.08]} rotation={[Math.PI / 2, 0, 0]}>
+          <IonicReaction3DModel
+            stage={((stateIndex % 4) + 1) as 1 | 2 | 3 | 4}
+            showElectricField={true}
+          />
         </group>
       )}
 

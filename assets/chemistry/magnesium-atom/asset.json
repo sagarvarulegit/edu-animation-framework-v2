@@ -1,0 +1,76 @@
+{
+  "id": "magnesium-atom",
+  "name": "Magnesium Bohr Atom (Mg, Z=12)",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "0.1.0",
+  "status": "reviewed",
+  "semanticDescription": "3D Bohr atomic model of Magnesium (Z=12) showing a central 12p 12n nucleus and 3 concentric electron shells with electronic configuration 2, 8, 2.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale"
+  },
+  "simplifications": [
+    "Atomic shells and discrete electron spheres represent the conceptual Bohr-Bury model for educational clarity rather than quantum mechanical probability orbitals."
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_magnesium_atom.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-29"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/magnesium-atom.glb",
+    "remotion": "use out/preview.png"
+  },
+  "physical_dimensions": {
+    "width_mm": 280,
+    "height_mm": 280,
+    "depth_mm": 60,
+    "weight_g": 1
+  },
+  "material_specs": {
+    "roughness": 0.25,
+    "metalness": 0.2
+  },
+  "anchor_points": {
+    "nucleus": [0.0, 0.0, 0.0],
+    "k_shell": [0.0, 0.055, 0.0],
+    "l_shell": [0.0, 0.095, 0.0],
+    "m_valence_shell": [0.0, 0.138, 0.0]
+  },
+  "interactive_states": [
+    {
+      "state": "neutral",
+      "label": "Neutral Mg Atom [2, 8, 2]",
+      "description": "Magnesium in ground state with 2 valence electrons in outermost M-shell."
+    },
+    {
+      "state": "excited",
+      "label": "Valence Excitation",
+      "description": "Thermal activation loosens the 2 valence electrons."
+    },
+    {
+      "state": "ionized",
+      "label": "Mg²⁺ Cation [2, 8]",
+      "description": "Magnesium loses 2 valence electrons, forming a stable neon-like octet core."
+    }
+  ],
+  "cbse_mapping": {
+    "class": 10,
+    "chapter": "Chemical Reactions and Equations",
+    "ncert_activity": "Activity 1.1",
+    "key_formulas": [
+      "Mg [2,8,2] -> Mg²⁺ [2,8] + 2e⁻"
+    ],
+    "exam_takeaways": "Magnesium readily donates its 2 valence electrons to achieve stable octet configuration."
+  },
+  "outputs": [
+    { "file": "out/magnesium-atom.blend", "kind": "blender-scene" },
+    { "file": "out/magnesium-atom.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["magnesium", "atom", "bohr", "chemistry", "valence"]
+}

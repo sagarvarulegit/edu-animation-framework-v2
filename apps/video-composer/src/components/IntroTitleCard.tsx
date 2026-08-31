@@ -1,8 +1,10 @@
 import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { Sparkles, BookOpen, Atom, CheckCircle2 } from 'lucide-react';
+import { Sparkles, BookOpen, Atom, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { getOkfConcept } from '../data/generated/okfKnowledge';
 
 export interface IntroTitleCardProps {
+  conceptId?: string;
   curriculum?: string;
   grade?: number;
   subject?: string;
@@ -12,18 +14,28 @@ export interface IntroTitleCardProps {
 }
 
 export const IntroTitleCard: React.FC<IntroTitleCardProps> = ({
-  curriculum = 'CBSE',
-  grade = 10,
-  subject = 'Chemistry',
-  chapter = 'Chapter 1: Chemical Reactions & Equations',
-  title = 'Burning of Magnesium Ribbon',
-  objectives = [
+  conceptId = 'magnesium-ribbon-combustion',
+  curriculum: customCurriculum,
+  grade: customGrade,
+  subject: customSubject,
+  chapter: customChapter,
+  title: customTitle,
+  objectives: customObjectives,
+}) => {
+  const concept = getOkfConcept(conceptId);
+  const cbse = concept?.cbse_mapping;
+
+  const curriculum = customCurriculum || 'CBSE';
+  const grade = customGrade || cbse?.class || 10;
+  const subject = customSubject || (cbse?.subject ? cbse.subject.charAt(0).toUpperCase() + cbse.subject.slice(1) : 'Chemistry');
+  const chapter = customChapter || (cbse?.chapter ? `Chapter: ${cbse.chapter}` : 'Chapter 1: Chemical Reactions & Equations');
+  const title = customTitle || concept?.title || 'Burning of Magnesium Ribbon';
+  const objectives = customObjectives || cbse?.key_takeaways || [
     'Observe the burning of magnesium ribbon in air',
     'Identify the dazzling white flame and white solid product',
     'Understand valence electron transfer: Mg + O₂ → MgO',
     'Master the balanced chemical equation: 2Mg + O₂ → 2MgO'
-  ]
-}) => {
+  ];
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 

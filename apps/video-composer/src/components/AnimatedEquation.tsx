@@ -1,10 +1,19 @@
 import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { CheckCircle2, Scale, ArrowRight, Flame, Layers } from 'lucide-react';
+import { CheckCircle2, Scale, ArrowRight, Flame, Layers, ShieldCheck } from 'lucide-react';
+import { getOkfConcept } from '../data/generated/okfKnowledge';
 
-export const AnimatedEquation: React.FC = () => {
+export interface AnimatedEquationProps {
+  conceptId?: string;
+}
+
+export const AnimatedEquation: React.FC<AnimatedEquationProps> = ({
+  conceptId = 'magnesium-ribbon-combustion',
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+
+  const concept = getOkfConcept(conceptId);
 
   // Step 1: Word Equation (frames 0 - 60)
   // Step 2: Skeleton Unbalanced (frames 60 - 140)
@@ -32,9 +41,14 @@ export const AnimatedEquation: React.FC = () => {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300 mb-3">
           <Scale className="h-4 w-4 text-cyan-400" /> Chemical Reaction Representation
+          {concept && (
+            <span className="flex items-center gap-1 ml-2 text-emerald-400 border-l border-slate-700 pl-2">
+              <ShieldCheck className="h-3.5 w-3.5" /> {concept.verified}
+            </span>
+          )}
         </div>
         <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-cyan-200 font-outfit">
-          Balanced Chemical Equation
+          {concept ? `${concept.title} — Balanced Equation` : 'Balanced Chemical Equation'}
         </h2>
       </div>
 

@@ -3,9 +3,24 @@ from mathutils import Vector
 
 import edu_asset_kit as kit
 
-LOOKS = {
-    "magnesium-oxide": {"color": (0.93, 0.93, 0.91), "metallic": 0.0, "roughness": 0.95},
-}
+try:
+    import edu_design_tokens as tokens
+except ImportError:
+    tokens = None
+
+if tokens is not None:
+    mgo_cfg = tokens.get_material_config("powder_magnesium_oxide")
+    LOOKS = {
+        "magnesium-oxide": {
+            "color": mgo_cfg["base_color"][:3],
+            "metallic": mgo_cfg["metallic"],
+            "roughness": mgo_cfg["roughness"],
+        }
+    }
+else:
+    LOOKS = {
+        "magnesium-oxide": {"color": (0.93, 0.93, 0.91), "metallic": 0.0, "roughness": 0.95},
+    }
 
 
 def _fcurves_for(anim_data, data_path):

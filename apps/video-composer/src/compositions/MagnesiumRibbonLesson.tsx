@@ -7,6 +7,8 @@ import { MolecularDiagramCard } from '../components/MolecularDiagramCard';
 import { AnimatedEquation } from '../components/AnimatedEquation';
 import { CaptionsOverlay, type NarrationCue } from '../components/CaptionsOverlay';
 import { OutroSummaryCard } from '../components/OutroSummaryCard';
+import { OkfTrustBadge } from '../components/OkfTrustBadge';
+import { OkfMisconceptionCallout } from '../components/OkfMisconceptionCallout';
 
 // Import narration data
 import narrationData from '../../../../lessons/chemistry/magnesium-ribbon/narration.json';
@@ -21,19 +23,7 @@ export const MagnesiumRibbonLesson: React.FC = () => {
       {/* 1. INTRO TITLE CARD (0s - 8s / Frames 0 - 240)                      */}
       {/* =================================================================== */}
       <Sequence from={0} durationInFrames={240} name="Intro Title & Objectives">
-        <IntroTitleCard
-          curriculum="CBSE"
-          grade={10}
-          subject="Chemistry"
-          chapter="Chapter 1: Chemical Reactions & Equations"
-          title="Burning of Magnesium Ribbon"
-          objectives={[
-            'Observe the burning of magnesium ribbon in air',
-            'Identify the dazzling white flame and white solid product',
-            'Understand valence electron transfer: Mg + O₂ → MgO',
-            'Master the balanced chemical equation: 2Mg + O₂ → 2MgO'
-          ]}
-        />
+        <IntroTitleCard conceptId="magnesium-ribbon-combustion" />
       </Sequence>
 
       {/* =================================================================== */}
@@ -44,6 +34,11 @@ export const MagnesiumRibbonLesson: React.FC = () => {
           src="/assets/videos/01-introduction.mp4"
           label="Activity 1.1 — Laboratory Apparatus Setup"
         />
+        <OkfTrustBadge
+          conceptId="magnesium-ribbon-combustion"
+          position="top-left"
+          delayFrames={15}
+        />
         <ObservationCallout
           type="info"
           title="Apparatus Setup"
@@ -51,6 +46,12 @@ export const MagnesiumRibbonLesson: React.FC = () => {
           formula="Mg (s)"
           position="top-right"
           delayFrames={30}
+        />
+        <OkfMisconceptionCallout
+          conceptId="magnesium-ribbon-combustion"
+          misconceptionIndex={0}
+          position="bottom-left"
+          delayFrames={60}
         />
       </Sequence>
 
@@ -96,6 +97,11 @@ export const MagnesiumRibbonLesson: React.FC = () => {
           position="bottom-right"
           delayFrames={220}
         />
+        <OkfTrustBadge
+          conceptId="magnesium-oxide"
+          position="top-left"
+          delayFrames={200}
+        />
       </Sequence>
 
       {/* =================================================================== */}
@@ -109,14 +115,14 @@ export const MagnesiumRibbonLesson: React.FC = () => {
       {/* 6. SCENE 05: BALANCED CHEMICAL EQUATION (70s - 82s / Frames 2100 - 2460) */}
       {/* =================================================================== */}
       <Sequence from={2100} durationInFrames={360} name="Balanced Chemical Equation">
-        <AnimatedEquation />
+        <AnimatedEquation conceptId="magnesium-ribbon-combustion" />
       </Sequence>
 
       {/* =================================================================== */}
       {/* 7. OUTRO & CBSE EXAM SUMMARY (82s - 88s / Frames 2460 - 2640)      */}
       {/* =================================================================== */}
       <Sequence from={2460} durationInFrames={180} name="Exam Summary & Recap">
-        <OutroSummaryCard />
+        <OutroSummaryCard conceptId="magnesium-ribbon-combustion" />
       </Sequence>
 
       {/* =================================================================== */}

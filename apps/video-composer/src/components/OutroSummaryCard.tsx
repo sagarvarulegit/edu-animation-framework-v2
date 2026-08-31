@@ -1,10 +1,20 @@
 import React from 'react';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { Award, CheckCircle2, Lightbulb, ArrowRight, BookMarked } from 'lucide-react';
+import { Award, CheckCircle2, Lightbulb, ArrowRight, BookMarked, ShieldCheck } from 'lucide-react';
+import { getOkfConcept } from '../data/generated/okfKnowledge';
 
-export const OutroSummaryCard: React.FC = () => {
+export interface OutroSummaryCardProps {
+  conceptId?: string;
+}
+
+export const OutroSummaryCard: React.FC<OutroSummaryCardProps> = ({
+  conceptId = 'magnesium-ribbon-combustion',
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+
+  const concept = getOkfConcept(conceptId);
+  const cbse = concept?.cbse_mapping;
 
   const cardScale = spring({
     frame,

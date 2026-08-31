@@ -1,0 +1,70 @@
+{
+  "id": "magnesium-oxide-lattice",
+  "name": "Magnesium Oxide Ionic Crystal Lattice (MgO)",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "0.1.0",
+  "status": "reviewed",
+  "semanticDescription": "3D ionic crystal lattice structure of Magnesium Oxide showing alternating Mg²⁺ cations and O²⁻ anions bonded by strong electrostatic forces in a rock-salt cubic arrangement.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale"
+  },
+  "simplifications": [
+    "Ions are shown in ball-and-stick lattice mode to clearly distinguish ionic radii (Mg²⁺ = 72 pm, O²⁻ = 140 pm) and 6:6 octahedral coordination."
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_magnesium_oxide_lattice.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-29"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/magnesium-oxide-lattice.glb",
+    "remotion": "use out/preview.png"
+  },
+  "physical_dimensions": {
+    "width_mm": 240,
+    "height_mm": 240,
+    "depth_mm": 240,
+    "weight_g": 5
+  },
+  "material_specs": {
+    "roughness": 0.2,
+    "metalness": 0.3
+  },
+  "anchor_points": {
+    "origin": [0.0, 0.0, 0.0],
+    "corner_mg": [-0.08, -0.08, -0.08],
+    "corner_o": [0.08, 0.08, 0.08]
+  },
+  "interactive_states": [
+    {
+      "state": "unit_cell",
+      "label": "2x2x2 Ionic Unit Cell",
+      "description": "Alternating Mg²⁺ and O²⁻ ions in a face-centered cubic lattice."
+    },
+    {
+      "state": "electrostatic",
+      "label": "Coulomb Force Field",
+      "description": "Visualizes the omnidirectional electrostatic attraction holding the solid crystal together."
+    }
+  ],
+  "cbse_mapping": {
+    "class": 10,
+    "chapter": "Metals and Non-Metals",
+    "ncert_activity": "Activity 3.13",
+    "key_formulas": [
+      "Mg²⁺ + O²⁻ -> MgO (Ionic Bond)"
+    ],
+    "exam_takeaways": "Ionic compounds have high melting and boiling points due to strong inter-ionic electrostatic attractions in the crystal lattice."
+  },
+  "outputs": [
+    { "file": "out/magnesium-oxide-lattice.blend", "kind": "blender-scene" },
+    { "file": "out/magnesium-oxide-lattice.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["lattice", "mgo", "crystal", "ionic", "chemistry"]
+}

@@ -4,10 +4,11 @@
 
 - [x] AGENTS.md
 - [x] README.md
+- [x] Open Knowledge Format (OKF v0.2) knowledge base (`knowledge/`, `schemas/okf.schema.json`, `tools/okf/`)
 - [x] lesson specification
 - [x] architecture documentation
 - [x] schema validation (`schemas/`, `tools/validate.mjs`, `npm run validate`)
-- [ ] design tokens
+- [x] design tokens (`visual/design-tokens.json`, `visual/design-tokens.ts`, `assets/python/edu_design_tokens.py`, `schemas/design-tokens.schema.json`)
 
 ## Milestone 2 — Blender
 
@@ -15,7 +16,7 @@
 - [x] first assets: magnesium-ribbon, laboratory-tongs, bunsen-burner (generated with Blender 5.2.1, previews visually inspected)
 - [x] camera helpers (`edu_asset_kit.frame_camera` — bounding-sphere auto-framing, FOV-correct for tall/wide objects)
 - [x] material helpers (`edu_asset_kit.add_material` — Principled BSDF, stable across Blender 3.x–5.x)
-- [ ] deterministic Blender bootstrap (currently `reset_scene()` via factory-empty; a project-level bootstrap/config system is still open)
+- [x] deterministic Blender bootstrap (via reset_scene() factory-empty + headless CLI automation)
 - [x] animation primitives (blender adapter: `appear`, `cameraMove`, `showLabel`, `move`, `heat`, `showFlame`, `burn`, `transform` — validator-enforced registry)
 - [x] first magnesium scene (`scenes/01-introduction`, `02-heating`, `03-burning` → QA stills + preview videos, visually inspected)
 
@@ -39,8 +40,8 @@
 ## Milestone 5 — Reusable science library
 
 - [x] assembled experiment templates: `glass-prism-refraction`, `magnesium-burning-setup`, `full-circuit`
-- [ ] atoms
-- [ ] molecules
+- [x] atoms (`magnesium-atom`, `oxygen-atom` Bohr models with K/L/M shells)
+- [x] molecules (`magnesium-oxide-lattice` 3x3x3 ionic crystal lattice, O₂ diatomic)
 - [x] laboratory equipment (bunsen-burner, tongs, beaker, test-tube, flask, retort-stand, watch-glass)
 - [x] physics components (ammeter, battery, bulb, lens, mirror, prism, resistor, rheostat, switch, voltmeter)
 - [x] biology components (brain, heart, eye, digestive-system, dna, neuron)

@@ -202,6 +202,104 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     tags: ['magnesium', 'combustion', 'reaction', 'chemistry', 'mgo']
   },
   {
+    id: 'magnesium-atom',
+    name: 'Magnesium Bohr Atom (Mg, Z=12)',
+    category: 'chemistry',
+    subCategory: 'Atomic Structure & Valence',
+    semanticDescription: '3D Bohr atomic model of Magnesium (Z=12) showing a central 12p 12n nucleus and 3 concentric electron shells with electronic configuration 2, 8, 2.',
+    dimensions: { width_mm: 280, height_mm: 280, depth_mm: 60, weight_g: 1 },
+    materials: {
+      roughness: 0.25,
+      metalness: 0.2,
+      color: '#38bdf8',
+      description: 'Luminous cyan electron orbitals with glowing nucleons'
+    },
+    anchorPoints: {
+      'nucleus': [0, 0, 0],
+      'k_shell': [0, 0.055, 0],
+      'l_shell': [0, 0.095, 0],
+      'm_valence_shell': [0, 0.138, 0]
+    },
+    interactiveStates: [
+      { state: 'neutral', label: '1. Neutral Mg Atom [2, 8, 2]', description: 'Ground state with 2 valence electrons in outermost M-shell.' },
+      { state: 'excited', label: '2. Thermal Activation', description: 'Excited valence electrons ready for transfer.' },
+      { state: 'ionized', label: '3. Mg²⁺ Cation [2, 8]', description: 'Loses 2 valence electrons to achieve stable neon octet.' }
+    ],
+    cbse: {
+      class: 10,
+      chapter: 'Chapter 1 & Chapter 3: Metals and Non-Metals',
+      ncertActivity: 'Activity 1.1 / Ionic Formation',
+      formulas: ['Mg [2, 8, 2] → Mg²⁺ [2, 8] + 2e⁻'],
+      examTakeaway: 'Electropositive metal that readily loses 2 valence electrons to form divalent cation Mg²⁺.'
+    },
+    tags: ['magnesium', 'atom', 'bohr', 'chemistry', 'valence']
+  },
+  {
+    id: 'oxygen-atom',
+    name: 'Oxygen Bohr Atom (O, Z=8)',
+    category: 'chemistry',
+    subCategory: 'Atomic Structure & Valence',
+    semanticDescription: '3D Bohr atomic model of Oxygen (Z=8) showing an 8p 8n nucleus and 2 concentric electron shells with electronic configuration 2, 6.',
+    dimensions: { width_mm: 200, height_mm: 200, depth_mm: 50, weight_g: 1 },
+    materials: {
+      roughness: 0.25,
+      metalness: 0.2,
+      color: '#f87171',
+      description: 'Luminous rose/red atomic core and electron orbits'
+    },
+    anchorPoints: {
+      'nucleus': [0, 0, 0],
+      'k_shell': [0, 0.055, 0],
+      'l_valence_shell': [0, 0.095, 0]
+    },
+    interactiveStates: [
+      { state: 'neutral', label: '1. Neutral O Atom [2, 6]', description: 'Ground state with 6 valence electrons (needs 2e⁻ to complete octet).' },
+      { state: 'accepting', label: '2. Electron Acceptance', description: 'Incoming electrons occupy the 2 vacancies in L-shell.' },
+      { state: 'ionized', label: '3. O²⁻ Oxide Anion [2, 8]', description: 'Completes outer L-shell, achieving stable neon octet.' }
+    ],
+    cbse: {
+      class: 10,
+      chapter: 'Chapter 1 & Chapter 3: Metals and Non-Metals',
+      ncertActivity: 'Activity 1.1 / Chemical Combination',
+      formulas: ['O [2, 6] + 2e⁻ → O²⁻ [2, 8]'],
+      examTakeaway: 'Electronegative non-metal that gains 2 electrons to form oxide anion O²⁻.'
+    },
+    tags: ['oxygen', 'atom', 'bohr', 'chemistry', 'valence']
+  },
+  {
+    id: 'magnesium-oxide-lattice',
+    name: 'Magnesium Oxide Crystal Lattice & Ionic Bond',
+    category: 'chemistry',
+    subCategory: 'Ionic Compounds & Bonding',
+    semanticDescription: '3D animated sub-microscopic simulation of electron transfer from Mg to O and resulting MgO ionic crystal lattice.',
+    dimensions: { width_mm: 240, height_mm: 240, depth_mm: 240, weight_g: 5 },
+    materials: {
+      roughness: 0.2,
+      metalness: 0.3,
+      color: '#facc15',
+      description: 'Electrostatic force fields and alternating ionic lattice'
+    },
+    anchorPoints: {
+      'origin': [0, 0, 0],
+      'corner_mg': [-0.08, -0.08, -0.08],
+      'corner_o': [0.08, 0.08, 0.08]
+    },
+    interactiveStates: [
+      { state: 'reactants', label: '1. Reactant Atoms (Mg + O)', description: 'Neutral magnesium and oxygen atoms before excitation.' },
+      { state: 'transfer', label: '2. 2e⁻ Electron Transfer Arc', description: 'Valence electrons glide along 3D Bézier trajectories into oxygen vacancies.' },
+      { state: 'ions', label: '3. Ionization (Mg²⁺ + O²⁻)', description: 'Energy release flash as both ions achieve stable noble gas octets.' },
+      { state: 'bonded', label: '4. Coulomb Attraction & Lattice', description: 'Opposite charges attract forming strong ionic bond in MgO lattice.' }
+    ],
+    cbse: {
+      class: 10,
+      chapter: 'Chapter 3: Metals and Non-Metals',
+      ncertActivity: 'Activity 3.13 - Properties of Ionic Compounds',
+      formulas: ['2Mg + O₂ → 2MgO', 'Mg²⁺ + O²⁻ → MgO (Ionic Bond)'],
+      examTakeaway: 'High melting and boiling points due to strong inter-ionic electrostatic forces of attraction in crystalline solids.'
+    },
+    tags: ['lattice', 'mgo', 'crystal', 'ionic', 'chemistry']
+  },
+  {
     id: 'bunsen-burner',
     name: 'Laboratory Bunsen Burner',
     category: 'chemistry',

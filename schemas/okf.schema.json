@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "edu-animation-framework/okf.schema.json",
+  "title": "Open Knowledge Format (OKF v0.2) Document Schema",
+  "description": "Standardized schema for Open Knowledge Format v0.2 concept files in knowledge/. Each concept is authored as a Markdown document with YAML frontmatter.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "description",
+    "status",
+    "sources",
+    "verified"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Unique kebab-case identifier matching the file basename (without .md)."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "concept",
+        "experiment",
+        "apparatus",
+        "reaction",
+        "phenomenon",
+        "anatomy",
+        "law",
+        "curriculum"
+      ],
+      "description": "Primary concept archetype in OKF v0.2."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable concept or apparatus title."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Concise summary of the concept."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "draft", "reviewed", "deprecated"],
+      "description": "Lifecycle status."
+    },
+    "verified": {
+      "type": "string",
+      "enum": ["human-reviewed", "machine-confirmed", "unverified"],
+      "description": "Trust tier indicating review provenance."
+    },
+    "resource": {
+      "type": "string",
+      "description": "Canonical URI or repo path, e.g. assets/chemistry/magnesium-ribbon."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Keywords for indexing and searching."
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO-8601 creation or last updated timestamp."
+    },
+    "stale_after": {
+      "type": "string",
+      "description": "Date or duration after which content should be reviewed."
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "chapter": { "type": "string" },
+          "activity": { "type": "string" },
+          "section": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      },
+      "description": "Provenance citations (e.g. NCERT, IUPAC, CBSE Syllabus)."
+    },
+    "cbse_mapping": {
+      "type": "object",
+      "properties": {
+        "class": { "type": "integer", "minimum": 1, "maximum": 12 },
+        "subject": {
+          "type": "string",
+          "enum": ["chemistry", "physics", "biology", "mathematics"]
+        },
+        "chapter": { "type": "string" },
+        "ncert_activity": { "type": "string" },
+        "key_takeaways": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "equations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["latex", "meaning"],
+        "properties": {
+          "latex": { "type": "string" },
+          "meaning": { "type": "string" },
+          "type": { "type": "string", "enum": ["chemical", "physical", "mathematical"] }
+        }
+      }
+    },
+    "misconceptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "correction"],
+        "properties": {
+          "claim": { "type": "string" },
+          "correction": { "type": "string" }
+        }
+      }
+    },
+    "safety": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_assets": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "description": "List of asset IDs defined in assets/."
+    },
+    "related_lessons": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of lesson IDs defined in lessons/."
+    },
+    "related_concepts": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "description": "List of other OKF concept IDs linked to this concept."
+    }
+  }
+}

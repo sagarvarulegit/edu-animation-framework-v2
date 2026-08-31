@@ -7,6 +7,11 @@ import bmesh
 import bpy
 from mathutils import Vector, Matrix
 
+try:
+    import edu_design_tokens as tokens
+except ImportError:
+    tokens = None
+
 
 def output_dir(default):
     parser = argparse.ArgumentParser()
@@ -32,22 +37,63 @@ def add_material(name, color, metallic=0.0, roughness=0.5):
     return material
 
 
-def add_glass_material(name, tint=(0.95, 0.98, 1.0), ior=1.52, roughness=0.02):
-    """Creates a physically accurate borosilicate / optical glass shader."""
+def add_material_from_token(name, token_material_key):
+    """Creates a material using standardized PBR tokens from visual/design-tokens.json."""
+    if tokens is None:
+        return add_material(name, (0.8, 0.8, 0.8), 0.0, 0.5)
+    cfg = tokens.get_material_config(token_material_key)
     material = bpy.data.materials.new(name)
     material.use_nodes = True
     bsdf = material.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Base Color"].default_value = (*tint, 1.0)
+    bsdf.inputs["Base Color"].default_value = cfg["base_color"]
+    bsdf.inputs["Metallic"].default_value = cfg["metallic"]
+    bsdf.inputs["Roughness"].default_value = cfg["roughness"]
+    if "transmission" in cfg and "Transmission Weight" in bsdf.inputs:
+        bsdf.inputs["Transmission Weight"].default_value = cfg["transmission"]
+    if "ior" in cfg and "IOR" in bsdf.inputs:
+        bsdf.inputs["IOR"].default_value = cfg["ior"]
+    if "emission_color" in cfg and "Emission Color" in bsdf.inputs:
+        bsdf.inputs["Emission Color"].default_value = cfg["emission_color"]
+        bsdf.inputs["Emission Strength"].default_value = cfg["emission_strength"]
+    return material
+
+
+def add_glass_material(name, tint=None, ior=None, roughness=None):
+    """Creates a physically accurate borosilicate / optical glass shader from design tokens."""
+    if tokens is not None and "glass_borosilicate" in tokens.MATERIALS:
+        cfg = tokens.get_material_config("glass_borosilicate")
+        actual_tint = cfg["base_color"][:3] if tint is None else tint
+        actual_ior = cfg["ior"] if ior is None else ior
+        actual_roughness = cfg["roughness"] if roughness is None else roughness
+    else:
+        actual_tint = (0.95, 0.98, 1.0) if tint is None else tint
+        actual_ior = 1.52 if ior is None else ior
+        actual_roughness = 0.02 if roughness is None else roughness
+
+    material = bpy.data.materials.new(name)
+    material.use_nodes = True
+    bsdf = material.node_tree.nodes["Principled BSDF"]
+    bsdf.inputs["Base Color"].default_value = (*actual_tint, 1.0)
     bsdf.inputs["Metallic"].default_value = 0.0
-    bsdf.inputs["Roughness"].default_value = roughness
-    bsdf.inputs["IOR"].default_value = ior
+    bsdf.inputs["Roughness"].default_value = actual_roughness
+    bsdf.inputs["IOR"].default_value = actual_ior
     bsdf.inputs["Transmission Weight"].default_value = 0.96
     return material
 
 
-def add_machined_metal_material(name, color=(0.85, 0.85, 0.88), metallic=0.95, roughness=0.25):
-    """Creates a realistic machined/turned metal (aluminum/brass/steel) material."""
-    return add_material(name, color, metallic=metallic, roughness=roughness)
+def add_machined_metal_material(name, color=None, metallic=None, roughness=None):
+    """Creates a realistic machined/turned metal (steel/aluminum) material from design tokens."""
+    if tokens is not None and "metal_machined_steel" in tokens.MATERIALS:
+        cfg = tokens.get_material_config("metal_machined_steel")
+        actual_color = cfg["base_color"][:3] if color is None else color
+        actual_metallic = cfg["metallic"] if metallic is None else metallic
+        actual_roughness = cfg["roughness"] if roughness is None else roughness
+    else:
+        actual_color = (0.85, 0.85, 0.88) if color is None else color
+        actual_metallic = 0.95 if metallic is None else metallic
+        actual_roughness = 0.25 if roughness is None else roughness
+
+    return add_material(name, actual_color, metallic=actual_metallic, roughness=actual_roughness)
 
 
 def lathe_object(name, profile_points, segments=64, material=None, location=(0.0, 0.0, 0.0), rotation_euler=(0.0, 0.0, 0.0)):

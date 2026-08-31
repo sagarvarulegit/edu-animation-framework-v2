@@ -1,0 +1,75 @@
+{
+  "id": "oxygen-atom",
+  "name": "Oxygen Bohr Atom (O, Z=8)",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "0.1.0",
+  "status": "reviewed",
+  "semanticDescription": "3D Bohr atomic model of Oxygen (Z=8) showing an 8p 8n nucleus and 2 concentric electron shells with electronic configuration 2, 6.",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale"
+  },
+  "simplifications": [
+    "Atomic shells and discrete electron spheres represent the conceptual Bohr-Bury model for educational clarity."
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_oxygen_atom.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-08-29"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/oxygen-atom.glb",
+    "remotion": "use out/preview.png"
+  },
+  "physical_dimensions": {
+    "width_mm": 200,
+    "height_mm": 200,
+    "depth_mm": 50,
+    "weight_g": 1
+  },
+  "material_specs": {
+    "roughness": 0.25,
+    "metalness": 0.2
+  },
+  "anchor_points": {
+    "nucleus": [0.0, 0.0, 0.0],
+    "k_shell": [0.0, 0.055, 0.0],
+    "l_valence_shell": [0.0, 0.095, 0.0]
+  },
+  "interactive_states": [
+    {
+      "state": "neutral",
+      "label": "Neutral O Atom [2, 6]",
+      "description": "Oxygen ground state with 6 valence electrons (needs 2 electrons to complete octet)."
+    },
+    {
+      "state": "accepting",
+      "label": "Electron Acceptance",
+      "description": "Incoming valence electrons enter the 2 vacant positions in L-shell."
+    },
+    {
+      "state": "ionized",
+      "label": "O²⁻ Oxide Anion [2, 8]",
+      "description": "Oxygen completes its L-shell, achieving stable neon octet configuration."
+    }
+  ],
+  "cbse_mapping": {
+    "class": 10,
+    "chapter": "Chemical Reactions and Equations",
+    "ncert_activity": "Activity 1.1",
+    "key_formulas": [
+      "O [2,6] + 2e⁻ -> O²⁻ [2,8]"
+    ],
+    "exam_takeaways": "Oxygen is highly electronegative and gains 2 electrons to form the divalent oxide anion O²⁻."
+  },
+  "outputs": [
+    { "file": "out/oxygen-atom.blend", "kind": "blender-scene" },
+    { "file": "out/oxygen-atom.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" }
+  ],
+  "tags": ["oxygen", "atom", "bohr", "chemistry", "valence"]
+}

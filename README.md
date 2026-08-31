@@ -88,6 +88,95 @@ A magnesium atom should not look different in every lesson.
 
 ---
 
+---
+
+# Core Intention & Mission
+
+The core mission of the **Educational Animation Framework** is to provide an AI-agent-friendly, deterministic, and modular architecture for creating accurate, visually consistent educational STEM animations, interactive simulations, and videos for CBSE/NCERT Class 9–12 education.
+
+### Key Intentions:
+1. **Scientific Correctness & Provenance**: Ground every apparatus, reaction, formula, and anatomical model in authoritative curricula via the Open Knowledge Format (`knowledge/*.md`).
+2. **Pedagogical Clarity**: Every camera movement, glow, label, and timeline action must serve an explicit educational purpose, eliminating visual clutter.
+3. **Write Once, Render Three Ways**: Author declarative lessons that can be experienced interactively in the browser (Three.js), rendered as cinematic 3D animations (Blender), or composed into narrated video lessons (Remotion).
+4. **Agent-Ready AI Continuity**: Modular JSON schemas and deterministic Python/TypeScript generators allow multiple AI coding agents to collaborate without architectural drift.
+
+---
+
+# How to Use This Project
+
+### 1. Prerequisites & Environment
+- **Node.js**: `v18.19.1` or higher
+- **Blender**: `v4.2 LTS` (Linux: `blender` on PATH; Windows: `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`)
+- **Package Manager**: `npm`
+
+---
+
+### 2. Quickstart Commands
+
+```bash
+# 1. Validate all schemas, assets, lessons, and OKF knowledge
+npm test
+
+# 2. Compile OKF Knowledge Base to runtime TypeScript bindings
+npm run build:okf
+
+# 3. Launch the Interactive 3D Viewer & Virtual Lab (Mode A)
+npm run interactive:viewer
+
+# 4. Launch the Remotion Video Composer Studio (Mode C)
+npm run video:composer
+
+# 5. Render Cinematic 3D Scenes in Blender (Mode B)
+npm run render:all-magnesium-ribbon
+```
+
+---
+
+### 3. Exploring the Three Delivery Modes
+
+#### Mode A — Interactive 3D Simulation (Three.js / React Three Fiber)
+Run `npm run interactive:viewer` (served via Vite at `http://localhost:5173`).
+Features:
+- **3D Asset Studio Inspector**: Browse 36 standardized science apparatus with PBR properties, dimension rulers, snap socket visualizers, CBSE syllabus tags, OKF trust badges, and JSON metadata export.
+- **Interactive Experiment Simulations**:
+  - *Chemistry*: Step-by-step burning of magnesium ribbon + Bohr atom electron transfer ($2\text{Mg} + \text{O}_2 \rightarrow 2\text{Mg}^{2+} + 2\text{O}^{2-}$).
+  - *Physics*: Glass prism refraction with ray tracing, angle of deviation, and spectrum dispersion.
+  - *Biology*: Human heart double circulation with 4 chambers, valves, and systemic/pulmonary circuits.
+- **Virtual Lab Game World**: First-person (FPS) exploration navigating between chemistry, physics, and biology experiment benches.
+
+#### Mode B — Cinematic 3D Pipeline (Blender 4.2 LTS)
+Execute deterministic Python automation scripts:
+```bash
+# Generate core procedural apparatus (.blend + .glb + preview.png)
+npm run build:lab-core-kit
+
+# Render individual scene timeline plans
+npm run render:scene01-introduction
+npm run render:scene02-heating
+npm run render:scene03-burning
+```
+
+#### Mode C — Video Composition Studio (Remotion 4)
+Run `npm run video:composer` to open the interactive Remotion studio, or build the video bundle:
+```bash
+npm run video:render
+```
+Assembles the 88-second 1080p master video for CBSE Class 10 Chemistry Activity 1.1 with 3D tracks, KaTeX balanced equations, misconception callouts, and synchronized karaoke-style subtitles.
+
+---
+
+### 4. Authoring a New Lesson or Asset
+
+To add new educational content to the framework:
+1. **Define the verified concept** in `knowledge/<subject>/<id>.md` (YAML frontmatter + NCERT citations).
+2. **Compile OKF**: Run `node tools/okf/compile-okf.mjs`.
+3. **Register assets** in `assets/<subject>/<id>/asset.json` with deterministic build script `build_<id>.py`.
+4. **Create lesson plan** in `lessons/<subject>/<id>/lesson.json` and scene graphs in `scenes/NN-<name>.json`.
+5. **Add narration cues** in `narration.json` with frame-accurate timestamps.
+6. **Validate**: Run `npm test` to guarantee 100% schema conformance.
+
+---
+
 # Recommended technology stack
 
 | Purpose | Technology |

@@ -3,9 +3,11 @@
 ## Core pipeline
 
 ```text
-Lesson Content
+OKF Knowledge Base (knowledge/)
      ↓
-Lesson Specification
+Lesson Content & Pedagogical Flow
+     ↓
+Lesson Specification (lessons/)
      ↓
 Semantic Scene Graph
      ↓
@@ -20,6 +22,12 @@ Blender   Three.js       Remotion
 ```
 
 ## Separation of concerns
+
+### Knowledge layer (OKF v0.2)
+
+Answers:
+
+> What is the verified scientific fact, chemical equation, apparatus specification, and curriculum standard?
 
 ### Lesson layer
 

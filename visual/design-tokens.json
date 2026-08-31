@@ -1,0 +1,306 @@
+{
+  "version": "1.0.0",
+  "name": "Educational Animation Framework Design Tokens",
+  "description": "Standard cross-renderer visual design tokens for STEM educational animation, conforming to AGENTS.md Rule 7.",
+  "colors": {
+    "ui": {
+      "background": "#020617",
+      "surface": "#0f172a",
+      "surfaceElevated": "#1e293b",
+      "border": "#334155",
+      "borderMuted": "#1e293b",
+      "textPrimary": "#f8fafc",
+      "textMuted": "#94a3b8",
+      "accent": "#38bdf8",
+      "accentGlow": "#0284c7"
+    },
+    "reagents": {
+      "magnesiumRibbon": "#b0bec5",
+      "magnesiumOxide": "#f1f5f9",
+      "bunsenFlameInner": "#38bdf8",
+      "bunsenFlameOuter": "#facc15",
+      "combustionFlash": "#ffffff",
+      "heatGlow": "#fb923c",
+      "cpkOxygen": "#ef4444",
+      "cpkMagnesium": "#8b5cf6",
+      "cpkHydrogen": "#f8fafc",
+      "cpkCarbon": "#475569",
+      "cpkNitrogen": "#3b82f6"
+    },
+    "optics": {
+      "incidentRay": "#ffffff",
+      "normalLine": "#94a3b8",
+      "refractedRay": "#38bdf8",
+      "emergentRay": "#f43f5e",
+      "spectrumRed": "#ef4444",
+      "spectrumOrange": "#f97316",
+      "spectrumYellow": "#eab308",
+      "spectrumGreen": "#22c55e",
+      "spectrumBlue": "#3b82f6",
+      "spectrumIndigo": "#6366f1",
+      "spectrumViolet": "#a855f7",
+      "copperConductor": "#b45309",
+      "wirePositive": "#dc2626",
+      "wireNegative": "#2563eb"
+    },
+    "biology": {
+      "oxygenatedBlood": "#dc2626",
+      "deoxygenatedBlood": "#2563eb",
+      "myocardium": "#991b1b",
+      "endocardium": "#fde68a",
+      "neuralImpulse": "#facc15",
+      "dnaPhosphate": "#0ea5e9",
+      "dnaBaseAdenine": "#22c55e",
+      "dnaBaseThymine": "#ef4444",
+      "dnaBaseGuanine": "#f59e0b",
+      "dnaBaseCytosine": "#3b82f6"
+    },
+    "pedagogy": {
+      "trustBadge": "#10b981",
+      "misconceptionAlert": "#f97316",
+      "safetyWarning": "#ef4444",
+      "observationInfo": "#38bdf8",
+      "formulaAccent": "#a855f7"
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "sans": "Inter, system-ui, -apple-system, sans-serif",
+      "mono": "'JetBrains Mono', 'Fira Code', monospace",
+      "math": "'KaTeX_Math', 'Times New Roman', serif"
+    },
+    "fontSizes": {
+      "badge": "11px",
+      "caption": "13px",
+      "body": "15px",
+      "h3": "18px",
+      "h2": "22px",
+      "h1": "28px",
+      "display": "36px",
+      "hero": "48px"
+    },
+    "fontWeights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800
+    },
+    "lineHeights": {
+      "tight": 1.15,
+      "snug": 1.3,
+      "normal": 1.5,
+      "relaxed": 1.75
+    }
+  },
+  "materials": {
+    "glass_borosilicate": {
+      "baseColor": "#e0f2fe",
+      "metallic": 0.0,
+      "roughness": 0.02,
+      "transmission": 0.96,
+      "ior": 1.52
+    },
+    "metal_machined_steel": {
+      "baseColor": "#d1d5db",
+      "metallic": 0.95,
+      "roughness": 0.25
+    },
+    "metal_magnesium_ribbon": {
+      "baseColor": "#b0bec5",
+      "metallic": 0.85,
+      "roughness": 0.35
+    },
+    "powder_magnesium_oxide": {
+      "baseColor": "#f1f5f9",
+      "metallic": 0.0,
+      "roughness": 0.95
+    },
+    "flame_luminescent": {
+      "baseColor": "#facc15",
+      "metallic": 0.0,
+      "roughness": 0.2,
+      "emissionColor": "#facc15",
+      "emissionStrength": 8.0
+    },
+    "flame_non_luminous": {
+      "baseColor": "#38bdf8",
+      "metallic": 0.0,
+      "roughness": 0.2,
+      "emissionColor": "#38bdf8",
+      "emissionStrength": 6.0
+    },
+    "prism_optical_glass": {
+      "baseColor": "#f8fafc",
+      "metallic": 0.0,
+      "roughness": 0.01,
+      "transmission": 0.98,
+      "ior": 1.54
+    },
+    "tissue_myocardium": {
+      "baseColor": "#991b1b",
+      "metallic": 0.05,
+      "roughness": 0.65
+    },
+    "plastic_labware": {
+      "baseColor": "#e2e8f0",
+      "metallic": 0.0,
+      "roughness": 0.3,
+      "transmission": 0.4
+    }
+  },
+  "camera": {
+    "lenses": {
+      "ultraWide": 24.0,
+      "wide": 35.0,
+      "standard": 50.0,
+      "portrait": 85.0,
+      "macro": 105.0,
+      "micro": 135.0
+    },
+    "shots": {
+      "establishExperiment": {
+        "lens": 35.0,
+        "fovDegrees": 54.4,
+        "description": "Wide establishing view of laboratory bench, apparatus, and surroundings"
+      },
+      "focusOnRibbon": {
+        "lens": 50.0,
+        "fovDegrees": 39.6,
+        "description": "Medium shot focusing on tongs, magnesium ribbon, and Bunsen burner head"
+      },
+      "zoomIntoMolecularScale": {
+        "lens": 85.0,
+        "fovDegrees": 23.9,
+        "description": "Close-up macro shot transitioning from ribbon surface to atomic lattice"
+      },
+      "macroInspectProduct": {
+        "lens": 105.0,
+        "fovDegrees": 19.5,
+        "description": "High-magnification inspection of white magnesium oxide powder in watch glass"
+      },
+      "overviewBench": {
+        "lens": 35.0,
+        "fovDegrees": 54.4,
+        "description": "Comprehensive final overview of apparatus and reaction products"
+      }
+    },
+    "clipping": {
+      "near": 0.01,
+      "far": 100.0
+    }
+  },
+  "lighting": {
+    "threePointStudio": {
+      "key": {
+        "energyWatts": 120.0,
+        "color": "#ffffff",
+        "radius": 0.25
+      },
+      "fill": {
+        "energyWatts": 45.0,
+        "color": "#cbd5e1",
+        "radius": 0.4
+      },
+      "rim": {
+        "energyWatts": 75.0,
+        "color": "#e2e8f0",
+        "radius": 0.2
+      },
+      "ambient": {
+        "color": "#0f172a",
+        "strength": 0.15
+      }
+    },
+    "combustionFlash": {
+      "peakWatts": 850.0,
+      "baseWatts": 0.0,
+      "color": "#ffffff"
+    }
+  },
+  "labels": {
+    "threeD": {
+      "fontSize": 0.014,
+      "inkColor": "#f8fafc",
+      "emissionStrength": 1.0,
+      "billboardTrackAxis": "TRACK_Z"
+    },
+    "twoDOverlay": {
+      "borderRadius": "8px",
+      "backdropBlur": "12px",
+      "borderWidth": "1px",
+      "padding": "12px 16px"
+    }
+  },
+  "arrows": {
+    "shaftRadius": 0.0025,
+    "headRatio": 2.8,
+    "glowStrength": 1.5,
+    "styles": {
+      "reactionForward": {
+        "color": "#38bdf8",
+        "dashed": false
+      },
+      "opticalRay": {
+        "color": "#ffffff",
+        "dashed": false
+      },
+      "opticalNormal": {
+        "color": "#94a3b8",
+        "dashed": true
+      },
+      "electronFlow": {
+        "color": "#facc15",
+        "dashed": true
+      },
+      "oxygenatedFlow": {
+        "color": "#dc2626",
+        "dashed": false
+      },
+      "deoxygenatedFlow": {
+        "color": "#2563eb",
+        "dashed": false
+      }
+    }
+  },
+  "equations": {
+    "katexColors": {
+      "reactant": "#38bdf8",
+      "product": "#a855f7",
+      "catalystOrHeat": "#f97316",
+      "stateSymbol": "#94a3b8",
+      "coefficient": "#facc15"
+    },
+    "stateSymbols": {
+      "solid": "(s)",
+      "liquid": "(l)",
+      "gas": "(g)",
+      "aqueous": "(aq)",
+      "precipitate": "↓",
+      "gasEvolution": "↑"
+    },
+    "transitionTimings": {
+      "wordToSkeletalFrames": 60,
+      "skeletalToBalancedFrames": 60
+    }
+  },
+  "particles": {
+    "combustionSmoke": {
+      "ratePerSecond": 45.0,
+      "lifetimeSeconds": 2.5,
+      "baseColor": "#f1f5f9",
+      "turbulence": 0.4
+    },
+    "magnesiumSparks": {
+      "ratePerSecond": 60.0,
+      "lifetimeSeconds": 0.4,
+      "baseColor": "#ffffff",
+      "speed": 2.2
+    },
+    "electronTransfer": {
+      "durationSeconds": 1.5,
+      "trailGlowColor": "#facc15",
+      "orbitSpeed": 3.14
+    }
+  }
+}

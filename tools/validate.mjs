@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname, basename, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseOkfDocument } from "./okf/parser.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const errors = [];
@@ -101,6 +102,18 @@ const SUPPORTED_PRIMITIVES = [
   "showMolecule",
   "showEquation",
 ];
+const OKF_TYPES = [
+  "concept",
+  "experiment",
+  "apparatus",
+  "reaction",
+  "phenomenon",
+  "anatomy",
+  "law",
+  "curriculum",
+];
+const OKF_STATUSES = ["active", "draft", "reviewed", "deprecated"];
+const OKF_VERIFIED = ["human-reviewed", "machine-confirmed", "unverified"];
 
 function numberArray(value, length, file, label) {
   if (!isArr(value) || value.length !== length || !value.every((v) => typeof v === "number")) {
@@ -463,7 +476,166 @@ function validateNarration(file) {
   });
 }
 
+function validateOkfConcept(file, conceptRegistry, assetRegistry, lessonRegistry) {
+  const content = readFileSync(file, "utf8");
+  const { frontmatter, body } = parseOkfDocument(content);
+  if (!frontmatter || typeof frontmatter !== "object") {
+    fail(file, "missing or invalid YAML frontmatter");
+    return;
+  }
+
+  if (
+    !required(
+      frontmatter,
+      ["id", "type", "title", "description", "status", "sources", "verified"],
+      file
+    )
+  )
+    return;
+
+  patternField(frontmatter, "id", ASSET_ID, file);
+  strField(frontmatter, "title", file);
+  strField(frontmatter, "description", file);
+  enumField(frontmatter, "type", OKF_TYPES, file);
+  enumField(frontmatter, "status", OKF_STATUSES, file);
+  enumField(frontmatter, "verified", OKF_VERIFIED, file);
+
+  const fileBase = basename(file, ".md");
+  if (frontmatter.id && frontmatter.id !== fileBase) {
+    fail(file, `concept id "${frontmatter.id}" must match filename "${fileBase}.md"`);
+  }
+
+  if (conceptRegistry.has(frontmatter.id)) {
+    fail(file, `duplicate concept id "${frontmatter.id}" (also defined in ${conceptRegistry.get(frontmatter.id)})`);
+  } else if (isStr(frontmatter.id)) {
+    conceptRegistry.set(frontmatter.id, rel(file));
+  }
+
+  if (!isArr(frontmatter.sources) || frontmatter.sources.length === 0) {
+    fail(file, '"sources" must be a non-empty array of citations');
+  } else {
+    frontmatter.sources.forEach((src, idx) => {
+      if (!isObj(src) || !isStr(src.name) || src.name.length === 0) {
+        fail(file, `sources[${idx}] must be an object with a "name" string`);
+      }
+    });
+  }
+
+  if ("related_assets" in frontmatter) {
+    if (!isArr(frontmatter.related_assets)) {
+      fail(file, '"related_assets" must be an array of asset IDs');
+    } else {
+      for (const assetId of frontmatter.related_assets) {
+        if (!assetRegistry.has(assetId)) {
+          fail(file, `related_assets references unknown asset "${assetId}"`);
+        }
+      }
+    }
+  }
+
+  if ("related_lessons" in frontmatter) {
+    if (!isArr(frontmatter.related_lessons)) {
+      fail(file, '"related_lessons" must be an array of lesson IDs');
+    } else {
+      for (const lessonId of frontmatter.related_lessons) {
+        if (!lessonRegistry.has(lessonId)) {
+          fail(file, `related_lessons references unknown lesson "${lessonId}"`);
+        }
+      }
+    }
+  }
+
+  if (!body || body.length < 10) {
+    warnFile(file, "concept body is very short or empty");
+  }
+}
+
+function validateDesignTokens(file) {
+  const data = loadJson(file);
+  if (!data) return;
+
+  const reqTop = [
+    "version",
+    "name",
+    "colors",
+    "typography",
+    "materials",
+    "camera",
+    "lighting",
+    "labels",
+    "arrows",
+    "equations",
+    "particles",
+  ];
+  if (!required(data, reqTop, file)) return;
+
+  // Colors validation
+  if (isObj(data.colors)) {
+    const colorGroups = ["ui", "reagents", "optics", "biology", "pedagogy"];
+    for (const group of colorGroups) {
+      if (!isObj(data.colors[group])) {
+        fail(file, `colors.${group} must be an object of hex colors`);
+      } else {
+        for (const [key, val] of Object.entries(data.colors[group])) {
+          if (!isStr(val) || !/^#[0-9a-fA-F]{6}$/.test(val)) {
+            fail(file, `colors.${group}.${key} ("${val}") must be a valid 6-digit hex color (#RRGGBB)`);
+          }
+        }
+      }
+    }
+  } else {
+    fail(file, '"colors" must be an object');
+  }
+
+  // Typography validation
+  if (isObj(data.typography)) {
+    required(data.typography, ["fontFamilies", "fontSizes", "fontWeights", "lineHeights"], file);
+    if (isObj(data.typography.fontFamilies)) {
+      required(data.typography.fontFamilies, ["sans", "mono", "math"], file);
+    }
+  } else {
+    fail(file, '"typography" must be an object');
+  }
+
+  // Materials validation
+  if (isObj(data.materials)) {
+    for (const [matName, matCfg] of Object.entries(data.materials)) {
+      if (!isObj(matCfg)) {
+        fail(file, `materials.${matName} must be an object`);
+        continue;
+      }
+      required(matCfg, ["baseColor", "metallic", "roughness"], file);
+      if (matCfg.baseColor && !/^#[0-9a-fA-F]{6}$/.test(matCfg.baseColor)) {
+        fail(file, `materials.${matName}.baseColor must be a valid 6-digit hex color`);
+      }
+    }
+  } else {
+    fail(file, '"materials" must be an object');
+  }
+
+  // Camera validation
+  if (isObj(data.camera)) {
+    required(data.camera, ["lenses", "shots", "clipping"], file);
+  } else {
+    fail(file, '"camera" must be an object');
+  }
+
+  // Lighting validation
+  if (isObj(data.lighting)) {
+    required(data.lighting, ["threePointStudio", "combustionFlash"], file);
+  } else {
+    fail(file, '"lighting" must be an object');
+  }
+
+  // Labels, Arrows, Equations, Particles
+  if (isObj(data.labels)) required(data.labels, ["threeD", "twoDOverlay"], file);
+  if (isObj(data.arrows)) required(data.arrows, ["shaftRadius", "headRatio", "glowStrength", "styles"], file);
+  if (isObj(data.equations)) required(data.equations, ["katexColors", "stateSymbols", "transitionTimings"], file);
+  if (isObj(data.particles)) required(data.particles, ["combustionSmoke", "magnesiumSparks", "electronTransfer"], file);
+}
+
 function walk(dir, predicate, acc = []) {
+  if (!existsSync(dir)) return acc;
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name === "node_modules" || entry.name === "out") continue;
     const full = join(dir, entry.name);
@@ -474,12 +646,31 @@ function walk(dir, predicate, acc = []) {
 }
 
 const assetRegistry = new Map();
+const lessonRegistry = new Map();
+const conceptRegistry = new Map();
+
+// 1. Validate Design Tokens
+const tokensFile = join(ROOT, "visual", "design-tokens.json");
+let tokensValidated = false;
+if (existsSync(tokensFile)) {
+  validateDesignTokens(tokensFile);
+  tokensValidated = true;
+} else {
+  warnFile(ROOT, "no visual/design-tokens.json file found");
+}
 
 const assetFiles = walk(join(ROOT, "assets"), (name) => name === "asset.json");
 for (const file of assetFiles) validateAsset(file, assetRegistry);
 
 const lessonFiles = walk(join(ROOT, "lessons"), (name) => name === "lesson.json");
-for (const file of lessonFiles) validateLesson(file, assetRegistry);
+for (const file of lessonFiles) {
+  const data = loadJson(file);
+  if (data && isStr(data.id)) lessonRegistry.set(data.id, rel(file));
+  validateLesson(file, assetRegistry);
+}
+
+const okfFiles = walk(join(ROOT, "knowledge"), (name) => name.endsWith(".md"));
+for (const file of okfFiles) validateOkfConcept(file, conceptRegistry, assetRegistry, lessonRegistry);
 
 const narrationFiles = walk(join(ROOT, "lessons"), (name) => name === "narration.json");
 for (const file of narrationFiles) validateNarration(file);
@@ -489,7 +680,10 @@ for (const file of sceneFiles) validateScenePlan(file, assetRegistry);
 
 if (lessonFiles.length === 0) warnFile(ROOT, "no lesson.json files found under lessons/");
 if (assetFiles.length === 0) warnFile(ROOT, "no asset.json files found under assets/");
+if (okfFiles.length === 0) warnFile(ROOT, "no OKF .md files found under knowledge/");
 
+console.log(`Design Tokens     : ${tokensValidated ? "1 (visual/design-tokens.json validated)" : "0"}`);
+console.log(`OKF Concepts      : ${okfFiles.length}`);
 console.log(`Lessons checked   : ${lessonFiles.length}`);
 console.log(`Assets checked    : ${assetFiles.length}`);
 console.log(`Scene plans       : ${sceneFiles.length}`);
@@ -508,3 +702,4 @@ if (errors.length > 0) {
 }
 
 console.log("\nValidation passed.");
+

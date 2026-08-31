@@ -17,8 +17,13 @@ import {
   Download,
   Copy,
   Check,
-  Maximize2
+  Maximize2,
+  ShieldCheck,
+  BookOpen,
+  Atom,
+  AlertTriangle
 } from 'lucide-react';
+import { getOkfConceptsForAsset } from './data/scienceKnowledge';
 
 export default function App() {
   // Navigation Mode: 'studio' (3D Asset Studio Inspector) vs 'game' (Virtual Science Lab World)
@@ -30,7 +35,7 @@ export default function App() {
   const [selectedAssetId, setSelectedAssetId] = useState<string>('glass-prism-refraction');
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'physics' | 'chemistry' | 'biology' | 'electricity'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeTab, setActiveTab] = useState<'specs' | 'sockets' | 'cbse' | 'json'>('specs');
+  const [activeTab, setActiveTab] = useState<'specs' | 'sockets' | 'cbse' | 'okf' | 'json'>('specs');
   const [activeStateIndex, setActiveStateIndex] = useState<number>(0);
   const [showSockets, setShowSockets] = useState<boolean>(true);
   const [showWireframe, setShowWireframe] = useState<boolean>(false);
@@ -436,6 +441,15 @@ export default function App() {
                 CBSE
               </button>
               <button
+                onClick={() => setActiveTab('okf')}
+                className={`flex-1 py-1.5 rounded-lg text-center transition-all flex items-center justify-center gap-1 ${
+                  activeTab === 'okf' ? 'bg-cyan-950 text-cyan-300 font-bold border border-cyan-700/60' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <ShieldCheck className="w-3 h-3 text-cyan-400" />
+                OKF
+              </button>
+              <button
                 onClick={() => setActiveTab('json')}
                 className={`flex-1 py-1.5 rounded-lg text-center transition-all ${
                   activeTab === 'json' ? 'bg-slate-800 text-white font-bold' : 'text-slate-400 hover:text-slate-200'
@@ -551,7 +565,143 @@ export default function App() {
                 </div>
               )}
 
-              {/* TAB 4: RAW JSON METADATA & EXPORT */}
+              {/* TAB 4: OPEN KNOWLEDGE FORMAT (OKF v0.2) */}
+              {activeTab === 'okf' && (
+                <div className="space-y-4 text-xs">
+                  {(() => {
+                    const relatedConcepts = getOkfConceptsForAsset(selectedAsset.id);
+                    if (relatedConcepts.length === 0) {
+                      return (
+                        <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 text-slate-400 space-y-2">
+                          <div className="flex items-center gap-1.5 text-cyan-400 font-bold">
+                            <BookOpen className="w-4 h-4" />
+                            <span>OKF Knowledge Profile</span>
+                          </div>
+                          <p className="text-[11px] leading-relaxed">
+                            No direct concept is explicitly mapped to <code className="text-cyan-300">{selectedAsset.id}</code> in <code className="text-slate-300">knowledge/</code>.
+                          </p>
+                          <p className="text-[10px] text-slate-500 font-mono">
+                            Add a Markdown file under <code className="text-slate-400">knowledge/</code> with <code className="text-cyan-400">related_assets: [{selectedAsset.id}]</code> to link this apparatus.
+                          </p>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div className="space-y-4">
+                        {relatedConcepts.map((concept) => (
+                          <div
+                            key={concept.id}
+                            className="bg-slate-950/90 p-3.5 rounded-2xl border border-slate-800/90 shadow-lg space-y-3"
+                          >
+                            {/* Header: Title, Type & Trust Badge */}
+                            <div className="space-y-1.5">
+                              <div className="flex items-center justify-between gap-1.5 flex-wrap">
+                                <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/60 font-mono">
+                                  {concept.type}
+                                </span>
+                                <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border ${
+                                  concept.verified === 'human-reviewed'
+                                    ? 'bg-emerald-950 text-emerald-300 border-emerald-700/60'
+                                    : concept.verified === 'machine-confirmed'
+                                    ? 'bg-blue-950 text-blue-300 border-blue-700/60'
+                                    : 'bg-amber-950 text-amber-300 border-amber-700/60'
+                                }`}>
+                                  <ShieldCheck className="w-2.5 h-2.5" />
+                                  {concept.verified}
+                                </span>
+                              </div>
+                              <h4 className="font-extrabold text-white text-xs leading-snug">
+                                {concept.title}
+                              </h4>
+                              <p className="text-[11px] text-slate-400 leading-relaxed">
+                                {concept.description}
+                              </p>
+                            </div>
+
+                            {/* Provenance Citations */}
+                            {concept.sources && concept.sources.length > 0 && (
+                              <div className="pt-2 border-t border-slate-800/80">
+                                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                                  <BookOpen className="w-2.5 h-2.5 text-cyan-400" />
+                                  Provenance & Sources
+                                </span>
+                                <div className="mt-1 space-y-1">
+                                  {concept.sources.map((src, sIdx) => (
+                                    <div key={sIdx} className="text-[10px] text-slate-300 font-medium bg-slate-900/80 px-2 py-1 rounded-lg border border-slate-800/60">
+                                      <span className="font-bold text-cyan-300">{src.name}</span>
+                                      {src.chapter && <span className="text-slate-400"> — {src.chapter}</span>}
+                                      {src.activity && <span className="text-amber-400"> ({src.activity})</span>}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Verified Equations / Formulas */}
+                            {concept.equations && concept.equations.length > 0 && (
+                              <div className="pt-2 border-t border-slate-800/80 space-y-1.5">
+                                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                                  <Atom className="w-2.5 h-2.5 text-amber-400" />
+                                  Scientific Equations
+                                </span>
+                                {concept.equations.map((eq, eIdx) => (
+                                  <div key={eIdx} className="bg-slate-900/90 p-2 rounded-xl border border-slate-800/80 space-y-1">
+                                    <div className="font-mono text-[11px] text-amber-300 font-bold overflow-x-auto">
+                                      {eq.latex}
+                                    </div>
+                                    <p className="text-[9px] text-slate-400 leading-tight">
+                                      {eq.meaning}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Misconception Alerts */}
+                            {concept.misconceptions && concept.misconceptions.length > 0 && (
+                              <div className="pt-2 border-t border-slate-800/80 space-y-1.5">
+                                <span className="text-[9px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1">
+                                  <AlertTriangle className="w-2.5 h-2.5 text-rose-400" />
+                                  Board Exam Pitfall
+                                </span>
+                                {concept.misconceptions.map((misc, mIdx) => (
+                                  <div key={mIdx} className="bg-rose-950/20 p-2 rounded-xl border border-rose-900/40 space-y-1 text-[10px]">
+                                    <div className="text-rose-300 font-medium">
+                                      <span className="font-bold text-rose-400">Trap: </span>
+                                      "{misc.claim}"
+                                    </div>
+                                    <div className="text-emerald-300 font-medium">
+                                      <span className="font-bold text-emerald-400">Fact: </span>
+                                      {misc.correction}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Related Concepts Graph Links */}
+                            {concept.related_concepts && concept.related_concepts.length > 0 && (
+                              <div className="pt-2 border-t border-slate-800/80 flex items-center gap-1 flex-wrap">
+                                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider block w-full">
+                                  Graph Connections:
+                                </span>
+                                {concept.related_concepts.map((rc) => (
+                                  <span key={rc} className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">
+                                    #{rc}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
+              )}
+
+              {/* TAB 5: RAW JSON METADATA & EXPORT */}
               {activeTab === 'json' && (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">

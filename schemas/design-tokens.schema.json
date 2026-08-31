@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "edu-animation-framework/design-tokens.schema.json",
+  "title": "Educational Animation Framework Design Tokens",
+  "description": "Formal contract for all cross-renderer visual design tokens (colors, typography, materials, camera, lighting, labels, arrows, equations, particles) as mandated by AGENTS.md Rule 7.",
+  "type": "object",
+  "required": [
+    "version",
+    "name",
+    "colors",
+    "typography",
+    "materials",
+    "camera",
+    "lighting",
+    "labels",
+    "arrows",
+    "equations",
+    "particles"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "colors": {
+      "type": "object",
+      "required": [
+        "ui",
+        "reagents",
+        "optics",
+        "biology",
+        "pedagogy"
+      ],
+      "properties": {
+        "ui": {
+          "type": "object",
+          "description": "UI, studio canvas, dark/light studio theme colors",
+          "additionalProperties": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        },
+        "reagents": {
+          "type": "object",
+          "description": "Scientific chemistry reagents, metals, combustion glow, and CPK atom standard colors",
+          "additionalProperties": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        },
+        "optics": {
+          "type": "object",
+          "description": "Physics visible spectrum wavelengths, light rays, guides, and dispersion bands",
+          "additionalProperties": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        },
+        "biology": {
+          "type": "object",
+          "description": "Biology vascular blood flow, organ tissues, cellular organelles, and neural signals",
+          "additionalProperties": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        },
+        "pedagogy": {
+          "type": "object",
+          "description": "Pedagogical callout colors for trust badges, key takeaways, misconceptions, and alerts",
+          "additionalProperties": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "required": ["fontFamilies", "fontSizes", "fontWeights", "lineHeights"],
+      "properties": {
+        "fontFamilies": {
+          "type": "object",
+          "required": ["sans", "mono", "math"],
+          "properties": {
+            "sans": { "type": "string" },
+            "mono": { "type": "string" },
+            "math": { "type": "string" }
+          }
+        },
+        "fontSizes": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "fontWeights": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 100, "maximum": 900 }
+        },
+        "lineHeights": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0.5, "maximum": 3.0 }
+        }
+      }
+    },
+    "materials": {
+      "type": "object",
+      "description": "Standard PBR material presets across Blender and Three.js",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["baseColor", "metallic", "roughness"],
+        "properties": {
+          "baseColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+          "metallic": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "roughness": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "transmission": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "ior": { "type": "number", "minimum": 1.0, "maximum": 3.0 },
+          "emissionColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+          "emissionStrength": { "type": "number", "minimum": 0.0 }
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "required": ["lenses", "shots", "clipping"],
+      "properties": {
+        "lenses": {
+          "type": "object",
+          "description": "Focal lengths in mm",
+          "additionalProperties": { "type": "number", "minimum": 10.0, "maximum": 300.0 }
+        },
+        "shots": {
+          "type": "object",
+          "description": "Standard pedagogical camera shot conventions",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["lens", "fovDegrees", "description"],
+            "properties": {
+              "lens": { "type": "number" },
+              "fovDegrees": { "type": "number" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "clipping": {
+          "type": "object",
+          "required": ["near", "far"],
+          "properties": {
+            "near": { "type": "number", "minimum": 0.001 },
+            "far": { "type": "number", "minimum": 1.0 }
+          }
+        }
+      }
+    },
+    "lighting": {
+      "type": "object",
+      "required": ["threePointStudio", "combustionFlash"],
+      "properties": {
+        "threePointStudio": {
+          "type": "object",
+          "required": ["key", "fill", "rim", "ambient"],
+          "properties": {
+            "key": {
+              "type": "object",
+              "required": ["energyWatts", "color", "radius"],
+              "properties": {
+                "energyWatts": { "type": "number" },
+                "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "radius": { "type": "number" }
+              }
+            },
+            "fill": {
+              "type": "object",
+              "required": ["energyWatts", "color", "radius"],
+              "properties": {
+                "energyWatts": { "type": "number" },
+                "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "radius": { "type": "number" }
+              }
+            },
+            "rim": {
+              "type": "object",
+              "required": ["energyWatts", "color", "radius"],
+              "properties": {
+                "energyWatts": { "type": "number" },
+                "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "radius": { "type": "number" }
+              }
+            },
+            "ambient": {
+              "type": "object",
+              "required": ["color", "strength"],
+              "properties": {
+                "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "strength": { "type": "number" }
+              }
+            }
+          }
+        },
+        "combustionFlash": {
+          "type": "object",
+          "required": ["peakWatts", "baseWatts", "color"],
+          "properties": {
+            "peakWatts": { "type": "number" },
+            "baseWatts": { "type": "number" },
+            "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+          }
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "required": ["threeD", "twoDOverlay"],
+      "properties": {
+        "threeD": {
+          "type": "object",
+          "required": ["fontSize", "inkColor", "emissionStrength", "billboardTrackAxis"],
+          "properties": {
+            "fontSize": { "type": "number" },
+            "inkColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "emissionStrength": { "type": "number" },
+            "billboardTrackAxis": { "type": "string" }
+          }
+        },
+        "twoDOverlay": {
+          "type": "object",
+          "required": ["borderRadius", "backdropBlur", "borderWidth", "padding"],
+          "properties": {
+            "borderRadius": { "type": "string" },
+            "backdropBlur": { "type": "string" },
+            "borderWidth": { "type": "string" },
+            "padding": { "type": "string" }
+          }
+        }
+      }
+    },
+    "arrows": {
+      "type": "object",
+      "required": ["shaftRadius", "headRatio", "glowStrength", "styles"],
+      "properties": {
+        "shaftRadius": { "type": "number" },
+        "headRatio": { "type": "number" },
+        "glowStrength": { "type": "number" },
+        "styles": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["color", "dashed"],
+            "properties": {
+              "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "dashed": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "equations": {
+      "type": "object",
+      "required": ["katexColors", "stateSymbols", "transitionTimings"],
+      "properties": {
+        "katexColors": {
+          "type": "object",
+          "required": ["reactant", "product", "catalystOrHeat", "stateSymbol", "coefficient"],
+          "properties": {
+            "reactant": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "product": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "catalystOrHeat": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "stateSymbol": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "coefficient": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+          }
+        },
+        "stateSymbols": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "transitionTimings": {
+          "type": "object",
+          "required": ["wordToSkeletalFrames", "skeletalToBalancedFrames"],
+          "properties": {
+            "wordToSkeletalFrames": { "type": "integer" },
+            "skeletalToBalancedFrames": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "particles": {
+      "type": "object",
+      "required": ["combustionSmoke", "magnesiumSparks", "electronTransfer"],
+      "properties": {
+        "combustionSmoke": {
+          "type": "object",
+          "required": ["ratePerSecond", "lifetimeSeconds", "baseColor", "turbulence"],
+          "properties": {
+            "ratePerSecond": { "type": "number" },
+            "lifetimeSeconds": { "type": "number" },
+            "baseColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "turbulence": { "type": "number" }
+          }
+        },
+        "magnesiumSparks": {
+          "type": "object",
+          "required": ["ratePerSecond", "lifetimeSeconds", "baseColor", "speed"],
+          "properties": {
+            "ratePerSecond": { "type": "number" },
+            "lifetimeSeconds": { "type": "number" },
+            "baseColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "speed": { "type": "number" }
+          }
+        },
+        "electronTransfer": {
+          "type": "object",
+          "required": ["durationSeconds", "trailGlowColor", "orbitSpeed"],
+          "properties": {
+            "durationSeconds": { "type": "number" },
+            "trailGlowColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+            "orbitSpeed": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
