@@ -1,0 +1,74 @@
+{
+  "id": "convex-mirror",
+  "name": "Convex Mirror (Diverging)",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "A spherical convex (diverging) mirror with outward-curving reflective surface on a laboratory stand. Demonstrates virtual, erect, and diminished images with a wider field of view (CBSE Class 10 Light Ch 9).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "diameter": 0.1,
+    "height": 0.18
+  },
+  "simplifications": [
+    "Spherical curvature approximation with focal length f = +15 cm.",
+    "Stand simplified to laboratory optical mount."
+  ],
+  "materials": [
+    {
+      "id": "convex-mirror-silver",
+      "look": "Highly reflective silver coated surface (metallic 1.0, roughness 0.015)"
+    },
+    {
+      "id": "mirror-back",
+      "look": "Protective dark enamel coating on rear face"
+    },
+    {
+      "id": "mount-brass",
+      "look": "Turned brass retaining ring and collar"
+    },
+    {
+      "id": "stand-chrome",
+      "look": "Polished chrome support rod"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_convex_mirror.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/convex-mirror.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/convex-mirror.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/convex-mirror.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "mirror",
+    "convex",
+    "diverging",
+    "optics",
+    "reflection",
+    "virtual-image",
+    "rear-view",
+    "CBSE-class-10",
+    "light"
+  ]
+}

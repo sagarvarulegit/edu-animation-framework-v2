@@ -1,0 +1,74 @@
+{
+  "id": "solenoid",
+  "name": "Helical Solenoid with Magnetic Field Lines",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Long helical coil of insulated copper wire carrying electric current, demonstrating uniform axial magnetic field lines inside and dipolar looping field lines outside (CBSE Class 10 Magnetic Effects Ch 12).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.24,
+    "height": 0.1,
+    "depth": 0.12
+  },
+  "simplifications": [
+    "Helical wire coils represented as 16 discrete turned helical segments.",
+    "Magnetic field lines depicted as axial parallel rays inside and curved dipolar loops outside."
+  ],
+  "materials": [
+    {
+      "id": "copper-enameled",
+      "look": "Glossy reddish-orange enameled copper magnet wire"
+    },
+    {
+      "id": "solenoid-core-tube",
+      "look": "Bakelite / acrylic insulating central support cylinder"
+    },
+    {
+      "id": "terminal-binding-post",
+      "look": "Machined brass knurled terminal posts (red positive, black negative)"
+    },
+    {
+      "id": "magnetic-flux-field",
+      "look": "Luminescent cyan magnetic flux vector tubes"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_solenoid.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/solenoid.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/solenoid.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/solenoid.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "solenoid",
+    "electromagnet",
+    "magnetic-field",
+    "helical-coil",
+    "uniform-field",
+    "copper-wire",
+    "CBSE-class-10",
+    "electromagnetism"
+  ]
+}

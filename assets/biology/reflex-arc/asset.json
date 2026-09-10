@@ -1,0 +1,82 @@
+{
+  "id": "reflex-arc",
+  "name": "Reflex Arc Neural Pathway",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.1.0",
+  "status": "reviewed",
+  "semanticDescription": "Complete 3D neural pathway model of a somatic reflex arc illustrating skin heat/pain receptor, afferent sensory neuron, spinal cord butterfly cross-section with interneuron, efferent motor neuron, and effector muscle (CBSE Class 10 Biology Ch 6 Figure 6.2).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "pathLength": 0.28
+  },
+  "simplifications": [
+    "Nerve pathways shown as continuous color-coded axon fiber bundles.",
+    "Spinal cord segment displayed in anatomical transverse cross-section."
+  ],
+  "materials": [
+    {
+      "id": "receptor-skin",
+      "look": "Human finger skin dermal receptor pad (natural flesh tone)"
+    },
+    {
+      "id": "sensory-neuron-blue",
+      "look": "Afferent sensory nerve fiber (luminescent cobalt blue)"
+    },
+    {
+      "id": "spinal-cord-gray-matter",
+      "look": "Butterfly-shaped central spinal gray matter (soft warm gray/taupe)"
+    },
+    {
+      "id": "relay-neuron-yellow",
+      "look": "Interneuron / relay neuron synapse (amber yellow)"
+    },
+    {
+      "id": "motor-neuron-red",
+      "look": "Efferent motor nerve fiber (vibrant crimson red)"
+    },
+    {
+      "id": "effector-muscle",
+      "look": "Striated arm flexor muscle block (deep muscular crimson)"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_reflex_arc.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-09"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/reflex-arc.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/reflex-arc.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/reflex-arc.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "reflex-arc",
+    "nervous-system",
+    "sensory-neuron",
+    "motor-neuron",
+    "spinal-cord",
+    "interneuron",
+    "effector-muscle",
+    "control-and-coordination",
+    "CBSE-class-10",
+    "biology"
+  ]
+}

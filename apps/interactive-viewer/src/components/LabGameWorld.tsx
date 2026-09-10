@@ -1,7 +1,77 @@
-import { useRef, useEffect, useMemo } from 'react';
+import { useRef, useEffect, useMemo, Suspense, Component, type ReactNode } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
+import { Text, useGLTF } from '@react-three/drei';
+
+interface StationGLBErrorBoundaryProps {
+  fallback?: ReactNode;
+  children: ReactNode;
+}
+interface StationGLBErrorBoundaryState {
+  hasError: boolean;
+}
+
+class StationGLBErrorBoundary extends Component<StationGLBErrorBoundaryProps, StationGLBErrorBoundaryState> {
+  state: StationGLBErrorBoundaryState = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: any) {
+    console.warn('Station GLB load error:', error);
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || null;
+    }
+    return this.props.children;
+  }
+}
+
+function LabStationGLB({
+  modelPath,
+  scale = 1,
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+  onClick,
+}: {
+  modelPath: string;
+  scale?: number;
+  position?: [number, number, number];
+  rotation?: [number, number, number];
+  onClick?: (e: any) => void;
+}) {
+  const { scene } = useGLTF(modelPath);
+  const cloned = useMemo(() => {
+    const c = scene.clone(true);
+    c.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+    const box = new THREE.Box3().setFromObject(c);
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    // Center horizontally on X and Z, ground base at Y = 0 (in glTF space)
+    c.position.set(-center.x, -box.min.y, -center.z);
+    return c;
+  }, [scene]);
+
+  return (
+    <group position={position} onClick={onClick}>
+      {/* Transform from glTF Y-up to Game World Z-up */}
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <group rotation={rotation} scale={scale}>
+          <primitive object={cloned} />
+        </group>
+      </group>
+    </group>
+  );
+}
+
+useGLTF.preload('/assets/glass-prism-refraction.glb');
+useGLTF.preload('/assets/magnesium-burning-setup.glb');
+useGLTF.preload('/assets/human-heart.glb');
 
 export type LabStationId = 'optics' | 'chemistry' | 'biology';
 
@@ -131,33 +201,6 @@ export function LabGameWorld({
     return tiles;
   }, [roomW, roomD]);
 
-  // Prism Shape for Extrusion
-  const prismSide = 0.080;
-  const prismH = 0.055;
-  const triH = (prismSide * Math.sqrt(3)) / 2;
-  const yApex = (2 * triH) / 3;
-  const yBase = -triH / 3;
-  const xHalf = prismSide / 2;
-
-  const prismShape = useMemo(() => {
-    const shape = new THREE.Shape();
-    shape.moveTo(-xHalf, yBase);
-    shape.lineTo(xHalf, yBase);
-    shape.lineTo(0, yApex);
-    shape.closePath();
-    return shape;
-  }, [prismSide]);
-
-  // 7 Spectral Rainbow Rays
-  const spectrumData = [
-    { name: 'Red', hex: '#ef4444', eDeg: 49.8 },
-    { name: 'Orange', hex: '#f97316', eDeg: 50.3 },
-    { name: 'Yellow', hex: '#eab308', eDeg: 50.7 },
-    { name: 'Green', hex: '#22c55e', eDeg: 51.4 },
-    { name: 'Blue', hex: '#3b82f6', eDeg: 52.5 },
-    { name: 'Indigo', hex: '#6366f1', eDeg: 53.4 },
-    { name: 'Violet', hex: '#a855f7', eDeg: 54.6 },
-  ];
 
   return (
     <group ref={groupRef}>
@@ -338,135 +381,34 @@ export function LabGameWorld({
           </mesh>
         ))}
 
-        {/* White Drawing Sheet Pinned to Table */}
-        <mesh position={[0, 0, 0.001]} receiveShadow>
-          <boxGeometry args={[0.38, 0.28, 0.0015]} />
-          <meshStandardMaterial color="#fdfbf7" roughness={0.9} />
-        </mesh>
-
-        {/* Glass Prism (Schott N-BK7 Crown Glass) */}
-        <mesh
-          position={[0, 0, 0.002]}
-          castShadow
-          receiveShadow
-          name="prism-glass-body"
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelectPart('prism-glass-body');
-          }}
-        >
-          <extrudeGeometry args={[prismShape, { depth: prismH, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: 0.0015, bevelThickness: 0.0015 }]} />
-          <meshPhysicalMaterial
-            color={selectedPart === 'prism-glass-body' ? '#bae6fd' : '#f0f9ff'}
-            transmission={0.96}
-            opacity={1.0}
-            transparent
-            roughness={0.015}
-            ior={1.517}
-            thickness={0.085}
-            specularIntensity={1.0}
-            clearcoat={1.0}
-            attenuationColor={new THREE.Color('#e0f2fe')}
-            emissive={selectedPart === 'prism-glass-body' ? new THREE.Color('#38bdf8') : new THREE.Color('#000000')}
-            emissiveIntensity={selectedPart === 'prism-glass-body' ? 0.35 : 0.0}
-          />
-        </mesh>
-
-        <Text position={[0, yApex + 0.012, prismH + 0.006]} fontSize={0.009} color="#0369a1" anchorX="center">
-          Glass Prism (A = 60°)
-        </Text>
-
-        {/* White Light Torch on Laboratory Stand */}
-        {prismStep >= 2 && (
-          <group position={[-0.14, -0.045, 0.03]} rotation={[0, 0, THREE.MathUtils.degToRad(18)]} name="prism-torch">
-            <mesh position={[-0.035, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
-              <cylinderGeometry args={[0.009, 0.012, 0.065, 20]} />
-              <meshStandardMaterial color="#1e293b" metalness={0.85} roughness={0.25} />
-            </mesh>
-            <mesh position={[0.008, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
-              <cylinderGeometry args={[0.012, 0.012, 0.004, 20]} />
-              <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={3.5} />
-            </mesh>
-            {/* White Incident Beam (i = 48 deg) */}
-            <mesh position={[0.065, 0, 0]} rotation={[0, 0, Math.PI / 2]} name="prism-incident-ray">
-              <cylinderGeometry args={[0.0022, 0.0028, 0.11, 16]} />
-              <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={3.0} />
-            </mesh>
-            <Text position={[-0.035, 0, 0.022]} fontSize={0.0075} color="#0f172a">
-              White Light Torch (i = 48°)
-            </Text>
-          </group>
-        )}
-
-        {/* Internal Refraction Paths (Step 3 & 4) */}
-        {prismStep >= 3 && (
-          <group>
-            {spectrumData.map((ray, idx) => {
-              const devAngle = THREE.MathUtils.degToRad(30.0 - ray.eDeg);
-              const dX = Math.cos(devAngle) * 0.045;
-              const dY = Math.sin(devAngle) * 0.045;
-              return (
-                <mesh key={idx} position={[-0.02 + dX / 2, -0.01 + dY / 2, 0.03]} rotation={[0, 0, devAngle * 0.4]}>
-                  <cylinderGeometry args={[0.0011, 0.0011, 0.045, 12]} />
-                  <meshStandardMaterial
-                    color={prismStep === 3 ? '#fbbf24' : ray.hex}
-                    emissive={prismStep === 3 ? '#f59e0b' : ray.hex}
-                    emissiveIntensity={2.5}
-                  />
-                </mesh>
-              );
-            })}
-          </group>
-        )}
-
-        {/* 7 Rainbow Dispersed Emergent Rays & Screen (Step 4) */}
-        {prismStep === 4 && (
-          <group>
-            {spectrumData.map((ray, idx) => {
-              const devAngle = THREE.MathUtils.degToRad(30.0 - ray.eDeg);
-              const dX = Math.cos(devAngle) * 0.11;
-              const dY = Math.sin(devAngle) * 0.11;
-              return (
-                <group key={idx}>
-                  <mesh position={[0.025 + dX / 2, -0.01 + dY / 2, 0.03]} rotation={[0, 0, devAngle]}>
-                    <cylinderGeometry args={[0.0013, 0.0016, 0.11, 14]} />
-                    <meshStandardMaterial color={ray.hex} emissive={ray.hex} emissiveIntensity={3.2} />
-                  </mesh>
-                  <mesh position={[0.025 + dX, -0.01 + dY, 0.03]}>
-                    <boxGeometry args={[0.002, 0.006, 0.008]} />
-                    <meshStandardMaterial color={ray.hex} emissive={ray.hex} emissiveIntensity={3.5} />
-                  </mesh>
-                  <Text position={[0.035 + dX, -0.01 + dY, 0.04]} fontSize={0.0065} color={ray.hex} anchorX="left">
-                    {ray.name}
-                  </Text>
-                </group>
-              );
-            })}
-            {/* White Observation Screen */}
-            <mesh position={[0.145, -0.045, 0.038]} rotation={[0, 0, THREE.MathUtils.degToRad(70)]} receiveShadow name="prism-screen">
-              <boxGeometry args={[0.006, 0.095, 0.075]} />
-              <meshStandardMaterial color="#ffffff" roughness={0.85} />
-            </mesh>
-            <Text position={[0.145, -0.045, 0.088]} fontSize={0.008} color="#0f172a" anchorX="center">
-              Observation Screen
-            </Text>
-          </group>
-        )}
+        <StationGLBErrorBoundary>
+          <Suspense fallback={null}>
+            <LabStationGLB
+              modelPath="/assets/glass-prism-refraction.glb"
+              scale={0.72}
+              position={[0, 0, 0.002]}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectStation('optics');
+              }}
+            />
+          </Suspense>
+        </StationGLBErrorBoundary>
 
         {/* 3D Floating Beacon & Interactive Prompt */}
-        <group position={[0, 0, 0.16]}>
+        <group position={[0, 0, 0.22]}>
           <mesh>
             <sphereGeometry args={[0.008, 16, 16]} />
             <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={2.5} />
           </mesh>
           <Text position={[0, 0, 0.018]} fontSize={0.014} color="#38bdf8" anchorX="center" anchorY="bottom">
-            📍 PRISM EXPERIMENT TABLE
+            📍 STATION 1: PRISM EXPERIMENT BENCH
           </Text>
           <Text position={[0, 0, 0.006]} fontSize={0.009} color="#e0f2fe" anchorX="center" anchorY="top">
-            {prismStep === 1 && '⚡ Press [E] or Left-Click: Turn ON Torch'}
-            {prismStep === 2 && '⚡ Press [E] or Left-Click: Trace Refraction'}
-            {prismStep === 3 && '⚡ Press [E] or Left-Click: Disperse 7 Rainbow Colors'}
-            {prismStep === 4 && '✨ 7 Colors Dispersed (VIBGYOR)! Press [E] to Restart'}
+            {prismStep === 1 && '⚡ Press [E] or Left-Click: Inspect Apparatus'}
+            {prismStep === 2 && '⚡ Press [E] or Left-Click: Trace Refracted Ray'}
+            {prismStep === 3 && '⚡ Press [E] or Left-Click: Observe 7 Colors (VIBGYOR)'}
+            {prismStep === 4 && '✨ Refraction & Dispersion Verified! Press [E] to Restart'}
           </Text>
         </group>
       </group>
@@ -506,55 +448,44 @@ export function LabGameWorld({
           </mesh>
         ))}
 
-        {/* Ceramic Safety Tile */}
-        <mesh position={[-0.04, 0, 0.003]} receiveShadow>
-          <boxGeometry args={[0.16, 0.16, 0.005]} />
-          <meshStandardMaterial color="#e2e8f0" roughness={0.3} />
-        </mesh>
+        <StationGLBErrorBoundary>
+          <Suspense fallback={null}>
+            <LabStationGLB
+              modelPath="/assets/magnesium-burning-setup.glb"
+              scale={0.72}
+              position={[0, 0, 0.002]}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectStation('chemistry');
+              }}
+            />
+          </Suspense>
+        </StationGLBErrorBoundary>
 
-        {/* Bunsen Burner */}
-        <group position={[-0.04, 0, 0.006]}>
-          <mesh position={[0, 0, 0.004]} castShadow>
-            <cylinderGeometry args={[0.024, 0.026, 0.008, 20]} />
-            <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.3} />
-          </mesh>
-          <mesh position={[0, 0, 0.038]} castShadow>
-            <cylinderGeometry args={[0.0055, 0.0055, 0.060, 20]} />
-            <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.2} />
-          </mesh>
-          {/* Flame */}
-          {burnStage !== 'unheated' && (
-            <mesh position={[0, 0, 0.082]}>
-              <coneGeometry args={[0.009, 0.032, 16]} />
-              <meshStandardMaterial
-                color={burnStage === 'burning' ? '#ffffff' : '#38bdf8'}
-                emissive={burnStage === 'burning' ? '#ffffff' : '#0284c7'}
-                emissiveIntensity={burnStage === 'burning' ? 5.0 : 3.0}
-                transparent
-                opacity={0.85}
-              />
+        {/* Dynamic Combustion Flash Flare */}
+        {burnStage === 'burning' && (
+          <group position={[-0.04, 0, 0.08]}>
+            <pointLight intensity={5.0} distance={1.5} color="#ffffff" />
+            <mesh>
+              <sphereGeometry args={[0.018, 16, 16]} />
+              <meshBasicMaterial color="#ffffff" />
             </mesh>
-          )}
-        </group>
-
-        {/* Watch Glass with MgO Powder */}
-        <group position={[0.08, 0, 0.003]}>
-          <mesh position={[0, 0, 0.003]} castShadow>
-            <cylinderGeometry args={[0.025, 0.020, 0.005, 20]} />
-            <meshPhysicalMaterial color="#ffffff" transmission={0.9} roughness={0.1} transparent opacity={0.8} />
-          </mesh>
-          {burnStage === 'collected' && (
-            <mesh position={[0, 0, 0.006]}>
-              <coneGeometry args={[0.015, 0.008, 16]} />
-              <meshStandardMaterial color="#ffffff" roughness={0.9} emissive="#f8fafc" emissiveIntensity={0.5} />
-            </mesh>
-          )}
-        </group>
+          </group>
+        )}
 
         {/* Station Title Badge */}
-        <Text position={[0, 0, 0.12]} fontSize={0.016} color={activeStation === 'chemistry' ? '#fbbf24' : '#cbd5e1'} anchorX="center">
-          2. CHEMISTRY BENCH (Magnesium Burning)
-        </Text>
+        <group position={[0, 0, 0.22]}>
+          <mesh>
+            <sphereGeometry args={[0.008, 16, 16]} />
+            <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={2.5} />
+          </mesh>
+          <Text position={[0, 0, 0.018]} fontSize={0.014} color="#fbbf24" anchorX="center" anchorY="bottom">
+            📍 STATION 2: CHEMISTRY BENCH (Magnesium Combustion)
+          </Text>
+          <Text position={[0, 0, 0.006]} fontSize={0.009} color="#fef3c7" anchorX="center" anchorY="top">
+            Stage: {burnStage.toUpperCase()} — Press [E] or Left-Click to Heat & Burn
+          </Text>
+        </group>
       </group>
 
       {/* ------------------------------------------------------------------------- */}
@@ -592,21 +523,43 @@ export function LabGameWorld({
           </mesh>
         ))}
 
-        {/* Anatomical Heart Model Base */}
+        {/* Specimen Stand Pedestal */}
         <mesh position={[0, 0, 0.008]} castShadow>
-          <cylinderGeometry args={[0.035, 0.040, 0.014, 24]} />
-          <meshStandardMaterial color="#334155" metalness={0.7} roughness={0.4} />
+          <cylinderGeometry args={[0.045, 0.050, 0.016, 32]} />
+          <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.25} />
         </mesh>
-        {/* Stylized Pulsating Organ */}
-        <mesh position={[0, 0, 0.045]} castShadow>
-          <sphereGeometry args={[0.028, 24, 24]} />
-          <meshStandardMaterial color="#e11d48" roughness={0.3} emissive="#be123c" emissiveIntensity={0.6} />
+        <mesh position={[0, 0, 0.024]} castShadow>
+          <cylinderGeometry args={[0.004, 0.004, 0.020, 16]} />
+          <meshStandardMaterial color="#94a3b8" metalness={0.9} roughness={0.15} />
         </mesh>
 
+        <StationGLBErrorBoundary>
+          <Suspense fallback={null}>
+            <LabStationGLB
+              modelPath="/assets/human-heart.glb"
+              scale={1.25}
+              position={[0, 0, 0.035]}
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelectStation('biology');
+              }}
+            />
+          </Suspense>
+        </StationGLBErrorBoundary>
+
         {/* Station Title Badge */}
-        <Text position={[0, 0, 0.12]} fontSize={0.016} color={activeStation === 'biology' ? '#fb7185' : '#cbd5e1'} anchorX="center">
-          3. BIOLOGY BENCH (Heart & Circulation)
-        </Text>
+        <group position={[0, 0, 0.22]}>
+          <mesh>
+            <sphereGeometry args={[0.008, 16, 16]} />
+            <meshStandardMaterial color="#f43f5e" emissive="#f43f5e" emissiveIntensity={2.5} />
+          </mesh>
+          <Text position={[0, 0, 0.018]} fontSize={0.014} color="#fb7185" anchorX="center" anchorY="bottom">
+            📍 STATION 3: BIOLOGY BENCH (Human Heart Anatomy)
+          </Text>
+          <Text position={[0, 0, 0.006]} fontSize={0.009} color="#ffe4e6" anchorX="center" anchorY="top">
+            Aorta, Ventricles, Coronary Arteries & Double Circulation
+          </Text>
+        </group>
       </group>
 
       {/* ========================================================================= */}

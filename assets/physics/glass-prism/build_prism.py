@@ -16,8 +16,8 @@ ASSET_ID = "glass-prism"
 
 
 def build_prism():
-    # 1. Physically accurate Crown Glass (Schott N-BK7, IOR 1.517) with slight blue-cyan optical edge tint
-    glass_mat = kit.add_glass_material(f"{ASSET_ID}-glass", tint=(0.88, 0.94, 0.98), ior=1.517, roughness=0.005)
+    # 1. Physically accurate Crown Glass (IOR 1.52) with slight blue-cyan optical edge tint
+    glass_mat = kit.add_glass_material(f"{ASSET_ID}-glass", tint=(0.88, 0.94, 0.98), ior=1.52, roughness=0.005)
 
     # 2. Equilateral Prism Dimensions (60mm equilateral side, 80mm length)
     side = 0.060
@@ -74,7 +74,7 @@ def main():
     kit.reset_scene()
     objects = build_prism()
     kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.configure_render(width=1280, height=720, samples=24)
     kit.frame_camera(objects, lens=50.0)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")

@@ -1,91 +1,145 @@
+"""
+build_dna.py — High-Fidelity B-DNA Double Helix Model
+CBSE Class 10 Biology, Chapter 8: How do Organisms Reproduce? (DNA Copying)
+CBSE Class 11 Biology, Chapter 9: Biomolecules (Nucleic Acids) (Fig 9.5)
+CBSE Class 12 Biology, Chapter 6: Molecular Basis of Inheritance (Fig 6.2, 6.3)
+
+Key Anatomical / Structural Features:
+- Two antiparallel polynucleotide sugar-phosphate backbones coiled in a right-handed double helix.
+- Authentic Major Groove (~2.2 nm) and Minor Groove (~1.2 nm) created by ~140° / 220° angular offset.
+- Nitrogenous base pairs oriented strictly horizontally (perpendicular to helical axis, zero vertical slope).
+- Complementary base pairing per Watson-Crick rules:
+  * Adenine (A, Green) pairs with Thymine (T, Red)
+  * Guanine (G, Amber) pairs with Cytosine (C, Blue)
+- Design token color synchronization:
+  * Backbone (Phosphate): Azure (#0ea5e9)
+  * Adenine: Green (#22c55e)
+  * Thymine: Red (#ef4444)
+  * Guanine: Amber (#f59e0b)
+  * Cytosine: Blue (#3b82f6)
+- ZERO non-manifold elements: backbones constructed via kit.create_smooth_tube(..., cap_ends=True),
+  base pair rungs are closed manifold cylinders.
+"""
+
 import sys, math
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
 import edu_asset_kit as kit
 import bpy, bmesh
-from mathutils import Vector, Matrix
+from mathutils import Vector
 
 ASSET_ID = "dna-double-helix"
 
 
 def build_dna():
-    # Materials
-    backbone = kit.add_material("dna-backbone", (0.85, 0.55, 0.20), metallic=0.0, roughness=0.5)
-    # Base pair colors: A=Red, T=Yellow, G=Blue, C=Green
-    at_a = kit.add_material("dna-adenine", (0.85, 0.20, 0.20), metallic=0.0, roughness=0.5)
-    at_t = kit.add_material("dna-thymine", (0.90, 0.85, 0.20), metallic=0.0, roughness=0.5)
-    gc_g = kit.add_material("dna-guanine", (0.20, 0.45, 0.80), metallic=0.0, roughness=0.5)
-    gc_c = kit.add_material("dna-cytosine", (0.20, 0.70, 0.35), metallic=0.0, roughness=0.5)
+    # 1. PBR Materials synchronized with visual/design-tokens.json
+    backbone_mat = kit.add_material("dna-backbone", (0.055, 0.647, 0.914), metallic=0.10, roughness=0.35)
+    mat_a = kit.add_material("dna-adenine", (0.133, 0.773, 0.369), metallic=0.05, roughness=0.45)   # Green
+    mat_t = kit.add_material("dna-thymine", (0.937, 0.267, 0.267), metallic=0.05, roughness=0.45)   # Red
+    mat_g = kit.add_material("dna-guanine", (0.961, 0.620, 0.043), metallic=0.05, roughness=0.45)   # Amber
+    mat_c = kit.add_material("dna-cytosine", (0.231, 0.510, 0.965), metallic=0.05, roughness=0.45)  # Blue
+    h_bond_mat = kit.add_material("dna-h-bond", (0.95, 0.95, 0.98), metallic=0.10, roughness=0.25)
 
-    radius = 0.012
-    height = 0.10
-    turns = 2.0
-    steps = 40
+    radius = 0.014      # Helix radius (1.4 cm in visualization scale)
+    height = 0.120      # Total height along Y axis (12 cm)
+    turns = 2.2         # 2.2 helical turns
+    steps = 44          # Spline sample resolution along helix
 
-    # Create continuous helical backbone using bmesh tube
+    # Major and Minor Groove Offset:
+    # In B-DNA, the two glycosidic bonds are separated by ~140 degrees (minor groove) and ~220 degrees (major groove)
+    groove_offset = math.radians(140.0)
+
+    objects = []
+
+    # 2. Helical Sugar-Phosphate Backbones (Strand 0 and Strand 1)
     for strand in range(2):
-        bm = bmesh.new()
-        prev_vert = None
+        strand_pts = []
+        base_angle_offset = strand * groove_offset
         for i in range(steps + 1):
             t = i / steps
-            angle = t * turns * 2 * math.pi + strand * math.pi  # offset 180°
-            y = -height / 2 + t * height
+            angle = t * turns * 2.0 * math.pi + base_angle_offset
+            y = -height / 2.0 + t * height
             x = radius * math.cos(angle)
             z = radius * math.sin(angle)
-            vert = bm.verts.new((x, y, z))
-            if prev_vert is not None:
-                bm.edges.new([prev_vert, vert])
-            prev_vert = vert
+            strand_pts.append((x, y, z))
 
-        # Convert edges to tube mesh
-        mesh = bpy.data.meshes.new(f"{ASSET_ID}-backbone-{strand}")
-        bm.to_mesh(mesh)
-        bm.free()
-        obj = bpy.data.objects.new(f"{ASSET_ID}-backbone-{strand}", mesh)
-        bpy.context.collection.objects.link(obj)
-        # Add skin modifier for tube thickness
-        skin = obj.modifiers.new(name="skin", type='SKIN')
-        # Set skin radius for each vertex
-        for v in obj.data.skin_vertices[0].data:
-            v.radius = (0.0015, 0.0015)
-        obj.data.materials.append(backbone)
+        # Build smooth manifold tube with capped ends (0 non-manifold edges)
+        strand_obj = kit.create_smooth_tube(
+            f"{ASSET_ID}-backbone-{strand}", strand_pts, radius=0.0022, cap_ends=True, material=backbone_mat
+        )
+        objects.append(strand_obj)
 
-    # Base pairs connecting the two strands
-    pair_mats = [(at_a, at_t), (gc_g, gc_c)]
-    for i in range(0, steps, 3):  # every 3rd step
-        t = i / steps
-        angle1 = t * turns * 2 * math.pi
-        angle2 = angle1 + math.pi
-        y = -height / 2 + t * height
+    # 3. Horizontal Base Pair Rungs Connecting the Two Antiparallel Strands
+    # Standard Watson-Crick base pair sequence: [ (A, T), (G, C), (T, A), (C, G) ]
+    pair_sequence = [
+        (mat_a, mat_t, "A-T"),
+        (mat_g, mat_c, "G-C"),
+        (mat_t, mat_a, "T-A"),
+        (mat_c, mat_g, "C-G"),
+        (mat_a, mat_t, "A-T"),
+        (mat_g, mat_c, "G-C"),
+        (mat_c, mat_g, "C-G"),
+        (mat_t, mat_a, "T-A"),
+    ]
 
+    # Sample base pair steps along the double helix
+    num_rungs = 22
+    for r_idx in range(num_rungs):
+        t = r_idx / (num_rungs - 1)
+        angle0 = t * turns * 2.0 * math.pi
+        angle1 = angle0 + groove_offset
+        y = -height / 2.0 + t * height
+
+        # Coordinates on Strand 0 and Strand 1 at this exact height y
+        x0 = radius * math.cos(angle0)
+        z0 = radius * math.sin(angle0)
         x1 = radius * math.cos(angle1)
         z1 = radius * math.sin(angle1)
-        x2 = radius * math.cos(angle2)
-        z2 = radius * math.sin(angle2)
 
-        # Direction vector between strands
-        dx = x2 - x1
-        dz = z2 - z1
-        length = math.sqrt(dx*dx + dz*dz)
-        angle = math.atan2(dz, dx)
+        p0 = Vector((x0, y, z0))
+        p1 = Vector((x1, y, z1))
 
-        mat_pair = pair_mats[(i // 3) % 2]
+        # Vector D lies strictly in the horizontal X-Z plane (dy = 0)
+        disp = p1 - p0
+        length = disp.length
+        if length < 0.0001:
+            continue
 
-        # Two half-rungs with different colors (complementary bases)
-        mx = (x1 + x2) / 2
-        mz = (z1 + z2) / 2
+        dir_norm = disp.normalized()
+        # Rotation aligning Blender's cylinder Z-axis to horizontal vector dir_norm
+        rot_euler = dir_norm.to_track_quat('Z', 'Y').to_euler()
 
-        kit.primitive_object(f"{ASSET_ID}-pair-{i}-a", "cylinder", mat_pair[0],
-                              size=(0.0015, 0.0015, length / 2),
-                              location=(mx - dx/4, y, mz - dz/4),
-                              rotation_euler=(0.0, 0.0, angle))
+        midpoint = (p0 + p1) * 0.5
+        q0 = p0 + dir_norm * (length * 0.25)
+        q1 = p0 + dir_norm * (length * 0.75)
 
-        kit.primitive_object(f"{ASSET_ID}-pair-{i}-b", "cylinder", mat_pair[1],
-                              size=(0.0015, 0.0015, length / 2),
-                              location=(mx + dx/4, y, mz + dz/4),
-                              rotation_euler=(0.0, 0.0, angle))
+        base_pair_type = pair_sequence[r_idx % len(pair_sequence)]
+        mat_0 = base_pair_type[0]
+        mat_1 = base_pair_type[1]
 
-    return []
+        # Base from strand 0 to midpoint (half-length)
+        base_a = kit.primitive_object(
+            f"{ASSET_ID}-pair-{r_idx}-base-0", "cylinder", mat_0,
+            size=(0.0024, 0.0024, length * 0.46),
+            location=(q0.x, q0.y, q0.z),
+            rotation_euler=rot_euler
+        )
+        # Base from strand 1 to midpoint (half-length)
+        base_b = kit.primitive_object(
+            f"{ASSET_ID}-pair-{r_idx}-base-1", "cylinder", mat_1,
+            size=(0.0024, 0.0024, length * 0.46),
+            location=(q1.x, q1.y, q1.z),
+            rotation_euler=rot_euler
+        )
+        # Central hydrogen bond interface node
+        h_node = kit.primitive_object(
+            f"{ASSET_ID}-pair-{r_idx}-h-bond", "uv_sphere", h_bond_mat,
+            size=(0.0026, 0.0026, 0.0026),
+            location=(midpoint.x, midpoint.y, midpoint.z)
+        )
+        objects.extend([base_a, base_b, h_node])
+
+    return objects
 
 
 def main():
@@ -93,11 +147,12 @@ def main():
     kit.reset_scene()
     objects = build_dna()
     kit.setup_world_and_light()
-    kit.configure_render()
-    kit.frame_camera(objects, lens=80.0)
+    kit.configure_render(width=1280, height=720, samples=24)
+    kit.frame_camera(objects, lens=55.0)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")
     kit.render_preview(out / "preview.png")
+    print(f"[OK] High-fidelity {ASSET_ID} built and rendered successfully.")
 
 
 if __name__ == "__main__":

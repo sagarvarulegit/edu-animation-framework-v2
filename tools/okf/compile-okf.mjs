@@ -148,7 +148,7 @@ export interface OkfCbseMapping {
 export interface OkfEquation {
   latex: string;
   meaning: string;
-  type?: 'chemical' | 'physical' | 'mathematical';
+  type?: 'chemical' | 'physical' | 'mathematical' | 'biological';
 }
 
 export interface OkfMisconception {

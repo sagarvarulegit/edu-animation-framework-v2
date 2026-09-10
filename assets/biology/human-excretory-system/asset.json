@@ -1,0 +1,81 @@
+{
+  "id": "human-excretory-system",
+  "name": "Human Excretory System (Urinary System)",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.1.0",
+  "status": "reviewed",
+  "semanticDescription": "Anatomical model of the human urinary excretory system including paired bean-shaped kidneys, suprarenal adrenal glands, renal pelvis funnels, renal arteries and veins, abdominal aorta with common iliac bifurcations, inferior vena cava, bilateral ureters inserting into the bladder trigone, muscular urinary bladder, and urethra (CBSE Class 10 Biology Ch 5 Figure 5.13; CBSE Class 11 Biology Ch 19 Figures 19.1, 19.2).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.22,
+    "height": 0.30,
+    "depth": 0.12
+  },
+  "simplifications": [
+    "Internal renal pyramid structures shown in macroscopic kidney profile.",
+    "Blood vessels terminate in anatomical common iliac bifurcations."
+  ],
+  "materials": [
+    {
+      "id": "kidney-parenchyma",
+      "look": "Reddish-brown dense renal cortex with subsurface scattering"
+    },
+    {
+      "id": "renal-artery-red",
+      "look": "Bright red oxygenated arterial vessel from aorta"
+    },
+    {
+      "id": "renal-vein-blue",
+      "look": "Deep blue venous drainage vessel to vena cava"
+    },
+    {
+      "id": "ureter-smooth-muscle",
+      "look": "Pale buff yellow muscular conducting tubes"
+    },
+    {
+      "id": "urinary-bladder-wall",
+      "look": "Distensible pinkish detrusor muscular bladder"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_excretory.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-09"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/human-excretory-system.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/human-excretory-system.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/human-excretory-system.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "excretory-system",
+    "kidney",
+    "ureter",
+    "bladder",
+    "urethra",
+    "renal-artery",
+    "renal-vein",
+    "urine-formation",
+    "CBSE-class-10",
+    "CBSE-class-11",
+    "life-processes"
+  ]
+}

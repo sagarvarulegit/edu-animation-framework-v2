@@ -95,6 +95,10 @@ export interface DesignTokens {
       ior?: number;
       emissionColor?: string;
       emissionStrength?: number;
+      subsurfaceWeight?: number;
+      subsurfaceRadius?: [number, number, number];
+      subsurfaceScale?: number;
+      subsurfaceColor?: string;
     }
   >;
   camera: {

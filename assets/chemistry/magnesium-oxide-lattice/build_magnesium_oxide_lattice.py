@@ -57,11 +57,12 @@ def main():
                     all_objs.append(b)
 
     kit.frame_camera(all_objs, lens=50.0)
-    kit.configure_render(width=1280, height=720, samples=32)
+    kit.configure_render(width=1280, height=720, samples=24)
 
     kit.save_blend(out / "magnesium-oxide-lattice.blend")
     kit.export_glb(out / "magnesium-oxide-lattice.glb")
     kit.render_preview(out / "preview.png")
+    print("[OK] High-fidelity magnesium-oxide-lattice built and rendered.")
 
 
 if __name__ == "__main__":

@@ -1,61 +1,69 @@
 {
   "id": "human-heart",
-  "name": "Human Heart (Anatomical)",
+  "name": "Human Heart (Anatomical 4-Chamber Coronal Cutaway)",
   "category": "biology",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomical human heart with anterior view and 4-chamber internal structures, coronary vessels, and great vessels.",
+  "semanticDescription": "Anatomical human heart with coronal cutaway section revealing 4 internal chambers (Right Atrium, Right Ventricle, Left Atrium, Left Ventricle with ~3x thicker myocardium), interventricular and interatrial septa, atrioventricular valves (tricuspid and bicuspid/mitral) with chordae tendineae and papillary muscles, semilunar valves, coronary circulation, and great vessels.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
   "simplifications": [
-    "Valve leaflets stylized for clean animation",
-    "Vessel branching truncated to primary trunks"
+    "Coronal cutaway removes anterior myocardial wall to expose interior 4-chamber anatomy (RA, RV, LA, LV), septa, and valves for educational demonstration",
+    "Left ventricle myocardium authored with 12 mm wall thickness (~3x right ventricle 4 mm wall thickness) reflecting systemic vs pulmonary hydrostatic pressure requirements",
+    "Fibrous valve leaflets (tricuspid 3-cusp, mitral 2-cusp) and papillary chordae tendineae stylized for pedagogical clarity",
+    "Great vessels capped with manifold geometry to guarantee watertight 3D meshes"
   ],
   "materials": [
     {
       "id": "heart-myocardium",
-      "look": "Dark crimson myocardium muscle (0.65, 0.16, 0.12)"
+      "look": "Cardiac muscle tissue with subsurface scattering (0.55, 0.09, 0.11)"
     },
     {
-      "id": "heart-oxy",
-      "look": "Bright red oxygenated vessels / pulmonary veins (0.82, 0.15, 0.12)"
-    },
-    {
-      "id": "heart-deoxy",
-      "look": "Blue deoxygenated vessels / vena cava (0.22, 0.30, 0.70)"
-    },
-    {
-      "id": "heart-aorta",
-      "look": "Aortic arch and ascending/descending aorta (0.72, 0.18, 0.14)"
-    },
-    {
-      "id": "heart-pulmonary",
-      "look": "Pulmonary trunk and arteries (0.32, 0.38, 0.72)"
-    },
-    {
-      "id": "heart-coronary",
-      "look": "Coronary arteries LAD/RCA (0.90, 0.30, 0.25)"
-    },
-    {
-      "id": "heart-fat",
-      "look": "Epicardial fat tissue (0.85, 0.75, 0.42)"
+      "id": "heart-atrium",
+      "look": "Atrial muscle wall with subsurface scattering (0.48, 0.10, 0.12)"
     },
     {
       "id": "heart-valve",
-      "look": "Fibrous valve tissue (0.90, 0.88, 0.82)"
+      "look": "Dense fibrous connective valve tissue (0.92, 0.90, 0.84)"
+    },
+    {
+      "id": "heart-aorta",
+      "look": "Aortic arch and ascending/descending aorta (0.84, 0.03, 0.03)"
+    },
+    {
+      "id": "heart-pulmonary",
+      "look": "Pulmonary trunk and arteries (0.015, 0.18, 0.88)"
+    },
+    {
+      "id": "heart-vena-cava",
+      "look": "Systemic venous return vena cava (0.015, 0.16, 0.80)"
+    },
+    {
+      "id": "heart-pulm-vein",
+      "look": "Oxygenated pulmonary veins (0.80, 0.03, 0.03)"
+    },
+    {
+      "id": "heart-fat",
+      "look": "Epicardial adipose tissue cushions along sulci"
+    },
+    {
+      "id": "heart-coronary",
+      "look": "Coronary arteries LAD/RCA (0.95, 0.02, 0.02)"
+    },
+    {
+      "id": "heart-coronary-vein",
+      "look": "Great cardiac vein (0.08, 0.24, 0.92)"
     }
   ],
   "provenance": {
-    "method": "scanned-sourced",
-    "generator": "tools/extract_z_anatomy_heart.py",
-    "source": "Z-Anatomy (Models-of-human-anatomy)",
-    "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
-    "license": "CC-BY-SA-4.0",
-    "authors": "Gauthier Kervyn / Z-Anatomy Community",
-    "date": "2026-08-27"
+    "method": "procedural-blender-python",
+    "generator": "build_heart.py",
+    "source": "NCERT Class 10/11 Biology Benchmarks & Procedural Geometry",
+    "license": "project-original",
+    "date": "2026-09-09"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -81,7 +89,8 @@
     "circulatory-system",
     "heart",
     "CBSE-class-10",
+    "CBSE-class-11",
     "science-ch5",
-    "z-anatomy"
+    "coronal-section"
   ]
 }

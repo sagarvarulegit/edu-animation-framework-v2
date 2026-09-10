@@ -55,6 +55,14 @@ def add_material_from_token(name, token_material_key):
     if "emission_color" in cfg and "Emission Color" in bsdf.inputs:
         bsdf.inputs["Emission Color"].default_value = cfg["emission_color"]
         bsdf.inputs["Emission Strength"].default_value = cfg["emission_strength"]
+    if tokens is not None:
+        raw = tokens.TOKENS.get("materials", {}).get(token_material_key, {})
+        if "subsurfaceWeight" in raw and "Subsurface Weight" in bsdf.inputs:
+            bsdf.inputs["Subsurface Weight"].default_value = raw["subsurfaceWeight"]
+        if "subsurfaceRadius" in raw and "Subsurface Radius" in bsdf.inputs:
+            bsdf.inputs["Subsurface Radius"].default_value = tuple(raw["subsurfaceRadius"])
+        if "subsurfaceScale" in raw and "Subsurface Scale" in bsdf.inputs:
+            bsdf.inputs["Subsurface Scale"].default_value = raw["subsurfaceScale"]
     return material
 
 
@@ -94,6 +102,44 @@ def add_machined_metal_material(name, color=None, metallic=None, roughness=None)
         actual_roughness = 0.25 if roughness is None else roughness
 
     return add_material(name, actual_color, metallic=actual_metallic, roughness=actual_roughness)
+
+
+def add_tissue_material(name, base_color=(0.85, 0.25, 0.25, 1.0), roughness=0.35,
+                        subsurface_weight=0.3, subsurface_radius=(1.0, 0.2, 0.1), subsurface_scale=0.02):
+    """
+    Creates a Principled BSDF material configured for biological tissue with Subsurface Scattering
+    compatible with Blender 4.2 LTS sockets.
+    """
+    material = bpy.data.materials.new(name)
+    material.use_nodes = True
+    bsdf = material.node_tree.nodes["Principled BSDF"]
+
+    if isinstance(base_color, str) and tokens is not None:
+        full_color = tokens.hex_to_linear(base_color)
+    elif len(base_color) == 3:
+        full_color = (*base_color, 1.0)
+    else:
+        full_color = tuple(base_color)
+
+    bsdf.inputs["Base Color"].default_value = full_color
+    bsdf.inputs["Metallic"].default_value = 0.0
+    bsdf.inputs["Roughness"].default_value = roughness
+
+    if "Subsurface Weight" in bsdf.inputs:
+        bsdf.inputs["Subsurface Weight"].default_value = subsurface_weight
+    elif "Subsurface" in bsdf.inputs:
+        bsdf.inputs["Subsurface"].default_value = subsurface_weight
+
+    if "Subsurface Radius" in bsdf.inputs:
+        bsdf.inputs["Subsurface Radius"].default_value = tuple(subsurface_radius)
+
+    if "Subsurface Scale" in bsdf.inputs:
+        bsdf.inputs["Subsurface Scale"].default_value = subsurface_scale
+
+    if "Subsurface IOR" in bsdf.inputs:
+        bsdf.inputs["Subsurface IOR"].default_value = 1.40
+
+    return material
 
 
 def lathe_object(name, profile_points, segments=64, material=None, location=(0.0, 0.0, 0.0), rotation_euler=(0.0, 0.0, 0.0)):
@@ -189,6 +235,7 @@ def primitive_object(name, kind, material, size=(1.0, 1.0, 1.0), location=(0.0, 
     elif kind == "cone":
         bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=True, segments=64,
                               radius1=size[0] / 2, radius2=size[1] / 2, depth=size[2])
+        bmesh.ops.dissolve_degenerate(bm, dist=1e-5, edges=bm.edges)
     elif kind == "uv_sphere":
         bmesh.ops.create_uvsphere(bm, u_segments=48, v_segments=32, radius=size[0] / 2)
     else:
@@ -206,8 +253,117 @@ def primitive_object(name, kind, material, size=(1.0, 1.0, 1.0), location=(0.0, 
     bpy.context.collection.objects.link(obj)
     obj.location = location
     obj.rotation_euler = rotation_euler
-    obj.scale = (1.0, 1.0, 1.0) if kind != "cube" else size
+    if kind == "cube":
+        obj.scale = size
+    elif kind == "uv_sphere":
+        if len(size) >= 3 and size[0] > 0:
+            obj.scale = (1.0, size[1] / size[0], size[2] / size[0])
+        else:
+            obj.scale = (1.0, 1.0, 1.0)
+    else:
+        obj.scale = (1.0, 1.0, 1.0)
     obj.data.materials.append(material)
+    return obj
+
+
+def create_smooth_tube(name, points, radius=0.003, resolution=16, material=None, cap_ends=True):
+    """
+    Generates a smooth 3D bevel tube from 3D spline control points.
+    If cap_ends is True, caps endpoints with manifold geometry to ensure clean closed meshes.
+    """
+    if len(points) < 2:
+        raise ValueError("create_smooth_tube requires at least 2 points")
+
+    curve_data = bpy.data.curves.new(name=f"{name}-curve", type='CURVE')
+    curve_data.dimensions = '3D'
+    curve_data.resolution_u = max(16, resolution)
+    curve_data.bevel_depth = radius
+    curve_data.bevel_resolution = max(2, resolution // 4)
+    curve_data.fill_mode = 'FULL'
+
+    spline = curve_data.splines.new('BEZIER')
+    spline.bezier_points.add(len(points) - 1)
+
+    for i, pt in enumerate(points):
+        bp = spline.bezier_points[i]
+        bp.co = Vector(pt) if not isinstance(pt, Vector) else pt
+        bp.handle_left_type = 'AUTO'
+        bp.handle_right_type = 'AUTO'
+
+    obj = bpy.data.objects.new(name, curve_data)
+    bpy.context.collection.objects.link(obj)
+
+    # Convert curve to mesh deterministically
+    prev_active = bpy.context.view_layer.objects.active
+    bpy.context.view_layer.objects.active = obj
+    obj.select_set(True)
+    bpy.ops.object.convert(target='MESH')
+    if prev_active and prev_active.name in bpy.context.scene.objects:
+        bpy.context.view_layer.objects.active = prev_active
+
+    mesh = obj.data
+
+    if cap_ends:
+        bm = bmesh.new()
+        bm.from_mesh(mesh)
+        boundary_edges = [e for e in bm.edges if e.is_boundary]
+        if boundary_edges:
+            bmesh.ops.holes_fill(bm, edges=boundary_edges, sides=len(boundary_edges))
+        bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+        bm.to_mesh(mesh)
+        bm.free()
+
+    for poly in mesh.polygons:
+        poly.use_smooth = True
+    mesh.update()
+
+    if material is not None:
+        obj.data.materials.append(material)
+
+    return obj
+
+
+smooth_tube_object = create_smooth_tube
+
+
+def text_mesh_object(name, text, material=None, size=0.012, extrude=0.0006,
+                     location=(0.0, 0.0, 0.0), rotation_euler=(0.0, 0.0, 0.0)):
+    """
+    Creates 3D typographic text converted to a clean polygon mesh suitable for glTF export.
+    """
+    curve = bpy.data.curves.new(f'{name}-curve', type='FONT')
+    curve.body = text
+    curve.size = size
+    curve.extrude = extrude
+    curve.align_x = 'CENTER'
+    curve.align_y = 'CENTER'
+
+    obj = bpy.data.objects.new(name, curve)
+    bpy.context.collection.objects.link(obj)
+    obj.location = location
+    obj.rotation_euler = rotation_euler
+
+    # Convert to MESH deterministically
+    prev_active = bpy.context.view_layer.objects.active
+    bpy.context.view_layer.objects.active = obj
+    obj.select_set(True)
+    bpy.ops.object.convert(target='MESH')
+    if prev_active and prev_active.name in bpy.context.scene.objects:
+        bpy.context.view_layer.objects.active = prev_active
+
+    # Ensure welded, watertight manifold topology
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=0.0001)
+    bmesh.ops.dissolve_degenerate(bm, dist=1e-5, edges=bm.edges)
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    bm.to_mesh(obj.data)
+    bm.free()
+    obj.data.update()
+
+    if material is not None:
+        obj.data.materials.append(material)
+
     return obj
 
 
@@ -220,31 +376,31 @@ def setup_world_and_light():
     background.inputs[1].default_value = 0.20
     bpy.context.scene.world = world
 
-    # Key light: Focused soft studio key light
+    # Key light: Focused warm studio key light from front-left pointing towards model
     sun_data = bpy.data.lights.new("edu_key_light", type="SUN")
-    sun_data.energy = 2.4
-    sun_data.color = (1.0, 0.97, 0.92)
+    sun_data.energy = 3.0
+    sun_data.color = (1.0, 0.98, 0.95)
     sun = bpy.data.objects.new("edu_key_light", sun_data)
     bpy.context.collection.objects.link(sun)
-    direction = Vector((-0.45, -0.65, -0.90)).normalized()
+    direction = Vector((0.55, 0.70, -0.65)).normalized()
     sun.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
 
-    # Rim light: Crisp cool contour rim light for edge definition on glassware and metals
+    # Rim light: Crisp cool contour rim light from back-right creating silhouette definition
     rim_data = bpy.data.lights.new("edu_rim_light", type="SUN")
-    rim_data.energy = 2.0
+    rim_data.energy = 2.2
     rim_data.color = (0.75, 0.88, 1.0)
     rim = bpy.data.objects.new("edu_rim_light", rim_data)
     bpy.context.collection.objects.link(rim)
-    rim_direction = Vector((0.75, 0.60, -0.60)).normalized()
+    rim_direction = Vector((-0.70, -0.65, -0.50)).normalized()
     rim.rotation_euler = rim_direction.to_track_quat("-Z", "Y").to_euler()
 
-    # Subtle soft fill light
+    # Fill light: Soft ambient fill light from front-right illuminating shadow areas
     fill_data = bpy.data.lights.new("edu_fill_light", type="SUN")
-    fill_data.energy = 0.8
-    fill_data.color = (0.90, 0.92, 0.98)
+    fill_data.energy = 1.2
+    fill_data.color = (0.90, 0.94, 1.0)
     fill = bpy.data.objects.new("edu_fill_light", fill_data)
     bpy.context.collection.objects.link(fill)
-    fill_direction = Vector((0.30, -0.80, -0.40)).normalized()
+    fill_direction = Vector((-0.50, 0.65, -0.40)).normalized()
     fill.rotation_euler = fill_direction.to_track_quat("-Z", "Y").to_euler()
 
 
@@ -277,7 +433,7 @@ def frame_camera(objects, lens=55.0):
     return cam
 
 
-def configure_render(width=1280, height=720, samples=48):
+def configure_render(width=1280, height=720, samples=24):
     scene = bpy.context.scene
     scene.render.engine = "CYCLES"
     scene.cycles.samples = samples

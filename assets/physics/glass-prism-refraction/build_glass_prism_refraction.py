@@ -1,4 +1,4 @@
-﻿"""
+"""
 build_glass_prism_refraction.py — Assembled Glass Prism Refraction & Dispersion Experiment
 CBSE Class 10 Physics: Light — Refraction through a Glass Prism & White Light Dispersion
 """
@@ -70,8 +70,8 @@ def build_setup():
     thumb_metal = kit.add_machined_metal_material(f"{ASSET_ID}-thumb-metal", (0.92, 0.92, 0.95), metallic=0.95, roughness=0.2)
     thumb_cap = kit.add_material(f"{ASSET_ID}-thumb-cap", (0.2, 0.55, 0.95), metallic=0.1, roughness=0.3)
 
-    # Crystal Clear Optical Crown Glass (Schott N-BK7, IOR = 1.517)
-    glass_mat = kit.add_glass_material(f"{ASSET_ID}-glass", tint=(0.94, 0.98, 1.0), ior=1.517, roughness=0.005)
+    # Crystal Clear Optical Crown Glass (IOR = 1.52)
+    glass_mat = kit.add_glass_material(f"{ASSET_ID}-glass", tint=(0.94, 0.98, 1.0), ior=1.52, roughness=0.005)
 
     casing_mat = kit.add_material(f"{ASSET_ID}-casing", (0.15, 0.16, 0.18), metallic=0.7, roughness=0.4)
     pin_metal_mat = kit.add_machined_metal_material(f"{ASSET_ID}-pin-metal", (0.94, 0.94, 0.96), metallic=0.98, roughness=0.15)
@@ -341,33 +341,8 @@ def main():
     kit.reset_scene()
     objects = build_setup()
     
-    # Setup natural laboratory room lighting (clean daylight, soft shadows)
-    world = bpy.data.worlds.new("edu_daylight_world")
-    world.use_nodes = True
-    bg = world.node_tree.nodes["Background"]
-    bg.inputs[0].default_value = (0.96, 0.97, 0.99, 1.0) # Bright clean room background
-    bg.inputs[1].default_value = 0.85 # Ambient daylight intensity
-    bpy.context.scene.world = world
-
-    # Key Sunlight from window
-    sun_data = bpy.data.lights.new("sun_key", type="SUN")
-    sun_data.energy = 4.5
-    sun_data.color = (1.0, 0.98, 0.95)
-    sun = bpy.data.objects.new("sun_key", sun_data)
-    bpy.context.collection.objects.link(sun)
-    sun_dir = Vector((-0.35, -0.55, -0.85)).normalized()
-    sun.rotation_euler = sun_dir.to_track_quat("-Z", "Y").to_euler()
-
-    # Soft Blue Sky Fill Light
-    fill_data = bpy.data.lights.new("sky_fill", type="SUN")
-    fill_data.energy = 2.0
-    fill_data.color = (0.88, 0.94, 1.0)
-    fill = bpy.data.objects.new("sky_fill", fill_data)
-    bpy.context.collection.objects.link(fill)
-    fill_dir = Vector((0.6, 0.5, -0.6)).normalized()
-    fill.rotation_euler = fill_dir.to_track_quat("-Z", "Y").to_euler()
-
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.setup_world_and_light()
+    kit.configure_render(width=1280, height=720, samples=24)
     
     cam_data = bpy.data.cameras.new("edu_camera")
     cam_data.lens = 48.0

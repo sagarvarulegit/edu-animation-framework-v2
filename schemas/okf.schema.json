@@ -110,7 +110,7 @@
         "properties": {
           "latex": { "type": "string" },
           "meaning": { "type": "string" },
-          "type": { "type": "string", "enum": ["chemical", "physical", "mathematical"] }
+          "type": { "type": "string", "enum": ["chemical", "physical", "mathematical", "biological"] }
         }
       }
     },

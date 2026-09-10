@@ -1,30 +1,42 @@
 {
   "id": "human-eye",
-  "name": "Human Eyeball (Cornea, Lens, Retina & Optic Nerve)",
+  "name": "Human Eye (Cornea, Lens, Retina, Vitreous & Optic Nerve)",
   "category": "biology",
   "type": "prop",
-  "version": "0.2.0",
+  "version": "1.1.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomically accurate 3D model of the human eyeball with Cornea, Sclera, Iris, Crystalline Biconvex Lens, Retina, Vitreous Body, and Cranial Optic Nerve II. Sourced from Z-Anatomy. Aligned with CBSE Class 10 Physics/Biology (Human Eye and Colorful World).",
+  "semanticDescription": "Anatomical 3D model of the human eye showing 3 concentric tunics (outer fibrous sclera and clear cornea, middle vascular choroid, ciliary body, and iris with open pupil aperture, inner sensory retina with optic disc and macula lutea), crystalline biconvex lens, suspensory zonules of Zinn, transparent vitreous body, and optic nerve bundle.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
+  "simplifications": [
+    "Quadrant cutaway removes anterior-superior-right section to expose concentric tunic layers and internal optical components for educational inspection",
+    "Suspensory zonules of Zinn represented as 32 discrete radial fibrous ligament bundles",
+    "Retinal blood vessels simplified to primary superior and inferior arterial and venous arcades"
+  ],
   "materials": [
-    { "id": "eye-cornea", "look": "Transparent refractive anterior window" },
-    { "id": "eye-sclera", "look": "Clean anatomical off-white protective outer tunic" },
-    { "id": "eye-iris", "look": "Hazel iris sphincter diaphragm" },
-    { "id": "eye-lens", "look": "Clear biconvex crystalline lens" },
-    { "id": "eye-retina", "look": "Orange-red sensory photoreceptor layer" },
-    { "id": "eye-optic-nerve", "look": "Ivory cranial nerve pathway to visual cortex" }
+    { "id": "eye-sclera", "look": "Protective white outer fibrous tunic with subsurface scattering" },
+    { "id": "eye-cornea", "look": "Transparent bulging anterior refractive window (IOR 1.376)" },
+    { "id": "eye-choroid", "look": "Dark brown-black vascular melanin layer absorbing internal light scatter" },
+    { "id": "eye-ciliary", "look": "Ciliary body muscular ring and ciliary processes" },
+    { "id": "eye-iris", "look": "Pigmented hazel-blue iris diaphragm with central open pupil aperture" },
+    { "id": "eye-pupil", "look": "Pupillary sphincter margin surrounding the true open aperture" },
+    { "id": "eye-lens", "look": "Clear biconvex crystalline lens with optical transmission (IOR 1.406)" },
+    { "id": "eye-zonules", "look": "Delicate fibrous suspensory ligaments of Zinn" },
+    { "id": "eye-vitreous", "look": "Transparent refractive vitreous humor gel (IOR 1.336)" },
+    { "id": "eye-aqueous", "look": "Clear aqueous humor fluid in anterior chamber (IOR 1.333)" },
+    { "id": "eye-retina", "look": "Warm orange-red sensory photoreceptor layer with subsurface scattering" },
+    { "id": "eye-optic-disc", "look": "Pale blind spot at emergence of cranial nerve II" },
+    { "id": "eye-macula", "look": "Yellow macula lutea and central fovea depression" },
+    { "id": "eye-nerve", "look": "Cranial optic nerve bundle II with subsurface scattering" }
   ],
   "provenance": {
-    "method": "scanned-sourced",
-    "source": "https://github.com/Z-Anatomy/Z-Anatomy",
-    "generator": "tools/extract_z_anatomy_eye.py",
-    "generatedBy": "Z-Anatomy (CC BY-SA 4.0)",
-    "license": "CC BY-SA 4.0",
-    "date": "2026-08-27"
+    "method": "procedural-blender-python",
+    "generator": "build_eye.py",
+    "source": "NCERT Class 10/11 Physics/Biology Benchmarks & Procedural Geometry",
+    "license": "project-original",
+    "date": "2026-09-09"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -42,8 +54,11 @@
     "cornea",
     "lens",
     "retina",
+    "choroid",
+    "vitreous",
     "optic-nerve",
     "optics",
-    "cbse-class-10"
+    "cbse-class-10",
+    "cbse-class-11"
   ]
 }

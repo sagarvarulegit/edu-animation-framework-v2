@@ -1,0 +1,82 @@
+{
+  "id": "human-respiratory-system",
+  "name": "Human Respiratory System & Alveoli Cluster",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.1.0",
+  "status": "reviewed",
+  "semanticDescription": "Anatomical human respiratory system model showing larynx, trachea with authentic C-shaped hyaline cartilaginous rings (open posteriorly), carina bifurcation, transparent lungs revealing internal lobar and segmental bronchial arborization, dome-shaped diaphragm, and magnified alveolar cluster with capillary gas exchange (CBSE Class 10 Biology Ch 5 Figure 5.9; CBSE Class 11 Biology Ch 17 Figure 17.1).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.26,
+    "height": 0.32,
+    "depth": 0.18
+  },
+  "simplifications": [
+    "Lung parenchyma modeled with optical dielectric transmission to reveal the interior bronchial tree arborization.",
+    "Bronchial branching visualized through primary, secondary lobar, and tertiary segmental bronchioles."
+  ],
+  "materials": [
+    {
+      "id": "lung-tissue-pink",
+      "look": "Translucent vascular lung parenchyma with dielectric transmission and subsurface scattering"
+    },
+    {
+      "id": "trachea-cartilage",
+      "look": "Hyaline cartilage C-rings open posteriorly with smooth trachealis muscle"
+    },
+    {
+      "id": "bronchial-tree",
+      "look": "Conducting airway tubules with lobar and segmental branching"
+    },
+    {
+      "id": "diaphragm-muscle",
+      "look": "Deep reddish-brown dome-shaped diaphragm muscle with central tendon"
+    },
+    {
+      "id": "alveoli-capillary",
+      "look": "Microscopic alveolar sac cluster with oxy-red and deoxy-blue capillaries"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_respiratory.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-09"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/human-respiratory-system.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/human-respiratory-system.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/human-respiratory-system.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "respiratory-system",
+    "lungs",
+    "trachea",
+    "c-rings",
+    "bronchi",
+    "bronchial-tree",
+    "alveoli",
+    "diaphragm",
+    "gas-exchange",
+    "CBSE-class-10",
+    "CBSE-class-11",
+    "life-processes"
+  ]
+}

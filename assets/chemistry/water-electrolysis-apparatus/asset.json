@@ -1,0 +1,80 @@
+{
+  "id": "water-electrolysis-apparatus",
+  "name": "Electrolysis of Water Apparatus (Voltameter)",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Electrolytic decomposition cell with two inverted graduated test tubes over graphite carbon electrodes in acidified water, demonstrating 2:1 volume ratio of hydrogen and oxygen gas collection (CBSE Class 10 Chemistry Ch 1).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.16,
+    "height": 0.22,
+    "depth": 0.14
+  },
+  "simplifications": [
+    "Electrolyte solution shown with subtle aqueous blue-green tint.",
+    "Gas bubbles depicted at electrode tips and tube headspaces."
+  ],
+  "materials": [
+    {
+      "id": "electrolysis-glass-tube",
+      "look": "Borosilicate glass inverted test tubes and vessel body"
+    },
+    {
+      "id": "graphite-electrode",
+      "look": "Porous black carbon graphite electrode rods"
+    },
+    {
+      "id": "acidified-water",
+      "look": "Transparent liquid electrolyte with subtle meniscus"
+    },
+    {
+      "id": "rubber-stopper",
+      "look": "Vulcanized black rubber sealing bungs"
+    },
+    {
+      "id": "gas-bubble",
+      "look": "Refractive micro-bubbles of H2 and O2 gases"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_water_electrolysis.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/water-electrolysis-apparatus.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/water-electrolysis-apparatus.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/water-electrolysis-apparatus.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "electrolysis",
+    "water-decomposition",
+    "hydrogen",
+    "oxygen",
+    "graphite-electrodes",
+    "anode",
+    "cathode",
+    "stoichiometry",
+    "CBSE-class-10",
+    "chemical-reactions"
+  ]
+}

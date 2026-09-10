@@ -1,0 +1,78 @@
+{
+  "id": "trophic-level-pyramid",
+  "name": "Ecological Pyramid of Trophic Levels & 10% Energy Flow",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "4-tier 3D ecological stepped pyramid representing Producers (10,000 J), Herbivores (1,000 J), Carnivores (100 J), and Top Predators (10 J) demonstrating Lindeman's 10% energy transfer law and biomagnification gradient (CBSE Class 10 Environment Ch 13 Figure 13.2).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "pyramidWidth": 0.20,
+    "pyramidHeight": 0.18
+  },
+  "simplifications": [
+    "Stepped tier format with labeled energy values (10,000 J, 1,000 J, 100 J, 10 J).",
+    "Color gradation illustrates energy attenuation from rich green producers to crimson apex predators."
+  ],
+  "materials": [
+    {
+      "id": "tier1-producers-green",
+      "look": "Lush vibrant emerald green base tier (Producers / 10,000 J)"
+    },
+    {
+      "id": "tier2-herbivores-gold",
+      "look": "Warm amber/gold intermediate tier (Primary Consumers / 1,000 J)"
+    },
+    {
+      "id": "tier3-carnivores-orange",
+      "look": "Vibrant orange secondary consumer tier (Small Carnivores / 100 J)"
+    },
+    {
+      "id": "tier4-apex-crimson",
+      "look": "Deep crimson red apex tier (Top Predators / 10 J)"
+    },
+    {
+      "id": "pyramid-accent-lines",
+      "look": "Clean luminescent white boundary step edges"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_trophic_pyramid.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/trophic-level-pyramid.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/trophic-level-pyramid.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/trophic-level-pyramid.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "ecological-pyramid",
+    "trophic-levels",
+    "10-percent-law",
+    "energy-flow",
+    "food-chain",
+    "biomagnification",
+    "our-environment",
+    "CBSE-class-10",
+    "biology"
+  ]
+}

@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBSE Class 10 STEM — 57 3D Educational Models Catalog</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --physics: #f59e0b;
+      --chemistry: #10b981;
+      --biology: #ec4899;
+      --cyan: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 24px 32px 60px;
+      line-height: 1.5;
+    }
+    header {
+      max-width: 1400px;
+      margin: 0 auto 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 20px;
+    }
+    .header-titles h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header-titles p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      width: 260px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box:focus { border-color: var(--cyan); }
+    .filter-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { background: #334155; color: #fff; }
+    .filter-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--cyan);
+      border-color: var(--cyan);
+    }
+    .grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf866;
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.6);
+    }
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #020617;
+      overflow: hidden;
+    }
+    .card-img-wrap img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .card:hover .card-img-wrap img {
+      transform: scale(1.03);
+    }
+    .card-badge {
+      position: absolute;
+      top: 10px; right: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .badge-physics { background: rgba(245, 158, 11, 0.2); color: var(--physics); border: 1px solid rgba(245, 158, 11, 0.4); }
+    .badge-chemistry { background: rgba(16, 185, 129, 0.2); color: var(--chemistry); border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-biology { background: rgba(236, 72, 153, 0.2); color: var(--biology); border: 1px solid rgba(236, 72, 153, 0.4); }
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 12px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .tag {
+      font-size: 10px;
+      background: #1e293b;
+      color: #94a3b8;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #1e293b;
+      padding-top: 12px;
+      font-size: 11px;
+    }
+    .file-links {
+      display: flex;
+      gap: 8px;
+    }
+    .file-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 3px 8px;
+      border-radius: 5px;
+      transition: background 0.15s;
+    }
+    .file-link:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+    .count-stat {
+      font-weight: 700;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-titles">
+      <h1>CBSE Class 10 Science — 3D Educational Models Catalog</h1>
+      <p><span class="count-stat">57 Standardized 3D Models</span> | Physics (23) · Chemistry (21) · Biology (13) | Cycles Studio Renders</p>
+    </div>
+    <div class="controls">
+      <input type="text" id="search" class="search-box" placeholder="Search apparatus, terms, tags..." oninput="filterCards()">
+      <button class="filter-btn active" onclick="setCategory('all', this)">All (57)</button>
+      <button class="filter-btn" onclick="setCategory('physics', this)">Physics (23)</button>
+      <button class="filter-btn" onclick="setCategory('chemistry', this)">Chemistry (21)</button>
+      <button class="filter-btn" onclick="setCategory('biology', this)">Biology (13)</button>
+    </div>
+  </header>
+
+  <div class="grid" id="cardGrid">
+
+    <div class="card" data-category="physics" data-search="ammeter (0-1a) ammeter ammeter current circuit measurement electricity">
+      <div class="card-img-wrap">
+        <a href="assets/physics/ammeter/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/ammeter/out/preview.png" alt="Ammeter (0-1A)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Ammeter (0-1A)</h3>
+        <p class="card-desc">A DC ammeter with black case, white dial, red needle, brass terminals, and green 'A' label. Used in CBSE Class 10 Ch11 circuits.</p>
+        <div class="card-tags"><span class="tag">#ammeter</span><span class="tag">#current</span><span class="tag">#circuit</span><span class="tag">#measurement</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">ammeter</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/ammeter/out/ammeter.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/ammeter/out/ammeter.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="permanent bar magnet & magnetic field lines bar-magnet magnet bar-magnet magnetic-field north-pole south-pole field-lines compass cbse-class-10 electromagnetism">
+      <div class="card-img-wrap">
+        <a href="assets/physics/bar-magnet/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/bar-magnet/out/preview.png" alt="Permanent Bar Magnet & Magnetic Field Lines" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Permanent Bar Magnet & Magnetic Field Lines</h3>
+        <p class="card-desc">AlNiCo rectangular permanent bar magnet with distinct North (red) and South (blue) magnetic poles, accompanied by 3D toroidal magnetic field lines and an orientation compass needle (CBSE Class 10 Magnetic Effects Ch 12).</p>
+        <div class="card-tags"><span class="tag">#magnet</span><span class="tag">#bar-magnet</span><span class="tag">#magnetic-field</span><span class="tag">#north-pole</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">bar-magnet</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/bar-magnet/out/bar-magnet.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/bar-magnet/out/bar-magnet.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="dry cell battery (aa) battery battery cell electricity emf">
+      <div class="card-img-wrap">
+        <a href="assets/physics/battery/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/battery/out/preview.png" alt="Dry Cell Battery (AA)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Dry Cell Battery (AA)</h3>
+        <p class="card-desc">A standard AA dry cell battery with positive and negative terminals, used in CBSE Class 10 electricity experiments to provide EMF.</p>
+        <div class="card-tags"><span class="tag">#battery</span><span class="tag">#cell</span><span class="tag">#electricity</span><span class="tag">#emf</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">battery</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/battery/out/battery.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/battery/out/battery.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="incandescent light bulb bulb bulb lamp light electricity filament">
+      <div class="card-img-wrap">
+        <a href="assets/physics/bulb/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/bulb/out/preview.png" alt="Incandescent Light Bulb" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Incandescent Light Bulb</h3>
+        <p class="card-desc">A small incandescent light bulb with glass globe, metal base, and visible filament, used in CBSE Class 10 electricity circuits to demonstrate current flow.</p>
+        <div class="card-tags"><span class="tag">#bulb</span><span class="tag">#lamp</span><span class="tag">#light</span><span class="tag">#electricity</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">bulb</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/bulb/out/bulb.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/bulb/out/bulb.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="biconcave lens concave-lens lens concave diverging optics refraction">
+      <div class="card-img-wrap">
+        <a href="assets/physics/concave-lens/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/concave-lens/out/preview.png" alt="Biconcave Lens" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Biconcave Lens</h3>
+        <p class="card-desc">A biconcave (diverging) lens with transparent glass (IOR 1.52) and chrome edge ring. Used in CBSE Class 10 Ch9-10.</p>
+        <div class="card-tags"><span class="tag">#lens</span><span class="tag">#concave</span><span class="tag">#diverging</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">concave-lens</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/concave-lens/out/concave-lens.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/concave-lens/out/concave-lens.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="concave mirror concave-mirror mirror concave converging optics focal-point">
+      <div class="card-img-wrap">
+        <a href="assets/physics/concave-mirror/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/concave-mirror/out/preview.png" alt="Concave Mirror" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Concave Mirror</h3>
+        <p class="card-desc">A concave (converging) mirror with inward-curving reflective surface, used in CBSE Class 10 Ch9-10 to demonstrate real/virtual images and focal point.</p>
+        <div class="card-tags"><span class="tag">#mirror</span><span class="tag">#concave</span><span class="tag">#converging</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">concave-mirror</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/concave-mirror/out/concave-mirror.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/concave-mirror/out/concave-mirror.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="connecting wire (red) connecting-wire wire copper circuit electricity conductor">
+      <div class="card-img-wrap">
+        <a href="assets/physics/connecting-wire/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/connecting-wire/out/preview.png" alt="Connecting Wire (Red)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Connecting Wire (Red)</h3>
+        <p class="card-desc">A red-insulated copper connecting wire with stripped ends, used to connect components in CBSE Class 10 electricity circuits.</p>
+        <div class="card-tags"><span class="tag">#wire</span><span class="tag">#copper</span><span class="tag">#circuit</span><span class="tag">#electricity</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">connecting-wire</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/connecting-wire/out/connecting-wire.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/connecting-wire/out/connecting-wire.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="biconvex lens convex-lens lens convex converging optics refraction">
+      <div class="card-img-wrap">
+        <a href="assets/physics/convex-lens/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/convex-lens/out/preview.png" alt="Biconvex Lens" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Biconvex Lens</h3>
+        <p class="card-desc">A biconvex (converging) lens with transparent glass material (IOR 1.52), used in CBSE Class 10 Ch9-10 to demonstrate refraction and image formation.</p>
+        <div class="card-tags"><span class="tag">#lens</span><span class="tag">#convex</span><span class="tag">#converging</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">convex-lens</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/convex-lens/out/convex-lens.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/convex-lens/out/convex-lens.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="convex mirror (diverging) convex-mirror mirror convex diverging optics reflection virtual-image rear-view cbse-class-10 light">
+      <div class="card-img-wrap">
+        <a href="assets/physics/convex-mirror/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/convex-mirror/out/preview.png" alt="Convex Mirror (Diverging)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Convex Mirror (Diverging)</h3>
+        <p class="card-desc">A spherical convex (diverging) mirror with outward-curving reflective surface on a laboratory stand. Demonstrates virtual, erect, and diminished images with a wider field of view (CBSE Class 10 Light Ch 9).</p>
+        <div class="card-tags"><span class="tag">#mirror</span><span class="tag">#convex</span><span class="tag">#diverging</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">convex-mirror</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/convex-mirror/out/convex-mirror.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/convex-mirror/out/convex-mirror.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="dc electric motor working model electric-motor motor electric-motor dc-motor armature commutator split-ring carbon-brushes flemings-left-hand-rule cbse-class-10 electromagnetism">
+      <div class="card-img-wrap">
+        <a href="assets/physics/electric-motor/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/electric-motor/out/preview.png" alt="DC Electric Motor Working Model" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">DC Electric Motor Working Model</h3>
+        <p class="card-desc">Direct current (DC) electric motor model illustrating Fleming's Left-Hand Rule, containing a rectangular armature coil ABCD, curved permanent magnetic poles (N/S), split-ring commutator segments (P/Q), carbon brushes (X/Y), and rotating axle (CBSE Class 10 Magnetic Effects Ch 12).</p>
+        <div class="card-tags"><span class="tag">#motor</span><span class="tag">#electric-motor</span><span class="tag">#dc-motor</span><span class="tag">#armature</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">electric-motor</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/electric-motor/out/electric-motor.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/electric-motor/out/electric-motor.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="simple electric circuit full-circuit circuit battery bulb switch ammeter series">
+      <div class="card-img-wrap">
+        <a href="assets/physics/full-circuit/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/full-circuit/out/preview.png" alt="Simple Electric Circuit" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Simple Electric Circuit</h3>
+        <p class="card-desc">A complete simple circuit on a breadboard: battery, bulb, switch, ammeter, connected by red wires. Used in CBSE Class 10 Ch11.</p>
+        <div class="card-tags"><span class="tag">#circuit</span><span class="tag">#battery</span><span class="tag">#bulb</span><span class="tag">#switch</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">full-circuit</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/full-circuit/out/full-circuit.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/full-circuit/out/full-circuit.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="center-zero laboratory galvanometer galvanometer galvanometer meter electromagnetic-induction faraday induced-current center-zero cbse-class-10 electricity electromagnetism">
+      <div class="card-img-wrap">
+        <a href="assets/physics/galvanometer/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/galvanometer/out/preview.png" alt="Center-Zero Laboratory Galvanometer" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Center-Zero Laboratory Galvanometer</h3>
+        <p class="card-desc">Sensitive center-zero moving-coil laboratory meter with dial scale (-30 to +30), central zero indicator, and red pointer needle for detecting presence and direction of induced electric current in electromagnetic induction experiments (CBSE Class 10 Magnetic Effects Ch 12).</p>
+        <div class="card-tags"><span class="tag">#galvanometer</span><span class="tag">#meter</span><span class="tag">#electromagnetic-induction</span><span class="tag">#faraday</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">galvanometer</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/galvanometer/out/galvanometer.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/galvanometer/out/galvanometer.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="equilateral glass prism glass-prism prism dispersion spectrum optics light">
+      <div class="card-img-wrap">
+        <a href="assets/physics/glass-prism/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/glass-prism/out/preview.png" alt="Equilateral Glass Prism" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Equilateral Glass Prism</h3>
+        <p class="card-desc">An equilateral triangular glass prism (side 6cm, depth 8cm) with IOR 1.52, used in CBSE Class 10 Ch10 to demonstrate dispersion of white light into spectrum (ROYGBIV).</p>
+        <div class="card-tags"><span class="tag">#prism</span><span class="tag">#dispersion</span><span class="tag">#spectrum</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">glass-prism</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/glass-prism/out/glass-prism.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/glass-prism/out/glass-prism.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="refraction through glass prism experiment setup glass-prism-refraction prism refraction optics light dispersion snell physics cbse">
+      <div class="card-img-wrap">
+        <a href="assets/physics/glass-prism-refraction/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/glass-prism-refraction/out/preview.png" alt="Refraction Through Glass Prism Experiment Setup" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Refraction Through Glass Prism Experiment Setup</h3>
+        <p class="card-desc">Complete assembled laboratory experiment setup for studying refraction of light through a triangular glass prism as specified in CBSE Class 10 Physics (Light - Reflection & Refraction / Colourful World). Includes wooden drawing board with pinned white sheet, equilateral crown glass prism (n=1.517), collimated ray box light source, optical alignment pins (P1, P2, P3, P4), Snell's law calculated incident, refracted, and emergent light beams, surface normals, straight-line ray extensions, and the angle of deviation (D) indicator with an observation screen.</p>
+        <div class="card-tags"><span class="tag">#prism</span><span class="tag">#refraction</span><span class="tag">#optics</span><span class="tag">#light</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">glass-prism-refraction</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/glass-prism-refraction/out/glass-prism-refraction.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/glass-prism-refraction/out/glass-prism-refraction.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="rectangular glass slab glass-slab glass-slab refraction lateral-displacement optics">
+      <div class="card-img-wrap">
+        <a href="assets/physics/glass-slab/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/glass-slab/out/preview.png" alt="Rectangular Glass Slab" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Rectangular Glass Slab</h3>
+        <p class="card-desc">A rectangular glass slab (IOR 1.52) used to demonstrate refraction and lateral displacement. Used in CBSE Class 10 Ch9.</p>
+        <div class="card-tags"><span class="tag">#glass-slab</span><span class="tag">#refraction</span><span class="tag">#lateral-displacement</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">glass-slab</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/glass-slab/out/glass-slab.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/glass-slab/out/glass-slab.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="dual-rail laboratory optical bench optical-bench optical-bench optics focal-length lens-formula real-image candle screen cbse-class-10 light">
+      <div class="card-img-wrap">
+        <a href="assets/physics/optical-bench/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/optical-bench/out/preview.png" alt="Dual-Rail Laboratory Optical Bench" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Dual-Rail Laboratory Optical Bench</h3>
+        <p class="card-desc">Standard dual-rod laboratory optical bench (1.0m) with millimeter metric scale, leveling feet, and three movable riders carrying an illuminated candle object, a lens holder, and a projection screen for focal length experiments (CBSE Class 10 Light Ch 9).</p>
+        <div class="card-tags"><span class="tag">#optical-bench</span><span class="tag">#optics</span><span class="tag">#focal-length</span><span class="tag">#lens-formula</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">optical-bench</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/optical-bench/out/optical-bench.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/optical-bench/out/optical-bench.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="plane mirror with frame plane-mirror mirror plane-mirror reflection optics">
+      <div class="card-img-wrap">
+        <a href="assets/physics/plane-mirror/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/plane-mirror/out/preview.png" alt="Plane Mirror with Frame" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Plane Mirror with Frame</h3>
+        <p class="card-desc">A flat rectangular plane mirror with wooden frame, used in CBSE Class 10 Ch9 to demonstrate reflection and image formation.</p>
+        <div class="card-tags"><span class="tag">#mirror</span><span class="tag">#plane-mirror</span><span class="tag">#reflection</span><span class="tag">#optics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">plane-mirror</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/plane-mirror/out/plane-mirror.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/plane-mirror/out/plane-mirror.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="through-hole resistor resistor resistor ohm circuit electricity">
+      <div class="card-img-wrap">
+        <a href="assets/physics/resistor/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/resistor/out/preview.png" alt="Through-Hole Resistor" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Through-Hole Resistor</h3>
+        <p class="card-desc">A standard axial through-hole resistor with 4 color bands (Red-Blue-Yellow-Gold = 260kΩ ±5%), used in CBSE Class 10 electricity circuits.</p>
+        <div class="card-tags"><span class="tag">#resistor</span><span class="tag">#ohm</span><span class="tag">#circuit</span><span class="tag">#electricity</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">resistor</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/resistor/out/resistor.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/resistor/out/resistor.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="rheostat (variable resistor) rheostat rheostat variable-resistor circuit current-control">
+      <div class="card-img-wrap">
+        <a href="assets/physics/rheostat/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/rheostat/out/preview.png" alt="Rheostat (Variable Resistor)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Rheostat (Variable Resistor)</h3>
+        <p class="card-desc">A sliding rheostat with ceramic base, copper wire coil, brass slider bar and contacts, and terminal posts. Used in CBSE Class 10 Ch11.</p>
+        <div class="card-tags"><span class="tag">#rheostat</span><span class="tag">#variable-resistor</span><span class="tag">#circuit</span><span class="tag">#current-control</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">rheostat</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/rheostat/out/rheostat.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/rheostat/out/rheostat.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="helical solenoid with magnetic field lines solenoid solenoid electromagnet magnetic-field helical-coil uniform-field copper-wire cbse-class-10 electromagnetism">
+      <div class="card-img-wrap">
+        <a href="assets/physics/solenoid/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/solenoid/out/preview.png" alt="Helical Solenoid with Magnetic Field Lines" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Helical Solenoid with Magnetic Field Lines</h3>
+        <p class="card-desc">Long helical coil of insulated copper wire carrying electric current, demonstrating uniform axial magnetic field lines inside and dipolar looping field lines outside (CBSE Class 10 Magnetic Effects Ch 12).</p>
+        <div class="card-tags"><span class="tag">#solenoid</span><span class="tag">#electromagnet</span><span class="tag">#magnetic-field</span><span class="tag">#helical-coil</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">solenoid</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/solenoid/out/solenoid.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/solenoid/out/solenoid.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="knife switch (open) switch switch knife-switch circuit electricity">
+      <div class="card-img-wrap">
+        <a href="assets/physics/switch/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/switch/out/preview.png" alt="Knife Switch (Open)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Knife Switch (Open)</h3>
+        <p class="card-desc">A simple single-pole knife switch in open position, used in CBSE Class 10 electricity to make/break circuits.</p>
+        <div class="card-tags"><span class="tag">#switch</span><span class="tag">#knife-switch</span><span class="tag">#circuit</span><span class="tag">#electricity</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">switch</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/switch/out/switch.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/switch/out/switch.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="physics" data-search="voltmeter (0-3v) voltmeter voltmeter voltage circuit measurement electricity">
+      <div class="card-img-wrap">
+        <a href="assets/physics/voltmeter/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/physics/voltmeter/out/preview.png" alt="Voltmeter (0-3V)" loading="lazy">
+        </a>
+        <span class="card-badge badge-physics">physics</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Voltmeter (0-3V)</h3>
+        <p class="card-desc">A DC voltmeter with black case, white dial, red needle, brass terminals, and blue 'V' label. Used in CBSE Class 10 Ch11 circuits.</p>
+        <div class="card-tags"><span class="tag">#voltmeter</span><span class="tag">#voltage</span><span class="tag">#circuit</span><span class="tag">#measurement</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">voltmeter</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/physics/voltmeter/out/voltmeter.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/physics/voltmeter/out/voltmeter.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="250ml beaker beaker beaker glass laboratory mixing">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/beaker/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/beaker/out/preview.png" alt="250ml Beaker" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">250ml Beaker</h3>
+        <p class="card-desc">A standard 250ml glass laboratory beaker with pour spout and graduation marks, used in CBSE Class 10 chemistry experiments for mixing, heating, and measuring liquids.</p>
+        <div class="card-tags"><span class="tag">#beaker</span><span class="tag">#glass</span><span class="tag">#laboratory</span><span class="tag">#mixing</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">beaker</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/beaker/out/beaker.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/beaker/out/beaker.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="bunsen burner bunsen-burner laboratory equipment flame-source">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/bunsen-burner/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/bunsen-burner/out/preview.png" alt="Bunsen Burner" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Bunsen Burner</h3>
+        <p class="card-desc">A standard laboratory Bunsen burner: cast base, vertical stem, adjustable air collar, and brass nozzle. Provides the flame used to heat and ignite the magnesium ribbon.</p>
+        <div class="card-tags"><span class="tag">#laboratory</span><span class="tag">#equipment</span><span class="tag">#flame-source</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">bunsen-burner</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/bunsen-burner/out/bunsen-burner.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/bunsen-burner/out/bunsen-burner.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="conical flask (erlenmeyer) conical-flask flask erlenmeyer glass laboratory">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/conical-flask/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/conical-flask/out/preview.png" alt="Conical Flask (Erlenmeyer)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Conical Flask (Erlenmeyer)</h3>
+        <p class="card-desc">An Erlenmeyer conical flask with wide base and narrow neck, used in CBSE Class 10 chemistry for mixing, heating, and gas collection.</p>
+        <div class="card-tags"><span class="tag">#flask</span><span class="tag">#erlenmeyer</span><span class="tag">#glass</span><span class="tag">#laboratory</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">conical-flask</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/conical-flask/out/conical-flask.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/conical-flask/out/conical-flask.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="diamond allotrope crystal lattice diamond-lattice diamond allotrope carbon tetrahedral-network crystal-lattice hardest-substance cbse-class-10 chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/diamond-lattice/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/diamond-lattice/out/preview.png" alt="Diamond Allotrope Crystal Lattice" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Diamond Allotrope Crystal Lattice</h3>
+        <p class="card-desc">3D tetrahedral covalent network crystal lattice of diamond, where each carbon atom is covalently bonded to four neighbouring carbons in a rigid 3D framework (CBSE Class 10 Chemistry Ch 4).</p>
+        <div class="card-tags"><span class="tag">#diamond</span><span class="tag">#allotrope</span><span class="tag">#carbon</span><span class="tag">#tetrahedral-network</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">diamond-lattice</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/diamond-lattice/out/diamond-lattice.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/diamond-lattice/out/diamond-lattice.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="displacement reaction setup (iron in copper sulphate) displacement-reaction-setup displacement-reaction iron-nail copper-sulphate reactivity-series redox single-displacement cbse-class-10 chemical-reactions">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/displacement-reaction-setup/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/displacement-reaction-setup/out/preview.png" alt="Displacement Reaction Setup (Iron in Copper Sulphate)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Displacement Reaction Setup (Iron in Copper Sulphate)</h3>
+        <p class="card-desc">Laboratory demonstration setup of single displacement reaction where an iron nail suspended by thread in copper sulphate solution displaces copper, developing a reddish-brown copper deposit while the blue solution fades to light green (CBSE Class 10 Chemistry Ch 1 Activity 1.9).</p>
+        <div class="card-tags"><span class="tag">#displacement-reaction</span><span class="tag">#iron-nail</span><span class="tag">#copper-sulphate</span><span class="tag">#reactivity-series</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">displacement-reaction-setup</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/displacement-reaction-setup/out/displacement-reaction-setup.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/displacement-reaction-setup/out/displacement-reaction-setup.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="pasteur dropper / pipette dropper dropper pipette glass laboratory liquid">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/dropper/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/dropper/out/preview.png" alt="Pasteur Dropper / Pipette" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Pasteur Dropper / Pipette</h3>
+        <p class="card-desc">A glass Pasteur dropper with blue rubber bulb and visible coloured solution, suitable for adding small quantities of liquid to a laboratory vessel.</p>
+        <div class="card-tags"><span class="tag">#dropper</span><span class="tag">#pipette</span><span class="tag">#glass</span><span class="tag">#laboratory</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">dropper</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/dropper/out/dropper.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/dropper/out/dropper.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="graphite layered hexagonal lattice graphite-lattice graphite allotrope carbon hexagonal-layers van-der-waals conductor lubricant cbse-class-10 chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/graphite-lattice/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/graphite-lattice/out/preview.png" alt="Graphite Layered Hexagonal Lattice" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Graphite Layered Hexagonal Lattice</h3>
+        <p class="card-desc">Layered planar hexagonal carbon lattice of graphite demonstrating sp2 hexagonal rings within sheets and weak inter-layer van der Waals bonds allowing cleavage and electrical conductivity (CBSE Class 10 Chemistry Ch 4).</p>
+        <div class="card-tags"><span class="tag">#graphite</span><span class="tag">#allotrope</span><span class="tag">#carbon</span><span class="tag">#hexagonal-layers</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">graphite-lattice</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/graphite-lattice/out/graphite-lattice.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/graphite-lattice/out/graphite-lattice.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="hydrogen gas evolution apparatus (zinc + acid) hydrogen-evolution-apparatus hydrogen-gas zinc-granules sulphuric-acid acids-bases-salts pop-sound soap-bubbles thistle-funnel delivery-tube cbse-class-10 chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/hydrogen-evolution-apparatus/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/hydrogen-evolution-apparatus/out/preview.png" alt="Hydrogen Gas Evolution Apparatus (Zinc + Acid)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Hydrogen Gas Evolution Apparatus (Zinc + Acid)</h3>
+        <p class="card-desc">Complete laboratory apparatus for demonstrating the reaction of granulated zinc with dilute sulphuric acid to evolve hydrogen gas, with delivery tube, soap solution trough, and pop-sound test candle (CBSE Class 10 Chemistry Ch 2 Activity 2.1).</p>
+        <div class="card-tags"><span class="tag">#hydrogen-gas</span><span class="tag">#zinc-granules</span><span class="tag">#sulphuric-acid</span><span class="tag">#acids-bases-salts</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">hydrogen-evolution-apparatus</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/hydrogen-evolution-apparatus/out/hydrogen-evolution-apparatus.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/hydrogen-evolution-apparatus/out/hydrogen-evolution-apparatus.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="laboratory tongs laboratory-tongs laboratory equipment">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/laboratory-tongs/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/laboratory-tongs/out/preview.png" alt="Laboratory Tongs" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Laboratory Tongs</h3>
+        <p class="card-desc">Steel laboratory tongs (scissor type) used to hold a magnesium ribbon over a flame without direct hand contact.</p>
+        <div class="card-tags"><span class="tag">#laboratory</span><span class="tag">#equipment</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">laboratory-tongs</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/laboratory-tongs/out/laboratory-tongs.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/laboratory-tongs/out/laboratory-tongs.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="magnesium bohr atom (mg, z=12) magnesium-atom magnesium atom bohr chemistry valence">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/magnesium-atom/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/magnesium-atom/out/preview.png" alt="Magnesium Bohr Atom (Mg, Z=12)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Magnesium Bohr Atom (Mg, Z=12)</h3>
+        <p class="card-desc">3D Bohr atomic model of Magnesium (Z=12) showing a central 12p 12n nucleus and 3 concentric electron shells with electronic configuration 2, 8, 2.</p>
+        <div class="card-tags"><span class="tag">#magnesium</span><span class="tag">#atom</span><span class="tag">#bohr</span><span class="tag">#chemistry</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">magnesium-atom</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/magnesium-atom/out/magnesium-atom.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/magnesium-atom/out/magnesium-atom.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="burning of magnesium ribbon complete lab bench setup magnesium-burning-setup chemistry magnesium combustion flame laboratory cbse reactions oxidation">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/magnesium-burning-setup/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/magnesium-burning-setup/out/preview.png" alt="Burning of Magnesium Ribbon Complete Lab Bench Setup" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Burning of Magnesium Ribbon Complete Lab Bench Setup</h3>
+        <p class="card-desc">Complete assembled laboratory experiment setup for the burning of magnesium ribbon in air (CBSE Class 10 Chemistry, Chapter 1: Chemical Reactions and Equations, Activity 1.1). Contains a laboratory bench with heat-resistant ceramic tile, a high-fidelity Bunsen burner with gas inlet hose and adjustable air collar, crucible tongs holding a strip of silvery magnesium ribbon, a watch glass placed beneath to collect the white magnesium oxide (MgO) powder ash, and sandpaper for pre-reaction oxide cleaning.</p>
+        <div class="card-tags"><span class="tag">#chemistry</span><span class="tag">#magnesium</span><span class="tag">#combustion</span><span class="tag">#flame</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">magnesium-burning-setup</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/magnesium-burning-setup/out/magnesium-burning-setup.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/magnesium-burning-setup/out/magnesium-burning-setup.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="magnesium oxide powder magnesium-oxide magnesium magnesium-oxide mgo powder reaction-product">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/magnesium-oxide/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/magnesium-oxide/out/preview.png" alt="Magnesium Oxide Powder" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Magnesium Oxide Powder</h3>
+        <p class="card-desc">A white powder heap representing magnesium oxide, the product formed when magnesium burns in oxygen from air.</p>
+        <div class="card-tags"><span class="tag">#magnesium</span><span class="tag">#magnesium-oxide</span><span class="tag">#mgo</span><span class="tag">#powder</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">magnesium-oxide</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/magnesium-oxide/out/magnesium-oxide.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/magnesium-oxide/out/magnesium-oxide.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="magnesium oxide ionic crystal lattice (mgo) magnesium-oxide-lattice lattice mgo crystal ionic chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/magnesium-oxide-lattice/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/magnesium-oxide-lattice/out/preview.png" alt="Magnesium Oxide Ionic Crystal Lattice (MgO)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Magnesium Oxide Ionic Crystal Lattice (MgO)</h3>
+        <p class="card-desc">3D ionic crystal lattice structure of Magnesium Oxide showing alternating Mg²⁺ cations and O²⁻ anions bonded by strong electrostatic forces in a rock-salt cubic arrangement.</p>
+        <div class="card-tags"><span class="tag">#lattice</span><span class="tag">#mgo</span><span class="tag">#crystal</span><span class="tag">#ionic</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">magnesium-oxide-lattice</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/magnesium-oxide-lattice/out/magnesium-oxide-lattice.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/magnesium-oxide-lattice/out/magnesium-oxide-lattice.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="magnesium ribbon magnesium-ribbon mg metal laboratory">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/magnesium-ribbon/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/magnesium-ribbon/out/preview.png" alt="Magnesium Ribbon" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Magnesium Ribbon</h3>
+        <p class="card-desc">A thin strip of elemental magnesium metal as used in the CBSE Class 10 'burning of magnesium ribbon' experiment, shown as a gently wavy strip.</p>
+        <div class="card-tags"><span class="tag">#mg</span><span class="tag">#metal</span><span class="tag">#laboratory</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">magnesium-ribbon</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/magnesium-ribbon/out/magnesium-ribbon.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/magnesium-ribbon/out/magnesium-ribbon.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="methane (ch4) tetrahedral molecule methane-molecule methane ch4 carbon-compounds tetrahedral covalent-bond hydrocarbon alkane cbse-class-10 chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/methane-molecule/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/methane-molecule/out/preview.png" alt="Methane (CH4) Tetrahedral Molecule" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Methane (CH4) Tetrahedral Molecule</h3>
+        <p class="card-desc">3D ball-and-stick covalent molecular model of methane (CH4) exhibiting perfect tetrahedral geometry with four equivalent C-H single covalent bonds at 109.5 degree bond angles (CBSE Class 10 Chemistry Ch 4).</p>
+        <div class="card-tags"><span class="tag">#methane</span><span class="tag">#ch4</span><span class="tag">#carbon-compounds</span><span class="tag">#tetrahedral</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">methane-molecule</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/methane-molecule/out/methane-molecule.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/methane-molecule/out/methane-molecule.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="oxygen bohr atom (o, z=8) oxygen-atom oxygen atom bohr chemistry valence">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/oxygen-atom/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/oxygen-atom/out/preview.png" alt="Oxygen Bohr Atom (O, Z=8)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Oxygen Bohr Atom (O, Z=8)</h3>
+        <p class="card-desc">3D Bohr atomic model of Oxygen (Z=8) showing an 8p 8n nucleus and 2 concentric electron shells with electronic configuration 2, 6.</p>
+        <div class="card-tags"><span class="tag">#oxygen</span><span class="tag">#atom</span><span class="tag">#bohr</span><span class="tag">#chemistry</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">oxygen-atom</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/oxygen-atom/out/oxygen-atom.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/oxygen-atom/out/oxygen-atom.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="retort stand with clamp retort-stand stand clamp iron laboratory support">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/retort-stand/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/retort-stand/out/preview.png" alt="Retort Stand with Clamp" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Retort Stand with Clamp</h3>
+        <p class="card-desc">An iron retort stand with base plate, vertical rod, and adjustable clamp, used to hold test tubes and flasks during CBSE Class 10 experiments.</p>
+        <div class="card-tags"><span class="tag">#stand</span><span class="tag">#clamp</span><span class="tag">#iron</span><span class="tag">#laboratory</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">retort-stand</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/retort-stand/out/retort-stand.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/retort-stand/out/retort-stand.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="soap micelle with central oil droplet soap-micelle soap micelle cleansing-action hydrophilic hydrophobic colloid emulsion cbse-class-10 chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/soap-micelle/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/soap-micelle/out/preview.png" alt="Soap Micelle with Central Oil Droplet" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Soap Micelle with Central Oil Droplet</h3>
+        <p class="card-desc">3D spherical colloidal soap micelle cluster with hydrophobic hydrocarbon tails embedded inwards around a central oil droplet and hydrophilic polar ionic carboxylate heads projecting outward into water (CBSE Class 10 Chemistry Ch 4 Figure 4.12).</p>
+        <div class="card-tags"><span class="tag">#soap</span><span class="tag">#micelle</span><span class="tag">#cleansing-action</span><span class="tag">#hydrophilic</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">soap-micelle</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/soap-micelle/out/soap-micelle.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/soap-micelle/out/soap-micelle.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="test tube test-tube test-tube glass laboratory reaction">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/test-tube/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/test-tube/out/preview.png" alt="Test Tube" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Test Tube</h3>
+        <p class="card-desc">A standard glass test tube with rounded bottom and rim, used in CBSE Class 10 chemistry for small-scale reactions and heating.</p>
+        <div class="card-tags"><span class="tag">#test-tube</span><span class="tag">#glass</span><span class="tag">#laboratory</span><span class="tag">#reaction</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">test-tube</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/test-tube/out/test-tube.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/test-tube/out/test-tube.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="tripod stand with wire gauze & china dish tripod-wire-gauze tripod-stand wire-gauze china-dish oxidation copper-oxide evaporation heating cbse-class-10 chemistry">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/tripod-wire-gauze/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/tripod-wire-gauze/out/preview.png" alt="Tripod Stand with Wire Gauze & China Dish" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Tripod Stand with Wire Gauze & China Dish</h3>
+        <p class="card-desc">Laboratory heating assembly comprising a heavy cast-iron tripod stand, nichrome wire gauze with ceramic heat-distribution center pad, and porcelain evaporating china dish containing copper powder (CBSE Class 10 Chemistry Ch 1 Activity 1.11).</p>
+        <div class="card-tags"><span class="tag">#tripod-stand</span><span class="tag">#wire-gauze</span><span class="tag">#china-dish</span><span class="tag">#oxidation</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">tripod-wire-gauze</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/tripod-wire-gauze/out/tripod-wire-gauze.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/tripod-wire-gauze/out/tripod-wire-gauze.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="watch glass (80 mm) watch-glass watch-glass laboratory glass solid-collection">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/watch-glass/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/watch-glass/out/preview.png" alt="Watch Glass (80 mm)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Watch Glass (80 mm)</h3>
+        <p class="card-desc">A shallow borosilicate watch glass used to hold or collect small quantities of solids during a chemistry experiment.</p>
+        <div class="card-tags"><span class="tag">#watch-glass</span><span class="tag">#laboratory</span><span class="tag">#glass</span><span class="tag">#solid-collection</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">watch-glass</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/watch-glass/out/watch-glass.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/watch-glass/out/watch-glass.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="chemistry" data-search="electrolysis of water apparatus (voltameter) water-electrolysis-apparatus electrolysis water-decomposition hydrogen oxygen graphite-electrodes anode cathode stoichiometry cbse-class-10 chemical-reactions">
+      <div class="card-img-wrap">
+        <a href="assets/chemistry/water-electrolysis-apparatus/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/chemistry/water-electrolysis-apparatus/out/preview.png" alt="Electrolysis of Water Apparatus (Voltameter)" loading="lazy">
+        </a>
+        <span class="card-badge badge-chemistry">chemistry</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Electrolysis of Water Apparatus (Voltameter)</h3>
+        <p class="card-desc">Electrolytic decomposition cell with two inverted graduated test tubes over graphite carbon electrodes in acidified water, demonstrating 2:1 volume ratio of hydrogen and oxygen gas collection (CBSE Class 10 Chemistry Ch 1).</p>
+        <div class="card-tags"><span class="tag">#electrolysis</span><span class="tag">#water-decomposition</span><span class="tag">#hydrogen</span><span class="tag">#oxygen</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">water-electrolysis-apparatus</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/chemistry/water-electrolysis-apparatus/out/water-electrolysis-apparatus.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/chemistry/water-electrolysis-apparatus/out/water-electrolysis-apparatus.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="human brain (cerebrum, cerebellum & brainstem) brain brain cerebrum cerebellum brainstem pons medulla nervous-system cbse-class-10">
+      <div class="card-img-wrap">
+        <a href="assets/biology/brain/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/brain/out/preview.png" alt="Human Brain (Cerebrum, Cerebellum & Brainstem)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Human Brain (Cerebrum, Cerebellum & Brainstem)</h3>
+        <p class="card-desc">Anatomically accurate 3D model of the human brain showing Cerebrum with cortical sulci/gyri (Frontal, Parietal, Temporal, Occipital lobes), Cerebellum, Pons, Medulla Oblongata, and Corpus Callosum. Extracted from Z-Anatomy. Aligned with CBSE Class 10 Chapter 6 (Control and Coordination).</p>
+        <div class="card-tags"><span class="tag">#brain</span><span class="tag">#cerebrum</span><span class="tag">#cerebellum</span><span class="tag">#brainstem</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">brain</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/brain/out/brain.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/brain/out/brain.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="human digestive system (gastrointestinal tract & accessory organs) digestive-system digestive-system stomach liver pancreas intestine nutrition life-processes cbse-class-10">
+      <div class="card-img-wrap">
+        <a href="assets/biology/digestive-system/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/digestive-system/out/preview.png" alt="Human Digestive System (Gastrointestinal Tract & Accessory Organs)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Human Digestive System (Gastrointestinal Tract & Accessory Organs)</h3>
+        <p class="card-desc">Anatomically accurate 3D model of the human digestive system including Esophagus, Stomach, Liver, Gallbladder, Pancreas, Small Intestine (Jejunum), Large Intestine (Transverse & Sigmoid Colon), and Vermiform Appendix. Extracted from Z-Anatomy. Aligned with CBSE Class 10 Life Processes (Nutrition).</p>
+        <div class="card-tags"><span class="tag">#digestive-system</span><span class="tag">#stomach</span><span class="tag">#liver</span><span class="tag">#pancreas</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">digestive-system</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/digestive-system/out/digestive-system.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/digestive-system/out/digestive-system.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="dna double helix dna-double-helix dna double-helix base-pairs genetics heredity">
+      <div class="card-img-wrap">
+        <a href="assets/biology/dna-double-helix/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/dna-double-helix/out/preview.png" alt="DNA Double Helix" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">DNA Double Helix</h3>
+        <p class="card-desc">Simplified DNA double helix with sugar-phosphate backbone and colored base pairs (AT=red, GC=blue). Used in CBSE Class 10 Ch7-8.</p>
+        <div class="card-tags"><span class="tag">#dna</span><span class="tag">#double-helix</span><span class="tag">#base-pairs</span><span class="tag">#genetics</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">dna-double-helix</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/dna-double-helix/out/dna-double-helix.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/dna-double-helix/out/dna-double-helix.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="longitudinal section of a flower (angiosperm reproduction) flower-anatomy flower angiosperm reproduction stamen anther pistil carpel ovary ovule pollination cbse-class-10 biology">
+      <div class="card-img-wrap">
+        <a href="assets/biology/flower-anatomy/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/flower-anatomy/out/preview.png" alt="Longitudinal Section of a Flower (Angiosperm Reproduction)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Longitudinal Section of a Flower (Angiosperm Reproduction)</h3>
+        <p class="card-desc">Longitudinal cross-section of a typical bisexual flower showing sepals, petals, stamen (filament + anther with pollen), and carpel/pistil (stigma, style, ovary containing ovule) (CBSE Class 10 Biology Ch 7 Figure 7.7).</p>
+        <div class="card-tags"><span class="tag">#flower</span><span class="tag">#angiosperm</span><span class="tag">#reproduction</span><span class="tag">#stamen</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">flower-anatomy</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/flower-anatomy/out/flower-anatomy.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/flower-anatomy/out/flower-anatomy.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="human excretory system (urinary system) human-excretory-system excretory-system kidneys ureter urinary-bladder urethra renal-artery renal-vein urine-formation cbse-class-10 life-processes">
+      <div class="card-img-wrap">
+        <a href="assets/biology/human-excretory-system/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/human-excretory-system/out/preview.png" alt="Human Excretory System (Urinary System)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Human Excretory System (Urinary System)</h3>
+        <p class="card-desc">Anatomical model of the human urinary excretory system including paired bean-shaped kidneys, renal blood vessels, bilateral ureters, muscular urinary bladder, and urethra (CBSE Class 10 Biology Ch 5 Figure 5.13).</p>
+        <div class="card-tags"><span class="tag">#excretory-system</span><span class="tag">#kidneys</span><span class="tag">#ureter</span><span class="tag">#urinary-bladder</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">human-excretory-system</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/human-excretory-system/out/human-excretory-system.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/human-excretory-system/out/human-excretory-system.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="human eyeball (cornea, lens, retina & optic nerve) human-eye eye human-eye cornea lens retina optic-nerve optics cbse-class-10">
+      <div class="card-img-wrap">
+        <a href="assets/biology/human-eye/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/human-eye/out/preview.png" alt="Human Eyeball (Cornea, Lens, Retina & Optic Nerve)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Human Eyeball (Cornea, Lens, Retina & Optic Nerve)</h3>
+        <p class="card-desc">Anatomically accurate 3D model of the human eyeball with Cornea, Sclera, Iris, Crystalline Biconvex Lens, Retina, Vitreous Body, and Cranial Optic Nerve II. Sourced from Z-Anatomy. Aligned with CBSE Class 10 Physics/Biology (Human Eye and Colorful World).</p>
+        <div class="card-tags"><span class="tag">#eye</span><span class="tag">#human-eye</span><span class="tag">#cornea</span><span class="tag">#lens</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">human-eye</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/human-eye/out/human-eye.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/human-eye/out/human-eye.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="human heart (anatomical) human-heart anatomy circulatory-system heart cbse-class-10 science-ch5 z-anatomy">
+      <div class="card-img-wrap">
+        <a href="assets/biology/human-heart/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/human-heart/out/preview.png" alt="Human Heart (Anatomical)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Human Heart (Anatomical)</h3>
+        <p class="card-desc">Anatomical human heart with anterior view and 4-chamber internal structures, coronary vessels, and great vessels.</p>
+        <div class="card-tags"><span class="tag">#anatomy</span><span class="tag">#circulatory-system</span><span class="tag">#heart</span><span class="tag">#CBSE-class-10</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">human-heart</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/human-heart/out/human-heart.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/human-heart/out/human-heart.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="human respiratory system & alveoli cluster human-respiratory-system respiratory-system lungs trachea bronchi alveoli diaphragm gas-exchange cbse-class-10 life-processes">
+      <div class="card-img-wrap">
+        <a href="assets/biology/human-respiratory-system/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/human-respiratory-system/out/preview.png" alt="Human Respiratory System & Alveoli Cluster" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Human Respiratory System & Alveoli Cluster</h3>
+        <p class="card-desc">Anatomical human respiratory system model showing trachea with cartilaginous rings, primary bronchi, bilateral lung lobes with internal bronchial tree, dome diaphragm, and magnified alveolar sac cluster with capillary exchange (CBSE Class 10 Biology Ch 5 Figure 5.9).</p>
+        <div class="card-tags"><span class="tag">#respiratory-system</span><span class="tag">#lungs</span><span class="tag">#trachea</span><span class="tag">#bronchi</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">human-respiratory-system</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/human-respiratory-system/out/human-respiratory-system.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/human-respiratory-system/out/human-respiratory-system.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="nephron (renal filtration unit) nephron nephron kidney filtration bowmans-capsule glomerulus loop-of-henle collecting-duct urine-formation cbse-class-10 life-processes">
+      <div class="card-img-wrap">
+        <a href="assets/biology/nephron/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/nephron/out/preview.png" alt="Nephron (Renal Filtration Unit)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Nephron (Renal Filtration Unit)</h3>
+        <p class="card-desc">High-fidelity 3D model of a kidney nephron including Bowman\'s capsule, glomerular capillary tuft, afferent/efferent arterioles, proximal convoluted tubule (PCT), Loop of Henle, distal convoluted tubule (DCT), and collecting duct (CBSE Class 10 Biology Ch 5 Figure 5.14).</p>
+        <div class="card-tags"><span class="tag">#nephron</span><span class="tag">#kidney</span><span class="tag">#filtration</span><span class="tag">#bowmans-capsule</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">nephron</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/nephron/out/nephron.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/nephron/out/nephron.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="neuron (nerve cell) neuron neuron nerve-cell axon dendrite myelin">
+      <div class="card-img-wrap">
+        <a href="assets/biology/neuron/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/neuron/out/preview.png" alt="Neuron (Nerve Cell)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Neuron (Nerve Cell)</h3>
+        <p class="card-desc">A neuron showing cell body (soma), nucleus, dendrites, axon with myelin sheath, and axon terminal. Used in CBSE Class 10 Ch6.</p>
+        <div class="card-tags"><span class="tag">#neuron</span><span class="tag">#nerve-cell</span><span class="tag">#axon</span><span class="tag">#dendrite</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">neuron</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/neuron/out/neuron.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/neuron/out/neuron.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="reflex arc neural pathway reflex-arc reflex-arc nervous-system sensory-neuron motor-neuron spinal-cord interneuron effector-muscle control-and-coordination cbse-class-10 biology">
+      <div class="card-img-wrap">
+        <a href="assets/biology/reflex-arc/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/reflex-arc/out/preview.png" alt="Reflex Arc Neural Pathway" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Reflex Arc Neural Pathway</h3>
+        <p class="card-desc">Complete 3D neural pathway model of a somatic reflex arc illustrating skin heat/pain receptor, afferent sensory neuron, spinal cord butterfly cross-section with interneuron, efferent motor neuron, and effector muscle (CBSE Class 10 Biology Ch 6 Figure 6.2).</p>
+        <div class="card-tags"><span class="tag">#reflex-arc</span><span class="tag">#nervous-system</span><span class="tag">#sensory-neuron</span><span class="tag">#motor-neuron</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">reflex-arc</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/reflex-arc/out/reflex-arc.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/reflex-arc/out/reflex-arc.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="stomatal apparatus (open & closed guard cells) stoma stoma stomata guard-cells chloroplasts turgidity transpiration photosynthesis cbse-class-10 life-processes">
+      <div class="card-img-wrap">
+        <a href="assets/biology/stoma/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/stoma/out/preview.png" alt="Stomatal Apparatus (Open & Closed Guard Cells)" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Stomatal Apparatus (Open & Closed Guard Cells)</h3>
+        <p class="card-desc">Microscopic leaf stomatal apparatus illustrating paired bean-shaped guard cells with differential inner/outer wall thickness, chloroplasts, stomatal aperture, and surrounding epidermal pavement cells (CBSE Class 10 Biology Ch 5 Figure 5.3).</p>
+        <div class="card-tags"><span class="tag">#stoma</span><span class="tag">#stomata</span><span class="tag">#guard-cells</span><span class="tag">#chloroplasts</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">stoma</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/stoma/out/stoma.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/stoma/out/stoma.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="biology" data-search="ecological pyramid of trophic levels & 10% energy flow trophic-level-pyramid ecological-pyramid trophic-levels 10-percent-law energy-flow food-chain biomagnification our-environment cbse-class-10 biology">
+      <div class="card-img-wrap">
+        <a href="assets/biology/trophic-level-pyramid/out/preview.png" target="_blank" title="View full resolution render">
+          <img src="assets/biology/trophic-level-pyramid/out/preview.png" alt="Ecological Pyramid of Trophic Levels & 10% Energy Flow" loading="lazy">
+        </a>
+        <span class="card-badge badge-biology">biology</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Ecological Pyramid of Trophic Levels & 10% Energy Flow</h3>
+        <p class="card-desc">4-tier 3D ecological stepped pyramid representing Producers (10,000 J), Herbivores (1,000 J), Carnivores (100 J), and Top Predators (10 J) demonstrating Lindeman's 10% energy transfer law and biomagnification gradient (CBSE Class 10 Environment Ch 13 Figure 13.2).</p>
+        <div class="card-tags"><span class="tag">#ecological-pyramid</span><span class="tag">#trophic-levels</span><span class="tag">#10-percent-law</span><span class="tag">#energy-flow</span></div>
+        <div class="card-footer">
+          <span style="color: #64748b; font-family: monospace;">trophic-level-pyramid</span>
+          <div class="file-links">
+            <a class="file-link" href="assets/biology/trophic-level-pyramid/out/trophic-level-pyramid.glb" download title="Download WebGL GLB">.GLB</a>
+            <a class="file-link" href="assets/biology/trophic-level-pyramid/out/trophic-level-pyramid.blend" download title="Download Blender Source">.BLEND</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let activeCategory = 'all';
+
+    function setCategory(cat, btn) {
+      activeCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterCards();
+    }
+
+    function filterCards() {
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const text = card.getAttribute('data-search');
+        const matchCat = (activeCategory === 'all' || cat === activeCategory);
+        const matchText = (!q || text.includes(q));
+
+        if (matchCat && matchText) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

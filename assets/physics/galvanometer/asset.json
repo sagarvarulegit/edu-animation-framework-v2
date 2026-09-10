@@ -1,0 +1,79 @@
+{
+  "id": "galvanometer",
+  "name": "Center-Zero Laboratory Galvanometer",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Sensitive center-zero moving-coil laboratory meter with dial scale (-30 to +30), central zero indicator, and red pointer needle for detecting presence and direction of induced electric current in electromagnetic induction experiments (CBSE Class 10 Magnetic Effects Ch 12).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.12,
+    "height": 0.11,
+    "depth": 0.13
+  },
+  "simplifications": [
+    "Internal horseshoe magnet and soft iron core enclosed inside meter housing.",
+    "Scale graduations simplified to high-contrast major interval markers."
+  ],
+  "materials": [
+    {
+      "id": "galvano-casing",
+      "look": "Black molded Bakelite instrument housing"
+    },
+    {
+      "id": "galvano-dial",
+      "look": "Crisp white matte printed scale face with bold G"
+    },
+    {
+      "id": "galvano-needle",
+      "look": "Crimson red lightweight aluminum indicator pointer"
+    },
+    {
+      "id": "galvano-glass",
+      "look": "Flat optical glass protective face"
+    },
+    {
+      "id": "terminal-brass",
+      "look": "Machined brass knurled terminal posts"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_galvanometer.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/galvanometer.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/galvanometer.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/galvanometer.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "galvanometer",
+    "meter",
+    "electromagnetic-induction",
+    "faraday",
+    "induced-current",
+    "center-zero",
+    "CBSE-class-10",
+    "electricity",
+    "electromagnetism"
+  ]
+}

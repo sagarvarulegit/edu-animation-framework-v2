@@ -14,11 +14,14 @@
   "simplifications": [
     "Gas inlet hose and gas tap are omitted; lessons should imply the gas connection verbally if needed.",
     "Air-collar adjustment ring is a static representation; no moving parts are authored yet.",
-    "Flame is intentionally NOT part of this asset; flames belong to animation primitives (heat/ignite) so intensity can be driven per scene."
+    "Includes multi-zone Bunsen burner flame with inner reducing core and outer oxidizing mantle."
   ],
   "materials": [
-    { "id": "burner-cast-iron", "look": "dark cast metal, metallic 0.8, roughness 0.45" },
-    { "id": "burner-brass", "look": "brass nozzle, metallic 1.0, roughness 0.30" }
+    { "id": "burner-cast-iron", "look": "dark cast metal, metallic 0.75, roughness 0.55" },
+    { "id": "burner-brass", "look": "brass nozzle, metallic 0.92, roughness 0.25" },
+    { "id": "burner-nickel", "look": "nickel stem, metallic 0.95, roughness 0.22" },
+    { "id": "burner-flame-outer", "look": "outer blue oxidizing flame cone, emission strength 6.0" },
+    { "id": "burner-flame-inner", "look": "inner cyan reducing core cone, emission strength 10.0" }
   ],
   "provenance": {
     "method": "procedural-blender-python",

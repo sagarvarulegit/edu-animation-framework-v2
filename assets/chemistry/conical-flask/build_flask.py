@@ -80,18 +80,42 @@ def build_flask():
         is_major = (ml % 100 == 0)
         arc_angle = 0.32 if is_major else 0.18
 
+        # Create a narrow 3D manifold curved strip on the outer conical glass surface (0 non-manifold edges)
         bm_mark = bmesh.new()
         seg_mark = 12
-        verts_low = []
-        verts_high = []
+        r1 = r_at_z + 0.0001
+        r2 = r_at_z + 0.0004
+        z_low = z_mark - 0.0004
+        z_high = z_mark + 0.0004
+
+        verts_in_low = []
+        verts_in_high = []
+        verts_out_low = []
+        verts_out_high = []
+
         for s in range(seg_mark + 1):
             theta = -arc_angle / 2 + (arc_angle * s / seg_mark)
-            x = (r_at_z + 0.0002) * math.sin(theta)
-            y = -(r_at_z + 0.0002) * math.cos(theta)
-            verts_low.append(bm_mark.verts.new((x, y, z_mark - 0.0004)))
-            verts_high.append(bm_mark.verts.new((x, y, z_mark + 0.0004)))
+            st = math.sin(theta)
+            ct = math.cos(theta)
+            verts_in_low.append(bm_mark.verts.new((r1 * st, -r1 * ct, z_low)))
+            verts_in_high.append(bm_mark.verts.new((r1 * st, -r1 * ct, z_high)))
+            verts_out_low.append(bm_mark.verts.new((r2 * st, -r2 * ct, z_low)))
+            verts_out_high.append(bm_mark.verts.new((r2 * st, -r2 * ct, z_high)))
+
         for s in range(seg_mark):
-            bm_mark.faces.new([verts_low[s], verts_low[s+1], verts_high[s+1], verts_high[s]])
+            # Outer face (+r)
+            bm_mark.faces.new([verts_out_low[s], verts_out_low[s + 1], verts_out_high[s + 1], verts_out_high[s]])
+            # Inner face (-r)
+            bm_mark.faces.new([verts_in_low[s + 1], verts_in_low[s], verts_in_high[s], verts_in_high[s + 1]])
+            # Top face (+z)
+            bm_mark.faces.new([verts_in_high[s], verts_out_high[s], verts_out_high[s + 1], verts_in_high[s + 1]])
+            # Bottom face (-z)
+            bm_mark.faces.new([verts_in_low[s + 1], verts_out_low[s + 1], verts_out_low[s], verts_in_low[s]])
+
+        # Side caps
+        bm_mark.faces.new([verts_in_low[0], verts_in_high[0], verts_out_high[0], verts_out_low[0]])
+        bm_mark.faces.new([verts_in_low[-1], verts_out_low[-1], verts_out_high[-1], verts_in_high[-1]])
+        bmesh.ops.recalc_face_normals(bm_mark, faces=bm_mark.faces)
 
         mesh_mark = bpy.data.meshes.new(f"{ASSET_ID}-tick-{ml}")
         bm_mark.to_mesh(mesh_mark)
@@ -109,7 +133,7 @@ def main():
     kit.reset_scene()
     objects = build_flask()
     kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.configure_render(width=1280, height=720, samples=24)
     kit.frame_camera(objects, lens=50.0)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")

@@ -1,0 +1,84 @@
+{
+  "id": "nephron",
+  "name": "Nephron (Renal Filtration Unit)",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.1.0",
+  "status": "reviewed",
+  "semanticDescription": "High-fidelity 3D model of a kidney nephron including Bowman's capsule, glomerular capillary tuft, afferent/efferent arterioles, proximal convoluted tubule (PCT), Loop of Henle with hairpin turn, distal convoluted tubule (DCT) in macula densa contact with Bowman's vascular pole, collecting duct, peritubular capillaries, vasa recta, and corticomedullary boundary (CBSE Class 10 Biology Ch 5 Figure 5.14; CBSE Class 11 Biology Ch 19 Figure 19.3).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "nephronLength": 0.22
+  },
+  "simplifications": [
+    "Tubular convolutions simplified to primary pedagogical anatomical loops for visual clarity.",
+    "Corticomedullary boundary represented by a subtle demarcation plane between cortex and medulla."
+  ],
+  "materials": [
+    {
+      "id": "bowmans-capsule",
+      "look": "Double-walled epithelial cup with realistic tissue subsurface scattering"
+    },
+    {
+      "id": "glomerulus-tuft",
+      "look": "Dense high-pressure capillary plexus (bright crimson red)"
+    },
+    {
+      "id": "convoluted-tubule",
+      "look": "Epithelial reabsorptive nephron tubule (warm cream/buff)"
+    },
+    {
+      "id": "loop-of-henle",
+      "look": "Slender hairpin medullary countercurrent loop (thin descending limb, thick ascending limb)"
+    },
+    {
+      "id": "collecting-duct",
+      "look": "Thicker vertical urine collection trunk (pale golden yellow)"
+    },
+    {
+      "id": "peritubular-capillaries",
+      "look": "Intertwined capillary plexus and straight vasa recta for reabsorption"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_nephron.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-09"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/nephron.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/nephron.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/nephron.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "nephron",
+    "kidney",
+    "filtration",
+    "bowmans-capsule",
+    "glomerulus",
+    "loop-of-henle",
+    "macula-densa",
+    "collecting-duct",
+    "urine-formation",
+    "CBSE-class-10",
+    "CBSE-class-11",
+    "life-processes"
+  ]
+}

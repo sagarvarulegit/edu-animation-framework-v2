@@ -3,37 +3,45 @@
   "name": "DNA Double Helix",
   "category": "biology",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "Simplified DNA double helix with sugar-phosphate backbone and colored base pairs (AT=red, GC=blue). Used in CBSE Class 10 Ch7-8.",
+  "version": "1.1.0",
+  "status": "reviewed",
+  "semanticDescription": "High-fidelity 3D model of the B-DNA double helix featuring two antiparallel sugar-phosphate helical backbones, alternating major and minor grooves, and horizontal Watson-Crick complementary base pairs (Adenine-Thymine and Guanine-Cytosine) color-coded per design-tokens.json (CBSE Class 10 Biology Ch 8; CBSE Class 11 Biology Ch 9 Figure 9.5; CBSE Class 12 Biology Ch 6 Figures 6.2, 6.3).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
   },
   "simplifications": [
-    "Straight ladder model rather than true helix twist",
-    "No major/minor grooves"
+    "Base pairs represented as complementary paired cylinders meeting at a central hydrogen-bond interface.",
+    "Atomic coordinates stylized into molecular visualization scale with authentic major and minor groove dimensions."
   ],
   "materials": [
     {
-      "id": "orange backbone",
-      "look": "orange backbone"
+      "id": "dna-backbone",
+      "look": "Azure sugar-phosphate helical backbone (#0ea5e9)"
     },
     {
-      "id": "red AT pairs",
-      "look": "red AT pairs"
+      "id": "dna-adenine",
+      "look": "Green purine base Adenine (#22c55e)"
     },
     {
-      "id": "blue GC pairs",
-      "look": "blue GC pairs"
+      "id": "dna-thymine",
+      "look": "Red pyrimidine base Thymine (#ef4444)"
+    },
+    {
+      "id": "dna-guanine",
+      "look": "Amber purine base Guanine (#f59e0b)"
+    },
+    {
+      "id": "dna-cytosine",
+      "look": "Blue pyrimidine base Cytosine (#3b82f6)"
     }
   ],
   "provenance": {
     "method": "procedural-blender-python",
-    "generator": "build_dna_double_helix.py",
+    "generator": "build_dna.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-09"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -58,7 +66,16 @@
     "dna",
     "double-helix",
     "base-pairs",
+    "adenine",
+    "thymine",
+    "guanine",
+    "cytosine",
+    "major-groove",
+    "minor-groove",
     "genetics",
-    "heredity"
+    "molecular-biology",
+    "cbse-class-10",
+    "cbse-class-11",
+    "cbse-class-12"
   ]
 }

@@ -20,6 +20,8 @@ def build_bulb():
     glass_mat = kit.add_glass_material(f"{ASSET_ID}-glass", tint=(0.98, 0.99, 1.0), ior=1.50, roughness=0.015)
     brass_mat = kit.add_machined_metal_material(f"{ASSET_ID}-brass-base", (0.86, 0.70, 0.28), metallic=0.92, roughness=0.28)
     tungsten_mat = kit.add_machined_metal_material(f"{ASSET_ID}-filament", (0.95, 0.85, 0.40), metallic=0.88, roughness=0.20)
+    tungsten_mat.node_tree.nodes["Principled BSDF"].inputs["Emission Color"].default_value = (1.0, 0.82, 0.40, 1.0)
+    tungsten_mat.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"].default_value = 3.5
     lead_wire_mat = kit.add_machined_metal_material(f"{ASSET_ID}-lead-wire", (0.75, 0.75, 0.78), metallic=0.95, roughness=0.25)
     insulator_mat = kit.add_material(f"{ASSET_ID}-black-glass", (0.05, 0.05, 0.06), metallic=0.1, roughness=0.25)
 
@@ -114,7 +116,7 @@ def main():
     kit.reset_scene()
     objects = build_bulb()
     kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.configure_render(width=1280, height=720, samples=24)
     kit.frame_camera(objects, lens=50.0)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")

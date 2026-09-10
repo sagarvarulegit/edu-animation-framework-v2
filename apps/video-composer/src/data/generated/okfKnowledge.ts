@@ -1,7 +1,7 @@
 /**
  * AUTO-GENERATED FILE by tools/okf/compile-okf.mjs
  * DO NOT EDIT MANUALLY.
- * Generated on: 2026-08-31T10:09:03.788Z
+ * Generated on: 2026-09-07T13:28:31.365Z
  */
 
 export type OkfConceptType =
@@ -36,7 +36,7 @@ export interface OkfCbseMapping {
 export interface OkfEquation {
   latex: string;
   meaning: string;
-  type?: 'chemical' | 'physical' | 'mathematical';
+  type?: 'chemical' | 'physical' | 'mathematical' | 'biological';
 }
 
 export interface OkfMisconception {
@@ -89,33 +89,54 @@ export interface OkfManifest {
 export const OKF_MANIFEST: OkfManifest = {
   "schemaVersion": "0.2.0",
   "spec": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
-  "generatedAt": "2026-08-31T10:09:03.788Z",
-  "totalConcepts": 23,
-  "totalEdges": 114,
+  "generatedAt": "2026-09-07T13:28:31.365Z",
+  "totalConcepts": 44,
+  "totalEdges": 208,
   "byType": {
     "anatomy": [
       "aorta-systemic-trunk",
       "cardiac-chambers",
       "digestive-system",
-      "human-eye-optics"
+      "flower-anatomy",
+      "human-excretory-system",
+      "human-eye-optics",
+      "human-respiratory-system",
+      "nephron",
+      "reflex-arc",
+      "stoma"
     ],
     "concept": [
       "human-heart-circulation",
+      "trophic-level-pyramid",
       "combination-reaction",
+      "diamond-lattice",
+      "graphite-lattice",
       "magnesium-metal",
       "magnesium-oxide",
+      "methane-molecule",
       "oxygen-element",
+      "soap-micelle",
       "angle-of-deviation"
     ],
     "apparatus": [
       "bunsen-burner",
       "crucible-tongs",
+      "tripod-wire-gauze",
+      "bar-magnet",
       "convex-lens",
+      "convex-mirror",
       "electric-circuit",
-      "optical-prism"
+      "electric-motor",
+      "galvanometer",
+      "optical-bench",
+      "optical-prism",
+      "solenoid"
     ],
     "experiment": [
+      "displacement-reaction",
+      "hydrogen-evolution",
       "magnesium-ribbon-combustion",
+      "water-electrolysis",
       "glass-prism-refraction"
     ],
     "curriculum": [
@@ -136,17 +157,32 @@ export const OKF_MANIFEST: OkfManifest = {
       "aorta-systemic-trunk",
       "cardiac-chambers",
       "digestive-system",
+      "flower-anatomy",
+      "human-excretory-system",
       "human-eye-optics",
-      "human-heart-circulation"
+      "human-heart-circulation",
+      "human-respiratory-system",
+      "nephron",
+      "reflex-arc",
+      "stoma",
+      "trophic-level-pyramid"
     ],
     "chemistry": [
       "bunsen-burner",
       "combination-reaction",
       "crucible-tongs",
+      "diamond-lattice",
+      "displacement-reaction",
+      "graphite-lattice",
+      "hydrogen-evolution",
       "magnesium-metal",
       "magnesium-oxide",
       "magnesium-ribbon-combustion",
-      "oxygen-element"
+      "methane-molecule",
+      "oxygen-element",
+      "soap-micelle",
+      "tripod-wire-gauze",
+      "water-electrolysis"
     ],
     "curriculum": [
       "cbse-class-10-science",
@@ -156,12 +192,18 @@ export const OKF_MANIFEST: OkfManifest = {
     ],
     "physics": [
       "angle-of-deviation",
+      "bar-magnet",
       "convex-lens",
+      "convex-mirror",
       "electric-circuit",
+      "electric-motor",
+      "galvanometer",
       "glass-prism-refraction",
+      "optical-bench",
       "optical-dispersion",
       "optical-prism",
-      "snells-law"
+      "snells-law",
+      "solenoid"
     ]
   },
   "concepts": {
@@ -286,6 +328,106 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [],
       "body": "# Human Alimentary Canal & Digestive System\n\nThe human alimentary canal is a continuous muscular tube spanning approximately $9\\text{ meters}$ extending from the buccal cavity to the anus, accompanied by specialized accessory digestive glands (salivary glands, liver with gallbladder, and pancreas)."
     },
+    "flower-anatomy": {
+      "id": "flower-anatomy",
+      "filePath": "knowledge/biology/flower-anatomy.md",
+      "category": "biology",
+      "type": "anatomy",
+      "title": "Longitudinal Section of a Bisexual Flower",
+      "description": "Structural morphology of angiosperm reproductive organs detailing sepals, petals, stamen (filament and anther with pollen), and carpel/pistil (stigma, style, ovary with ovules).",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/flower-anatomy",
+      "tags": [
+        "anatomy",
+        "biology",
+        "flower",
+        "angiosperm",
+        "reproduction",
+        "stamen",
+        "anther",
+        "carpel",
+        "pistil",
+        "ovary",
+        "ovule",
+        "pollination"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 7: How do Organisms Reproduce?",
+          "section": "7.2.3 Sexual Reproduction in Flowering Plants (Figure 7.7)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Pollen (Male gamete)} + \\\\text{Ovule egg (Female gamete)} \\\\xrightarrow{\\\\text{Fertilization}} \\\\text{Zygote} \\\\rightarrow \\\\text{Seed (Embryo)}",
+          "meaning": "Syngamy and sexual reproduction in flowering plants.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "flower-anatomy",
+        "dna-double-helix"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-eye-optics"
+      ],
+      "body": "# Flower Anatomy\n\nFigure 7.7 in NCERT Class 10 Biology illustrates the reproductive architecture of angiosperms. Students are assessed on identifying male vs female organs, explaining self-pollination vs cross-pollination, and tracing post-fertilization changes (ovule becomes seed, ovary wall becomes pericarp/fruit)."
+    },
+    "human-excretory-system": {
+      "id": "human-excretory-system",
+      "filePath": "knowledge/biology/human-excretory-system.md",
+      "category": "biology",
+      "type": "anatomy",
+      "title": "Human Excretory (Urinary) System",
+      "description": "Biological organ system comprising paired kidneys, ureters, urinary bladder, and urethra for removing nitrogenous metabolic waste products (urea, uric acid) from blood circulation.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/human-excretory-system",
+      "tags": [
+        "anatomy",
+        "biology",
+        "excretion",
+        "kidneys",
+        "ureter",
+        "urinary-bladder",
+        "urethra",
+        "urea",
+        "osmoregulation"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 5: Life Processes",
+          "section": "5.4.1 Excretion in Human Beings (Figure 5.13)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Blood (with Urea)} \\\\xrightarrow{\\\\text{Renal Artery}} \\\\text{Nephron Filtration} \\\\rightarrow \\\\text{Clean Blood (Renal Vein)} + \\\\text{Urine (Ureter)}",
+          "meaning": "Renal clearance and urine formation pathway.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "human-excretory-system",
+        "nephron",
+        "human-heart"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-heart-circulation"
+      ],
+      "body": "# Human Excretory System\n\nNCERT Class 10 Chapter 5 outlines the filtration of blood and elimination of toxic nitrogenous metabolites. The anatomical architecture coordinates high-pressure renal arterial perfusion with tubular reabsorption to maintain homeostatic osmotic balance."
+    },
     "human-eye-optics": {
       "id": "human-eye-optics",
       "filePath": "knowledge/biology/human-eye-optics.md",
@@ -380,6 +522,250 @@ export const OKF_MANIFEST: OkfManifest = {
         "aorta-systemic-trunk"
       ],
       "body": "# Double Circulation in the Human Heart\n\n## 1. Physiological Mechanism\nHuman circulation is termed *double circulation* because blood passes through the four-chambered heart twice in one complete cardiovascular transit:\n1. **Pulmonary Circulation**: Transports deoxygenated blood from the right ventricle through the pulmonary arteries to the lung alveoli for gaseous exchange ($\\text{CO}_2$ release, $\\text{O}_2$ uptake), and returns oxygenated blood through the pulmonary veins into the left atrium.\n2. **Systemic Circulation**: Transports oxygenated blood from the muscular left ventricle through the aorta to all capillary beds in systemic tissues and organs, returning oxygen-depleted blood via the superior and inferior vena cava into the right atrium."
+    },
+    "human-respiratory-system": {
+      "id": "human-respiratory-system",
+      "filePath": "knowledge/biology/human-respiratory-system.md",
+      "category": "biology",
+      "type": "anatomy",
+      "title": "Human Respiratory System & Alveoli",
+      "description": "Anatomical organ system responsible for pulmonary ventilation, external respiration, and gaseous exchange of O2 and CO2 across the alveolar-capillary membrane.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/human-respiratory-system",
+      "tags": [
+        "anatomy",
+        "biology",
+        "respiration",
+        "lungs",
+        "trachea",
+        "alveoli",
+        "diaphragm",
+        "gas-exchange"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 5: Life Processes",
+          "section": "5.2.2 Respiration in Human Beings (Figure 5.9)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{C}_6\\\\text{H}_{12}\\\\text{O}_6 + 6\\\\text{O}_2 \\\\rightarrow 6\\\\text{CO}_2 + 6\\\\text{H}_2\\\\text{O} + \\\\text{38 ATP}",
+          "meaning": "Aerobic cellular respiration utilizing pulmonary oxygen.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "human-respiratory-system",
+        "human-heart",
+        "digestive-system"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-heart-circulation"
+      ],
+      "body": "# Human Respiratory System\n\nThe respiratory system in NCERT Class 10 Biology explains human aerobic metabolism. Students are frequently tested on the anatomical pathway of air, the physiological function of cartilage rings, and how the alveolar architecture maximizes diffusion surface area."
+    },
+    "nephron": {
+      "id": "nephron",
+      "filePath": "knowledge/biology/nephron.md",
+      "category": "biology",
+      "type": "anatomy",
+      "title": "Nephron (Microscopic Kidney Filtration Unit)",
+      "description": "The structural and functional unit of the vertebrate kidney comprising a glomerulus, Bowman's capsule, convoluted tubules, and Loop of Henle for selective filtration and reabsorption.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/nephron",
+      "tags": [
+        "anatomy",
+        "biology",
+        "nephron",
+        "glomerulus",
+        "bowmans-capsule",
+        "ultrafiltration",
+        "reabsorption",
+        "excretion"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 5: Life Processes",
+          "section": "5.4.1 Structure and Function of Nephron (Figure 5.14)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Urine Volume} = \\\\text{Glomerular Filtration (180 L)} - \\\\text{Tubular Reabsorption (178.5 L)} \\\\approx 1.5\\\\text{ L/day}",
+          "meaning": "Selective tubular conservation of fluid and solutes in the nephron.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "nephron",
+        "human-excretory-system"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-heart-circulation"
+      ],
+      "body": "# Nephron Structure and Function\n\nThe nephron is the centerpiece of renal physiology in CBSE Class 10. The three phases of urine formation—Ultrafiltration at the glomerulus, Selective Reabsorption along the renal tubule, and Tubular Secretion—are directly represented in this 3D model."
+    },
+    "reflex-arc": {
+      "id": "reflex-arc",
+      "filePath": "knowledge/biology/reflex-arc.md",
+      "category": "biology",
+      "type": "anatomy",
+      "title": "Somatic Reflex Arc Neural Circuit",
+      "description": "Neural wiring diagram and pathway that mediates an involuntary, rapid, automatic response to a dangerous sensory stimulus without prior conscious brain intervention.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/reflex-arc",
+      "tags": [
+        "anatomy",
+        "biology",
+        "reflex-arc",
+        "spinal-cord",
+        "sensory-neuron",
+        "motor-neuron",
+        "interneuron",
+        "effector",
+        "control-and-coordination"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 6: Control and Coordination",
+          "section": "6.1.1 What Happens in Reflex Actions? (Figure 6.2)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Stimulus} \\\\rightarrow \\\\text{Receptor} \\\\xrightarrow{\\\\text{Sensory}} \\\\text{Spinal Relay} \\\\xrightarrow{\\\\text{Motor}} \\\\text{Effector} \\\\rightarrow \\\\text{Response}",
+          "meaning": "Unbroken physiological reflex arc sequence.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "reflex-arc",
+        "neuron",
+        "brain"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-eye-optics"
+      ],
+      "body": "# Reflex Arc\n\nReflex arcs evolved as an efficient emergency response system in animals. In CBSE Class 10 examinations, students are required to trace the complete circuit from peripheral receptor to muscle effector and explain why the spinal cord executes the motor withdrawal before the brain consciously registers the sensation of heat or pain."
+    },
+    "stoma": {
+      "id": "stoma",
+      "filePath": "knowledge/biology/stoma.md",
+      "category": "biology",
+      "type": "anatomy",
+      "title": "Stomatal Apparatus & Guard Cell Mechanism",
+      "description": "Specialized microscopic leaf epidermal structure consisting of paired guard cells controlling the stomatal aperture for photosynthetic gas exchange and transpiration.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/stoma",
+      "tags": [
+        "anatomy",
+        "biology",
+        "stoma",
+        "stomata",
+        "guard-cells",
+        "chloroplasts",
+        "turgidity",
+        "transpiration",
+        "photosynthesis"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 5: Life Processes",
+          "section": "5.1.1 Autotrophic Nutrition — Stomata (Figure 5.3)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Endosmosis} \\\\rightarrow \\\\text{Guard cells turgid} \\\\rightarrow \\\\text{Stoma opens}; \\\\quad \\\\text{Exosmosis} \\\\rightarrow \\\\text{Guard cells flaccid} \\\\rightarrow \\\\text{Stoma closes}",
+          "meaning": "Turgor pressure regulation of stomatal pore aperture.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "stoma",
+        "human-respiratory-system"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-eye-optics"
+      ],
+      "body": "# Stomatal Apparatus\n\nIn NCERT Class 10 Biology, the stomatal apparatus illustrates how cellular turgor mechanics regulate macroscopic physiological processes. The differential thickness between inner and outer cell walls is the mechanical basis for opening and closing."
+    },
+    "trophic-level-pyramid": {
+      "id": "trophic-level-pyramid",
+      "filePath": "knowledge/biology/trophic-level-pyramid.md",
+      "category": "biology",
+      "type": "concept",
+      "title": "Ecological Trophic Pyramid & 10% Energy Transfer Law",
+      "description": "Stepped ecological model illustrating the unidirectional trophic energy hierarchy from primary producers to apex predators, governed by Lindeman's 10% law and biomagnification.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/biology/trophic-level-pyramid",
+      "tags": [
+        "concept",
+        "biology",
+        "ecology",
+        "trophic-levels",
+        "10-percent-law",
+        "energy-flow",
+        "food-chain",
+        "biomagnification",
+        "environment"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 13: Our Environment",
+          "section": "13.1.1 Food Chains and Webs (Figure 13.1 & 13.2)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "E_{n+1} = 0.10 \\\\times E_n",
+          "meaning": "Lindeman's 10 percent energy transfer rule between consecutive trophic tiers.",
+          "type": "biological"
+        },
+        {
+          "latex": "\\\\text{Producers (10,000 J)} \\\\rightarrow \\\\text{Herbivores (1,000 J)} \\\\rightarrow \\\\text{Carnivores (100 J)} \\\\rightarrow \\\\text{Top Predators (10 J)}",
+          "meaning": "Trophic energy attenuation sequence.",
+          "type": "biological"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "trophic-level-pyramid"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "human-eye-optics"
+      ],
+      "body": "# Ecological Trophic Pyramid\n\nChapter 13 in NCERT Class 10 explores trophic ecology. The step pyramid geometry visually enforces the dual core principles: the rapid attenuation of usable metabolic energy (10% law) and the catastrophic reciprocal concentration of environmental contaminants (biomagnification) at the top of the food chain."
     },
     "bunsen-burner": {
       "id": "bunsen-burner",
@@ -512,6 +898,206 @@ export const OKF_MANIFEST: OkfManifest = {
         "magnesium-ribbon-combustion"
       ],
       "body": "# Crucible & Laboratory Tongs\n\nStainless steel laboratory tongs with bowed serrated jaws and looped handles designed to manipulate hot experimental vessels and combustible metal strips at safe operator distance."
+    },
+    "diamond-lattice": {
+      "id": "diamond-lattice",
+      "filePath": "knowledge/chemistry/diamond-lattice.md",
+      "category": "chemistry",
+      "type": "concept",
+      "title": "Diamond Allotrope 3D Tetrahedral Crystal Lattice",
+      "description": "Structural allotrope of carbon wherein every carbon atom is tetrahedrally bonded to four others via rigid covalent bonds, resulting in exceptional hardness and high melting temperature.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/diamond-lattice",
+      "tags": [
+        "concept",
+        "chemistry",
+        "carbon",
+        "allotrope",
+        "diamond",
+        "crystal-lattice",
+        "tetrahedral-network",
+        "hardness"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 4: Carbon and its Compounds",
+          "section": "4.1.2 Allotropes of Carbon — Diamond"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{C (diamond)} \\\\xrightarrow{\\\\text{High T, P}} \\\\text{Rigid } sp^3 \\\\text{ tetrahedral network}",
+          "meaning": "Allotropic structural form of carbon in diamond.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "diamond-lattice",
+        "graphite-lattice",
+        "methane-molecule",
+        "soap-micelle"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Diamond Allotrope\n\nDiamond represents carbon in its densest crystalline configuration. The isotropic distribution of tetrahedral single covalent bonds in all three dimensions eliminates any natural cleavage planes, creating extreme resistance to mechanical deformation."
+    },
+    "displacement-reaction": {
+      "id": "displacement-reaction",
+      "filePath": "knowledge/chemistry/displacement-reaction.md",
+      "category": "chemistry",
+      "type": "experiment",
+      "title": "Single Displacement Reaction (Iron in Copper Sulphate)",
+      "description": "Canonical CBSE Class 10 chemistry experiment demonstrating that a more reactive metal (iron) displaces a less reactive metal (copper) from its aqueous salt solution.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/displacement-reaction-setup",
+      "tags": [
+        "experiment",
+        "chemistry",
+        "displacement-reaction",
+        "iron",
+        "copper-sulphate",
+        "reactivity-series",
+        "redox"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 1: Chemical Reactions and Equations",
+          "section": "1.2.3 Displacement Reaction (Activity 1.9)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Fe}(s) + \\\\text{CuSO}_4(aq) \\\\rightarrow \\\\text{FeSO}_4(aq) + \\\\text{Cu}(s)",
+          "meaning": "Single displacement of copper by iron forming iron(II) sulphate and copper metal.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "displacement-reaction-setup",
+        "test-tube",
+        "beaker"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Single Displacement Reaction\n\nActivity 1.9 of NCERT Class 10 demonstrates chemical reactivity and redox electron exchange. Iron atoms lose electrons to form $Fe^{2+}$ ions that dissolve into solution, while $Cu^{2+}$ ions from the blue solution accept electrons to plate onto the iron surface as reddish-brown elemental copper."
+    },
+    "graphite-lattice": {
+      "id": "graphite-lattice",
+      "filePath": "knowledge/chemistry/graphite-lattice.md",
+      "category": "chemistry",
+      "type": "concept",
+      "title": "Graphite Allotrope Layered Hexagonal Lattice",
+      "description": "Planar allotrope of carbon consisting of two-dimensional hexagonal carbon rings arranged in parallel layers held by weak van der Waals forces, enabling electrical conduction and lubricity.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/graphite-lattice",
+      "tags": [
+        "concept",
+        "chemistry",
+        "carbon",
+        "allotrope",
+        "graphite",
+        "hexagonal-sheets",
+        "van-der-waals",
+        "electrical-conductor",
+        "lubricant"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 4: Carbon and its Compounds",
+          "section": "4.1.2 Allotropes of Carbon — Graphite"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{C (graphite)} \\\\rightarrow sp^2 \\\\text{ planar sheets} + \\\\pi\\\\text{-delocalized electrons}",
+          "meaning": "Electronic structure of graphite accounting for planar conductivity.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "graphite-lattice",
+        "diamond-lattice",
+        "methane-molecule",
+        "soap-micelle"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Graphite Allotrope\n\nGraphite is the thermodynamically standard state of carbon. The anisotropy between strong in-plane covalent bonding and weak out-of-plane van der Waals forces gives graphite its distinctive electrical conductivity and lubricative properties."
+    },
+    "hydrogen-evolution": {
+      "id": "hydrogen-evolution",
+      "filePath": "knowledge/chemistry/hydrogen-evolution.md",
+      "category": "chemistry",
+      "type": "experiment",
+      "title": "Reaction of Granulated Zinc with Acid & H2 Evolution",
+      "description": "Classic CBSE Class 10 acid-base laboratory experiment demonstrating metal-acid single replacement to evolve hydrogen gas, tested via the characteristic pop sound.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/hydrogen-evolution-apparatus",
+      "tags": [
+        "experiment",
+        "chemistry",
+        "acids",
+        "zinc",
+        "sulphuric-acid",
+        "hydrogen-gas",
+        "pop-sound",
+        "soap-bubbles"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 2: Acids, Bases and Salts",
+          "section": "2.1.2 How do Acids and Bases React with Metals? (Activity 2.1)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{Zn}(s) + \\\\text{H}_2\\\\text{SO}_4(aq) \\\\rightarrow \\\\text{ZnSO}_4(aq) + \\\\text{H}_2(g)",
+          "meaning": "Reaction of zinc with dilute sulphuric acid producing zinc sulphate and hydrogen gas.",
+          "type": "chemical"
+        },
+        {
+          "latex": "2\\\\text{H}_2(g) + \\\\text{O}_2(g) \\\\xrightarrow{\\\\text{spark}} 2\\\\text{H}_2\\\\text{O}(g) + \\\\text{energy (pop sound)}",
+          "meaning": "Combustion of hydrogen gas producing the diagnostic pop sound.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "hydrogen-evolution-apparatus",
+        "conical-flask",
+        "test-tube",
+        "bunsen-burner"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Reaction of Zinc with Dilute Acid\n\nActivity 2.1 in NCERT Class 10 demonstrates the fundamental reaction between metals and acids: $\\text{Acid} + \\text{Metal} \\rightarrow \\text{Salt} + \\text{Hydrogen gas}$. The pop sound confirms the flammable nature and presence of pure hydrogen gas."
     },
     "magnesium-metal": {
       "id": "magnesium-metal",
@@ -702,6 +1288,55 @@ export const OKF_MANIFEST: OkfManifest = {
       ],
       "body": "# Combustion of Magnesium Ribbon in Air\n\n## 1. Educational Overview\nThe burning of magnesium ribbon in air is the canonical foundational demonstration in the CBSE Class 10 Chemistry curriculum (NCERT Chapter 1, Activity 1.1). It introduces students to the observable hallmarks of a chemical reaction:\n- Evolution of energy (heat and dazzling white light).\n- Change in state and color (silvery flexible metal strip $\\rightarrow$ brittle white powder).\n- Formation of a new chemical substance with basic oxide properties.\n\n## 2. Experimental Procedure\n1. Take a 3–4 cm long strip of magnesium ribbon.\n2. Clean its surface thoroughly by rubbing with sandpaper until the silvery metal shines.\n3. Hold the cleaned ribbon securely with a pair of crucible tongs.\n4. Heat the tip of the ribbon in the hottest oxidizing zone (blue outer cone) of a Bunsen burner flame.\n5. As soon as the dazzling white ignition starts, hold the burning strip over a clean watch glass to collect the white magnesium oxide powder."
     },
+    "methane-molecule": {
+      "id": "methane-molecule",
+      "filePath": "knowledge/chemistry/methane-molecule.md",
+      "category": "chemistry",
+      "type": "concept",
+      "title": "Methane (CH4) Covalent Molecular Structure",
+      "description": "Fundamental hydrocarbon illustrating tetrahedral covalent bonding, four single covalent bonds, and sp3 electron sharing in carbon compounds.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/methane-molecule",
+      "tags": [
+        "concept",
+        "chemistry",
+        "carbon-compounds",
+        "covalent-bonding",
+        "methane",
+        "hydrocarbon",
+        "alkane",
+        "tetrahedral"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 4: Carbon and its Compounds",
+          "section": "4.1 Bonding in Carbon — The Covalent Bond"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{C} + 4\\\\text{H} \\\\rightarrow \\\\text{CH}_4",
+          "meaning": "Formation of methane through mutual sharing of 4 electron pairs.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "methane-molecule",
+        "diamond-lattice",
+        "graphite-lattice",
+        "soap-micelle"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Methane (CH4)\n\nMethane is the foundational paradigm for covalent chemical bonding in CBSE Class 10 Chemistry. By sharing electrons rather than transferring them, carbon attains a stable octet while hydrogen attains a stable duplet."
+    },
     "oxygen-element": {
       "id": "oxygen-element",
       "filePath": "knowledge/chemistry/oxygen-element.md",
@@ -765,6 +1400,160 @@ export const OKF_MANIFEST: OkfManifest = {
         "combination-reaction"
       ],
       "body": "# Oxygen Element (O, Z=8)\n\n## Electronic Structure & Chemical Behavior\nOxygen ($Z = 8$) has 8 protons and 8 electrons configured as $1s^2 2s^2 2p^4$ (or $[2, 6]$). \nWith high electronegativity (3.44 on the Pauling scale), it readily pulls valence electrons from electropositive metals such as magnesium, forming crystalline basic oxides."
+    },
+    "soap-micelle": {
+      "id": "soap-micelle",
+      "filePath": "knowledge/chemistry/soap-micelle.md",
+      "category": "chemistry",
+      "type": "concept",
+      "title": "Soap Micelle & Cleansing Mechanism",
+      "description": "Spherical colloidal aggregate of amphiphilic soap molecules trapping grease droplets in water to form a stable washable emulsion.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/soap-micelle",
+      "tags": [
+        "concept",
+        "chemistry",
+        "soap",
+        "micelle",
+        "cleansing-action",
+        "hydrophilic",
+        "hydrophobic",
+        "emulsion",
+        "colloid"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 4: Carbon and its Compounds",
+          "section": "4.3.4 Soaps and Detergents"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\\\text{C}_{17}\\\\text{H}_{35}\\\\text{COO}^-\\\\text{Na}^+ \\\\rightarrow \\\\text{Hydrophobic tail (}\\\\text{C}_{17}\\\\text{H}_{35}\\\\text{-)} + \\\\text{Hydrophilic head (}\\\\text{-COO}^-\\\\text{Na}^+\\\\text{)}",
+          "meaning": "Amphiphilic dissociation of sodium stearate soap molecule.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "soap-micelle",
+        "methane-molecule",
+        "diamond-lattice",
+        "graphite-lattice"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Soap Micelle\n\nSection 4.3.4 of NCERT Class 10 explores the physical chemistry of cleansing action. Oily dirt is insoluble in pure water, but becomes solubilized when surrounded by the hydrocarbon tails of soap molecules inside the core of a micelle."
+    },
+    "tripod-wire-gauze": {
+      "id": "tripod-wire-gauze",
+      "filePath": "knowledge/chemistry/tripod-wire-gauze.md",
+      "category": "chemistry",
+      "type": "apparatus",
+      "title": "Tripod Stand with Wire Gauze & Porcelain Dish",
+      "description": "Standard laboratory heating platform for even heat distribution from a Bunsen burner to delicate glassware or evaporating dishes.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/tripod-wire-gauze",
+      "tags": [
+        "apparatus",
+        "chemistry",
+        "heating",
+        "tripod",
+        "wire-gauze",
+        "china-dish",
+        "oxidation",
+        "copper-powder"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 1: Chemical Reactions and Equations",
+          "section": "1.2.5 Oxidation and Reduction (Activity 1.11)"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "2\\\\text{Cu}(s) + \\\\text{O}_2(g) \\\\xrightarrow{\\\\Delta} 2\\\\text{CuO}(s)",
+          "meaning": "Oxidation of copper to black copper(II) oxide on heating.",
+          "type": "chemical"
+        },
+        {
+          "latex": "\\\\text{CuO}(s) + \\\\text{H}_2(g) \\\\xrightarrow{\\\\Delta} \\\\text{Cu}(s) + \\\\text{H}_2\\\\text{O}(g)",
+          "meaning": "Reduction of copper(II) oxide back to copper metal by hydrogen.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "tripod-wire-gauze",
+        "bunsen-burner",
+        "beaker",
+        "watch-glass"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Tripod Stand and Wire Gauze\n\nThe tripod stand and ceramic-centered wire gauze constitute the fundamental heating station in chemistry laboratories, providing a stable, thermally buffered platform for reactions such as the oxidation and reduction of copper in CBSE Class 10 Activity 1.11."
+    },
+    "water-electrolysis": {
+      "id": "water-electrolysis",
+      "filePath": "knowledge/chemistry/water-electrolysis.md",
+      "category": "chemistry",
+      "type": "experiment",
+      "title": "Electrolytic Decomposition of Water",
+      "description": "Standard CBSE Class 10 chemistry experiment demonstrating the decomposition of water into hydrogen and oxygen gases in a 2:1 stoichiometric volume ratio using electric current.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/chemistry/water-electrolysis-apparatus",
+      "tags": [
+        "experiment",
+        "chemistry",
+        "decomposition",
+        "electrolysis",
+        "hydrogen",
+        "oxygen",
+        "stoichiometry",
+        "anode",
+        "cathode"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 1: Chemical Reactions and Equations",
+          "section": "Activity 1.7 Electrolysis of Water"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "2\\\\text{H}_2\\\\text{O}(l) \\\\xrightarrow{\\\\text{Electric current}} 2\\\\text{H}_2(g) + \\\\text{O}_2(g)",
+          "meaning": "Balanced chemical equation for electrolytic decomposition of water.",
+          "type": "chemical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "water-electrolysis-apparatus",
+        "test-tube",
+        "beaker",
+        "battery"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "combination-reaction"
+      ],
+      "body": "# Electrolysis of Water\n\nActivity 1.7 in NCERT Class 10 Chemistry proves the chemical composition of water through electrical energy. The 2:1 volume ratio observed between the cathode and anode gas collections provides empirical proof that water consists of hydrogen and oxygen in a 2:1 atomic proportion."
     },
     "cbse-class-10-science": {
       "id": "cbse-class-10-science",
@@ -961,6 +1750,55 @@ export const OKF_MANIFEST: OkfManifest = {
       ],
       "body": "# Angle of Deviation (D)\n\nIn a triangular prism, because the two lateral refracting surfaces are not parallel, the emergent ray is bent towards the thicker base of the prism. The angle between the incident direction and the final emergent direction is termed the Angle of Deviation ($D$)."
     },
+    "bar-magnet": {
+      "id": "bar-magnet",
+      "filePath": "knowledge/physics/bar-magnet.md",
+      "category": "physics",
+      "type": "apparatus",
+      "title": "Permanent Bar Magnet & Magnetic Field Lines",
+      "description": "Rectangular ferromagnetic bar magnet producing a permanent dipolar magnetic field with closed external field loops directing from North to South pole.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/physics/bar-magnet",
+      "tags": [
+        "apparatus",
+        "physics",
+        "magnetism",
+        "bar-magnet",
+        "magnetic-field",
+        "north-pole",
+        "south-pole",
+        "compass"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+          "section": "12.1 Magnetic Field and Field Lines"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{2\\vec{M}}{r^3}",
+          "meaning": "Magnetic field on the axial line of a short magnetic dipole.",
+          "type": "physical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "bar-magnet",
+        "solenoid",
+        "electric-motor",
+        "galvanometer"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "electric-circuit"
+      ],
+      "body": "# Permanent Bar Magnet\n\nThe permanent bar magnet serves as the standard pedagogical exemplar in NCERT Chapter 12 for demonstrating magnetic poles, drawing field lines using iron filings and compass plotting, and understanding non-intersecting field geometry."
+    },
     "convex-lens": {
       "id": "convex-lens",
       "filePath": "knowledge/physics/convex-lens.md",
@@ -1010,6 +1848,58 @@ export const OKF_MANIFEST: OkfManifest = {
         "snells-law"
       ],
       "body": "# Double Convex Lens\n\nDouble convex lenses are the principal optical component in compound microscopes, astronomical telescopes, camera objectives, and corrective spectacles for hypermetropia (farsightedness)."
+    },
+    "convex-mirror": {
+      "id": "convex-mirror",
+      "filePath": "knowledge/physics/convex-mirror.md",
+      "category": "physics",
+      "type": "apparatus",
+      "title": "Convex Mirror (Diverging Spherical Mirror)",
+      "description": "Curved reflective mirror with an outwardly curved spherical reflecting surface that diverges incident parallel rays from a virtual principal focus behind the mirror.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/physics/convex-mirror",
+      "tags": [
+        "apparatus",
+        "physics",
+        "optics",
+        "mirror",
+        "diverging",
+        "reflection",
+        "rear-view"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 9: Light – Reflection and Refraction",
+          "section": "9.2 Reflection of Light by Spherical Mirrors"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\frac{1}{v} + \\frac{1}{u} = \\frac{1}{f}",
+          "meaning": "Mirror Formula relating image distance v, object distance u, and focal length f.",
+          "type": "physical"
+        },
+        {
+          "latex": "m = -\\frac{v}{u} = \\frac{h'}{h}",
+          "meaning": "Linear magnification formula (m < +1 for convex mirrors).",
+          "type": "physical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "convex-mirror",
+        "concave-mirror",
+        "plane-mirror"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "snells-law"
+      ],
+      "body": "# Convex Mirror\n\nA convex mirror is a diverging spherical mirror whose reflecting surface curves outward toward the light source. It forms virtual, erect, and diminished images for all real object positions. Because it curves outwards, it gathers light over a wide angle, offering drivers and shopkeepers a broad field of view."
     },
     "electric-circuit": {
       "id": "electric-circuit",
@@ -1066,6 +1956,115 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_lessons": [],
       "related_concepts": [],
       "body": "# Electric Circuit & Ohm's Law Apparatus\n\nStandard CBSE Class 10 electricity setup for verifying the linear $V-I$ characteristic of metallic conductors. By varying the position of the rheostat sliding contact, students record multiple current-voltage pairs to plot a straight-line graph through the origin, whose slope represents the ohmic resistance $R = \\Delta V / \\Delta I$."
+    },
+    "electric-motor": {
+      "id": "electric-motor",
+      "filePath": "knowledge/physics/electric-motor.md",
+      "category": "physics",
+      "type": "apparatus",
+      "title": "Direct Current (DC) Electric Motor",
+      "description": "Rotating electromechanical machine that converts direct current electrical energy into mechanical rotational kinetic energy using Fleming's Left-Hand Rule.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/physics/electric-motor",
+      "tags": [
+        "apparatus",
+        "physics",
+        "electromagnetism",
+        "motor",
+        "dc-motor",
+        "armature",
+        "commutator",
+        "flemings-left-hand-rule"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+          "section": "12.3 Electric Motor"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\vec{F} = I (\\vec{L} \\times \\vec{B})",
+          "meaning": "Lorentz magnetic force on current-carrying conductor arms AB and CD.",
+          "type": "physical"
+        },
+        {
+          "latex": "\\tau = N I A B \\sin(\\theta)",
+          "meaning": "Electromagnetic torque rotating the armature coil.",
+          "type": "physical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "electric-motor",
+        "bar-magnet",
+        "solenoid",
+        "galvanometer"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "electric-circuit"
+      ],
+      "body": "# Direct Current (DC) Electric Motor\n\nThe electric motor demonstrates the fundamental conversion of electrical energy to mechanical work. In CBSE Class 10 examinations, students are evaluated on diagram labelling (armature, split rings, brushes, field magnets) and explaining the function of the split-ring commutator in reversing current direction every half-turn to sustain continuous rotation."
+    },
+    "galvanometer": {
+      "id": "galvanometer",
+      "filePath": "knowledge/physics/galvanometer.md",
+      "category": "physics",
+      "type": "apparatus",
+      "title": "Center-Zero Moving Coil Galvanometer",
+      "description": "An electromechanical instrument used for detecting and indicating the presence and direction of minute electric currents in a circuit.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/physics/galvanometer",
+      "tags": [
+        "apparatus",
+        "physics",
+        "electromagnetism",
+        "meter",
+        "galvanometer",
+        "induced-current",
+        "faradays-law",
+        "center-zero"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+          "section": "12.4 Electromagnetic Induction"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\theta \\propto I",
+          "meaning": "Deflection angle theta is directly proportional to current I passing through the moving coil.",
+          "type": "physical"
+        },
+        {
+          "latex": "e = -\\frac{d\\Phi_B}{dt}",
+          "meaning": "Faraday's Law of induction generating current detected by galvanometer.",
+          "type": "physical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "galvanometer",
+        "ammeter",
+        "voltmeter",
+        "bar-magnet",
+        "solenoid"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "electric-circuit"
+      ],
+      "body": "# Galvanometer\n\nThe center-zero galvanometer is the essential detector in electromagnetic induction investigations. In NCERT Chapter 12 Activity 12.8, when the North pole of a bar magnet is thrust into a fixed coil of wire, the galvanometer needle undergoes a momentary deflection to one side, proving that motion relative to a magnetic field induces electrical current."
     },
     "glass-prism-refraction": {
       "id": "glass-prism-refraction",
@@ -1128,6 +2127,62 @@ export const OKF_MANIFEST: OkfManifest = {
         "snells-law"
       ],
       "body": "# Refraction of Light Through a Triangular Glass Prism\n\n## 1. Pedagogical Overview\nWhen a ray of light enters an equilateral triangular glass prism ($A = 60^\\circ$):\n1. **At first face $AB$ (Air $\\rightarrow$ Glass)**: Light enters an optically denser medium ($n \\approx 1.517$) and refracts towards the normal ($r_1 < i$).\n2. **Inside the prism along $EF$**: The ray propagates through the bulk glass.\n3. **At second face $AC$ (Glass $\\rightarrow$ Air)**: Light exits into the optically rarer air and refracts away from the second normal ($e > r_2$).\n4. **Deviation Angle ($D$)**: Extending the forward incident ray and backward emergent ray reveals the net angular deviation subtended at vertex $G$."
+    },
+    "optical-bench": {
+      "id": "optical-bench",
+      "filePath": "knowledge/physics/optical-bench.md",
+      "category": "physics",
+      "type": "apparatus",
+      "title": "Laboratory Optical Bench Apparatus",
+      "description": "Precision dual-rail bench for measuring object and image distances to verify the spherical lens and mirror formulas and experimentally deduce focal lengths.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/physics/optical-bench",
+      "tags": [
+        "apparatus",
+        "physics",
+        "optics",
+        "bench",
+        "focal-length",
+        "lens-formula",
+        "candle",
+        "screen"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 9: Light – Reflection and Refraction",
+          "section": "Activity 9.10 & 9.11 Experimental Verification of Image Formation"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "\\frac{1}{f} = \\frac{1}{v} - \\frac{1}{u}",
+          "meaning": "Lens Formula for thin spherical lenses.",
+          "type": "physical"
+        },
+        {
+          "latex": "f = \\frac{u \\cdot v}{u - v}",
+          "meaning": "Calculated focal length from bench rider positions.",
+          "type": "physical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "optical-bench",
+        "convex-lens",
+        "concave-lens",
+        "concave-mirror",
+        "convex-mirror"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "convex-lens",
+        "snells-law"
+      ],
+      "body": "# Laboratory Optical Bench\n\nThe optical bench is the quintessential experimental apparatus used in secondary physics laboratories for verifying Snell's law, tracing conjugate foci, determining lens focal lengths, and observing image magnification transitions."
     },
     "optical-dispersion": {
       "id": "optical-dispersion",
@@ -1269,6 +2324,54 @@ export const OKF_MANIFEST: OkfManifest = {
         "angle-of-deviation"
       ],
       "body": "# Snell's Law of Refraction\n\nThe refractive index $n$ quantifies the factor by which light wavefronts slow down when entering an optically denser medium. \nFor crown glass in air, $n \\approx 1.517$, meaning light travels approximately $1.517\\times$ slower in glass ($v \\approx 1.98 \\times 10^8\\text{ m/s}$) than in air/vacuum."
+    },
+    "solenoid": {
+      "id": "solenoid",
+      "filePath": "knowledge/physics/solenoid.md",
+      "category": "physics",
+      "type": "apparatus",
+      "title": "Helical Solenoid with Uniform Axial Magnetic Field",
+      "description": "A long cylindrical coil of many circular turns of insulated copper wire that produces a strong, uniform magnetic field inside when carrying electric current.",
+      "status": "active",
+      "verified": "human-reviewed",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "resource": "assets/physics/solenoid",
+      "tags": [
+        "apparatus",
+        "physics",
+        "electromagnetism",
+        "solenoid",
+        "magnetic-field",
+        "uniform-field",
+        "copper-coil"
+      ],
+      "sources": [
+        {
+          "name": "NCERT Class 10 Science",
+          "chapter": "Chapter 12: Magnetic Effects of Electric Current",
+          "section": "12.2.3 Magnetic Field due to a Current in a Solenoid"
+        }
+      ],
+      "equations": [
+        {
+          "latex": "B = \\mu_0 n I",
+          "meaning": "Magnetic field inside an ideal solenoid where n = N/L (turns per unit length) and I is current.",
+          "type": "physical"
+        }
+      ],
+      "misconceptions": [],
+      "safety": [],
+      "related_assets": [
+        "solenoid",
+        "bar-magnet",
+        "electric-motor",
+        "galvanometer"
+      ],
+      "related_lessons": [],
+      "related_concepts": [
+        "electric-circuit"
+      ],
+      "body": "# Solenoid\n\nA solenoid consists of a helical winding of copper wire around an insulating or soft iron core. When an electric current flows through the coil, individual loop magnetic fields constructively interfere to produce a dense, uniform magnetic flux along the central axis."
     }
   },
   "edges": [
@@ -1318,6 +2421,41 @@ export const OKF_MANIFEST: OkfManifest = {
       "kind": "concept-to-asset"
     },
     {
+      "source": "flower-anatomy",
+      "target": "human-eye-optics",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "flower-anatomy",
+      "target": "flower-anatomy",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "flower-anatomy",
+      "target": "dna-double-helix",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "human-excretory-system",
+      "target": "human-heart-circulation",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "human-excretory-system",
+      "target": "human-excretory-system",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "human-excretory-system",
+      "target": "nephron",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "human-excretory-system",
+      "target": "human-heart",
+      "kind": "concept-to-asset"
+    },
+    {
       "source": "human-eye-optics",
       "target": "convex-lens",
       "kind": "concept-to-concept"
@@ -1356,6 +2494,86 @@ export const OKF_MANIFEST: OkfManifest = {
       "source": "human-heart-circulation",
       "target": "biology.human-heart-double-circulation",
       "kind": "concept-to-lesson"
+    },
+    {
+      "source": "human-respiratory-system",
+      "target": "human-heart-circulation",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "human-respiratory-system",
+      "target": "human-respiratory-system",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "human-respiratory-system",
+      "target": "human-heart",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "human-respiratory-system",
+      "target": "digestive-system",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "nephron",
+      "target": "human-heart-circulation",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "nephron",
+      "target": "nephron",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "nephron",
+      "target": "human-excretory-system",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "reflex-arc",
+      "target": "human-eye-optics",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "reflex-arc",
+      "target": "reflex-arc",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "reflex-arc",
+      "target": "neuron",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "reflex-arc",
+      "target": "brain",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "stoma",
+      "target": "human-eye-optics",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "stoma",
+      "target": "stoma",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "stoma",
+      "target": "human-respiratory-system",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "trophic-level-pyramid",
+      "target": "human-eye-optics",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "trophic-level-pyramid",
+      "target": "trophic-level-pyramid",
+      "kind": "concept-to-asset"
     },
     {
       "source": "bunsen-burner",
@@ -1416,6 +2634,101 @@ export const OKF_MANIFEST: OkfManifest = {
       "source": "crucible-tongs",
       "target": "chemistry.magnesium-ribbon",
       "kind": "concept-to-lesson"
+    },
+    {
+      "source": "diamond-lattice",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "diamond-lattice",
+      "target": "diamond-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "diamond-lattice",
+      "target": "graphite-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "diamond-lattice",
+      "target": "methane-molecule",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "diamond-lattice",
+      "target": "soap-micelle",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "displacement-reaction",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "displacement-reaction",
+      "target": "displacement-reaction-setup",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "displacement-reaction",
+      "target": "test-tube",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "displacement-reaction",
+      "target": "beaker",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "graphite-lattice",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "graphite-lattice",
+      "target": "graphite-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "graphite-lattice",
+      "target": "diamond-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "graphite-lattice",
+      "target": "methane-molecule",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "graphite-lattice",
+      "target": "soap-micelle",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "hydrogen-evolution",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "hydrogen-evolution",
+      "target": "hydrogen-evolution-apparatus",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "hydrogen-evolution",
+      "target": "conical-flask",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "hydrogen-evolution",
+      "target": "test-tube",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "hydrogen-evolution",
+      "target": "bunsen-burner",
+      "kind": "concept-to-asset"
     },
     {
       "source": "magnesium-metal",
@@ -1538,6 +2851,31 @@ export const OKF_MANIFEST: OkfManifest = {
       "kind": "concept-to-lesson"
     },
     {
+      "source": "methane-molecule",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "methane-molecule",
+      "target": "methane-molecule",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "methane-molecule",
+      "target": "diamond-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "methane-molecule",
+      "target": "graphite-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "methane-molecule",
+      "target": "soap-micelle",
+      "kind": "concept-to-asset"
+    },
+    {
       "source": "oxygen-element",
       "target": "magnesium-ribbon-combustion",
       "kind": "concept-to-concept"
@@ -1566,6 +2904,81 @@ export const OKF_MANIFEST: OkfManifest = {
       "source": "oxygen-element",
       "target": "chemistry.magnesium-ribbon",
       "kind": "concept-to-lesson"
+    },
+    {
+      "source": "soap-micelle",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "soap-micelle",
+      "target": "soap-micelle",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "soap-micelle",
+      "target": "methane-molecule",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "soap-micelle",
+      "target": "diamond-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "soap-micelle",
+      "target": "graphite-lattice",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "tripod-wire-gauze",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "tripod-wire-gauze",
+      "target": "tripod-wire-gauze",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "tripod-wire-gauze",
+      "target": "bunsen-burner",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "tripod-wire-gauze",
+      "target": "beaker",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "tripod-wire-gauze",
+      "target": "watch-glass",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "water-electrolysis",
+      "target": "combination-reaction",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "water-electrolysis",
+      "target": "water-electrolysis-apparatus",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "water-electrolysis",
+      "target": "test-tube",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "water-electrolysis",
+      "target": "beaker",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "water-electrolysis",
+      "target": "battery",
+      "kind": "concept-to-asset"
     },
     {
       "source": "cbse-class-10-science",
@@ -1668,6 +3081,31 @@ export const OKF_MANIFEST: OkfManifest = {
       "kind": "concept-to-lesson"
     },
     {
+      "source": "bar-magnet",
+      "target": "electric-circuit",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "bar-magnet",
+      "target": "bar-magnet",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "bar-magnet",
+      "target": "solenoid",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "bar-magnet",
+      "target": "electric-motor",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "bar-magnet",
+      "target": "galvanometer",
+      "kind": "concept-to-asset"
+    },
+    {
       "source": "convex-lens",
       "target": "snells-law",
       "kind": "concept-to-concept"
@@ -1680,6 +3118,26 @@ export const OKF_MANIFEST: OkfManifest = {
     {
       "source": "convex-lens",
       "target": "concave-lens",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "convex-mirror",
+      "target": "snells-law",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "convex-mirror",
+      "target": "convex-mirror",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "convex-mirror",
+      "target": "concave-mirror",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "convex-mirror",
+      "target": "plane-mirror",
       "kind": "concept-to-asset"
     },
     {
@@ -1718,6 +3176,61 @@ export const OKF_MANIFEST: OkfManifest = {
       "kind": "concept-to-asset"
     },
     {
+      "source": "electric-motor",
+      "target": "electric-circuit",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "electric-motor",
+      "target": "electric-motor",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "electric-motor",
+      "target": "bar-magnet",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "electric-motor",
+      "target": "solenoid",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "electric-motor",
+      "target": "galvanometer",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "galvanometer",
+      "target": "electric-circuit",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "galvanometer",
+      "target": "galvanometer",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "galvanometer",
+      "target": "ammeter",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "galvanometer",
+      "target": "voltmeter",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "galvanometer",
+      "target": "bar-magnet",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "galvanometer",
+      "target": "solenoid",
+      "kind": "concept-to-asset"
+    },
+    {
       "source": "glass-prism-refraction",
       "target": "optical-prism",
       "kind": "concept-to-concept"
@@ -1758,6 +3271,41 @@ export const OKF_MANIFEST: OkfManifest = {
       "kind": "concept-to-lesson"
     },
     {
+      "source": "optical-bench",
+      "target": "convex-lens",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "optical-bench",
+      "target": "snells-law",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "optical-bench",
+      "target": "optical-bench",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "optical-bench",
+      "target": "convex-lens",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "optical-bench",
+      "target": "concave-lens",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "optical-bench",
+      "target": "concave-mirror",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "optical-bench",
+      "target": "convex-mirror",
+      "kind": "concept-to-asset"
+    },
+    {
       "source": "optical-dispersion",
       "target": "glass-prism-refraction",
       "kind": "concept-to-concept"
@@ -1841,6 +3389,31 @@ export const OKF_MANIFEST: OkfManifest = {
       "source": "snells-law",
       "target": "physics.glass-prism-refraction",
       "kind": "concept-to-lesson"
+    },
+    {
+      "source": "solenoid",
+      "target": "electric-circuit",
+      "kind": "concept-to-concept"
+    },
+    {
+      "source": "solenoid",
+      "target": "solenoid",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "solenoid",
+      "target": "bar-magnet",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "solenoid",
+      "target": "electric-motor",
+      "kind": "concept-to-asset"
+    },
+    {
+      "source": "solenoid",
+      "target": "galvanometer",
+      "kind": "concept-to-asset"
     }
   ]
 };

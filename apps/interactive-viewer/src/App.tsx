@@ -1,9 +1,67 @@
-import { useState, useRef, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { useState, useRef, useEffect, useCallback, Suspense } from 'react';
+import * as THREE from 'three';
+import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, ContactShadows } from '@react-three/drei';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { ASSET_REGISTRY } from './data/assetRegistry';
-import { AssetStudioInspector } from './components/AssetStudioInspector';
+import { AssetStudioInspector, type ModelBounds } from './components/AssetStudioInspector';
+
+function StudioEnvironment() {
+  const { gl, scene } = useThree();
+  useEffect(() => {
+    const pmremGenerator = new THREE.PMREMGenerator(gl);
+    pmremGenerator.compileEquirectangularShader();
+    const roomEnv = new RoomEnvironment();
+    const envTexture = pmremGenerator.fromScene(roomEnv, 0.04).texture;
+    scene.environment = envTexture;
+    return () => {
+      pmremGenerator.dispose();
+      envTexture.dispose();
+    };
+  }, [gl, scene]);
+  return null;
+}
+
+function CameraFramer({
+  bounds,
+  controlsRef,
+}: {
+  bounds: ModelBounds | null;
+  controlsRef: React.RefObject<OrbitControlsImpl | null>;
+}) {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    if (!bounds || !controlsRef.current) return;
+    const { center, radius } = bounds;
+    const fov = (camera as THREE.PerspectiveCamera).fov * (Math.PI / 180);
+    const safeRadius = Math.max(radius, 0.018);
+    const dist = (safeRadius / Math.sin(fov / 2)) * 1.35;
+
+    const targetX = center[0];
+    const targetY = center[1];
+    const targetZ = center[2];
+
+    const camY = targetY + dist * 0.38;
+    const camZ = targetZ + dist * 0.92;
+
+    console.log('[CAMERA FRAMER]', 'safeRadius:', safeRadius, 'dist:', dist, 'target:', [targetX, targetY, targetZ], 'cam:', [targetX, camY, camZ]);
+    camera.position.set(targetX, camY, camZ);
+    camera.lookAt(targetX, targetY, targetZ);
+
+    controlsRef.current.target.set(targetX, targetY, targetZ);
+    controlsRef.current.minDistance = dist * 0.15;
+    controlsRef.current.maxDistance = dist * 5.0;
+    controlsRef.current.update();
+    if (typeof window !== 'undefined') {
+      (window as any).__STUDIO_READY__ = true;
+    }
+    console.log('[AFTER UPDATE] camera position:', camera.position.toArray(), 'controls target:', controlsRef.current.target.toArray());
+  }, [bounds, camera, controlsRef]);
+
+  return null;
+}
 import { LabGameWorld, type LabStationId } from './components/LabGameWorld';
 import { FPSController } from './components/FPSController';
 import {
@@ -32,16 +90,52 @@ export default function App() {
   // =========================================================================
   // STUDIO INSPECTOR STATE
   // =========================================================================
-  const [selectedAssetId, setSelectedAssetId] = useState<string>('glass-prism-refraction');
+  const [selectedAssetId, setSelectedAssetId] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromQuery = urlParams.get('asset');
+      if (fromQuery && ASSET_REGISTRY.some((a) => a.id === fromQuery)) {
+        return fromQuery;
+      }
+      const fromHash = window.location.hash.replace('#', '');
+      if (fromHash && ASSET_REGISTRY.some((a) => a.id === fromHash)) {
+        return fromHash;
+      }
+    }
+    return 'glass-prism-refraction';
+  });
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('asset', selectedAssetId);
+    window.history.replaceState({}, '', url.toString());
+  }, [selectedAssetId]);
+
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'physics' | 'chemistry' | 'biology' | 'electricity'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTab, setActiveTab] = useState<'specs' | 'sockets' | 'cbse' | 'okf' | 'json'>('specs');
   const [activeStateIndex, setActiveStateIndex] = useState<number>(0);
-  const [showSockets, setShowSockets] = useState<boolean>(true);
+  const [showSockets, setShowSockets] = useState<boolean>(false);
   const [showWireframe, setShowWireframe] = useState<boolean>(false);
-  const [showDimensions, setShowDimensions] = useState<boolean>(true);
+  const [showDimensions, setShowDimensions] = useState<boolean>(false);
   const [lightingMode] = useState<'daylight' | 'studio' | 'darkroom'>('daylight');
   const [copiedJson, setCopiedJson] = useState<boolean>(false);
+  const [modelBounds, setModelBounds] = useState<ModelBounds | null>(null);
+
+  const handleModelBoundsMeasured = useCallback((b: ModelBounds) => {
+    setModelBounds((prev) => {
+      if (
+        prev &&
+        Math.abs(prev.radius - b.radius) < 0.001 &&
+        Math.abs(prev.size[0] - b.size[0]) < 0.001 &&
+        Math.abs(prev.size[1] - b.size[1]) < 0.001 &&
+        Math.abs(prev.size[2] - b.size[2]) < 0.001
+      ) {
+        return prev;
+      }
+      return b;
+    });
+  }, []);
 
   // =========================================================================
   // GAME WORLD / FPS STATE
@@ -77,9 +171,12 @@ export default function App() {
 
   // Reset Studio Camera
   const handleResetStudioCamera = () => {
-    if (studioControlsRef.current) {
-      studioControlsRef.current.object.position.set(0.0, -0.38, 0.20);
-      studioControlsRef.current.target.set(0, 0, 0.02);
+    if (modelBounds && studioControlsRef.current) {
+      const { center, radius } = modelBounds;
+      const safeRadius = Math.max(radius, 0.018);
+      const dist = (safeRadius / Math.sin((45 * Math.PI) / 360)) * 1.35;
+      studioControlsRef.current.object.position.set(center[0], center[1] + dist * 0.38, center[2] + dist * 0.92);
+      studioControlsRef.current.target.set(center[0], center[1], center[2]);
       studioControlsRef.current.update();
     }
   };
@@ -160,7 +257,7 @@ export default function App() {
         <div className="flex items-center gap-3 text-xs text-slate-400 font-medium">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            30 Standardized Assets
+            {ASSET_REGISTRY.length} Standardized Assets
           </span>
           <span className="text-slate-700">|</span>
           <span>CBSE Class 10 STEM</span>
@@ -212,6 +309,7 @@ export default function App() {
                 return (
                   <div
                     key={asset.id}
+                    data-asset-id={asset.id}
                     onClick={() => {
                       setSelectedAssetId(asset.id);
                       setActiveStateIndex(0);
@@ -308,27 +406,34 @@ export default function App() {
             <div className="flex-1 w-full h-full cursor-grab active:cursor-grabbing">
               <Canvas
                 shadows
-                camera={{ position: [0.0, -0.38, 0.20], up: [0, 0, 1], fov: 45 }}
-                gl={{ antialias: true, alpha: false }}
+                camera={{ position: [0.0, 0.18, 0.36], fov: 45, near: 0.005, far: 50 }}
+                gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }}
               >
                 <color attach="background" args={['#090d16']} />
 
-                {/* 3-Point Studio Lighting Rig */}
-                <ambientLight intensity={0.90} color="#f8fafc" />
+                {/* Offline Procedural Studio Room Environment for Realistic PBR Metals & Glass */}
+                <StudioEnvironment />
+
+                {/* 3-Point Balanced Studio Lighting Rig */}
+                <ambientLight intensity={0.45} color="#f8fafc" />
                 <directionalLight
                   castShadow
-                  position={[0.5, -0.8, 1.2]}
-                  intensity={2.4}
+                  position={[2.0, 3.5, 3.0]}
+                  intensity={1.4}
                   color="#fffdfa"
                   shadow-mapSize-width={2048}
                   shadow-mapSize-height={2048}
                   shadow-camera-near={0.05}
-                  shadow-camera-far={2.5}
+                  shadow-camera-far={10.0}
+                  shadow-bias={-0.0001}
                 />
-                <directionalLight position={[-0.6, 0.6, 0.8]} intensity={1.0} color="#38bdf8" />
-                <pointLight position={[0, 0, 0.4]} intensity={0.6} color="#e0f2fe" />
+                <directionalLight position={[-2.5, 1.8, 1.0]} intensity={0.5} color="#bae6fd" />
+                <directionalLight position={[0.0, 3.0, -2.5]} intensity={0.7} color="#f1f5f9" />
+                <pointLight position={[0, 0.4, 0.4]} intensity={0.3} color="#e0f2fe" />
 
                 <Suspense fallback={null}>
+                  <CameraFramer bounds={modelBounds} controlsRef={studioControlsRef} />
+
                   <AssetStudioInspector
                     asset={selectedAsset}
                     stateIndex={activeStateIndex}
@@ -336,25 +441,23 @@ export default function App() {
                     showWireframe={showWireframe}
                     showDimensions={showDimensions}
                     lightingMode={lightingMode}
+                    onModelBoundsMeasured={handleModelBoundsMeasured}
                   />
 
                   <ContactShadows
-                    position={[0, 0, -0.024]}
+                    position={[0, 0.0005, 0]}
                     opacity={0.65}
-                    scale={0.9}
+                    scale={modelBounds ? Math.max(0.6, modelBounds.radius * 3.2) : 1.2}
                     blur={1.8}
-                    far={0.5}
+                    far={modelBounds ? Math.max(0.5, modelBounds.radius * 2.0) : 1.0}
                   />
 
-                  {/* Strictly Clamped OrbitControls - CANNOT turn upside down or go below floor */}
                   <OrbitControls
                     ref={studioControlsRef}
                     makeDefault
                     autoRotate={false}
-                    minDistance={0.12}
-                    maxDistance={1.4}
-                    maxPolarAngle={Math.PI / 2 - 0.05}
-                    minPolarAngle={Math.PI * 0.06}
+                    maxPolarAngle={Math.PI / 2 - 0.02}
+                    minPolarAngle={Math.PI * 0.04}
                     dampingFactor={0.08}
                     enableDamping={true}
                   />

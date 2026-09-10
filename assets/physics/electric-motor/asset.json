@@ -1,0 +1,84 @@
+{
+  "id": "electric-motor",
+  "name": "DC Electric Motor Working Model",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Direct current (DC) electric motor model illustrating Fleming's Left-Hand Rule, containing a rectangular armature coil ABCD, curved permanent magnetic poles (N/S), split-ring commutator segments (P/Q), carbon brushes (X/Y), and rotating axle (CBSE Class 10 Magnetic Effects Ch 12).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.2,
+    "height": 0.14,
+    "depth": 0.16
+  },
+  "simplifications": [
+    "Armature coil shown as multi-turn rectangular loop on spindle.",
+    "Split-ring commutator gap exaggerated for clear mechanical visibility."
+  ],
+  "materials": [
+    {
+      "id": "motor-magnet-north",
+      "look": "Curved permanent field magnet North pole (Red)"
+    },
+    {
+      "id": "motor-magnet-south",
+      "look": "Curved permanent field magnet South pole (Blue)"
+    },
+    {
+      "id": "armature-copper",
+      "look": "Bright insulated copper armature winding"
+    },
+    {
+      "id": "commutator-brass",
+      "look": "Turned split-ring brass commutator segments"
+    },
+    {
+      "id": "carbon-brush",
+      "look": "Graphite carbon contact blocks"
+    },
+    {
+      "id": "motor-axle",
+      "look": "Turned stainless steel shaft"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_electric_motor.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/electric-motor.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/electric-motor.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/electric-motor.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "motor",
+    "electric-motor",
+    "dc-motor",
+    "armature",
+    "commutator",
+    "split-ring",
+    "carbon-brushes",
+    "flemings-left-hand-rule",
+    "CBSE-class-10",
+    "electromagnetism"
+  ]
+}

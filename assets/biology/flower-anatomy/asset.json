@@ -1,0 +1,80 @@
+{
+  "id": "flower-anatomy",
+  "name": "Longitudinal Section of a Flower (Angiosperm Reproduction)",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Longitudinal cross-section of a typical bisexual flower showing sepals, petals, stamen (filament + anther with pollen), and carpel/pistil (stigma, style, ovary containing ovule) (CBSE Class 10 Biology Ch 7 Figure 7.7).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "flowerHeight": 0.16
+  },
+  "simplifications": [
+    "One half of petals removed to reveal interior stamen and pistil anatomy.",
+    "Ovary cut open to display internal ovule with female gamete."
+  ],
+  "materials": [
+    {
+      "id": "petal-magenta",
+      "look": "Velvety colorful floral petals (rosy magenta, roughness 0.4)"
+    },
+    {
+      "id": "sepal-green",
+      "look": "Foliar protective green calyx"
+    },
+    {
+      "id": "stamen-anther-gold",
+      "look": "Bilobed pollen-bearing golden yellow anthers"
+    },
+    {
+      "id": "carpel-pistil-green",
+      "look": "Central reproductive pistil: ovary, style, and sticky stigma"
+    },
+    {
+      "id": "ovule-egg-cell",
+      "look": "Internal embryonic ovule bead (pale cream)"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_flower_anatomy.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/flower-anatomy.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/flower-anatomy.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/flower-anatomy.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "flower",
+    "angiosperm",
+    "reproduction",
+    "stamen",
+    "anther",
+    "pistil",
+    "carpel",
+    "ovary",
+    "ovule",
+    "pollination",
+    "CBSE-class-10",
+    "biology"
+  ]
+}

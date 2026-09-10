@@ -1,0 +1,77 @@
+{
+  "id": "stoma",
+  "name": "Stomatal Apparatus (Open & Closed Guard Cells)",
+  "category": "biology",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Microscopic leaf stomatal apparatus illustrating paired bean-shaped guard cells with differential inner/outer wall thickness, chloroplasts, stomatal aperture, and surrounding epidermal pavement cells (CBSE Class 10 Biology Ch 5 Figure 5.3).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "stomaDiameter": 0.14
+  },
+  "simplifications": [
+    "Differential wall elasticity illustrated via thicker concave inner boundary mesh.",
+    "Chloroplasts shown as distinct green lens-shaped organelles within guard cell cytoplasm."
+  ],
+  "materials": [
+    {
+      "id": "guard-cell-cytoplasm",
+      "look": "Translucent cellular green cytoplasm (roughness 0.35, transmission 0.2)"
+    },
+    {
+      "id": "guard-cell-inner-wall",
+      "look": "Thick rigid cellulose inner wall lining (deep emerald green)"
+    },
+    {
+      "id": "chloroplast-green",
+      "look": "Vibrant photosynthetic chloroplast granules (bright grass green)"
+    },
+    {
+      "id": "guard-cell-nucleus",
+      "look": "Ovoid purple/violet chromatin nucleus"
+    },
+    {
+      "id": "epidermal-cell",
+      "look": "Pavement epidermal cells with light translucent cellular matrix"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_stoma.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/stoma.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/stoma.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/stoma.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "stoma",
+    "stomata",
+    "guard-cells",
+    "chloroplasts",
+    "turgidity",
+    "transpiration",
+    "photosynthesis",
+    "CBSE-class-10",
+    "life-processes"
+  ]
+}

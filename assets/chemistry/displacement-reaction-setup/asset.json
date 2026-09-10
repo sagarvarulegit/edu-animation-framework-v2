@@ -1,0 +1,78 @@
+{
+  "id": "displacement-reaction-setup",
+  "name": "Displacement Reaction Setup (Iron in Copper Sulphate)",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Laboratory demonstration setup of single displacement reaction where an iron nail suspended by thread in copper sulphate solution displaces copper, developing a reddish-brown copper deposit while the blue solution fades to light green (CBSE Class 10 Chemistry Ch 1 Activity 1.9).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.16,
+    "height": 0.20,
+    "depth": 0.10
+  },
+  "simplifications": [
+    "Solution color shows transitional blue-green state.",
+    "Copper coating on iron nail shown with characteristic reddish-brown metallic texture."
+  ],
+  "materials": [
+    {
+      "id": "disp-cuso4-sol",
+      "look": "Aqueous translucent blue-green copper/iron sulphate solution"
+    },
+    {
+      "id": "disp-iron-nail",
+      "look": "Machined metallic iron nail (grey, metallic 0.9, roughness 0.3)"
+    },
+    {
+      "id": "disp-copper-deposit",
+      "look": "Reddish-brown granular elemental copper coating"
+    },
+    {
+      "id": "disp-glass-tube",
+      "look": "Borosilicate glass test tube"
+    },
+    {
+      "id": "disp-wooden-stand",
+      "look": "Polished beechwood laboratory test tube stand"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_displacement_reaction.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/displacement-reaction-setup.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/displacement-reaction-setup.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/displacement-reaction-setup.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "displacement-reaction",
+    "iron-nail",
+    "copper-sulphate",
+    "reactivity-series",
+    "redox",
+    "single-displacement",
+    "CBSE-class-10",
+    "chemical-reactions"
+  ]
+}

@@ -106,7 +106,11 @@
           "transmission": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
           "ior": { "type": "number", "minimum": 1.0, "maximum": 3.0 },
           "emissionColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
-          "emissionStrength": { "type": "number", "minimum": 0.0 }
+          "emissionStrength": { "type": "number", "minimum": 0.0 },
+          "subsurfaceWeight": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "subsurfaceRadius": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "subsurfaceScale": { "type": "number", "minimum": 0.0 },
+          "subsurfaceColor": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
         }
       }
     },

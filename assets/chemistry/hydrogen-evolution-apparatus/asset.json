@@ -1,0 +1,80 @@
+{
+  "id": "hydrogen-evolution-apparatus",
+  "name": "Hydrogen Gas Evolution Apparatus (Zinc + Acid)",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Complete laboratory apparatus for demonstrating the reaction of granulated zinc with dilute sulphuric acid to evolve hydrogen gas, with delivery tube, soap solution trough, and pop-sound test candle (CBSE Class 10 Chemistry Ch 2 Activity 2.1).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.28,
+    "height": 0.24,
+    "depth": 0.16
+  },
+  "simplifications": [
+    "Delivery tube curved path simplified for robust 3D export.",
+    "Soap bubbles shown as iridescent thin-film spheres rising from trough."
+  ],
+  "materials": [
+    {
+      "id": "h2-flask-glass",
+      "look": "Borosilicate glass conical flask"
+    },
+    {
+      "id": "zinc-granules",
+      "look": "Bluish-white lustrous crystalline zinc metallic pieces"
+    },
+    {
+      "id": "acid-solution",
+      "look": "Clear aqueous liquid acid solution with effervescing bubbles"
+    },
+    {
+      "id": "thistle-funnel-glass",
+      "look": "Long-stemmed glass thistle funnel"
+    },
+    {
+      "id": "soap-bubble-film",
+      "look": "Iridescent transparent soap film bubble"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_hydrogen_evolution.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/hydrogen-evolution-apparatus.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/hydrogen-evolution-apparatus.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/hydrogen-evolution-apparatus.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "hydrogen-gas",
+    "zinc-granules",
+    "sulphuric-acid",
+    "acids-bases-salts",
+    "pop-sound",
+    "soap-bubbles",
+    "thistle-funnel",
+    "delivery-tube",
+    "CBSE-class-10",
+    "chemistry"
+  ]
+}

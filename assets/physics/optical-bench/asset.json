@@ -1,0 +1,75 @@
+{
+  "id": "optical-bench",
+  "name": "Dual-Rail Laboratory Optical Bench",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Standard dual-rod laboratory optical bench (1.0m) with millimeter metric scale, leveling feet, and three movable riders carrying an illuminated candle object, a lens holder, and a projection screen for focal length experiments (CBSE Class 10 Light Ch 9).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 1.05,
+    "height": 0.28,
+    "depth": 0.16
+  },
+  "simplifications": [
+    "Bench length scaled to 1.0 meter laboratory standard.",
+    "Vernier scale marks simplified to high-contrast measurement ticks."
+  ],
+  "materials": [
+    {
+      "id": "bench-rail-steel",
+      "look": "Polished stainless steel dual round guide rails"
+    },
+    {
+      "id": "bench-cast-iron",
+      "look": "Black wrinkle-finish cast iron end feet and rider bases"
+    },
+    {
+      "id": "bench-brass-hardware",
+      "look": "Turned brass leveling screws, clamping knobs, and index pointers"
+    },
+    {
+      "id": "screen-matte-white",
+      "look": "Diffusion matte white observation screen"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_optical_bench.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/optical-bench.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/optical-bench.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/optical-bench.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "optical-bench",
+    "optics",
+    "focal-length",
+    "lens-formula",
+    "real-image",
+    "candle",
+    "screen",
+    "CBSE-class-10",
+    "light"
+  ]
+}

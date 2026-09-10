@@ -3,29 +3,32 @@
   "name": "Human Digestive System (Gastrointestinal Tract & Accessory Organs)",
   "category": "biology",
   "type": "prop",
-  "version": "0.2.0",
+  "version": "1.1.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomically accurate 3D model of the human digestive system including Esophagus, Stomach, Liver, Gallbladder, Pancreas, Small Intestine (Jejunum), Large Intestine (Transverse & Sigmoid Colon), and Vermiform Appendix. Extracted from Z-Anatomy. Aligned with CBSE Class 10 Life Processes (Nutrition).",
+  "semanticDescription": "Anatomically authentic 3D model of the human digestive system including mouth, pharynx, continuous esophagus, J-shaped muscular stomach, liver with right/left lobes, gallbladder with cystic duct, pancreas with main pancreatic duct converging at the hepatopancreatic ampulla (Ampulla of Vater) entering the duodenal C-loop, continuous coiled small intestine (jejunum and ileum), and large intestine (caecum with vermiform appendix, haustrated colon, rectum, and anal canal). Aligned with CBSE Class 10 Biology Ch 5 Figure 5.6 and CBSE Class 11 Biology Ch 16 Figures 16.1-16.3.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
+  "simplifications": [
+    "Intestinal coils modeled as continuous serpentine loops for pedagogical clarity while maintaining complete lumen continuity.",
+    "Colon haustrations rendered as distinct anatomical sacculations along the continuous colic pathway."
+  ],
   "materials": [
-    { "id": "gi-esophagus", "look": "Soft pinkish muscular swallowing tube" },
-    { "id": "gi-stomach", "look": "Coral muscular digestive reservoir" },
-    { "id": "gi-liver", "look": "Reddish-brown hepatic metabolic gland" },
-    { "id": "gi-gallbladder", "look": "Emerald green bile storage sac" },
-    { "id": "gi-pancreas", "look": "Golden-amber exocrine/endocrine gland" },
-    { "id": "gi-small-intestine", "look": "Warm pink nutrient absorption loops" },
-    { "id": "gi-large-intestine", "look": "Tan segmented water absorption colon" }
+    { "id": "gi-esophagus", "look": "Soft pinkish muscular swallowing tube with tissue subsurface scattering" },
+    { "id": "gi-stomach", "look": "Coral muscular digestive reservoir with J-shaped curvatures" },
+    { "id": "gi-liver", "look": "Reddish-brown hepatic metabolic gland with right and left lobes" },
+    { "id": "gi-gallbladder", "look": "Emerald green bile storage sac with cystic duct" },
+    { "id": "gi-pancreas", "look": "Golden-amber exocrine/endocrine gland with pancreatic duct" },
+    { "id": "gi-small-intestine", "look": "Continuous warm pink nutrient absorption loops (duodenum, jejunum, ileum)" },
+    { "id": "gi-large-intestine", "look": "Segmented water absorption colon with caecum, appendix, and haustra" }
   ],
   "provenance": {
-    "method": "scanned-sourced",
-    "source": "https://github.com/Z-Anatomy/Z-Anatomy",
-    "generator": "tools/extract_z_anatomy_digestive.py",
-    "generatedBy": "Z-Anatomy (CC BY-SA 4.0)",
-    "license": "CC BY-SA 4.0",
-    "date": "2026-08-27"
+    "method": "procedural-blender-python",
+    "generator": "build_digestive.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-09"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -39,12 +42,19 @@
   ],
   "tags": [
     "digestive-system",
+    "alimentary-canal",
     "stomach",
     "liver",
+    "gallbladder",
     "pancreas",
-    "intestine",
+    "duodenum",
+    "small-intestine",
+    "large-intestine",
+    "colon",
+    "appendix",
     "nutrition",
     "life-processes",
-    "cbse-class-10"
+    "cbse-class-10",
+    "cbse-class-11"
   ]
 }

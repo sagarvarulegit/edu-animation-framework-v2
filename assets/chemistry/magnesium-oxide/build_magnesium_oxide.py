@@ -24,7 +24,7 @@ def build_magnesium_oxide():
 def main():
     out = kit.output_dir(Path(__file__).resolve().parent / "out")
     kit.reset_scene(); objects = build_magnesium_oxide(); kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48); kit.frame_camera(objects, lens=55.0)
+    kit.configure_render(width=1280, height=720, samples=24); kit.frame_camera(objects, lens=55.0)
     kit.save_blend(out / f"{ASSET_ID}.blend"); kit.export_glb(out / f"{ASSET_ID}.glb"); kit.render_preview(out / "preview.png")
 
 

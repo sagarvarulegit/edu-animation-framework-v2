@@ -111,6 +111,16 @@
       "metallic": 0.85,
       "roughness": 0.35
     },
+    "metal_magnesium": {
+      "baseColor": "#b0bec5",
+      "metallic": 0.85,
+      "roughness": 0.35
+    },
+    "magnesium_ribbon": {
+      "baseColor": "#b0bec5",
+      "metallic": 0.85,
+      "roughness": 0.35
+    },
     "powder_magnesium_oxide": {
       "baseColor": "#f1f5f9",
       "metallic": 0.0,
@@ -130,6 +140,13 @@
       "emissionColor": "#38bdf8",
       "emissionStrength": 6.0
     },
+    "particle_electron": {
+      "baseColor": "#38bdf8",
+      "metallic": 0.2,
+      "roughness": 0.15,
+      "emissionColor": "#38bdf8",
+      "emissionStrength": 3.0
+    },
     "prism_optical_glass": {
       "baseColor": "#f8fafc",
       "metallic": 0.0,
@@ -140,7 +157,74 @@
     "tissue_myocardium": {
       "baseColor": "#991b1b",
       "metallic": 0.05,
-      "roughness": 0.65
+      "roughness": 0.65,
+      "subsurfaceWeight": 0.35,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
+    },
+    "tissueMuscle": {
+      "baseColor": "#991b1b",
+      "metallic": 0.0,
+      "roughness": 0.35,
+      "subsurfaceWeight": 0.35,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
+    },
+    "tissueOrgan": {
+      "baseColor": "#c2410c",
+      "metallic": 0.0,
+      "roughness": 0.35,
+      "subsurfaceWeight": 0.30,
+      "subsurfaceRadius": [1.0, 0.25, 0.15],
+      "subsurfaceScale": 0.02
+    },
+    "tissueNerve": {
+      "baseColor": "#fef08a",
+      "metallic": 0.0,
+      "roughness": 0.30,
+      "subsurfaceWeight": 0.40,
+      "subsurfaceRadius": [0.8, 0.6, 0.3],
+      "subsurfaceScale": 0.015
+    },
+    "tissueFat": {
+      "baseColor": "#fef9c3",
+      "metallic": 0.0,
+      "roughness": 0.40,
+      "subsurfaceWeight": 0.50,
+      "subsurfaceRadius": [1.0, 0.8, 0.3],
+      "subsurfaceScale": 0.03
+    },
+    "tissueSclera": {
+      "baseColor": "#f8fafc",
+      "metallic": 0.0,
+      "roughness": 0.25,
+      "subsurfaceWeight": 0.25,
+      "subsurfaceRadius": [0.8, 0.7, 0.6],
+      "subsurfaceScale": 0.01
+    },
+    "tissueRetina": {
+      "baseColor": "#9a3412",
+      "metallic": 0.0,
+      "roughness": 0.35,
+      "subsurfaceWeight": 0.30,
+      "subsurfaceRadius": [1.0, 0.3, 0.1],
+      "subsurfaceScale": 0.015
+    },
+    "tissueCortex": {
+      "baseColor": "#fbcfe8",
+      "metallic": 0.0,
+      "roughness": 0.40,
+      "subsurfaceWeight": 0.35,
+      "subsurfaceRadius": [1.0, 0.4, 0.2],
+      "subsurfaceScale": 0.02
+    },
+    "tissueBone": {
+      "baseColor": "#f5f5f4",
+      "metallic": 0.0,
+      "roughness": 0.35,
+      "subsurfaceWeight": 0.20,
+      "subsurfaceRadius": [0.8, 0.7, 0.5],
+      "subsurfaceScale": 0.01
     },
     "plastic_labware": {
       "baseColor": "#e2e8f0",

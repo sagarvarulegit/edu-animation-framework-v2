@@ -15,7 +15,7 @@ import edu_asset_kit as kit
 ASSET_ID = "bunsen-burner"
 
 
-def build_burner():
+def build_burner(include_flame=True):
     # 1. Authentic Materials
     cast_iron_mat = kit.add_material(f"{ASSET_ID}-cast-iron", (0.12, 0.12, 0.14), metallic=0.75, roughness=0.55)
     brass_mat = kit.add_machined_metal_material(f"{ASSET_ID}-brass", (0.85, 0.65, 0.22), metallic=0.92, roughness=0.25)
@@ -54,14 +54,15 @@ def build_burner():
     barb_obj.data.materials.append(brass_mat)
     objects.append(barb_obj)
 
-    # 4. Rotatable Brass Air Collar with Dual Intake Ports
+    # 4. Rotatable Brass Air Collar with Dual Intake Ports (Closed solid manifold loop)
     collar_profile = [
         (0.0082, 0.018),
         (0.0115, 0.018),
         (0.0120, 0.020), # Knurled rim
         (0.0120, 0.038), # Collar body
         (0.0115, 0.040), # Upper knurl
-        (0.0082, 0.040)
+        (0.0082, 0.040),
+        (0.0082, 0.018)  # Closes inner cylindrical wall
     ]
     collar_obj = kit.lathe_object(f"{ASSET_ID}-air-collar", collar_profile, segments=48, material=brass_mat)
     objects.append(collar_obj)
@@ -84,7 +85,7 @@ def build_burner():
         hole_obj.scale = (1.0, 1.0, 0.8)
         objects.append(hole_obj)
 
-    # 5. Nickel-Plated Brass Mixing Chimney/Barrel (Main Burner Tube)
+    # 5. Nickel-Plated Brass Mixing Chimney/Barrel (Closed solid manifold loop)
     barrel_h = 0.125 # 125mm standard laboratory height
     barrel_profile = [
         # Outer surface
@@ -97,10 +98,47 @@ def build_burner():
         (0.0070, barrel_h + 0.0005),# Inner lip
         # Inner bore (Hollow central mixing tube)
         (0.0055, barrel_h - 0.002),
-        (0.0055, 0.038)
+        (0.0055, 0.038),
+        (0.0065, 0.038)  # Closes bottom annular face
     ]
     barrel_obj = kit.lathe_object(f"{ASSET_ID}-stem", barrel_profile, segments=64, material=nickel_mat)
     objects.append(barrel_obj)
+
+    # 6. Multi-zone Bunsen Burner Flame (Dual-zone blue flame)
+    if include_flame:
+        # Inner reducing core cone (#38bdf8, emission strength 10.0)
+        inner_flame_mat = bpy.data.materials.new(f"{ASSET_ID}-flame-inner")
+        inner_flame_mat.use_nodes = True
+        bsdf_fi = inner_flame_mat.node_tree.nodes["Principled BSDF"]
+        bsdf_fi.inputs["Base Color"].default_value = (0.22, 0.74, 0.97, 1.0)
+        bsdf_fi.inputs["Emission Color"].default_value = (0.22, 0.74, 0.97, 1.0)
+        bsdf_fi.inputs["Emission Strength"].default_value = 10.0
+        bsdf_fi.inputs["Roughness"].default_value = 0.2
+
+        # Outer oxidizing flame cone (#60a5fa, emission strength 6.0)
+        outer_flame_mat = bpy.data.materials.new(f"{ASSET_ID}-flame-outer")
+        outer_flame_mat.use_nodes = True
+        bsdf_fo = outer_flame_mat.node_tree.nodes["Principled BSDF"]
+        bsdf_fo.inputs["Base Color"].default_value = (0.38, 0.65, 0.98, 1.0)
+        bsdf_fo.inputs["Emission Color"].default_value = (0.38, 0.65, 0.98, 1.0)
+        bsdf_fo.inputs["Emission Strength"].default_value = 6.0
+        bsdf_fo.inputs["Roughness"].default_value = 0.2
+
+        outer_flame_h = 0.045
+        outer_flame = kit.primitive_object(
+            f"{ASSET_ID}-flame-outer", "cone", outer_flame_mat,
+            size=(0.015, 0.002, outer_flame_h),
+            location=(0.0, 0.0, barrel_h + outer_flame_h / 2)
+        )
+        objects.append(outer_flame)
+
+        inner_flame_h = 0.024
+        inner_flame = kit.primitive_object(
+            f"{ASSET_ID}-flame-inner", "cone", inner_flame_mat,
+            size=(0.011, 0.001, inner_flame_h),
+            location=(0.0, 0.0, barrel_h + inner_flame_h / 2)
+        )
+        objects.append(inner_flame)
 
     return objects
 
@@ -110,7 +148,7 @@ def main():
     kit.reset_scene()
     objects = build_burner()
     kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.configure_render(width=1280, height=720, samples=24)
     kit.frame_camera(objects, lens=50.0)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")

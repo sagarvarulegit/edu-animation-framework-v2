@@ -1,4 +1,4 @@
-﻿"""
+"""
 build_magnesium_burning_setup.py — Complete Assembled Chemistry Lab Bench Setup
 CBSE Class 10 Chemistry, Chapter 1: Chemical Reactions and Equations (Activity 1.1)
 """
@@ -114,7 +114,8 @@ def build_setup():
         (0.0118, 0.024),
         (0.0118, 0.040),
         (0.0112, 0.042),
-        (0.0080, 0.042)
+        (0.0080, 0.042),
+        (0.0080, 0.022)  # Closes inner cylindrical wall
     ]
     collar_obj = kit.lathe_object(f"{ASSET_ID}-air-collar", collar_profile, segments=36, material=brass_mat)
     objects.append(collar_obj)
@@ -128,7 +129,8 @@ def build_setup():
         (0.0078, stem_h - 0.001),
         (0.0080, stem_h),
         (0.0060, stem_h),
-        (0.0055, 0.042)
+        (0.0055, 0.042),
+        (0.0065, 0.042)  # Closes bottom annular face
     ]
     stem_obj = kit.lathe_object(f"{ASSET_ID}-stem", stem_profile, segments=48, material=nickel_mat)
     objects.append(stem_obj)
@@ -170,11 +172,12 @@ def build_setup():
 
     # =========================================================================
     # 4. BOROSILICATE WATCH GLASS WITH COLLECTED MgO WHITE POWDER
+    # Positioned directly beneath ribbon burning zone to collect falling ash
     # =========================================================================
-    wg_x = 0.075
-    wg_y = -0.040
+    wg_x = 0.035
+    wg_y = 0.000
     wg_z = tile_h
-    wg_rad = 0.040 # 80mm diameter watch glass
+    wg_rad = 0.040  # 80mm diameter watch glass
     
     wg_profile = []
     for deg in range(0, 36, 3):
@@ -198,38 +201,151 @@ def build_setup():
     objects.append(mgo_heap)
 
     # =========================================================================
-    # 5. LABORATORY CRUCIBLE TONGS & MAGNESIUM RIBBON
+    # 5. RETORT STAND WITH BOSSHEAD & EXTENSION UTILITY CLAMP
+    # Provides physical ground support for the crucible tongs holding the ribbon
     # =========================================================================
-    tongs_len = 0.200
-    tongs_x_pivot = 0.170
-    tongs_y_pivot = 0.0
-    tongs_z_hold = stem_h + 0.032 # Holding ribbon right at flame tip
+    stand_base_x = 0.160
+    stand_base_y = 0.075
+    stand_base_z = tile_h + 0.006
+    stand_h = 0.280
 
-    # Tongs Left Arm
-    arm_left = kit.primitive_object(f"{ASSET_ID}-tongs-arm-left", "cube", tongs_steel_mat,
-                                    size=(tongs_len, 0.008, 0.004),
-                                    location=(tongs_x_pivot - tongs_len / 2 + 0.02, 0.006, tongs_z_hold))
-    arm_left.rotation_euler = (0.0, 0.0, math.radians(-4.0))
-    objects.append(arm_left)
+    # Cast Iron Heavy Rectangular Retort Base
+    stand_base = kit.primitive_object(
+        f"{ASSET_ID}-retort-base", "cube", cast_iron_mat,
+        size=(0.140, 0.090, 0.012),
+        location=(stand_base_x, stand_base_y, stand_base_z)
+    )
+    objects.append(stand_base)
 
-    # Tongs Right Arm
-    arm_right = kit.primitive_object(f"{ASSET_ID}-tongs-arm-right", "cube", tongs_steel_mat,
-                                     size=(tongs_len, 0.008, 0.004),
-                                     location=(tongs_x_pivot - tongs_len / 2 + 0.02, -0.006, tongs_z_hold))
-    arm_right.rotation_euler = (0.0, 0.0, math.radians(4.0))
-    objects.append(arm_right)
+    # Vertical Steel Retort Rod
+    rod_x = stand_base_x + 0.040
+    rod_y = stand_base_y
+    rod_z = stand_base_z + stand_h / 2
+    stand_rod = kit.primitive_object(
+        f"{ASSET_ID}-retort-rod", "cylinder", nickel_mat,
+        size=(0.010, 0.010, stand_h),
+        location=(rod_x, rod_y, rod_z)
+    )
+    objects.append(stand_rod)
 
-    # Tongs Pivot Hinge Pin
-    pivot_pin = kit.primitive_object(f"{ASSET_ID}-tongs-pivot", "cylinder", tongs_steel_mat,
-                                     size=(0.010, 0.010, 0.018),
-                                     location=(tongs_x_pivot, 0.0, tongs_z_hold))
-    objects.append(pivot_pin)
+    tongs_z_hold = stem_h + 0.024  # Positioned right in the flame combustion zone
+
+    # Cast Alloy Bosshead Clamp (Right-angle connector)
+    bosshead = kit.primitive_object(
+        f"{ASSET_ID}-bosshead", "cube", cast_iron_mat,
+        size=(0.022, 0.022, 0.026),
+        location=(rod_x, rod_y, tongs_z_hold)
+    )
+    bosshead_screw_1 = kit.primitive_object(
+        f"{ASSET_ID}-bosshead-screw-1", "cylinder", brass_mat,
+        size=(0.006, 0.006, 0.018),
+        location=(rod_x + 0.014, rod_y, tongs_z_hold)
+    )
+    bosshead_screw_1.rotation_euler = (0, 1.5708, 0)
+    bosshead_screw_2 = kit.primitive_object(
+        f"{ASSET_ID}-bosshead-screw-2", "cylinder", brass_mat,
+        size=(0.006, 0.006, 0.018),
+        location=(rod_x, rod_y + 0.014, tongs_z_hold)
+    )
+    bosshead_screw_2.rotation_euler = (1.5708, 0, 0)
+    objects.extend([bosshead, bosshead_screw_1, bosshead_screw_2])
+
+    # Extension Utility Clamp Rod & Jaws
+    clamp_ext_len = 0.075
+    clamp_rod = kit.primitive_object(
+        f"{ASSET_ID}-clamp-extension-rod", "cylinder", nickel_mat,
+        size=(0.008, 0.008, clamp_ext_len),
+        location=(rod_x, rod_y - clamp_ext_len / 2, tongs_z_hold)
+    )
+    clamp_rod.rotation_euler = (1.5708, 0, 0)
+    objects.append(clamp_rod)
+
+    # Clamp Jaws Holding Tongs Handles
+    clamp_jaw_upper = kit.primitive_object(
+        f"{ASSET_ID}-clamp-jaw-upper", "cube", tongs_steel_mat,
+        size=(0.012, 0.024, 0.006),
+        location=(rod_x - 0.015, rod_y - clamp_ext_len, tongs_z_hold + 0.006)
+    )
+    clamp_jaw_lower = kit.primitive_object(
+        f"{ASSET_ID}-clamp-jaw-lower", "cube", tongs_steel_mat,
+        size=(0.012, 0.024, 0.006),
+        location=(rod_x - 0.015, rod_y - clamp_ext_len, tongs_z_hold - 0.006)
+    )
+    objects.extend([clamp_jaw_upper, clamp_jaw_lower])
+
+    # =========================================================================
+    # 6. AUTHENTIC CRUCIBLE TONGS (Scissor pivot with bowed gripping tips)
+    # =========================================================================
+    tongs_pivot_x = 0.125
+    tongs_pivot_y = 0.000
+
+    # Pivot Rivet Pin
+    tongs_pin = kit.primitive_object(
+        f"{ASSET_ID}-tongs-pin", "cylinder", tongs_steel_mat,
+        size=(0.006, 0.006, 0.014),
+        location=(tongs_pivot_x, tongs_pivot_y, tongs_z_hold)
+    )
+    objects.append(tongs_pin)
+
+    # Left & Right Handles (Rear shanks clamped by utility clamp)
+    handle_len = 0.080
+    handle_left = kit.primitive_object(
+        f"{ASSET_ID}-tongs-handle-left", "cube", tongs_steel_mat,
+        size=(handle_len, 0.005, 0.004),
+        location=(tongs_pivot_x + handle_len / 2, 0.008, tongs_z_hold)
+    )
+    handle_left.rotation_euler = (0, 0, math.radians(6.0))
+    handle_right = kit.primitive_object(
+        f"{ASSET_ID}-tongs-handle-right", "cube", tongs_steel_mat,
+        size=(handle_len, 0.005, 0.004),
+        location=(tongs_pivot_x + handle_len / 2, -0.008, tongs_z_hold)
+    )
+    handle_right.rotation_euler = (0, 0, math.radians(-6.0))
+    objects.extend([handle_left, handle_right])
+
+    # Finger loop rings at end of handles (closed profile)
+    loop_profile = [(0.010, 0.0), (0.012, 0.0), (0.012, 0.003), (0.010, 0.003), (0.010, 0.0)]
+    loop_left = kit.lathe_object(
+        f"{ASSET_ID}-loop-left",
+        loop_profile,
+        segments=24, material=tongs_steel_mat,
+        location=(tongs_pivot_x + handle_len, 0.016, tongs_z_hold)
+    )
+    loop_right = kit.lathe_object(
+        f"{ASSET_ID}-loop-right",
+        loop_profile,
+        segments=24, material=tongs_steel_mat,
+        location=(tongs_pivot_x + handle_len, -0.016, tongs_z_hold)
+    )
+    objects.extend([loop_left, loop_right])
+
+    # Front Bowed Gripping Jaws (Curved outwards then inward to pinch ribbon)
+    jaw_pts_left = [
+        Vector((tongs_pivot_x, 0.002, tongs_z_hold)),
+        Vector((tongs_pivot_x - 0.035, 0.014, tongs_z_hold)),
+        Vector((tongs_pivot_x - 0.065, 0.006, tongs_z_hold)),
+        Vector((tongs_pivot_x - 0.080, 0.0015, tongs_z_hold)),
+    ]
+    jaw_left = kit.primitive_object(
+        f"{ASSET_ID}-tongs-jaw-left", "cube", tongs_steel_mat,
+        size=(0.080, 0.005, 0.004),
+        location=(tongs_pivot_x - 0.040, 0.008, tongs_z_hold)
+    )
+    jaw_left.rotation_euler = (0, 0, math.radians(-5.0))
+
+    jaw_right = kit.primitive_object(
+        f"{ASSET_ID}-tongs-jaw-right", "cube", tongs_steel_mat,
+        size=(0.080, 0.005, 0.004),
+        location=(tongs_pivot_x - 0.040, -0.008, tongs_z_hold)
+    )
+    jaw_right.rotation_euler = (0, 0, math.radians(5.0))
+    objects.extend([jaw_left, jaw_right])
 
     # Wavy Elemental Magnesium Ribbon Strip (Held firmly at flame position)
-    ribbon_len = 0.120
-    ribbon_w = 0.010
-    ribbon_thick = 0.0015
-    ribbon_stations = 80
+    ribbon_len = 0.085
+    ribbon_w = 0.008
+    ribbon_thick = 0.0012
+    ribbon_stations = 60
     
     verts = []
     half_w = ribbon_w / 2
@@ -237,8 +353,9 @@ def build_setup():
     
     for s in range(ribbon_stations):
         t = s / (ribbon_stations - 1)
-        rx = (t - 0.5) * ribbon_len + 0.010 # Extends from burner (x=0) into tongs tip (x=0.06)
-        rz = tongs_z_hold + 0.004 * math.sin(2.0 * math.pi * 3.0 * t)
+        # Tip extends from flame center (x=0) to tongs tips (x=0.045)
+        rx = -0.005 + t * ribbon_len
+        rz = tongs_z_hold + 0.0025 * math.sin(2.0 * math.pi * 2.5 * t)
         for sign_y in (+1, -1):
             for sign_z in (+1, -1):
                 verts.append((rx, sign_y * half_w, rz + sign_z * half_th))
@@ -260,7 +377,7 @@ def build_setup():
     objects.append(ribbon_obj)
 
     # =========================================================================
-    # 6. SANDPAPER STRIP (Pre-experiment cleaning step)
+    # 7. SANDPAPER STRIP (Pre-experiment cleaning step)
     # =========================================================================
     sp_x = -0.060
     sp_y = -0.065
@@ -278,7 +395,7 @@ def main():
     kit.reset_scene()
     objects = build_setup()
     kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.configure_render(width=1280, height=720, samples=24)
     
     # Angled studio camera showcasing burner, glowing flame, tongs, ribbon, and watch glass
     cam_data = bpy.data.cameras.new("edu_camera")

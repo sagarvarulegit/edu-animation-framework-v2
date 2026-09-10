@@ -54,7 +54,7 @@ def main():
     kit.reset_scene()
     objects = build_tongs()
     kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=48)
+    kit.configure_render(width=1280, height=720, samples=24)
     kit.frame_camera(objects, lens=58.0)
     kit.save_blend(out / f"{ASSET_ID}.blend")
     kit.export_glb(out / f"{ASSET_ID}.glb")

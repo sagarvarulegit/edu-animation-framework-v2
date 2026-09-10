@@ -1,0 +1,75 @@
+{
+  "id": "bar-magnet",
+  "name": "Permanent Bar Magnet & Magnetic Field Lines",
+  "category": "physics",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "AlNiCo rectangular permanent bar magnet with distinct North (red) and South (blue) magnetic poles, accompanied by 3D toroidal magnetic field lines and an orientation compass needle (CBSE Class 10 Magnetic Effects Ch 12).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "real-world-scale",
+    "width": 0.22,
+    "height": 0.06,
+    "depth": 0.14
+  },
+  "simplifications": [
+    "Magnetic field lines represented as discrete 3D spatial curve loops.",
+    "Pole boundary shown as sharp midpoint transition."
+  ],
+  "materials": [
+    {
+      "id": "magnet-north-red",
+      "look": "Vibrant red painted North magnetic pole"
+    },
+    {
+      "id": "magnet-south-blue",
+      "look": "Cobalt blue painted South magnetic pole"
+    },
+    {
+      "id": "magnetic-flux-line",
+      "look": "Luminescent cyan field flux curve"
+    },
+    {
+      "id": "compass-brass",
+      "look": "Turned brass pocket compass casing"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_bar_magnet.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/bar-magnet.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/bar-magnet.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/bar-magnet.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "magnet",
+    "bar-magnet",
+    "magnetic-field",
+    "north-pole",
+    "south-pole",
+    "field-lines",
+    "compass",
+    "CBSE-class-10",
+    "electromagnetism"
+  ]
+}

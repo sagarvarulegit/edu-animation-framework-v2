@@ -1,0 +1,69 @@
+{
+  "id": "soap-micelle",
+  "name": "Soap Micelle with Central Oil Droplet",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "3D spherical colloidal soap micelle cluster with hydrophobic hydrocarbon tails embedded inwards around a central oil droplet and hydrophilic polar ionic carboxylate heads projecting outward into water (CBSE Class 10 Chemistry Ch 4 Figure 4.12).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "micelleDiameter": 0.12
+  },
+  "simplifications": [
+    "16 radial amphiphilic soap molecules arrayed around central oil sphere.",
+    "Hydrophobic tails shown as zig-zag aliphatic rods and heads as charged ionic spheres."
+  ],
+  "materials": [
+    {
+      "id": "micelle-ionic-head",
+      "look": "Bright polar ionic carboxylate head (blue-violet sphere, -COO- Na+)"
+    },
+    {
+      "id": "micelle-hydrocarbon-tail",
+      "look": "Non-polar hydrophobic carbon chain (gold/amber zig-zag tail)"
+    },
+    {
+      "id": "micelle-oil-droplet",
+      "look": "Translucent organic oil/grease dirt core droplet"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_soap_micelle.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/soap-micelle.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/soap-micelle.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/soap-micelle.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "soap",
+    "micelle",
+    "cleansing-action",
+    "hydrophilic",
+    "hydrophobic",
+    "colloid",
+    "emulsion",
+    "CBSE-class-10",
+    "chemistry"
+  ]
+}

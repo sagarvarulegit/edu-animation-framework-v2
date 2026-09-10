@@ -2,6 +2,7 @@ import math
 import sys
 from pathlib import Path
 
+# Add shared python asset kit to path
 KIT_PATH = Path(__file__).resolve().parent.parent.parent / "python"
 if str(KIT_PATH) not in sys.path:
     sys.path.insert(0, str(KIT_PATH))
@@ -10,47 +11,60 @@ import edu_asset_kit as kit
 import bpy
 
 
+def make_torus_ring(name, radius, tube_r=0.0009, segments=64, material=None):
+    sub = 12
+    profile = []
+    for j in range(sub + 1):
+        ang = 2.0 * math.pi * j / sub
+        profile.append((radius + tube_r * math.cos(ang), tube_r * math.sin(ang)))
+    return kit.lathe_object(name, profile, segments=segments, material=material)
+
+
 def main():
     out = kit.output_dir(Path(__file__).parent / "out")
     kit.reset_scene()
     kit.setup_world_and_light()
 
-    # Materials
-    core_mat = kit.add_material("OxygenCoreMat", (0.97, 0.44, 0.44), metallic=0.3, roughness=0.2)
-    proton_mat = kit.add_material("ProtonMat", (0.94, 0.27, 0.27), metallic=0.1, roughness=0.3)
-    neutron_mat = kit.add_material("NeutronMat", (0.39, 0.45, 0.55), metallic=0.1, roughness=0.5)
-    electron_mat = kit.add_material("OxygenElectronMat", (0.98, 0.44, 0.52), metallic=0.8, roughness=0.1)
-    ring_mat = kit.add_material("RingMat", (0.38, 0.20, 0.25), metallic=0.5, roughness=0.4)
+    # Materials with authentic emission
+    proton_mat = kit.add_material("ProtonMat", (0.95, 0.22, 0.22), metallic=0.1, roughness=0.2)
+    bsdf_p = proton_mat.node_tree.nodes["Principled BSDF"]
+    bsdf_p.inputs["Emission Color"].default_value = (0.95, 0.22, 0.22, 1.0)
+    bsdf_p.inputs["Emission Strength"].default_value = 1.2
 
-    # 1. Central Nucleus Sphere
-    core = kit.primitive_object("oxygen_nucleus", "uv_sphere", core_mat, size=(0.044, 0.044, 0.044))
+    neutron_mat = kit.add_material("NeutronMat", (0.45, 0.50, 0.60), metallic=0.3, roughness=0.4)
 
-    # Nucleons (8 protons, 8 neutrons)
-    nucleons = []
+    # Unified electron styling synchronized to design token (particle_electron / cyan #38bdf8)
+    electron_mat = kit.add_material_from_token("ElectronMat", "particle_electron")
+    bsdf_e = electron_mat.node_tree.nodes["Principled BSDF"]
+    bsdf_e.inputs["Emission Color"].default_value = (0.15, 0.78, 1.0, 1.0)
+    bsdf_e.inputs["Emission Strength"].default_value = 3.0
+
+    ring_mat = kit.add_material("RingMat", (0.25, 0.40, 0.60), metallic=0.6, roughness=0.3)
+
+    # 1. Nucleons (8 protons, 8 neutrons)
+    all_objs = []
     golden_ratio = (1 + math.sqrt(5)) / 2
     for i in range(16):
         theta = 2 * math.pi * i / golden_ratio
         phi = math.acos(1 - 2 * (i + 0.5) / 16)
-        r = 0.018 * math.pow((i + 1) / 16, 1 / 3)
+        r = 0.015 * math.pow((i + 1) / 16, 1 / 3)
         x = r * math.sin(phi) * math.cos(theta)
         y = r * math.sin(phi) * math.sin(theta)
         z = r * math.cos(phi)
         mat = proton_mat if i < 8 else neutron_mat
-        nuc = kit.primitive_object(f"nucleon_{i}", "uv_sphere", mat, size=(0.010, 0.010, 0.010), location=(x, y, z))
-        nucleons.append(nuc)
+        nuc = kit.primitive_object(f"nucleon_{i}", "uv_sphere", mat, size=(0.009, 0.009, 0.009), location=(x, y, z))
+        all_objs.append(nuc)
 
-    # 2. Concentric Electron Shells [2, 6]
+    # 2. Concentric Electron Shells [2, 6] (K, L)
     shells = [
-        {"radius": 0.055, "count": 2},
-        {"radius": 0.095, "count": 6},
+        {"radius": 0.042, "count": 2},
+        {"radius": 0.076, "count": 6},
     ]
-
-    all_objs = [core, *nucleons]
 
     for s_idx, shell in enumerate(shells):
         r = shell["radius"]
         count = shell["count"]
-        ring = kit.primitive_object(f"shell_ring_{s_idx}", "cylinder", ring_mat, size=(r * 2, r * 2, 0.0016))
+        ring = make_torus_ring(f"shell_ring_{s_idx}", r, tube_r=0.0008, material=ring_mat)
         all_objs.append(ring)
 
         for e_idx in range(count):
@@ -61,17 +75,18 @@ def main():
                 f"electron_{s_idx}_{e_idx}",
                 "uv_sphere",
                 electron_mat,
-                size=(0.010, 0.010, 0.010),
+                size=(0.008, 0.008, 0.008),
                 location=(ex, ey, 0.0)
             )
             all_objs.append(elec)
 
     kit.frame_camera(all_objs, lens=50.0)
-    kit.configure_render(width=1280, height=720, samples=32)
+    kit.configure_render(width=1280, height=720, samples=24)
 
     kit.save_blend(out / "oxygen-atom.blend")
     kit.export_glb(out / "oxygen-atom.glb")
     kit.render_preview(out / "preview.png")
+    print("[OK] High-fidelity oxygen-atom built and rendered.")
 
 
 if __name__ == "__main__":

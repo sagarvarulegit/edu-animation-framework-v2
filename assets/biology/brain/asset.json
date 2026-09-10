@@ -3,26 +3,32 @@
   "name": "Human Brain (Cerebrum, Cerebellum & Brainstem)",
   "category": "biology",
   "type": "prop",
-  "version": "0.2.0",
+  "version": "1.1.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomically accurate 3D model of the human brain showing Cerebrum with cortical sulci/gyri (Frontal, Parietal, Temporal, Occipital lobes), Cerebellum, Pons, Medulla Oblongata, and Corpus Callosum. Extracted from Z-Anatomy. Aligned with CBSE Class 10 Chapter 6 (Control and Coordination).",
+  "semanticDescription": "Anatomically accurate 3D model of the human brain showing Cerebrum with cortical gyri ridges and sulci furrows (Frontal, Parietal, Temporal, and Occipital lobes), Cerebellum with horizontal folia striping, Brainstem (Midbrain, Pons, Medulla Oblongata, Spinal Cord), C-shaped commissural arch of Corpus Callosum, Thalamus, and Hypothalamus with Infundibulum and Pituitary Gland.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
+  "simplifications": [
+    "Medial sagittal section exposes deep commissural and diencephalic anatomy (corpus callosum, thalamus, hypothalamus) and brainstem",
+    "Cerebral cortical gyri and sulci generated via procedural multi-frequency 3D sinusoidal noise displacement",
+    "Cerebellar folia modeled with characteristic horizontal transverse striping"
+  ],
   "materials": [
-    { "id": "brain-cerebrum", "look": "Soft organic cortical pink-beige" },
-    { "id": "brain-cerebellum", "look": "Terra-cotta cerebellar folia" },
-    { "id": "brain-stem", "look": "Light ivory pons and medulla oblongata" },
-    { "id": "brain-deep", "look": "Warm ivory corpus callosum and thalamus" }
+    { "id": "brain-cortex", "look": "Gray matter cerebral cortex with subsurface scattering (pink-beige)" },
+    { "id": "brain-cerebellum", "look": "Foliated cerebellar cortex (terra-cotta)" },
+    { "id": "brain-stem", "look": "Brainstem nerve tracts and cranial projections with subsurface scattering" },
+    { "id": "brain-corpus-callosum", "look": "White matter commissural tract arch with subsurface scattering" },
+    { "id": "brain-thalamus", "look": "Ovoid sensory relay nucleus" },
+    { "id": "brain-pituitary", "look": "Neuroendocrine hypophysis gland" }
   ],
   "provenance": {
-    "method": "scanned-sourced",
-    "source": "https://github.com/Z-Anatomy/Z-Anatomy",
-    "generator": "tools/extract_z_anatomy_brain.py",
-    "generatedBy": "Z-Anatomy (CC BY-SA 4.0)",
-    "license": "CC BY-SA 4.0",
-    "date": "2026-08-27"
+    "method": "procedural-blender-python",
+    "generator": "build_brain.py",
+    "source": "NCERT Class 10/11 Biology Benchmarks & Procedural Geometry",
+    "license": "project-original",
+    "date": "2026-09-09"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -41,7 +47,11 @@
     "brainstem",
     "pons",
     "medulla",
+    "corpus-callosum",
+    "thalamus",
+    "hypothalamus",
     "nervous-system",
-    "cbse-class-10"
+    "cbse-class-10",
+    "cbse-class-11"
   ]
 }

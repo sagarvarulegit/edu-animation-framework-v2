@@ -42,7 +42,7 @@
   ],
   "provenance": {
     "method": "procedural-blender-python",
-    "generator": "build_full_circuit.py",
+    "generator": "build_circuit.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
     "date": "2026-08-26"

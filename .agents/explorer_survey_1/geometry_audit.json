@@ -1,0 +1,4470 @@
+{
+  "brain": {
+    "total_objects": 10,
+    "total_verts": 9338,
+    "total_faces": 9798,
+    "total_non_manifold": 0,
+    "materials": [
+      "brain-cerebellum",
+      "brain-cerebrum",
+      "brain-corpus-callosum",
+      "brain-cortex",
+      "brain-pituitary",
+      "brain-stem",
+      "brain-thalamus"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 342760,
+    "objects": [
+      {
+        "name": "brain-cerebrum",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0912,
+          0.0646,
+          0.0608
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-cerebrum"
+        ]
+      },
+      {
+        "name": "brain-cortex",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.092,
+          0.0624,
+          0.0608
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-cortex"
+        ]
+      },
+      {
+        "name": "brain-corpus-callosum",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.038,
+          0.038,
+          0.006
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-corpus-callosum"
+        ]
+      },
+      {
+        "name": "brain-thalamus",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.018,
+          0.014,
+          0.014
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-thalamus"
+        ]
+      },
+      {
+        "name": "brain-hypothalamus",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.012,
+          0.008,
+          0.008
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-cortex"
+        ]
+      },
+      {
+        "name": "brain-pituitary",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.007,
+          0.007,
+          0.007
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-pituitary"
+        ]
+      },
+      {
+        "name": "brain-cerebellum",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.036,
+          0.032,
+          0.028
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-cerebellum"
+        ]
+      },
+      {
+        "name": "brain-pons",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.018,
+          0.016,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-stem"
+        ]
+      },
+      {
+        "name": "brain-medulla",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.022
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-stem"
+        ]
+      },
+      {
+        "name": "brain-spinal-cord",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.009,
+          0.009,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "brain-stem"
+        ]
+      }
+    ]
+  },
+  "digestive-system": {
+    "total_objects": 25,
+    "total_verts": 18088,
+    "total_faces": 19398,
+    "total_non_manifold": 0,
+    "materials": [
+      "digest-esophagus",
+      "digest-gallbladder",
+      "digest-large-int",
+      "digest-liver",
+      "digest-mouth",
+      "digest-pancreas",
+      "digest-rectum",
+      "digest-small-int",
+      "digest-stomach"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 663524,
+    "objects": [
+      {
+        "name": "digestive-system-mouth",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.024,
+          0.022,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-mouth"
+        ]
+      },
+      {
+        "name": "digestive-system-pharynx",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.01,
+          0.01,
+          0.014
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-esophagus"
+        ]
+      },
+      {
+        "name": "digestive-system-esophagus",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.046
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-esophagus"
+        ]
+      },
+      {
+        "name": "digestive-system-stomach-fundus",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.022,
+          0.018,
+          0.022
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-stomach"
+        ]
+      },
+      {
+        "name": "digestive-system-stomach-body",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.018,
+          0.018,
+          0.026
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-stomach"
+        ]
+      },
+      {
+        "name": "digestive-system-stomach-pylorus",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.011,
+          0.011,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-stomach"
+        ]
+      },
+      {
+        "name": "digestive-system-liver",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0319,
+          0.0151,
+          0.0201
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-liver"
+        ]
+      },
+      {
+        "name": "digestive-system-gallbladder",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.014
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-gallbladder"
+        ]
+      },
+      {
+        "name": "digestive-system-pancreas",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-pancreas"
+        ]
+      },
+      {
+        "name": "digestive-system-duodenum",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.009,
+          0.009,
+          0.018
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-4",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-5",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-small-int-6",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.012,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-small-int"
+        ]
+      },
+      {
+        "name": "digestive-system-caecum",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.016,
+          0.014,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-large-int"
+        ]
+      },
+      {
+        "name": "digestive-system-appendix",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.003,
+          0.003,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-large-int"
+        ]
+      },
+      {
+        "name": "digestive-system-asc-colon",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.036
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-large-int"
+        ]
+      },
+      {
+        "name": "digestive-system-trans-colon",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.046
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-large-int"
+        ]
+      },
+      {
+        "name": "digestive-system-desc-colon",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.034
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-large-int"
+        ]
+      },
+      {
+        "name": "digestive-system-sigmoid",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.011,
+          0.011,
+          0.018
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-large-int"
+        ]
+      },
+      {
+        "name": "digestive-system-rectum",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.018
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-rectum"
+        ]
+      },
+      {
+        "name": "digestive-system-anus",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.005
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "digest-rectum"
+        ]
+      }
+    ]
+  },
+  "dna-double-helix": {
+    "total_objects": 30,
+    "total_verts": 3722,
+    "total_faces": 5376,
+    "total_non_manifold": 162,
+    "materials": [
+      "dna-adenine",
+      "dna-backbone",
+      "dna-cytosine",
+      "dna-guanine",
+      "dna-thymine"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 180992,
+    "objects": [
+      {
+        "name": "dna-double-helix-backbone-0",
+        "verts": 41,
+        "faces": 0,
+        "dimensions": [
+          0.0282,
+          0.1033,
+          0.0279
+        ],
+        "non_manifold_edges": 40,
+        "non_manifold_verts": 41,
+        "materials": [
+          "dna-backbone"
+        ]
+      },
+      {
+        "name": "dna-double-helix-backbone-1",
+        "verts": 41,
+        "faces": 0,
+        "dimensions": [
+          0.0282,
+          0.1033,
+          0.0279
+        ],
+        "non_manifold_edges": 40,
+        "non_manifold_verts": 41,
+        "materials": [
+          "dna-backbone"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-0-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-0-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-3-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-3-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-6-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-6-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-9-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-9-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-12-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-12-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-15-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-15-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-18-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-18-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-21-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-21-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-24-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-24-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-27-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-27-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-30-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-30-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-33-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-33-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-36-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-adenine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-36-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-thymine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-39-a",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-guanine"
+        ]
+      },
+      {
+        "name": "dna-double-helix-pair-39-b",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "dna-cytosine"
+        ]
+      }
+    ]
+  },
+  "flower-anatomy": {
+    "total_objects": 20,
+    "total_verts": 17496,
+    "total_faces": 18528,
+    "total_non_manifold": 0,
+    "materials": [
+      "carpel-ovule",
+      "flower-petal",
+      "flower-stem",
+      "stamen-anther",
+      "stamen-filament"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 635620,
+    "objects": [
+      {
+        "name": "flower-anatomy-pedicel",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.045
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-receptacle",
+        "verts": 66,
+        "faces": 96,
+        "dimensions": [
+          0.048,
+          0.048,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-sepal--1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.042
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-sepal-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.042
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-petal-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.045,
+          0.01,
+          0.085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-petal"
+        ]
+      },
+      {
+        "name": "flower-anatomy-petal-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.045,
+          0.01,
+          0.085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-petal"
+        ]
+      },
+      {
+        "name": "flower-anatomy-petal-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.045,
+          0.01,
+          0.085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-petal"
+        ]
+      },
+      {
+        "name": "flower-anatomy-ovary",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.028,
+          0.02,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-ovule-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.007,
+          0.007,
+          0.009
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "carpel-ovule"
+        ]
+      },
+      {
+        "name": "flower-anatomy-ovule-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.007,
+          0.007,
+          0.009
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "carpel-ovule"
+        ]
+      },
+      {
+        "name": "flower-anatomy-style",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.004,
+          0.004,
+          0.05
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-stigma",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.008
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "flower-stem"
+        ]
+      },
+      {
+        "name": "flower-anatomy-filament-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.065
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-filament"
+        ]
+      },
+      {
+        "name": "flower-anatomy-anther-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.006,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-anther"
+        ]
+      },
+      {
+        "name": "flower-anatomy-filament-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.065
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-filament"
+        ]
+      },
+      {
+        "name": "flower-anatomy-anther-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.006,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-anther"
+        ]
+      },
+      {
+        "name": "flower-anatomy-filament-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.065
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-filament"
+        ]
+      },
+      {
+        "name": "flower-anatomy-anther-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.006,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-anther"
+        ]
+      },
+      {
+        "name": "flower-anatomy-filament-3",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.065
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-filament"
+        ]
+      },
+      {
+        "name": "flower-anatomy-anther-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.006,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "stamen-anther"
+        ]
+      }
+    ]
+  },
+  "human-excretory-system": {
+    "total_objects": 17,
+    "total_verts": 26474,
+    "total_faces": 26928,
+    "total_non_manifold": 168,
+    "materials": [
+      "adrenal-gland",
+      "kidney-cortex",
+      "renal-aorta",
+      "renal-cava",
+      "renal-pelvis",
+      "ureter-tube",
+      "urinary-bladder"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 865376,
+    "objects": [
+      {
+        "name": "human-excretory-system-aorta",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.18
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-aorta"
+        ]
+      },
+      {
+        "name": "human-excretory-system-vena-cava",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.014,
+          0.014,
+          0.18
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-cava"
+        ]
+      },
+      {
+        "name": "human-excretory-system-kidney-right",
+        "verts": 9410,
+        "faces": 9408,
+        "dimensions": [
+          0.0351,
+          0.0296,
+          0.064
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "kidney-cortex"
+        ]
+      },
+      {
+        "name": "human-excretory-system-adrenal-right",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.018,
+          0.018,
+          0.015
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "adrenal-gland"
+        ]
+      },
+      {
+        "name": "human-excretory-system-pelvis-right",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.018
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-pelvis"
+        ]
+      },
+      {
+        "name": "human-excretory-system-kidney-left",
+        "verts": 9410,
+        "faces": 9408,
+        "dimensions": [
+          0.0351,
+          0.0296,
+          0.064
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "kidney-cortex"
+        ]
+      },
+      {
+        "name": "human-excretory-system-adrenal-left",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.018,
+          0.018,
+          0.015
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "adrenal-gland"
+        ]
+      },
+      {
+        "name": "human-excretory-system-pelvis-left",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.018
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-pelvis"
+        ]
+      },
+      {
+        "name": "human-excretory-system-renal-artery-right",
+        "verts": 854,
+        "faces": 840,
+        "dimensions": [
+          0.0522,
+          0.0144,
+          0.0099
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-aorta"
+        ]
+      },
+      {
+        "name": "human-excretory-system-renal-artery-left",
+        "verts": 574,
+        "faces": 560,
+        "dimensions": [
+          0.0366,
+          0.0102,
+          0.0058
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-aorta"
+        ]
+      },
+      {
+        "name": "human-excretory-system-renal-vein-right",
+        "verts": 574,
+        "faces": 560,
+        "dimensions": [
+          0.0364,
+          0.0086,
+          0.0074
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-cava"
+        ]
+      },
+      {
+        "name": "human-excretory-system-renal-vein-left",
+        "verts": 854,
+        "faces": 840,
+        "dimensions": [
+          0.0521,
+          0.0137,
+          0.0114
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-cava"
+        ]
+      },
+      {
+        "name": "human-excretory-system-ureter-right",
+        "verts": 1134,
+        "faces": 1120,
+        "dimensions": [
+          0.0286,
+          0.0128,
+          0.0974
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "ureter-tube"
+        ]
+      },
+      {
+        "name": "human-excretory-system-ureter-left",
+        "verts": 1134,
+        "faces": 1120,
+        "dimensions": [
+          0.0286,
+          0.0128,
+          0.1094
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "ureter-tube"
+        ]
+      },
+      {
+        "name": "human-excretory-system-bladder",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.044,
+          0.038,
+          0.046
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "urinary-bladder"
+        ]
+      },
+      {
+        "name": "human-excretory-system-bladder-neck",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.022,
+          0.022,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "urinary-bladder"
+        ]
+      },
+      {
+        "name": "human-excretory-system-urethra",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.006,
+          0.006,
+          0.022
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "ureter-tube"
+        ]
+      }
+    ]
+  },
+  "human-eye": {
+    "total_objects": 9,
+    "total_verts": 4956,
+    "total_faces": 5306,
+    "total_non_manifold": 0,
+    "materials": [
+      "eye-ciliary",
+      "eye-cornea",
+      "eye-iris",
+      "eye-lens",
+      "eye-macula",
+      "eye-nerve",
+      "eye-pupil",
+      "eye-retina",
+      "eye-sclera"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 186788,
+    "objects": [
+      {
+        "name": "human-eye-sclera",
+        "verts": 1251,
+        "faces": 1233,
+        "dimensions": [
+          0.0798,
+          0.0798,
+          0.0798
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-sclera"
+        ]
+      },
+      {
+        "name": "human-eye-cornea",
+        "verts": 194,
+        "faces": 240,
+        "dimensions": [
+          0.04,
+          0.04,
+          0.011
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-cornea"
+        ]
+      },
+      {
+        "name": "human-eye-iris",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.024,
+          0.024,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-iris"
+        ]
+      },
+      {
+        "name": "human-eye-pupil",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.009,
+          0.009,
+          0.0025
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-pupil"
+        ]
+      },
+      {
+        "name": "human-eye-lens",
+        "verts": 242,
+        "faces": 288,
+        "dimensions": [
+          0.026,
+          0.026,
+          0.008
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-lens"
+        ]
+      },
+      {
+        "name": "human-eye-ciliary",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.032,
+          0.032,
+          0.003
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-ciliary"
+        ]
+      },
+      {
+        "name": "human-eye-retina",
+        "verts": 1259,
+        "faces": 1241,
+        "dimensions": [
+          0.0758,
+          0.0758,
+          0.0758
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-retina"
+        ]
+      },
+      {
+        "name": "human-eye-macula",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.006,
+          0.006,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-macula"
+        ]
+      },
+      {
+        "name": "human-eye-optic-nerve",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.01,
+          0.01,
+          0.034
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "eye-nerve"
+        ]
+      }
+    ]
+  },
+  "human-heart": {
+    "total_objects": 23,
+    "total_verts": 31172,
+    "total_faces": 31192,
+    "total_non_manifold": 508,
+    "materials": [
+      "heart-aorta",
+      "heart-atrium",
+      "heart-coronary",
+      "heart-coronary-vein",
+      "heart-fat",
+      "heart-myocardium",
+      "heart-pulm-vein",
+      "heart-pulmonary",
+      "heart-vena-cava"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 1230324,
+    "objects": [
+      {
+        "name": "human-heart-ventricles",
+        "verts": 9474,
+        "faces": 9472,
+        "dimensions": [
+          0.0909,
+          0.0781,
+          0.0819
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-myocardium"
+        ]
+      },
+      {
+        "name": "human-heart-right-atrium",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.036,
+          0.032,
+          0.034
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-atrium"
+        ]
+      },
+      {
+        "name": "human-heart-right-auricle",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.018,
+          0.015,
+          0.017
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-atrium"
+        ]
+      },
+      {
+        "name": "human-heart-left-atrium",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.032,
+          0.03,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-atrium"
+        ]
+      },
+      {
+        "name": "human-heart-left-auricle",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.016,
+          0.014,
+          0.015
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-atrium"
+        ]
+      },
+      {
+        "name": "human-heart-pulmonary-trunk",
+        "verts": 1700,
+        "faces": 1680,
+        "dimensions": [
+          0.0247,
+          0.0321,
+          0.0461
+        ],
+        "non_manifold_edges": 40,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulmonary"
+        ]
+      },
+      {
+        "name": "human-heart-pulmonary-art-left",
+        "verts": 528,
+        "faces": 512,
+        "dimensions": [
+          0.0324,
+          0.0226,
+          0.0135
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulmonary"
+        ]
+      },
+      {
+        "name": "human-heart-pulmonary-art-right",
+        "verts": 528,
+        "faces": 512,
+        "dimensions": [
+          0.0343,
+          0.0227,
+          0.0154
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulmonary"
+        ]
+      },
+      {
+        "name": "human-heart-aorta-arch",
+        "verts": 3220,
+        "faces": 3200,
+        "dimensions": [
+          0.034,
+          0.0514,
+          0.0528
+        ],
+        "non_manifold_edges": 40,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-aorta"
+        ]
+      },
+      {
+        "name": "human-heart-brachiocephalic",
+        "verts": 208,
+        "faces": 192,
+        "dimensions": [
+          0.0124,
+          0.0079,
+          0.0176
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-aorta"
+        ]
+      },
+      {
+        "name": "human-heart-left-carotid",
+        "verts": 208,
+        "faces": 192,
+        "dimensions": [
+          0.0066,
+          0.0056,
+          0.0144
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-aorta"
+        ]
+      },
+      {
+        "name": "human-heart-left-subclavian",
+        "verts": 208,
+        "faces": 192,
+        "dimensions": [
+          0.0102,
+          0.0065,
+          0.0159
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-aorta"
+        ]
+      },
+      {
+        "name": "human-heart-svc",
+        "verts": 594,
+        "faces": 576,
+        "dimensions": [
+          0.0155,
+          0.0155,
+          0.0351
+        ],
+        "non_manifold_edges": 36,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-vena-cava"
+        ]
+      },
+      {
+        "name": "human-heart-ivc",
+        "verts": 594,
+        "faces": 576,
+        "dimensions": [
+          0.0142,
+          0.0148,
+          0.0488
+        ],
+        "non_manifold_edges": 36,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-vena-cava"
+        ]
+      },
+      {
+        "name": "human-heart-pulm-vein-ls",
+        "verts": 154,
+        "faces": 140,
+        "dimensions": [
+          0.0145,
+          0.0089,
+          0.0087
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulm-vein"
+        ]
+      },
+      {
+        "name": "human-heart-pulm-vein-li",
+        "verts": 154,
+        "faces": 140,
+        "dimensions": [
+          0.0132,
+          0.0089,
+          0.0068
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulm-vein"
+        ]
+      },
+      {
+        "name": "human-heart-pulm-vein-rs",
+        "verts": 350,
+        "faces": 336,
+        "dimensions": [
+          0.0389,
+          0.011,
+          0.0098
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulm-vein"
+        ]
+      },
+      {
+        "name": "human-heart-pulm-vein-ri",
+        "verts": 350,
+        "faces": 336,
+        "dimensions": [
+          0.0378,
+          0.011,
+          0.0068
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-pulm-vein"
+        ]
+      },
+      {
+        "name": "human-heart-lad-artery",
+        "verts": 1694,
+        "faces": 1680,
+        "dimensions": [
+          0.0211,
+          0.023,
+          0.0654
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-coronary"
+        ]
+      },
+      {
+        "name": "human-heart-cardiac-vein",
+        "verts": 1134,
+        "faces": 1120,
+        "dimensions": [
+          0.0177,
+          0.0187,
+          0.056
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-coronary-vein"
+        ]
+      },
+      {
+        "name": "human-heart-rca-artery",
+        "verts": 1134,
+        "faces": 1120,
+        "dimensions": [
+          0.0193,
+          0.0285,
+          0.0284
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-coronary"
+        ]
+      },
+      {
+        "name": "human-heart-fat-sulcus",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.026,
+          0.01,
+          0.006
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-fat"
+        ]
+      },
+      {
+        "name": "human-heart-fat-apex",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.012,
+          0.008,
+          0.005
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "heart-fat"
+        ]
+      }
+    ]
+  },
+  "human-respiratory-system": {
+    "total_objects": 37,
+    "total_verts": 43702,
+    "total_faces": 44772,
+    "total_non_manifold": 280,
+    "materials": [
+      "airway-tube",
+      "alveolar-sac",
+      "capillary-deoxy",
+      "capillary-oxy",
+      "central-tendon",
+      "diaphragm-muscle",
+      "hyaline-cartilage",
+      "interlobar-fissure",
+      "lung-tissue",
+      "thyroid-cartilage"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 1496348,
+    "objects": [
+      {
+        "name": "human-respiratory-system-larynx-thyroid",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.024,
+          0.02,
+          0.024
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "thyroid-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-larynx-prominence",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.014,
+          0.014,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "thyroid-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-larynx-cricoid",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.02,
+          0.02,
+          0.008
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-epiglottis",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.016,
+          0.005,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-trachea-lumen",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.015,
+          0.015,
+          0.065
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-3",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-4",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-5",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cartilage-c-ring-6",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0185,
+          0.0185,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hyaline-cartilage"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-r",
+        "verts": 574,
+        "faces": 560,
+        "dimensions": [
+          0.0329,
+          0.01,
+          0.0329
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-l",
+        "verts": 574,
+        "faces": 560,
+        "dimensions": [
+          0.0359,
+          0.0088,
+          0.0343
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-r-lobar-0",
+        "verts": 294,
+        "faces": 280,
+        "dimensions": [
+          0.0144,
+          0.0137,
+          0.0172
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-r-lobar-1",
+        "verts": 294,
+        "faces": 280,
+        "dimensions": [
+          0.0189,
+          0.0157,
+          0.0188
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-r-lobar-2",
+        "verts": 294,
+        "faces": 280,
+        "dimensions": [
+          0.0142,
+          0.0122,
+          0.0339
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-l-lobar-0",
+        "verts": 294,
+        "faces": 280,
+        "dimensions": [
+          0.0134,
+          0.0116,
+          0.0182
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-bronchus-l-lobar-1",
+        "verts": 294,
+        "faces": 280,
+        "dimensions": [
+          0.0156,
+          0.0118,
+          0.0275
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-lung-right",
+        "verts": 9410,
+        "faces": 9408,
+        "dimensions": [
+          0.0467,
+          0.0638,
+          0.1117
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "lung-tissue"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-lung-right-oblique-fissure",
+        "verts": 1134,
+        "faces": 1120,
+        "dimensions": [
+          0.0456,
+          0.0369,
+          0.0647
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "interlobar-fissure"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-lung-right-horizontal-fissure",
+        "verts": 854,
+        "faces": 840,
+        "dimensions": [
+          0.0409,
+          0.0267,
+          0.006
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "interlobar-fissure"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-lung-left",
+        "verts": 9410,
+        "faces": 9408,
+        "dimensions": [
+          0.0463,
+          0.0628,
+          0.1117
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "lung-tissue"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-lung-left-oblique-fissure",
+        "verts": 1134,
+        "faces": 1120,
+        "dimensions": [
+          0.0446,
+          0.0349,
+          0.0665
+        ],
+        "non_manifold_edges": 28,
+        "non_manifold_verts": 0,
+        "materials": [
+          "interlobar-fissure"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-diaphragm",
+        "verts": 4026,
+        "faces": 4024,
+        "dimensions": [
+          0.1582,
+          0.0777,
+          0.0408
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "diaphragm-muscle"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-central-tendon",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.03,
+          0.024,
+          0.004
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "central-tendon"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolar-duct",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.005,
+          0.005,
+          0.02
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "airway-tube"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-4",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-5",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-6",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-alveolus-7",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.013,
+          0.013,
+          0.013
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "alveolar-sac"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cap-red-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.017,
+          0.017,
+          0.0016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "capillary-oxy"
+        ]
+      },
+      {
+        "name": "human-respiratory-system-cap-blue-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.017,
+          0.017,
+          0.0016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "capillary-deoxy"
+        ]
+      }
+    ]
+  },
+  "nephron": {
+    "total_objects": 20,
+    "total_verts": 46962,
+    "total_faces": 46720,
+    "total_non_manifold": 576,
+    "materials": [
+      "arterial-blood",
+      "bowman-capsule",
+      "capillary-purple",
+      "collecting-duct",
+      "loop-henle-thin",
+      "renal-tubule",
+      "venous-blood"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 1975352,
+    "objects": [
+      {
+        "name": "nephron-capsule-cup",
+        "verts": 4096,
+        "faces": 4096,
+        "dimensions": [
+          0.0317,
+          0.0317,
+          0.0255
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "bowman-capsule"
+        ]
+      },
+      {
+        "name": "nephron-glomerulus-knot",
+        "verts": 13456,
+        "faces": 13440,
+        "dimensions": [
+          0.0188,
+          0.0193,
+          0.0189
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "arterial-blood"
+        ]
+      },
+      {
+        "name": "nephron-glom-core",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.016,
+          0.016,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "arterial-blood"
+        ]
+      },
+      {
+        "name": "nephron-afferent-arteriole",
+        "verts": 784,
+        "faces": 768,
+        "dimensions": [
+          0.0265,
+          0.0124,
+          0.0325
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "arterial-blood"
+        ]
+      },
+      {
+        "name": "nephron-efferent-arteriole",
+        "verts": 1168,
+        "faces": 1152,
+        "dimensions": [
+          0.0217,
+          0.0128,
+          0.0326
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "arterial-blood"
+        ]
+      },
+      {
+        "name": "nephron-pct",
+        "verts": 3472,
+        "faces": 3456,
+        "dimensions": [
+          0.0431,
+          0.0445,
+          0.0679
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-tubule"
+        ]
+      },
+      {
+        "name": "nephron-henle-desc",
+        "verts": 1168,
+        "faces": 1152,
+        "dimensions": [
+          0.0077,
+          0.0068,
+          0.0735
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "loop-henle-thin"
+        ]
+      },
+      {
+        "name": "nephron-henle-turn",
+        "verts": 1552,
+        "faces": 1536,
+        "dimensions": [
+          0.0213,
+          0.0096,
+          0.0179
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "loop-henle-thin"
+        ]
+      },
+      {
+        "name": "nephron-henle-asc",
+        "verts": 1936,
+        "faces": 1920,
+        "dimensions": [
+          0.0116,
+          0.0137,
+          0.121
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-tubule"
+        ]
+      },
+      {
+        "name": "nephron-dct",
+        "verts": 3088,
+        "faces": 3072,
+        "dimensions": [
+          0.0649,
+          0.0314,
+          0.0384
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "renal-tubule"
+        ]
+      },
+      {
+        "name": "nephron-collecting-duct",
+        "verts": 1936,
+        "faces": 1920,
+        "dimensions": [
+          0.0127,
+          0.0096,
+          0.2152
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "collecting-duct"
+        ]
+      },
+      {
+        "name": "nephron-trib-0.105",
+        "verts": 784,
+        "faces": 768,
+        "dimensions": [
+          0.0146,
+          0.0157,
+          0.0158
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "collecting-duct"
+        ]
+      },
+      {
+        "name": "nephron-trib-0.042",
+        "verts": 784,
+        "faces": 768,
+        "dimensions": [
+          0.0154,
+          0.0158,
+          0.0159
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "collecting-duct"
+        ]
+      },
+      {
+        "name": "nephron-trib-0.01",
+        "verts": 784,
+        "faces": 768,
+        "dimensions": [
+          0.0146,
+          0.0157,
+          0.0158
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "collecting-duct"
+        ]
+      },
+      {
+        "name": "nephron-trib--0.035",
+        "verts": 784,
+        "faces": 768,
+        "dimensions": [
+          0.0154,
+          0.0158,
+          0.0159
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "collecting-duct"
+        ]
+      },
+      {
+        "name": "nephron-cap-pct-1",
+        "verts": 1552,
+        "faces": 1536,
+        "dimensions": [
+          0.0206,
+          0.031,
+          0.0414
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "arterial-blood"
+        ]
+      },
+      {
+        "name": "nephron-cap-pct-2",
+        "verts": 1552,
+        "faces": 1536,
+        "dimensions": [
+          0.0322,
+          0.0416,
+          0.0595
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "capillary-purple"
+        ]
+      },
+      {
+        "name": "nephron-vasa-recta",
+        "verts": 3856,
+        "faces": 3840,
+        "dimensions": [
+          0.0507,
+          0.0078,
+          0.1369
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "venous-blood"
+        ]
+      },
+      {
+        "name": "nephron-cap-dct",
+        "verts": 1552,
+        "faces": 1536,
+        "dimensions": [
+          0.0266,
+          0.0244,
+          0.0322
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "venous-blood"
+        ]
+      },
+      {
+        "name": "nephron-renal-venule",
+        "verts": 1168,
+        "faces": 1152,
+        "dimensions": [
+          0.0412,
+          0.0151,
+          0.0679
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "venous-blood"
+        ]
+      }
+    ]
+  },
+  "neuron": {
+    "total_objects": 33,
+    "total_verts": 21970,
+    "total_faces": 23808,
+    "total_non_manifold": 0,
+    "materials": [
+      "neuron-axon",
+      "neuron-bouton",
+      "neuron-dendrite",
+      "neuron-myelin",
+      "neuron-nucleolus",
+      "neuron-nucleus",
+      "neuron-soma",
+      "neuron-terminal"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 787796,
+    "objects": [
+      {
+        "name": "neuron-soma",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.026,
+          0.024,
+          0.022
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-soma"
+        ]
+      },
+      {
+        "name": "neuron-nucleus",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.012
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-nucleus"
+        ]
+      },
+      {
+        "name": "neuron-nucleolus",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0045,
+          0.0045,
+          0.0045
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-nucleolus"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0032,
+          0.0032,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0021,
+          0.0021,
+          0.0176
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0034,
+          0.0034,
+          0.036
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0022,
+          0.0022,
+          0.0198
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.038
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0023,
+          0.0023,
+          0.0209
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-3",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0032,
+          0.0032,
+          0.035
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-3",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0021,
+          0.0021,
+          0.0192
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-4",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.003,
+          0.003,
+          0.03
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-4",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0019,
+          0.0019,
+          0.0165
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-5",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0028,
+          0.0028,
+          0.026
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-5",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.0143
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-pri-6",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0028,
+          0.0028,
+          0.028
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-dendrite-sec-6",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0018,
+          0.0018,
+          0.0154
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-dendrite"
+        ]
+      },
+      {
+        "name": "neuron-hillock",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.008,
+          0.008,
+          0.016
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-soma"
+        ]
+      },
+      {
+        "name": "neuron-axon-core",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.003,
+          0.003,
+          0.13
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-axon"
+        ]
+      },
+      {
+        "name": "neuron-myelin-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.0085,
+          0.0085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-myelin"
+        ]
+      },
+      {
+        "name": "neuron-myelin-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.0085,
+          0.0085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-myelin"
+        ]
+      },
+      {
+        "name": "neuron-myelin-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.0085,
+          0.0085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-myelin"
+        ]
+      },
+      {
+        "name": "neuron-myelin-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.0085,
+          0.0085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-myelin"
+        ]
+      },
+      {
+        "name": "neuron-myelin-4",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.0085,
+          0.0085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-myelin"
+        ]
+      },
+      {
+        "name": "neuron-myelin-5",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.014,
+          0.0085,
+          0.0085
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-myelin"
+        ]
+      },
+      {
+        "name": "neuron-terminal-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.0205
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-terminal"
+        ]
+      },
+      {
+        "name": "neuron-bouton-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0055,
+          0.0055,
+          0.0055
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-bouton"
+        ]
+      },
+      {
+        "name": "neuron-terminal-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.0224
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-terminal"
+        ]
+      },
+      {
+        "name": "neuron-bouton-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0055,
+          0.0055,
+          0.0055
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-bouton"
+        ]
+      },
+      {
+        "name": "neuron-terminal-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.0212
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-terminal"
+        ]
+      },
+      {
+        "name": "neuron-bouton-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0055,
+          0.0055,
+          0.0055
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-bouton"
+        ]
+      },
+      {
+        "name": "neuron-terminal-3",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.002,
+          0.002,
+          0.0242
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-terminal"
+        ]
+      },
+      {
+        "name": "neuron-bouton-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0055,
+          0.0055,
+          0.0055
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "neuron-bouton"
+        ]
+      }
+    ]
+  },
+  "reflex-arc": {
+    "total_objects": 15,
+    "total_verts": 5664,
+    "total_faces": 6354,
+    "total_non_manifold": 0,
+    "materials": [
+      "cord-gray-matter",
+      "cord-white-matter",
+      "effector-muscle",
+      "hot-pan-metal",
+      "nerve-motor-red",
+      "nerve-relay-yellow",
+      "nerve-sensory-blue",
+      "skin-receptor"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 205464,
+    "objects": [
+      {
+        "name": "reflex-arc-hot-object",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.045,
+          0.045,
+          0.015
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "hot-pan-metal"
+        ]
+      },
+      {
+        "name": "reflex-arc-finger-receptor",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.024,
+          0.02,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "skin-receptor"
+        ]
+      },
+      {
+        "name": "reflex-arc-cord-wm",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.075,
+          0.075,
+          0.04
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "cord-white-matter"
+        ]
+      },
+      {
+        "name": "reflex-arc-gray-wing--1",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.018,
+          0.041,
+          0.028
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "cord-gray-matter"
+        ]
+      },
+      {
+        "name": "reflex-arc-gray-wing-1",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.018,
+          0.041,
+          0.028
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "cord-gray-matter"
+        ]
+      },
+      {
+        "name": "reflex-arc-sensory-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0436
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-sensory-blue"
+        ]
+      },
+      {
+        "name": "reflex-arc-sensory-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0539
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-sensory-blue"
+        ]
+      },
+      {
+        "name": "reflex-arc-sensory-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0472
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-sensory-blue"
+        ]
+      },
+      {
+        "name": "reflex-arc-sensory-3",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0462
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-sensory-blue"
+        ]
+      },
+      {
+        "name": "reflex-arc-drg",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.01,
+          0.01,
+          0.01
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-sensory-blue"
+        ]
+      },
+      {
+        "name": "reflex-arc-relay-neuron",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.025
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-relay-yellow"
+        ]
+      },
+      {
+        "name": "reflex-arc-motor-0",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0465
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-motor-red"
+        ]
+      },
+      {
+        "name": "reflex-arc-motor-1",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0458
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-motor-red"
+        ]
+      },
+      {
+        "name": "reflex-arc-motor-2",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.0035,
+          0.0035,
+          0.0324
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "nerve-motor-red"
+        ]
+      },
+      {
+        "name": "reflex-arc-effector-muscle",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.045,
+          0.028,
+          0.028
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "effector-muscle"
+        ]
+      }
+    ]
+  },
+  "stoma": {
+    "total_objects": 32,
+    "total_verts": 37648,
+    "total_faces": 38228,
+    "total_non_manifold": 64,
+    "materials": [
+      "cell-nucleus",
+      "chloroplast",
+      "epidermal-cell",
+      "epidermal-wall",
+      "guard-cyto",
+      "guard-inner-wall",
+      "slide-glass"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 1392664,
+    "objects": [
+      {
+        "name": "stoma-glass-slide",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.1,
+          0.07,
+          0.0025
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "slide-glass"
+        ]
+      },
+      {
+        "name": "stoma-epidermal-peel",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.076,
+          0.056,
+          0.0015
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-cell"
+        ]
+      },
+      {
+        "name": "stoma-radial-wall-0",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.022,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-radial-wall-1",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.022,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-radial-wall-2",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.022,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-radial-wall-3",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.022,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-radial-wall-4",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.022,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-radial-wall-5",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.022,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-rim-0",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0311,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-rim-1",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0357,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-rim-2",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0282,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-rim-3",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0311,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-rim-4",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0357,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-rim-5",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.0282,
+          0.0018,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "epidermal-wall"
+        ]
+      },
+      {
+        "name": "stoma-guard-left",
+        "verts": 7298,
+        "faces": 7296,
+        "dimensions": [
+          0.0314,
+          0.0641,
+          0.0141
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "guard-cyto"
+        ]
+      },
+      {
+        "name": "stoma-inner-wall-left",
+        "verts": 1040,
+        "faces": 1024,
+        "dimensions": [
+          0.0094,
+          0.0513,
+          0.004
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "guard-inner-wall"
+        ]
+      },
+      {
+        "name": "stoma-nucleus-left",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.006,
+          0.007
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "cell-nucleus"
+        ]
+      },
+      {
+        "name": "stoma-chloro-left-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-left-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-left-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-left-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-left-4",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-left-5",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-guard-right",
+        "verts": 7298,
+        "faces": 7296,
+        "dimensions": [
+          0.0314,
+          0.0641,
+          0.0141
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "guard-cyto"
+        ]
+      },
+      {
+        "name": "stoma-inner-wall-right",
+        "verts": 1040,
+        "faces": 1024,
+        "dimensions": [
+          0.0094,
+          0.0513,
+          0.004
+        ],
+        "non_manifold_edges": 32,
+        "non_manifold_verts": 0,
+        "materials": [
+          "guard-inner-wall"
+        ]
+      },
+      {
+        "name": "stoma-nucleus-right",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.008,
+          0.006,
+          0.007
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "cell-nucleus"
+        ]
+      },
+      {
+        "name": "stoma-chloro-right-0",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-right-1",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-right-2",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-right-3",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-right-4",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      },
+      {
+        "name": "stoma-chloro-right-5",
+        "verts": 1490,
+        "faces": 1536,
+        "dimensions": [
+          0.0048,
+          0.004,
+          0.0048
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "chloroplast"
+        ]
+      }
+    ]
+  },
+  "trophic-level-pyramid": {
+    "total_objects": 10,
+    "total_verts": 260,
+    "total_faces": 368,
+    "total_non_manifold": 0,
+    "materials": [
+      "energy-arrow",
+      "pyramid-trim",
+      "tier1-producers",
+      "tier2-herbivores",
+      "tier3-carnivores",
+      "tier4-apex"
+    ],
+    "glb_exists": true,
+    "glb_size_bytes": 19772,
+    "objects": [
+      {
+        "name": "trophic-level-pyramid-tier-0",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.18,
+          0.18,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "tier1-producers"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-trim-0",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.182,
+          0.182,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "pyramid-trim"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-tier-1",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.13,
+          0.13,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "tier2-herbivores"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-trim-1",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.132,
+          0.132,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "pyramid-trim"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-tier-2",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.085,
+          0.085,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "tier3-carnivores"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-trim-2",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.087,
+          0.087,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "pyramid-trim"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-tier-3",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.045,
+          0.045,
+          0.032
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "tier4-apex"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-trim-3",
+        "verts": 8,
+        "faces": 6,
+        "dimensions": [
+          0.047,
+          0.047,
+          0.002
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "pyramid-trim"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-arrow-shaft",
+        "verts": 130,
+        "faces": 192,
+        "dimensions": [
+          0.004,
+          0.004,
+          0.12
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "energy-arrow"
+        ]
+      },
+      {
+        "name": "trophic-level-pyramid-arrow-head",
+        "verts": 66,
+        "faces": 128,
+        "dimensions": [
+          0.012,
+          0.012,
+          0.018
+        ],
+        "non_manifold_edges": 0,
+        "non_manifold_verts": 0,
+        "materials": [
+          "energy-arrow"
+        ]
+      }
+    ]
+  }
+}

@@ -1,39 +1,39 @@
 {
   "id": "neuron",
-  "name": "Neuron (Nerve Cell)",
+  "name": "Neuron (Multipolar Motor Nerve Cell)",
   "category": "biology",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A neuron showing cell body (soma), nucleus, dendrites, axon with myelin sheath, and axon terminal. Used in CBSE Class 10 Ch6.",
+  "version": "1.1.0",
+  "status": "reviewed",
+  "semanticDescription": "High-fidelity multipolar motor neuron model featuring soma (cell body) with nucleus and nucleolus, radiating branching dendrites, axon hillock, elongated axon core, cylindrical Schwann cell myelin sheaths with Nodes of Ranvier, and terminal telodendria arborization with synaptic boutons (CBSE Class 10 Biology Ch 7 Figure 7.1; CBSE Class 11 Biology Ch 21 Figure 21.1).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
   },
   "simplifications": [
-    "Straight axon rather than branching",
-    "Simplified myelin segments"
+    "Dendritic arbor simplified to primary and secondary branches for educational clarity.",
+    "Myelin sheath modeled as segmented cylindrical Schwann cells with distinct Nodes of Ranvier."
   ],
   "materials": [
     {
-      "id": "yellow soma",
-      "look": "yellow soma"
+      "id": "neuron-soma",
+      "look": "Warm amber neuronal cell body cytoplasm"
     },
     {
-      "id": "blue axon",
-      "look": "blue axon"
+      "id": "neuron-axon",
+      "look": "Blue conducting central axonal core fiber"
     },
     {
-      "id": "white myelin",
-      "look": "white myelin"
+      "id": "neuron-myelin",
+      "look": "Ivory white concentric cylindrical Schwann cell insulating sheaths"
     },
     {
-      "id": "green dendrites",
-      "look": "green dendrites"
+      "id": "neuron-dendrite",
+      "look": "Receptive branched dendritic processes"
     },
     {
-      "id": "purple nucleus",
-      "look": "purple nucleus"
+      "id": "neuron-nucleus",
+      "look": "Prominent spherical nucleus with dark nucleolus"
     }
   ],
   "provenance": {
@@ -41,7 +41,7 @@
     "generator": "build_neuron.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-09"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -65,8 +65,15 @@
   "tags": [
     "neuron",
     "nerve-cell",
-    "axon",
+    "soma",
     "dendrite",
-    "myelin"
+    "axon",
+    "myelin-sheath",
+    "nodes-of-ranvier",
+    "schwann-cell",
+    "synapse",
+    "nervous-system",
+    "cbse-class-10",
+    "cbse-class-11"
   ]
 }

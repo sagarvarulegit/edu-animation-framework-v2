@@ -1,0 +1,69 @@
+{
+  "id": "methane-molecule",
+  "name": "Methane (CH4) Tetrahedral Molecule",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "3D ball-and-stick covalent molecular model of methane (CH4) exhibiting perfect tetrahedral geometry with four equivalent C-H single covalent bonds at 109.5 degree bond angles (CBSE Class 10 Chemistry Ch 4).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "atomScale": 0.024
+  },
+  "simplifications": [
+    "Atoms represented by CPK color-coded spheres.",
+    "Covalent electron sharing represented by cylindrical chemical bond rods."
+  ],
+  "materials": [
+    {
+      "id": "cpk-carbon",
+      "look": "Dark charcoal gray carbon atom sphere (metallic 0.1, roughness 0.3)"
+    },
+    {
+      "id": "cpk-hydrogen",
+      "look": "Crisp off-white hydrogen atom sphere (metallic 0.05, roughness 0.25)"
+    },
+    {
+      "id": "covalent-bond-rod",
+      "look": "Machined semi-gloss grey covalent bond connector rod"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_methane_molecule.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/methane-molecule.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/methane-molecule.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/methane-molecule.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "methane",
+    "ch4",
+    "carbon-compounds",
+    "tetrahedral",
+    "covalent-bond",
+    "hydrocarbon",
+    "alkane",
+    "CBSE-class-10",
+    "chemistry"
+  ]
+}

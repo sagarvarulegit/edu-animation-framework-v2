@@ -1,0 +1,64 @@
+{
+  "id": "diamond-lattice",
+  "name": "Diamond Allotrope Crystal Lattice",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "3D tetrahedral covalent network crystal lattice of diamond, where each carbon atom is covalently bonded to four neighbouring carbons in a rigid 3D framework (CBSE Class 10 Chemistry Ch 4).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "atomScale": 0.012
+  },
+  "simplifications": [
+    "Cluster of 17 carbon atoms demonstrating central tetrahedral coordination and FCC sub-lattices.",
+    "Bonds shown as solid covalent rods."
+  ],
+  "materials": [
+    {
+      "id": "diamond-carbon",
+      "look": "Refractive diamond carbon sphere (slight transmission and high luster)"
+    },
+    {
+      "id": "diamond-covalent-bond",
+      "look": "Rigid tetrahedral covalent network connector"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_diamond_lattice.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/diamond-lattice.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/diamond-lattice.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/diamond-lattice.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "diamond",
+    "allotrope",
+    "carbon",
+    "tetrahedral-network",
+    "crystal-lattice",
+    "hardest-substance",
+    "CBSE-class-10",
+    "chemistry"
+  ]
+}

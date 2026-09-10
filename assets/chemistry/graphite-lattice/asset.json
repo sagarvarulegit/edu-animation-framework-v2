@@ -1,0 +1,69 @@
+{
+  "id": "graphite-lattice",
+  "name": "Graphite Layered Hexagonal Lattice",
+  "category": "chemistry",
+  "type": "molecular",
+  "version": "1.0.0",
+  "status": "reviewed",
+  "semanticDescription": "Layered planar hexagonal carbon lattice of graphite demonstrating sp2 hexagonal rings within sheets and weak inter-layer van der Waals bonds allowing cleavage and electrical conductivity (CBSE Class 10 Chemistry Ch 4).",
+  "scaleConvention": {
+    "unit": "meter",
+    "basis": "visualization-scale",
+    "atomScale": 0.012
+  },
+  "simplifications": [
+    "Two parallel hexagonal sheets depicted to illustrate inter-layer van der Waals spacing.",
+    "Bonds within sheets shown as solid covalent rods; interlayer interactions as dashed/thin links."
+  ],
+  "materials": [
+    {
+      "id": "graphite-carbon",
+      "look": "Semi-metallic dark charcoal carbon atom spheres"
+    },
+    {
+      "id": "graphite-planar-bond",
+      "look": "Planar hexagonal covalent bond connecting rods"
+    },
+    {
+      "id": "van-der-waals-link",
+      "look": "Translucent cyan vertical interlayer van der Waals indicator lines"
+    }
+  ],
+  "provenance": {
+    "method": "procedural-blender-python",
+    "generator": "build_graphite_lattice.py",
+    "generatedBy": "AI coding agent",
+    "license": "project-original",
+    "date": "2026-09-05"
+  },
+  "rendererCompatibility": {
+    "blender": true,
+    "three": "import out/graphite-lattice.glb",
+    "remotion": "use out/preview.png"
+  },
+  "outputs": [
+    {
+      "file": "out/graphite-lattice.blend",
+      "kind": "blender-scene"
+    },
+    {
+      "file": "out/graphite-lattice.glb",
+      "kind": "glTF-binary"
+    },
+    {
+      "file": "out/preview.png",
+      "kind": "preview-render"
+    }
+  ],
+  "tags": [
+    "graphite",
+    "allotrope",
+    "carbon",
+    "hexagonal-layers",
+    "van-der-waals",
+    "conductor",
+    "lubricant",
+    "CBSE-class-10",
+    "chemistry"
+  ]
+}
