@@ -11,10 +11,15 @@ export interface AssetRegistryItem {
     weight_g?: number;
   };
   materials: {
-    transmission?: number;
-    ior?: number;
+    transmission: number;
+    ior: number;
     roughness: number;
     metalness: number;
+    clearcoat: number;
+    clearcoatRoughness: number;
+    subsurfaceWeight: number;
+    subsurfaceRadius: [number, number, number];
+    subsurfaceScale: number;
     color: string;
     description: string;
   };
@@ -45,9 +50,11 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     dimensions: { width_mm: 320, height_mm: 65, depth_mm: 240, weight_g: 380 },
     materials: {
       transmission: 0.98,
-      ior: 1.517,
-      roughness: 0.015,
-      metalness: 0.02,
+      ior: 1.52,
+      roughness: 0.01,
+      metalness: 0.0,
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.02,
       color: '#e0f2fe',
       description: 'Schott N-BK7 Crown Glass with optical clarity'
     },

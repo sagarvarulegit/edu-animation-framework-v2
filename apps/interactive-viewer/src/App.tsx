@@ -15,6 +15,7 @@ function StudioEnvironment() {
     const roomEnv = new RoomEnvironment();
     const envTexture = pmremGenerator.fromScene(roomEnv, 0.04).texture;
     scene.environment = envTexture;
+    scene.environmentIntensity = 1.0;
     return () => {
       pmremGenerator.dispose();
       envTexture.dispose();

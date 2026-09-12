@@ -15,11 +15,21 @@ if tokens is not None:
             "color": mgo_cfg["base_color"][:3],
             "metallic": mgo_cfg["metallic"],
             "roughness": mgo_cfg["roughness"],
+            "subsurface_weight": 0.15,
+            "subsurface_radius": (1.0, 0.2, 0.1),
+            "subsurface_scale": 0.02,
         }
     }
 else:
     LOOKS = {
-        "magnesium-oxide": {"color": (0.93, 0.93, 0.91), "metallic": 0.0, "roughness": 0.95},
+        "magnesium-oxide": {
+            "color": (0.93, 0.93, 0.91),
+            "metallic": 0.0,
+            "roughness": 0.95,
+            "subsurface_weight": 0.15,
+            "subsurface_radius": (1.0, 0.2, 0.1),
+            "subsurface_scale": 0.02,
+        }
     }
 
 
@@ -246,37 +256,66 @@ def show_flame(parent, offset, entry, fps):
     bpy.context.collection.objects.link(flame)
     flame.location = Vector(parent.location) + Vector(offset)
 
-    # Outer luminous yellow-amber flame envelope
+    # Outer luminous yellow-amber flame envelope with turbulence
     outer = kit.add_material("flame-outer-yellow", (1.0, 0.65, 0.02),
-                             metallic=0.0, roughness=0.3)
+                             metallic=0.0, roughness=0.3, clearcoat=0.1)
     outer_bsdf = outer.node_tree.nodes.get("Principled BSDF")
     outer_bsdf.inputs["Emission Color"].default_value = (1.0, 0.68, 0.05, 1.0)
-    outer_bsdf.inputs["Emission Strength"].default_value = 14.0
+    outer_bsdf.inputs["Emission Strength"].default_value = 25.0  # increased for more impact
+    # Add slight turbulence/noise to outer flame
     cone_outer = kit.primitive_object("flame-outer", "cone", outer,
-                                      size=(0.014, 0.003, 0.046),
-                                      location=(0.0, 0.0, 0.023))
+                                      size=(0.016, 0.004, 0.052),
+                                      location=(0.0, 0.0, 0.026))
     cone_outer.parent = flame
+    # Add slight rotation for dynamic effect
+    cone_outer.rotation_euler.z = 0.2
 
-    # Inner bright golden-yellow core
-    inner = kit.add_material("flame-inner-gold", (1.0, 0.85, 0.15),
-                             metallic=0.0, roughness=0.3)
+    # Inner bright golden-yellow core with higher temperature
+    inner = kit.add_material("flame-inner-gold", (1.0, 0.88, 0.18),
+                             metallic=0.0, roughness=0.2, clearcoat=0.15)
     inner_bsdf = inner.node_tree.nodes.get("Principled BSDF")
-    inner_bsdf.inputs["Emission Color"].default_value = (1.0, 0.90, 0.25, 1.0)
-    inner_bsdf.inputs["Emission Strength"].default_value = 20.0
+    inner_bsdf.inputs["Emission Color"].default_value = (1.0, 0.95, 0.30, 1.0)
+    inner_bsdf.inputs["Emission Strength"].default_value = 35.0
     cone_inner = kit.primitive_object("flame-inner", "cone", inner,
-                                      size=(0.007, 0.0015, 0.026),
-                                      location=(0.0, 0.0, 0.013))
+                                      size=(0.009, 0.002, 0.032),
+                                      location=(0.0, 0.0, 0.016))
     cone_inner.parent = flame
+    # Slightly different rotation for inner flame
+    cone_inner.rotation_euler.z = -0.15
+
+    # Hot blue-white core (innermost part of flame)
+    core = kit.add_material("flame-core-white", (0.95, 0.98, 1.0),
+                            metallic=0.0, roughness=0.1, clearcoat=0.2)
+    core_bsdf = core.node_tree.nodes.get("Principled BSDF")
+    core_bsdf.inputs["Emission Color"].default_value = (1.0, 1.0, 0.95, 1.0)
+    core_bsdf.inputs["Emission Strength"].default_value = 45.0
+    cone_core = kit.primitive_object("flame-core", "cone", core,
+                                     size=(0.004, 0.0008, 0.018),
+                                     location=(0.0, 0.0, 0.009))
+    cone_core.parent = flame
 
     # Warm golden point light casting illumination on the burner & surroundings
     light_data = bpy.data.lights.new("flame-light", type="POINT")
-    light_data.energy = 3.5
-    light_data.color = (1.0, 0.70, 0.15)
-    light_data.shadow_soft_size = 0.02
+    light_data.energy = 8.0  # increased for better illumination
+    light_data.color = (1.0, 0.75, 0.20)
+    light_data.shadow_soft_size = 0.025
     light = bpy.data.objects.new("flame-light", light_data)
     bpy.context.collection.objects.link(light)
     light.parent = flame
-    light.location = (0.0, 0.0, 0.022)
+    light.location = (0.0, 0.0, 0.025)
+
+    # Add subtle volumetric glow effect by duplicating flame with emissive shell
+    glow = kit.add_material("flame-glow", (1.0, 0.5, 0.0),
+                            metallic=0.0, roughness=0.5, transmission=0.0)
+    glow_bsdf = glow.node_tree.nodes.get("Principled BSDF")
+    glow_bsdf.inputs["Emission Color"].default_value = (1.0, 0.8, 0.2, 1.0)
+    glow_bsdf.inputs["Emission Strength"].default_value = 8.0
+    # Create a slightly larger emissive shell
+    shell = kit.primitive_object("flame-shell", "cone", glow,
+                                 size=(0.020, 0.005, 0.060),
+                                 location=(0.0, 0.0, 0.030))
+    shell.parent = flame
+    shell.scale = (1.1, 1.1, 1.1)  # make it slightly larger
 
     start = entry["start"]
     end = entry.get("end")
@@ -355,7 +394,10 @@ def transform(parent, look, start, fps):
     f = max(1, round(start * fps))
     params = LOOKS[look]
     material = kit.add_material(f"look-{look}", params["color"],
-                                params["metallic"], params["roughness"])
+                                params["metallic"], params["roughness"],
+                                subsurface_weight=params.get("subsurface_weight", 0.0),
+                                subsurface_radius=params.get("subsurface_radius", (1.0, 0.2, 0.1)),
+                                subsurface_scale=params.get("subsurface_scale", 0.0))
     for child in [c for c in parent.children if c.type == "MESH"]:
         duplicate = child.copy()
         duplicate.name = f"{child.name}-{look}"

@@ -91,13 +91,15 @@ export interface DesignTokens {
       baseColor: string;
       metallic: number;
       roughness: number;
-      transmission?: number;
-      ior?: number;
+      transmission: number;
+      ior: number;
+      clearcoat: number;
+      clearcoatRoughness: number;
+      subsurfaceWeight: number;
+      subsurfaceRadius: [number, number, number];
+      subsurfaceScale: number;
       emissionColor?: string;
       emissionStrength?: number;
-      subsurfaceWeight?: number;
-      subsurfaceRadius?: [number, number, number];
-      subsurfaceScale?: number;
       subsurfaceColor?: string;
     }
   >;

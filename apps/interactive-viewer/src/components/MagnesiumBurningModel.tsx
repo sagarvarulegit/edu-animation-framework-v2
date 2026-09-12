@@ -1,4 +1,4 @@
-﻿import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { useGLTF, Center } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
@@ -18,7 +18,6 @@ export function MagnesiumBurningModel({
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState<string | null>(null);
 
-  // Dynamic flame flicker & burning dazzle pulse
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const t = clock.getElapsedTime();
@@ -49,38 +48,45 @@ export function MagnesiumBurningModel({
         const mat = (mesh.material as THREE.MeshStandardMaterial).clone();
         mesh.material = mat;
 
-        // 1. Flame visibility
+        if (name.includes('ribbon')) {
+          mat.metalness = 0.9;
+          mat.roughness = 0.35;
+        } else if (name.includes('mgo-powder') || name.includes('powder')) {
+          mat.metalness = 0.0;
+          mat.roughness = 0.95;
+        } else if (name.includes('burner') || name.includes('stem') || name.includes('collar') || name.includes('flame')) {
+          mat.metalness = 0.85;
+          mat.roughness = 0.3;
+        }
+
         if (name.includes('flame')) {
           mesh.visible = burnStage !== 'unheated';
         }
 
-        // 2. Ribbon material transitions
         if (name.includes('ribbon')) {
           if (burnStage === 'unheated') {
-            mat.color = new THREE.Color(0xd1d5db); // Metallic silver
+            mat.color = new THREE.Color(0xd1d5db);
             mat.emissive = new THREE.Color(0x000000);
             mat.emissiveIntensity = 0.0;
           } else if (burnStage === 'heating') {
-            mat.color = new THREE.Color(0xf97316); // Dull orange glow
+            mat.color = new THREE.Color(0xf97316);
             mat.emissive = new THREE.Color(0xea580c);
             mat.emissiveIntensity = 1.2;
           } else if (burnStage === 'burning') {
-            mat.color = new THREE.Color(0xffffff); // Dazzling white combustion
+            mat.color = new THREE.Color(0xffffff);
             mat.emissive = new THREE.Color(0xffffff);
             mat.emissiveIntensity = 3.5;
           } else if (burnStage === 'collected') {
-            mat.color = new THREE.Color(0x9ca3af); // Spent crumbly ash
+            mat.color = new THREE.Color(0x9ca3af);
             mat.emissive = new THREE.Color(0x000000);
             mat.emissiveIntensity = 0.0;
           }
         }
 
-        // 3. MgO powder heap visibility
         if (name.includes('mgo-powder')) {
           mesh.visible = burnStage === 'burning' || burnStage === 'collected';
         }
 
-        // 4. Highlight selected or hovered part
         const isTargetSelected =
           (selectedPart === 'chem-bunsen-burner' && (name.includes('burner') || name.includes('flame') || name.includes('stem') || name.includes('collar'))) ||
           (selectedPart === 'chem-magnesium-ribbon' && name.includes('ribbon')) ||

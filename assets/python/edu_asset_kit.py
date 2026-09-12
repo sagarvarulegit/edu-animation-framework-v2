@@ -27,13 +27,24 @@ def reset_scene():
     bpy.ops.wm.read_factory_settings(use_empty=True)
 
 
-def add_material(name, color, metallic=0.0, roughness=0.5):
+def add_material(name, color, metallic=0.0, roughness=0.5, clearcoat=0.0, clearcoat_roughness=0.1, transmission=0.0, ior=1.0, subsurface_weight=0.0):
+    """Creates a physically accurate PBR material with clearcoat, transmission, and SSS support."""
     material = bpy.data.materials.new(name)
     material.use_nodes = True
     bsdf = material.node_tree.nodes["Principled BSDF"]
     bsdf.inputs["Base Color"].default_value = (*color, 1.0)
     bsdf.inputs["Metallic"].default_value = metallic
     bsdf.inputs["Roughness"].default_value = roughness
+    if "Clearcoat Weight" in bsdf.inputs:
+        bsdf.inputs["Clearcoat Weight"].default_value = clearcoat
+    if "Clearcoat Roughness" in bsdf.inputs:
+        bsdf.inputs["Clearcoat Roughness"].default_value = clearcoat_roughness
+    if "Transmission Weight" in bsdf.inputs:
+        bsdf.inputs["Transmission Weight"].default_value = transmission
+    if "IOR" in bsdf.inputs and transmission > 0.0:
+        bsdf.inputs["IOR"].default_value = ior
+    if "Subsurface Weight" in bsdf.inputs:
+        bsdf.inputs["Subsurface Weight"].default_value = subsurface_weight
     return material
 
 
@@ -66,17 +77,19 @@ def add_material_from_token(name, token_material_key):
     return material
 
 
-def add_glass_material(name, tint=None, ior=None, roughness=None):
-    """Creates a physically accurate borosilicate / optical glass shader from design tokens."""
+def add_glass_material(name, tint=None, ior=None, roughness=None, transmission=0.98, clearcoat=0.2):
+    """Creates a physically accurate borosilicate / optical glass shader with proper transmission and clearcoat."""
     if tokens is not None and "glass_borosilicate" in tokens.MATERIALS:
         cfg = tokens.get_material_config("glass_borosilicate")
         actual_tint = cfg["base_color"][:3] if tint is None else tint
-        actual_ior = cfg["ior"] if ior is None else ior
-        actual_roughness = cfg["roughness"] if roughness is None else roughness
+        actual_ior = cfg.get("ior", 1.52) if ior is None else ior
+        actual_roughness = cfg.get("roughness", 0.01) if roughness is None else roughness
+        actual_transmission = cfg.get("transmission", 0.98) if transmission is None else transmission
     else:
         actual_tint = (0.95, 0.98, 1.0) if tint is None else tint
         actual_ior = 1.52 if ior is None else ior
-        actual_roughness = 0.02 if roughness is None else roughness
+        actual_roughness = 0.01 if roughness is None else roughness
+        actual_transmission = 0.98 if transmission is None else transmission
 
     material = bpy.data.materials.new(name)
     material.use_nodes = True
@@ -85,7 +98,10 @@ def add_glass_material(name, tint=None, ior=None, roughness=None):
     bsdf.inputs["Metallic"].default_value = 0.0
     bsdf.inputs["Roughness"].default_value = actual_roughness
     bsdf.inputs["IOR"].default_value = actual_ior
-    bsdf.inputs["Transmission Weight"].default_value = 0.96
+    bsdf.inputs["Transmission Weight"].default_value = actual_transmission
+    bsdf.inputs["Specular"].default_value = 0.5
+    if "Clearcoat Weight" in bsdf.inputs:
+        bsdf.inputs["Clearcoat Weight"].default_value = clearcoat
     return material
 
 
@@ -367,44 +383,114 @@ def text_mesh_object(name, text, material=None, size=0.012, extrude=0.0006,
     return obj
 
 
+def _resolve_env_path():
+    """Find an HDRI environment map, preferring project-local assets."""
+    import os
+    candidates = [
+        str(Path(os.environ.get("BLENDER_USER_SCRIPTS", "")) / "edu_assets" / "envs" / "studio.exr"),
+        str(Path(__file__).resolve().parent / "envs" / "studio.exr"),
+        str(Path(__file__).resolve().parent / "envs" / "studio_1k.hdr"),
+    ]
+    for candidate in candidates:
+        if Path(candidate).exists():
+            return Path(candidate)
+    return None
+
+
 def setup_world_and_light():
     world = bpy.data.worlds.new("edu_world")
     world.use_nodes = True
-    background = world.node_tree.nodes["Background"]
-    # Deep dark slate studio background (#0a0f1d) for pristine visual contrast
-    background.inputs[0].default_value = (0.015, 0.020, 0.030, 1.0)
-    background.inputs[1].default_value = 0.20
+    node_tree = world.node_tree
+    nodes = node_tree.nodes
+    links = node_tree.links
+
+    # Clear default nodes
+    for n in nodes:
+        nodes.remove(n)
+
+    # Environment node setup supporting HDRI if available, with fallback to studio gradient
+    bg_node = nodes.new(type="ShaderNodeBackground")
+    bg_node.inputs["Color"].default_value = (0.015, 0.020, 0.030, 1.0)
+    bg_node.inputs["Roughness"].default_value = 0.0
+    bg_node.inputs["Strength"].default_value = 0.5  # increased from 0.20 for better base illumination
+
+    output_node = nodes.new(type="ShaderNodeOutputWorld")
+    links.new(bg_node.outputs["Background"], output_node.inputs["Surface"])
+
+    # Try to load an HDRI environment map for realistic reflections and ambient lighting
+    env_tex = None
+    hdri_path = _resolve_env_path()
+    if hdri_path is not None:
+        env_tex = nodes.new(type="ShaderNodeTexEnvironment")
+        env_tex.image = bpy.data.images.load(str(hdri_path))
+        links.new(env_tex.outputs["Color"], bg_node.inputs["Color"])
+        env_tex.location = (-300, 0)
+        bg_node.location = (0, 0)
+        output_node.location = (300, 0)
+    else:
+        # Fallback: procedural sky gradient with warmer tone
+        tex_coord = nodes.new(type="ShaderNodeTexCoord")
+        tex_coord.location = (-500, 0)
+        mapping = nodes.new(type="ShaderNodeMapping")
+        mapping.location = (-300, 0)
+        mapping.inputs["Rotation"].default_value = (0.0, 0.0, 0.5)
+        links.new(tex_coord.outputs["Generated"], mapping.inputs["Vector"])
+
+        gradient = nodes.new(type="ShaderNodeTexGradient")
+        gradient.gradient_type = "LINEAR"
+        gradient.location = (-100, 0)
+        links.new(mapping.outputs["Vector"], gradient.inputs["Vector"])
+
+        mix = nodes.new(type="ShaderNodeMixRGB")
+        mix.blend_type = "MIX"
+        mix.inputs["Color1"].default_value = (0.02, 0.03, 0.05, 1.0)
+        mix.inputs["Color2"].default_value = (0.15, 0.22, 0.35, 1.0)
+        mix.inputs["Fac"].default_value = 0.0
+        links.new(gradient.outputs["Fac"], mix.inputs["Fac"])
+        links.new(mix.outputs["Color"], bg_node.inputs["Color"])
+        tex_coord.location = (-700, 0)
+        gradient.location = (-500, 0)
+        mix.location = (-300, 0)
+        bg_node.location = (0, 0)
+        output_node.location = (300, 0)
+
     bpy.context.scene.world = world
 
-    # Key light: Focused warm studio key light from front-left pointing towards model
-    sun_data = bpy.data.lights.new("edu_key_light", type="SUN")
-    sun_data.energy = 3.0
-    sun_data.color = (1.0, 0.98, 0.95)
-    sun = bpy.data.objects.new("edu_key_light", sun_data)
-    bpy.context.collection.objects.link(sun)
-    direction = Vector((0.55, 0.70, -0.65)).normalized()
-    sun.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
+    # Key light: Warmer, stronger directional key light
+    key_data = bpy.data.lights.new("edu_key_light", type="AREA")
+    key_data.energy = 1500.0
+    key_data.color = (1.0, 0.96, 0.90)
+    key_data.size = 0.5
+    key = bpy.data.objects.new("edu_key_light", key_data)
+    bpy.context.collection.objects.link(key)
+    key.location = Vector((1.0, -1.2, 1.5))
+    key.rotation_euler = (Vector((0, 0, 0)) - key.location).to_track_quat("-Z", "Y").to_euler()
 
-    # Rim light: Crisp cool contour rim light from back-right creating silhouette definition
-    rim_data = bpy.data.lights.new("edu_rim_light", type="SUN")
-    rim_data.energy = 2.2
-    rim_data.color = (0.75, 0.88, 1.0)
+    # Rim light: cool back-rim for separation
+    rim_data = bpy.data.lights.new("edu_rim_light", type="AREA")
+    rim_data.energy = 750.0
+    rim_data.color = (0.92, 0.96, 1.0)
+    rim_data.size = 0.6
     rim = bpy.data.objects.new("edu_rim_light", rim_data)
     bpy.context.collection.objects.link(rim)
-    rim_direction = Vector((-0.70, -0.65, -0.50)).normalized()
-    rim.rotation_euler = rim_direction.to_track_quat("-Z", "Y").to_euler()
+    rim.location = Vector((-0.5, -1.8, 0.9))
 
-    # Fill light: Soft ambient fill light from front-right illuminating shadow areas
-    fill_data = bpy.data.lights.new("edu_fill_light", type="SUN")
-    fill_data.energy = 1.2
+    rim.rotation_euler = (Vector((0, 0, 0)) - rim.location).to_track_quat("Z", "Y").to_euler()
+    rim.rotation_euler.z += 0.5
+
+    # Fill light: Soft area fill
+    fill_data = bpy.data.lights.new("edu_fill_light", type="AREA")
+    fill_data.energy = 600.0
     fill_data.color = (0.90, 0.94, 1.0)
+    fill_data.size = 0.8
     fill = bpy.data.objects.new("edu_fill_light", fill_data)
     bpy.context.collection.objects.link(fill)
-    fill_direction = Vector((-0.50, 0.65, -0.40)).normalized()
-    fill.rotation_euler = fill_direction.to_track_quat("-Z", "Y").to_euler()
+    fill.location = Vector((0.4, -0.3, 0.6))
+    fill.rotation_euler = (Vector((0, 0, 0)) - fill.location).to_track_quat("Z", "Y").to_euler()
+    fill.rotation_euler.z += 1.0
 
 
-def frame_camera(objects, lens=55.0):
+def frame_camera(objects, lens=50.0):
     bpy.context.view_layer.update()
     points = []
     for obj in objects:
@@ -416,6 +502,7 @@ def frame_camera(objects, lens=55.0):
 
     cam_data = bpy.data.cameras.new("edu_camera")
     cam_data.lens = lens
+    cam_data.sensor_width = 32.0  # APS-C sensor
     scene = bpy.context.scene
     sensor_w = cam_data.sensor_width
     sensor_h = sensor_w * scene.render.resolution_y / scene.render.resolution_x

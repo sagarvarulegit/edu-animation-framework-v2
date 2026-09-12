@@ -76,9 +76,15 @@ def build_bench():
                          size=(3.0, 3.0, 0.02), location=(0.0, 0.0, -0.010))
 
 
-def build_camera():
+def build_camera(focal_length=50.0, aperture=0.015, focus_distance=0.25):
+    """Builds a physically accurate camera with depth of field."""
     cam_data = bpy.data.cameras.new("edu_scene_camera")
-    cam_data.lens = 50.0
+    cam_data.lens = focal_length
+    cam_data.sensor_width = 32.0  # APS-C sensor for shallow DOF
+    cam_data.dof.object = None  # manual focus distance below
+    cam_data.dof.focus_distance = focus_distance
+    cam_data.dof.aperture_fstop = 2.8  # shallow depth of field for realism
+    cam_data.lens_unit = "MILLIMETERS"
     cam = bpy.data.objects.new("edu_scene_camera", cam_data)
     bpy.context.collection.objects.link(cam)
     bpy.context.scene.camera = cam
@@ -146,6 +152,19 @@ def configure_output(scene, out_dir, width, height, samples):
     bpy.context.scene.frame_end = round(scene["duration"] * scene["fps"])
     kit.configure_render(width, height, samples)
     scene_render.filepath = str(out_dir)
+    
+    # Enable Bloom for realistic glowing effects (flames, hot surfaces)
+    scene_render.use_bloom = True
+    bloom = bpy.context.scene.view_settings
+    bloom.look = "Medium High Contrast"
+    bloom.exposure = 0.3
+    bloom.gamma = 1.1
+    
+    # Enable Ambient Occlusion for better contact shadows
+    bpy.context.scene.use_ambient_occlusion = True
+    ao = bpy.context.scene.world
+    ao.ambient_occlusion_factor = 0.8
+    ao.ambient_occlusion_distance = 1.0
 
 
 def render_qa_stills(frames, out_dir, scene_name):

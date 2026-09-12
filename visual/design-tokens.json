@@ -95,70 +95,110 @@
   },
   "materials": {
     "glass_borosilicate": {
-      "baseColor": "#e0f2fe",
+      "baseColor": "#e8f4f8",
       "metallic": 0.0,
-      "roughness": 0.02,
-      "transmission": 0.96,
-      "ior": 1.52
+      "roughness": 0.01,
+      "transmission": 0.98,
+      "ior": 1.52,
+      "clearcoat": 0.2,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
+    },
+    "prism_optical_glass": {
+      "baseColor": "#f1f5f9",
+      "metallic": 0.0,
+      "roughness": 0.01,
+      "transmission": 0.98,
+      "ior": 1.52,
+      "clearcoat": 0.2,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
     },
     "metal_machined_steel": {
-      "baseColor": "#d1d5db",
-      "metallic": 0.95,
-      "roughness": 0.25
+      "baseColor": "#9ca3af",
+      "metallic": 1.0,
+      "roughness": 0.3,
+      "transmission": 0.0,
+      "ior": 1.5,
+      "clearcoat": 0.1,
+      "clearcoatRoughness": 0.2,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
     },
     "metal_magnesium_ribbon": {
       "baseColor": "#b0bec5",
-      "metallic": 0.85,
-      "roughness": 0.35
+      "metallic": 1.0,
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.5,
+      "clearcoat": 0.05,
+      "clearcoatRoughness": 0.3,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
     },
     "metal_magnesium": {
-      "baseColor": "#b0bec5",
-      "metallic": 0.85,
-      "roughness": 0.35
+      "baseColor": "#d1c4c9",
+      "metallic": 1.0,
+      "roughness": 0.5,
+      "transmission": 0.0,
+      "ior": 1.5,
+      "clearcoat": 0.05,
+      "clearcoatRoughness": 0.3,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
     },
     "magnesium_ribbon": {
       "baseColor": "#b0bec5",
-      "metallic": 0.85,
-      "roughness": 0.35
+      "metallic": 0.0,
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.5,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
     },
     "powder_magnesium_oxide": {
       "baseColor": "#f1f5f9",
       "metallic": 0.0,
-      "roughness": 0.95
+      "roughness": 0.95,
+      "transmission": 0.0,
+      "ior": 1.5,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.15,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
     },
-    "flame_luminescent": {
-      "baseColor": "#facc15",
-      "metallic": 0.0,
-      "roughness": 0.2,
-      "emissionColor": "#facc15",
-      "emissionStrength": 8.0
-    },
-    "flame_non_luminous": {
-      "baseColor": "#38bdf8",
-      "metallic": 0.0,
-      "roughness": 0.2,
-      "emissionColor": "#38bdf8",
-      "emissionStrength": 6.0
-    },
-    "particle_electron": {
-      "baseColor": "#38bdf8",
-      "metallic": 0.2,
-      "roughness": 0.15,
-      "emissionColor": "#38bdf8",
-      "emissionStrength": 3.0
-    },
-    "prism_optical_glass": {
+    "plastic_labware": {
       "baseColor": "#f8fafc",
       "metallic": 0.0,
-      "roughness": 0.01,
-      "transmission": 0.98,
-      "ior": 1.54
+      "roughness": 0.4,
+      "transmission": 0.0,
+      "ior": 1.5,
+      "clearcoat": 0.3,
+      "clearcoatRoughness": 0.2,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01
     },
     "tissue_myocardium": {
       "baseColor": "#991b1b",
-      "metallic": 0.05,
-      "roughness": 0.65,
-      "subsurfaceWeight": 0.35,
+      "metallic": 0.0,
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
       "subsurfaceRadius": [1.0, 0.2, 0.1],
       "subsurfaceScale": 0.02
     },
@@ -166,7 +206,11 @@
       "baseColor": "#991b1b",
       "metallic": 0.0,
       "roughness": 0.35,
-      "subsurfaceWeight": 0.35,
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
       "subsurfaceRadius": [1.0, 0.2, 0.1],
       "subsurfaceScale": 0.02
     },
@@ -174,63 +218,127 @@
       "baseColor": "#c2410c",
       "metallic": 0.0,
       "roughness": 0.35,
-      "subsurfaceWeight": 0.30,
-      "subsurfaceRadius": [1.0, 0.25, 0.15],
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
       "subsurfaceScale": 0.02
     },
     "tissueNerve": {
       "baseColor": "#fef08a",
       "metallic": 0.0,
-      "roughness": 0.30,
-      "subsurfaceWeight": 0.40,
-      "subsurfaceRadius": [0.8, 0.6, 0.3],
-      "subsurfaceScale": 0.015
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
     },
     "tissueFat": {
       "baseColor": "#fef9c3",
       "metallic": 0.0,
-      "roughness": 0.40,
-      "subsurfaceWeight": 0.50,
-      "subsurfaceRadius": [1.0, 0.8, 0.3],
-      "subsurfaceScale": 0.03
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
     },
     "tissueSclera": {
       "baseColor": "#f8fafc",
       "metallic": 0.0,
-      "roughness": 0.25,
-      "subsurfaceWeight": 0.25,
-      "subsurfaceRadius": [0.8, 0.7, 0.6],
-      "subsurfaceScale": 0.01
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
     },
     "tissueRetina": {
       "baseColor": "#9a3412",
       "metallic": 0.0,
       "roughness": 0.35,
-      "subsurfaceWeight": 0.30,
-      "subsurfaceRadius": [1.0, 0.3, 0.1],
-      "subsurfaceScale": 0.015
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
     },
     "tissueCortex": {
       "baseColor": "#fbcfe8",
       "metallic": 0.0,
-      "roughness": 0.40,
-      "subsurfaceWeight": 0.35,
-      "subsurfaceRadius": [1.0, 0.4, 0.2],
+      "roughness": 0.35,
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
       "subsurfaceScale": 0.02
     },
     "tissueBone": {
       "baseColor": "#f5f5f4",
       "metallic": 0.0,
       "roughness": 0.35,
-      "subsurfaceWeight": 0.20,
-      "subsurfaceRadius": [0.8, 0.7, 0.5],
-      "subsurfaceScale": 0.01
+      "transmission": 0.0,
+      "ior": 1.33,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.3,
+      "subsurfaceRadius": [1.0, 0.2, 0.1],
+      "subsurfaceScale": 0.02
     },
-    "plastic_labware": {
-      "baseColor": "#e2e8f0",
+    "flame_luminescent": {
+      "baseColor": "#ffb703",
       "metallic": 0.0,
-      "roughness": 0.3,
-      "transmission": 0.4
+      "roughness": 0.0,
+      "transmission": 0.0,
+      "ior": 1.0,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01,
+      "emissionColor": "#ffb703",
+      "emissionStrength": 8.0
+    },
+    "flame_non_luminous": {
+      "baseColor": "#4cc9f0",
+      "metallic": 0.0,
+      "roughness": 0.0,
+      "transmission": 0.0,
+      "ior": 1.0,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01,
+      "emissionColor": "#4cc9f0",
+      "emissionStrength": 6.0
+    },
+    "particle_electron": {
+      "baseColor": "#38bdf8",
+      "metallic": 0.0,
+      "roughness": 0.0,
+      "transmission": 0.0,
+      "ior": 1.0,
+      "clearcoat": 0.0,
+      "clearcoatRoughness": 0.1,
+      "subsurfaceWeight": 0.0,
+      "subsurfaceRadius": [1.0, 1.0, 1.0],
+      "subsurfaceScale": 0.01,
+      "emissionColor": "#38bdf8",
+      "emissionStrength": 3.0
     }
   },
   "camera": {

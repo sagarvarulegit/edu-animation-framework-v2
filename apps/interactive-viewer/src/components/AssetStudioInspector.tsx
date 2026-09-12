@@ -83,27 +83,40 @@ function GLBAssetRenderer({
       flameRef.current.scale.set(flicker, flicker * 1.1, flicker);
     }
   });
-
   const { clonedScene, bounds } = useMemo(() => {
     const cloned = scene.clone(true);
 
-    // Apply wireframe toggle and shadows
+    // Apply wireframe toggle and shadows; overlay PBR from asset registry metadata
+    const meta = asset.materials;
+    const isGlass = !!meta.transmission || (meta.ior && meta.ior > 1.4);
     cloned.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         if (mesh.material) {
+          // Build PBR material from registry metadata
+          const mat = isGlass
+            ? new THREE.MeshPhysicalMaterial({
+                color: meta.color,
+                transmission: meta.transmission ?? 0.0,
+                roughness: meta.roughness,
+                metalness: meta.metalness,
+                ior: meta.ior ?? 1.5,
+                clearcoat: meta.clearcoat ?? 0.0,
+                clearcoatRoughness: meta.clearcoatRoughness ?? 0.0,
+                transparent: true,
+              })
+            : new THREE.MeshStandardMaterial({
+                color: meta.color,
+                roughness: meta.roughness,
+                metalness: meta.metalness,
+              });
+          if ('wireframe' in mat) mat.wireframe = showWireframe;
           if (Array.isArray(mesh.material)) {
-            mesh.material = mesh.material.map((m) => {
-              const cloneMat = m.clone() as any;
-              if ('wireframe' in cloneMat) cloneMat.wireframe = showWireframe;
-              return cloneMat;
-            });
+            mesh.material = mesh.material.map(() => mat);
           } else {
-            const cloneMat = (mesh.material as THREE.Material).clone() as any;
-            if ('wireframe' in cloneMat) cloneMat.wireframe = showWireframe;
-            mesh.material = cloneMat;
+            mesh.material = mat;
           }
         }
       }
@@ -322,11 +335,11 @@ export function AssetStudioInspector({
         {/* Measurement Rings on Floor */}
         <mesh receiveShadow position={[0, 0.0015, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[floorRadius * 0.45, floorRadius * 0.455, 48]} />
-          <meshBasicMaterial color="#38bdf8" transparent opacity={0.25} />
+          <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={1.5} transparent opacity={0.25} roughness={0.3} metalness={0.0} />
         </mesh>
         <mesh receiveShadow position={[0, 0.0015, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[floorRadius * 0.85, floorRadius * 0.855, 48]} />
-          <meshBasicMaterial color="#38bdf8" transparent opacity={0.2} />
+          <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={1.2} transparent opacity={0.2} roughness={0.3} metalness={0.0} />
         </mesh>
 
         {/* Cardinal Orientation Indicator Badges */}
@@ -395,7 +408,7 @@ export function AssetStudioInspector({
             <boxGeometry
               args={[currentBounds.size[0], currentBounds.size[1], currentBounds.size[2]]}
             />
-            <meshBasicMaterial color="#38bdf8" wireframe transparent opacity={0.3} />
+            <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={1.0} wireframe transparent opacity={0.3} roughness={0.4} metalness={0.0} />
           </mesh>
           <Text
             position={[

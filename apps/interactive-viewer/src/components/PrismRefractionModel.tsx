@@ -212,11 +212,16 @@ export function PrismRefractionModel({
             <boxGeometry args={[0.004, 0.48, 0.34]} />
             <meshPhysicalMaterial
               color="#e0f2fe"
-              transmission={0.85}
+              transmission={0.97}
               transparent
-              opacity={0.8}
-              roughness={0.05}
-              ior={1.5}
+              roughness={0.02}
+              ior={1.52}
+              thickness={0.006}
+              clearcoat={0.2}
+              clearcoatRoughness={0.03}
+              metalness={0.0}
+              attenuationColor={new THREE.Color('#e0f2fe')}
+              attenuationDistance={0.5}
             />
           </mesh>
           <mesh position={[0.006, 0, 0]}>
@@ -356,16 +361,17 @@ export function PrismRefractionModel({
         />
         <meshPhysicalMaterial
           color={selectedPart === 'prism-glass-body' ? '#bae6fd' : (hovered === 'prism-glass-body' ? '#e0f2fe' : '#f0f9ff')}
-          transmission={0.96}
+          transmission={0.98}
           opacity={1.0}
           transparent={true}
-          roughness={0.015}
-          ior={1.517}
+          roughness={0.01}
+          ior={1.52}
           thickness={0.085}
           specularIntensity={1.0}
           specularColor={new THREE.Color('#ffffff')}
-          clearcoat={1.0}
+          clearcoat={0.2}
           clearcoatRoughness={0.02}
+          metalness={0.0}
           attenuationColor={new THREE.Color('#e0f2fe')}
           attenuationDistance={0.2}
           emissive={selectedPart === 'prism-glass-body' ? new THREE.Color('#38bdf8') : (hovered === 'prism-glass-body' ? new THREE.Color('#0284c7') : new THREE.Color('#000000'))}
