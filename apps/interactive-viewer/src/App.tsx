@@ -15,7 +15,7 @@ function StudioEnvironment() {
     const roomEnv = new RoomEnvironment();
     const envTexture = pmremGenerator.fromScene(roomEnv, 0.04).texture;
     scene.environment = envTexture;
-    scene.environmentIntensity = 1.0;
+    scene.environmentIntensity = 0.4;
     return () => {
       pmremGenerator.dispose();
       envTexture.dispose();
@@ -416,21 +416,21 @@ export default function App() {
                 <StudioEnvironment />
 
                 {/* 3-Point Balanced Studio Lighting Rig */}
-                <ambientLight intensity={0.45} color="#f8fafc" />
+                <ambientLight intensity={0.25} color="#f8fafc" />
                 <directionalLight
                   castShadow
-                  position={[2.0, 3.5, 3.0]}
-                  intensity={1.4}
-                  color="#fffdfa"
+                  position={[3.0, 4.0, 2.5]}
+                  intensity={1.0}
+                  color="#fffaf0"
                   shadow-mapSize-width={2048}
                   shadow-mapSize-height={2048}
                   shadow-camera-near={0.05}
                   shadow-camera-far={10.0}
                   shadow-bias={-0.0001}
                 />
-                <directionalLight position={[-2.5, 1.8, 1.0]} intensity={0.5} color="#bae6fd" />
-                <directionalLight position={[0.0, 3.0, -2.5]} intensity={0.7} color="#f1f5f9" />
-                <pointLight position={[0, 0.4, 0.4]} intensity={0.3} color="#e0f2fe" />
+                <directionalLight position={[-3.0, 2.0, 1.0]} intensity={0.35} color="#bae6fd" />
+                <directionalLight position={[0.0, 2.5, -3.0]} intensity={0.5} color="#f1f5f9" />
+                <pointLight position={[0, 0.3, 0.5]} intensity={0.2} color="#e0f2fe" />
 
                 <Suspense fallback={null}>
                   <CameraFramer bounds={modelBounds} controlsRef={studioControlsRef} />

@@ -6,8 +6,10 @@ node_modules/
 # Build outputs & caches
 dist/
 dist-ssr/
+out/
 *.local
 *.tsbuildinfo
+*.mp4
 __pycache__/
 *.pyc
 *.pyo

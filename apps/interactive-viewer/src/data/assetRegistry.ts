@@ -56,8 +56,11 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       clearcoat: 0.2,
       clearcoatRoughness: 0.02,
       color: '#e0f2fe',
-      description: 'Schott N-BK7 Crown Glass with optical clarity'
-    },
+      description: 'Schott N-BK7 Crown Glass with optical clarity',
+    
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'torch_emitter': [-0.14, -0.045, 0.035],
       'ray_entry_face_AB': [-0.02, 0.015, 0.035],
@@ -97,8 +100,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.02,
       metalness: 0.0,
       color: '#f0f9ff',
-      description: 'Schott N-BK7 Crown Glass'
-    },
+      description: 'Schott N-BK7 Crown Glass',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'apex_top': [0, 0.03, 0.06],
       'base_left': [-0.025, -0.015, 0],
@@ -126,8 +134,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.03,
       metalness: 0.05,
       color: '#e0f2fe',
-      description: 'Optical glass lens with blackened brass frame'
-    },
+      description: 'Optical glass lens with blackened brass frame',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'optical_centre_O': [0, 0, 0.08],
       'principal_focus_F1': [-0.10, 0, 0.08],
@@ -155,8 +168,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.02,
       metalness: 0.0,
       color: '#f8fafc',
-      description: 'Crown Glass rectangular slab'
-    },
+      description: 'Crown Glass rectangular slab',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'incident_point': [-0.03, 0.032, 0.012],
       'emergent_point': [0.03, -0.032, 0.012]
@@ -183,8 +201,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.4,
       metalness: 0.85,
       color: '#94a3b8',
-      description: 'Chrome laboratory steel tongs and cast iron Bunsen base'
-    },
+      description: 'Chrome laboratory steel tongs and cast iron Bunsen base',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'burner_flame_tip': [0, 0, 0.09],
       'tongs_grip': [0, 0, 0.11],
@@ -219,8 +244,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.25,
       metalness: 0.2,
       color: '#38bdf8',
-      description: 'Luminous cyan electron orbitals with glowing nucleons'
-    },
+      description: 'Luminous cyan electron orbitals with glowing nucleons',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'nucleus': [0, 0, 0],
       'k_shell': [0, 0.055, 0],
@@ -252,8 +284,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.25,
       metalness: 0.2,
       color: '#f87171',
-      description: 'Luminous rose/red atomic core and electron orbits'
-    },
+      description: 'Luminous rose/red atomic core and electron orbits',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'nucleus': [0, 0, 0],
       'k_shell': [0, 0.055, 0],
@@ -284,8 +323,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.2,
       metalness: 0.3,
       color: '#facc15',
-      description: 'Electrostatic force fields and alternating ionic lattice'
-    },
+      description: 'Electrostatic force fields and alternating ionic lattice',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'origin': [0, 0, 0],
       'corner_mg': [-0.08, -0.08, -0.08],
@@ -317,8 +363,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.35,
       metalness: 0.9,
       color: '#475569',
-      description: 'Heavy cast-iron base with machined brass collar'
-    },
+      description: 'Heavy cast-iron base with machined brass collar',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'gas_inlet': [-0.04, 0, 0.015],
       'air_collar': [0, 0, 0.04],
@@ -347,8 +400,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.05,
       metalness: 0.0,
       color: '#e0f2fe',
-      description: 'Borosilicate 3.3 laboratory glass'
-    },
+      description: 'Borosilicate 3.3 laboratory glass',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'rim_top': [0, 0, 0.095],
       'spout': [0.035, 0, 0.095],
@@ -376,8 +434,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.6,
       metalness: 0.1,
       color: '#dc2626',
-      description: 'Myocardial muscular tissue shader with vascular branches'
-    },
+      description: 'Myocardial muscular tissue shader with vascular branches',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0.05,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'superior_vena_cava': [-0.02, 0.02, 0.09],
       'aorta_arch': [0.01, 0.01, 0.11],
@@ -411,8 +476,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.1,
       color: '#f8fafc',
-      description: 'Sclera, cornea, and retinal layers'
-    },
+      description: 'Sclera, cornea, and retinal layers',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'cornea_front': [0, 0, 0.04],
       'pupil_center': [0, 0, 0.032],
@@ -442,8 +514,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.35,
       metalness: 0.7,
       color: '#334155',
-      description: 'Bakelite circuit base with copper binding posts'
-    },
+      description: 'Bakelite circuit base with copper binding posts',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'battery_pos': [-0.12, -0.08, 0.03],
       'ammeter_pos': [-0.04, 0.06, 0.03],
@@ -476,8 +555,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.6,
       color: '#1e293b',
-      description: 'High-impact bakelite casing with glass window'
-    },
+      description: 'High-impact bakelite casing with glass window',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'pos_terminal_red': [-0.025, -0.035, 0.02],
       'neg_terminal_black': [0.025, -0.035, 0.02],
@@ -503,8 +589,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.6,
       color: '#1e293b',
-      description: 'Bakelite casing with glass dial'
-    },
+      description: 'Bakelite casing with glass dial',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'pos_terminal_red': [-0.025, -0.035, 0.02],
       'neg_terminal_black': [0.025, -0.035, 0.02]
@@ -530,8 +623,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.015,
       metalness: 1.0,
       color: '#f8fafc',
-      description: 'Silver coated front surface on glass substrate'
-    },
+      description: 'Silver coated front surface on glass substrate',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'pole_P': [0, 0, 0.12],
       'focus_F_virtual': [0, -0.075, 0.12],
@@ -557,8 +657,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.2,
       metalness: 0.95,
       color: '#e2e8f0',
-      description: 'Machined stainless steel dual rails with cast iron base'
-    },
+      description: 'Machined stainless steel dual rails with cast iron base',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'candle_flame': [-0.35, 0, 0.23],
       'lens_center': [0, 0, 0.22],
@@ -584,8 +691,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.2,
       color: '#dc2626',
-      description: 'Painted cast AlNiCo alloy magnet'
-    },
+      description: 'Painted cast AlNiCo alloy magnet',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'north_pole': [0.05, 0, 0.008],
       'south_pole': [-0.05, 0, 0.008],
@@ -611,8 +725,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.25,
       metalness: 0.95,
       color: '#ea580c',
-      description: 'Enameled copper magnet wire on insulating cylinder'
-    },
+      description: 'Enameled copper magnet wire on insulating cylinder',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'core_center': [0, 0, 0.05],
       'north_face': [0.08, 0, 0.05],
@@ -640,8 +761,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.8,
       color: '#334155',
-      description: 'Copper armature winding with brass commutator and steel axle'
-    },
+      description: 'Copper armature winding with brass commutator and steel axle',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'armature_center': [0, 0, 0.07],
       'split_ring_commutator': [0, -0.045, 0.07],
@@ -669,8 +797,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.4,
       metalness: 0.3,
       color: '#0f172a',
-      description: 'Black Bakelite casing with acrylic viewing window'
-    },
+      description: 'Black Bakelite casing with acrylic viewing window',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'pos_terminal_red': [0.028, 0.025, 0.078],
       'neg_terminal_black': [-0.028, 0.025, 0.078],
@@ -699,8 +834,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.02,
       metalness: 0.0,
       color: '#e0f2fe',
-      description: 'Borosilicate glass tubes with graphite electrodes'
-    },
+      description: 'Borosilicate glass tubes with graphite electrodes',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'anode_o2_headspace': [-0.022, 0, 0.15],
       'cathode_h2_headspace': [0.022, 0, 0.14],
@@ -727,8 +867,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.5,
       metalness: 0.1,
       color: '#78350f',
-      description: 'Beechwood rack with borosilicate test tubes'
-    },
+      description: 'Beechwood rack with borosilicate test tubes',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'tube_a_reference': [-0.025, 0, 0.07],
       'tube_b_reaction': [0.025, 0, 0.07],
@@ -754,8 +901,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.6,
       metalness: 0.7,
       color: '#1e293b',
-      description: 'Cast iron legs with glazed porcelain evaporating dish'
-    },
+      description: 'Cast iron legs with glazed porcelain evaporating dish',
+    
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0.05,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'gauze_surface': [0, 0, 0.168],
       'dish_cavity': [0, 0, 0.176]
@@ -782,8 +936,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.02,
       metalness: 0.0,
       color: '#e0f2fe',
-      description: 'Borosilicate glassware with soap solution trough'
-    },
+      description: 'Borosilicate glassware with soap solution trough',
+    
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'flask_reaction_zone': [-0.06, 0, 0.02],
       'soap_bubble_rise': [0.07, 0, 0.12],
@@ -810,8 +969,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.15,
       color: '#334155',
-      description: 'CPK color-coded carbon (gray) and hydrogen (white) spheres'
-    },
+      description: 'CPK color-coded carbon (gray) and hydrogen (white) spheres',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'carbon_center': [0, 0, 0],
       'hydrogen_vertex_1': [0.032, 0.032, 0.032],
@@ -841,8 +1007,13 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.08,
       metalness: 0.1,
       color: '#f8fafc',
-      description: 'High-refraction diamond crystal nodes with covalent rods'
-    },
+      description: 'High-refraction diamond crystal nodes with covalent rods',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {
       'unit_center': [0, 0, 0]
     },
@@ -866,8 +1037,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.4,
       metalness: 0.5,
       color: '#1e293b',
-      description: 'Graphite carbon atoms with delocalized pi-bonding'
-    },
+      description: 'Graphite carbon atoms with delocalized pi-bonding',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'layer_top': [0, 0, 0.021],
       'layer_bottom': [0, 0, -0.021]
@@ -892,8 +1070,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.3,
       metalness: 0.1,
       color: '#0284c7',
-      description: 'Polar ionic carboxylate heads with golden hydrocarbon tails'
-    },
+      description: 'Polar ionic carboxylate heads with golden hydrocarbon tails',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'oil_droplet_center': [0, 0, 0]
     },
@@ -918,8 +1103,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.5,
       metalness: 0.05,
       color: '#f43f5e',
-      description: 'Vascular lung parenchyma with cartilage rings and capillary loops'
-    },
+      description: 'Vascular lung parenchyma with cartilage rings and capillary loops',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'trachea_carina': [0, 0, 0.11],
       'left_lung_center': [-0.048, 0, 0.06],
@@ -947,8 +1139,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.5,
       metalness: 0.08,
       color: '#831843',
-      description: 'Renal cortex with vascular supply and muscular bladder'
-    },
+      description: 'Renal cortex with vascular supply and muscular bladder',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'right_kidney_hilum': [-0.052, 0, 0.128],
       'left_kidney_hilum': [0.052, 0, 0.138],
@@ -975,8 +1174,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.45,
       metalness: 0.05,
       color: '#fbbf24',
-      description: 'Epithelial reabsorptive nephron tubules with vascular glomerulus'
-    },
+      description: 'Epithelial reabsorptive nephron tubules with vascular glomerulus',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'bowmans_capsule': [-0.05, 0, 0.11],
       'glomerulus_tuft': [-0.05, 0, 0.112],
@@ -1003,8 +1209,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.35,
       metalness: 0.05,
       color: '#22c55e',
-      description: 'Living guard cells with thick inner cellulosic walls and chloroplasts'
-    },
+      description: 'Living guard cells with thick inner cellulosic walls and chloroplasts',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'stomatal_pore_center': [0, 0, 0],
       'left_guard_cell': [-0.024, 0, 0],
@@ -1030,8 +1243,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.4,
       metalness: 0.1,
       color: '#3b82f6',
-      description: 'Color-coded sensory (blue) and motor (red) nerve tracts'
-    },
+      description: 'Color-coded sensory (blue) and motor (red) nerve tracts',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'skin_receptor': [-0.10, 0, -0.03],
       'spinal_interneuron': [0.065, 0, 0.04],
@@ -1057,8 +1277,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.4,
       metalness: 0.05,
       color: '#e11d48',
-      description: 'Velvety magenta petals with pistil and golden pollen anthers'
-    },
+      description: 'Velvety magenta petals with pistil and golden pollen anthers',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'stigma_surface': [0, 0, 0.122],
       'ovary_ovule': [0, 0, 0.058],
@@ -1084,8 +1311,15 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
       roughness: 0.35,
       metalness: 0.1,
       color: '#10b981',
-      description: 'Stepped tiers graded from producer emerald green to apex crimson'
-    },
+      description: 'Stepped tiers graded from producer emerald green to apex crimson',
+    
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {
       'tier_1_producers': [0, 0, 0.016],
       'tier_2_herbivores': [0, 0, 0.048],
@@ -1108,7 +1342,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Current Electricity & Circuits',
     semanticDescription: 'Direct-current electrochemical dry cell source with positive brass contact button, insulating jacket, and zinc bottom terminal.',
     dimensions: {"width_mm": 14, "height_mm": 50, "depth_mm": 14, "weight_g": 24},
-    materials: {"roughness": 0.35, "metalness": 0.85, "color": "#2563eb", "description": "Glossy blue battery jacket with golden positive pip and silver negative plate"},
+    materials: {"roughness": 0.35, "metalness": 0.85, "color": "#2563eb", "description": "Glossy blue battery jacket with golden positive pip and silver negative plate",
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"positive_terminal": [0, 0, 0.026], "negative_terminal": [0, 0, -0.025]},
     cbse: {"class": 10, "chapter": "Chapter 11: Electricity", "ncertActivity": "Activity 11.1 - Closed Electric Circuit", "formulas": ["V = W / Q", "Electromotive Force (EMF) = 1.5 V"], "examTakeaway": "Maintains a constant potential difference across conductor ends, causing electrons to drift from negative to positive terminal."},
     tags: ["battery", "cell", "dc-source", "voltage", "circuit", "potential-difference"]
@@ -1120,7 +1361,12 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Current Electricity & Heating Effects',
     semanticDescription: 'Electric lamp with coiled tungsten filament, copper support leads, clear glass envelope, and metallic screw base.',
     dimensions: {"width_mm": 60, "height_mm": 105, "depth_mm": 60, "weight_g": 35},
-    materials: {"transmission": 0.95, "ior": 1.52, "roughness": 0.05, "metalness": 0.05, "color": "#f8fafc", "description": "Transparent blown glass bulb with incandescent tungsten filament"},
+    materials: {"transmission": 0.95, "ior": 1.52, "roughness": 0.05, "metalness": 0.05, "color": "#f8fafc", "description": "Transparent blown glass bulb with incandescent tungsten filament",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {"filament_center": [0, 0, 0.045], "base_contact": [0, 0, -0.045]},
     cbse: {"class": 10, "chapter": "Chapter 11: Electricity", "ncertActivity": "Activity 11.2 - Heating Effect of Current", "formulas": ["P = V * I = I^2 * R = V^2 / R", "Joule Heating: H = I^2 * R * t"], "examTakeaway": "Tungsten has high melting point (3380 deg C) and emits white light without melting; inert argon/nitrogen gas prevents filament oxidation."},
     tags: ["bulb", "lamp", "tungsten", "joule-heating", "electric-power", "filament"]
@@ -1132,7 +1378,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Current Electricity & Circuit Elements',
     semanticDescription: 'Laboratory circuit breaker key with solid brass contact blocks, insulated handle, and removable bridging plug.',
     dimensions: {"width_mm": 80, "height_mm": 35, "depth_mm": 45, "weight_g": 110},
-    materials: {"roughness": 0.3, "metalness": 0.85, "color": "#d97706", "description": "Machined brass contact blocks mounted on insulating ebonite base"},
+    materials: {"roughness": 0.3, "metalness": 0.85, "color": "#d97706", "description": "Machined brass contact blocks mounted on insulating ebonite base",
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"terminal_in": [-0.032, 0, 0.015], "terminal_out": [0.032, 0, 0.015], "plug_handle": [0, 0, 0.032]},
     cbse: {"class": 10, "chapter": "Chapter 11: Electricity", "ncertActivity": "Activity 11.1 - Circuit Switching", "formulas": ["Open Switch: I = 0 A (Air gap)", "Closed Switch: I = V / R (Conducting link)"], "examTakeaway": "Provides a conducting link between cell and load; removing the plug opens the circuit and instantly drops current to zero."},
     tags: ["switch", "plug-key", "circuit", "contact", "open-circuit", "closed-circuit"]
@@ -1144,7 +1397,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Current Electricity & Ohmic Resistance',
     semanticDescription: 'Axial-leaded through-hole resistor with color-coded resistance bands, ceramic substrate core, and tinned copper wire leads.',
     dimensions: {"width_mm": 25, "height_mm": 8, "depth_mm": 8, "weight_g": 5},
-    materials: {"roughness": 0.5, "metalness": 0.1, "color": "#d97706", "description": "Ceramic tubular body with color-coded resistance value rings"},
+    materials: {"roughness": 0.5, "metalness": 0.1, "color": "#d97706", "description": "Ceramic tubular body with color-coded resistance value rings",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"lead_left": [-0.015, 0, 0], "lead_right": [0.015, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 11: Electricity", "ncertActivity": "Activity 11.2 - Verification of Ohm's Law", "formulas": ["V = I * R (Ohm's Law)", "R = rho * (l / A)"], "examTakeaway": "Resistance opposes charge flow; it is directly proportional to length l, inversely to cross-sectional area A, and depends on material resistivity rho."},
     tags: ["resistor", "resistance", "ohms-law", "resistivity", "circuit"]
@@ -1156,7 +1416,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Current Electricity & Variable Resistance',
     semanticDescription: 'Adjustable wire-wound laboratory variable resistor with porcelain tube, oxidized constantan winding, slider guide rod, and phosphor-bronze wiper.',
     dimensions: {"width_mm": 180, "height_mm": 90, "depth_mm": 65, "weight_g": 420},
-    materials: {"roughness": 0.3, "metalness": 0.75, "color": "#475569", "description": "Porcelain core with closely wound oxidized constantan resistance wire"},
+    materials: {"roughness": 0.3, "metalness": 0.75, "color": "#475569", "description": "Porcelain core with closely wound oxidized constantan resistance wire",
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"fixed_terminal_A": [-0.08, -0.025, 0.015], "fixed_terminal_B": [0.08, -0.025, 0.015], "slider_terminal": [0, 0.025, 0.075]},
     cbse: {"class": 10, "chapter": "Chapter 11: Electricity", "ncertActivity": "Activity 11.3 - Regulating Current with Rheostat", "formulas": ["I = V / R_variable", "Current inversely proportional to inserted resistance wire length"], "examTakeaway": "Enables continuous variation of current in a circuit without altering the source voltage by changing effective resistance wire length."},
     tags: ["rheostat", "variable-resistor", "slider", "current-regulation", "constantan"]
@@ -1168,7 +1435,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Current Electricity & Circuit Elements',
     semanticDescription: 'Multi-strand high-conductivity copper connecting lead with thick PVC insulation jacket and bare conductive end pins.',
     dimensions: {"width_mm": 250, "height_mm": 3, "depth_mm": 3, "weight_g": 15},
-    materials: {"roughness": 0.4, "metalness": 0.1, "color": "#ef4444", "description": "Bright red flexible PVC insulation with high-conductivity copper core"},
+    materials: {"roughness": 0.4, "metalness": 0.1, "color": "#ef4444", "description": "Bright red flexible PVC insulation with high-conductivity copper core",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"start_pin": [-0.12, 0, 0], "end_pin": [0.12, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 11: Electricity", "ncertActivity": "Activity 11.1 - Circuit Assembly", "formulas": ["R_wire approx 0 Ohm (negligible voltage loss)"], "examTakeaway": "Copper is chosen for connecting leads due to extremely low resistivity (1.62 * 10^-8 Ohm*m), minimizing internal power dissipation."},
     tags: ["wire", "connecting-wire", "conductor", "copper", "insulation", "lead"]
@@ -1180,7 +1454,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Optics & Reflection',
     semanticDescription: 'Flat highly-reflective glass front mirror with back-silvered reflecting plane, protective backing, and supporting base stand.',
     dimensions: {"width_mm": 120, "height_mm": 150, "depth_mm": 40, "weight_g": 180},
-    materials: {"roughness": 0.02, "metalness": 0.98, "color": "#e2e8f0", "description": "Float glass front with vacuum-aluminized specular rear reflecting film"},
+    materials: {"roughness": 0.02, "metalness": 0.98, "color": "#e2e8f0", "description": "Float glass front with vacuum-aluminized specular rear reflecting film",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"mirror_center": [0, 0, 0.065], "base_stand": [0, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 9: Light - Reflection and Refraction", "ncertActivity": "Activity 9.1 - Laws of Reflection", "formulas": ["angle i = angle r", "Magnification m = +1", "v = -u (Image distance = Object distance)"], "examTakeaway": "Produces a virtual, erect, and laterally inverted image of identical size located at equal distance behind the reflecting surface."},
     tags: ["plane-mirror", "reflection", "specular", "lateral-inversion", "virtual-image"]
@@ -1192,7 +1473,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Optics & Spherical Mirrors',
     semanticDescription: 'Inward-curving spherical reflective optical mirror with circular aperture, focal center, and optical axis alignment mount.',
     dimensions: {"width_mm": 85, "height_mm": 85, "depth_mm": 30, "weight_g": 140},
-    materials: {"roughness": 0.02, "metalness": 0.98, "color": "#cbd5e1", "description": "Inwardly curved silvered spherical glass dish"},
+    materials: {"roughness": 0.02, "metalness": 0.98, "color": "#cbd5e1", "description": "Inwardly curved silvered spherical glass dish",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"pole_P": [0, 0, 0.035], "principal_focus_F": [0, -0.05, 0.035], "center_of_curvature_C": [0, -0.1, 0.035]},
     cbse: {"class": 10, "chapter": "Chapter 9: Light - Reflection and Refraction", "ncertActivity": "Activity 9.2 - Focusing Sunlight with Concave Mirror", "formulas": ["1/f = 1/v + 1/u (Mirror Formula)", "f = R / 2", "m = -v / u = h_i / h_o"], "examTakeaway": "Converges parallel incident rays to principal focus F; forms real inverted images for u > f, and magnified virtual erect image when object is placed between P and F."},
     tags: ["concave-mirror", "converging-mirror", "focus", "real-image", "virtual-image", "spherical-mirror"]
@@ -1204,7 +1492,12 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Optics & Refraction',
     semanticDescription: 'Double concave optical glass lens with thin center and thicker periphery, ground edges, and high optical transmission.',
     dimensions: {"width_mm": 60, "height_mm": 60, "depth_mm": 12, "weight_g": 65},
-    materials: {"transmission": 0.96, "ior": 1.52, "roughness": 0.02, "metalness": 0.0, "color": "#f0f9ff", "description": "Crown glass biconcave lens with polished spherical surfaces"},
+    materials: {"transmission": 0.96, "ior": 1.52, "roughness": 0.02, "metalness": 0.0, "color": "#f0f9ff", "description": "Crown glass biconcave lens with polished spherical surfaces",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {"optical_center_O": [0, 0, 0.03], "focus_F1": [-0.06, 0, 0.03], "focus_F2": [0.06, 0, 0.03]},
     cbse: {"class": 10, "chapter": "Chapter 9: Light - Reflection and Refraction", "ncertActivity": "Activity 9.12 - Image Formation by Concave Lens", "formulas": ["1/f = 1/v - 1/u (Lens Formula)", "Power P = 1 / f (Negative Power)", "m = v / u < 1"], "examTakeaway": "Diverging lens always has a negative focal length f < 0; it always produces a virtual, erect, and diminished image located between optical center O and focus F."},
     tags: ["concave-lens", "diverging-lens", "myopia-correction", "refraction", "focal-length"]
@@ -1216,7 +1509,12 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Laboratory Glassware',
     semanticDescription: 'Wide flat-bottom borosilicate Erlenmeyer flask with tapered conical neck, volume graduations, and fire-polished rim.',
     dimensions: {"width_mm": 110, "height_mm": 165, "depth_mm": 110, "weight_g": 185},
-    materials: {"transmission": 0.95, "ior": 1.52, "roughness": 0.03, "metalness": 0.02, "color": "#e0f2fe", "description": "Heat-resistant borosilicate 3.3 laboratory glass"},
+    materials: {"transmission": 0.95, "ior": 1.52, "roughness": 0.03, "metalness": 0.02, "color": "#e0f2fe", "description": "Heat-resistant borosilicate 3.3 laboratory glass",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {"flask_mouth": [0, 0, 0.165], "liquid_center": [0, 0, 0.045], "flask_base": [0, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.3 - Reaction of Zinc with Dilute Sulphuric Acid", "formulas": ["Zn(s) + H2SO4(aq) -> ZnSO4(aq) + H2(g) ^"], "examTakeaway": "Conical geometry facilitates vigorous swirling without liquid spilling; narrow neck accommodates rubber stoppers for gas delivery tubes."},
     tags: ["flask", "erlenmeyer", "glassware", "chemistry", "titration", "gas-evolution"]
@@ -1228,7 +1526,12 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Laboratory Glassware',
     semanticDescription: 'Cylindrical thin-walled borosilicate reaction tube with hemispherical sealed bottom, fire-polished flared lip, and volume capacity.',
     dimensions: {"width_mm": 20, "height_mm": 150, "depth_mm": 20, "weight_g": 22},
-    materials: {"transmission": 0.96, "ior": 1.52, "roughness": 0.02, "metalness": 0.0, "color": "#f0f9ff", "description": "Clear borosilicate test tube with liquid meniscus"},
+    materials: {"transmission": 0.96, "ior": 1.52, "roughness": 0.02, "metalness": 0.0, "color": "#f0f9ff", "description": "Clear borosilicate test tube with liquid meniscus",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {"tube_mouth": [0, 0, 0.15], "liquid_meniscus": [0, 0, 0.065], "hemisphere_bottom": [0, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.2 - Precipitation of Lead Iodide", "formulas": ["Pb(NO3)2(aq) + 2KI(aq) -> PbI2(s) v (Yellow ppt) + 2KNO3(aq)"], "examTakeaway": "Allows rapid visual inspection of precipitate formation, gas bubbling, thermal decomposition, and color changes in micro-scale reactions."},
     tags: ["test-tube", "glassware", "precipitation", "lead-iodide", "reaction-vessel"]
@@ -1240,7 +1543,12 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Laboratory Glassware',
     semanticDescription: 'Circular shallow-concave glass dish used as an evaporation surface, beaker lid, or collection plate for reaction ash and crystals.',
     dimensions: {"width_mm": 80, "height_mm": 12, "depth_mm": 80, "weight_g": 45},
-    materials: {"transmission": 0.95, "ior": 1.52, "roughness": 0.02, "metalness": 0.0, "color": "#f8fafc", "description": "Pressed concave clear borosilicate glass dish"},
+    materials: {"transmission": 0.95, "ior": 1.52, "roughness": 0.02, "metalness": 0.0, "color": "#f8fafc", "description": "Pressed concave clear borosilicate glass dish",
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.1,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,},
     anchorPoints: {"concave_center": [0, 0, 0.003], "rim_lip": [0.04, 0, 0.012]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.1 - Collection of Magnesium Oxide Ash", "formulas": ["2Mg(s) + O2(g) -> 2MgO(s) (White powder collected on watch glass)"], "examTakeaway": "Used to collect burning reaction products safely; water added to the ash forms Mg(OH)2, turning moist red litmus paper blue."},
     tags: ["watch-glass", "evaporation", "ash-collection", "glassware", "precipitate"]
@@ -1252,7 +1560,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Fluid Dispensing Tools',
     semanticDescription: 'Precision fluid dispenser with flexible vulcanized rubber squeeze bulb, transparent glass stem, and narrow capillary delivery tip.',
     dimensions: {"width_mm": 18, "height_mm": 135, "depth_mm": 18, "weight_g": 16},
-    materials: {"roughness": 0.4, "metalness": 0.1, "color": "#2563eb", "description": "Blue elastic rubber bulb atop clear glass capillary tube"},
+    materials: {"roughness": 0.4, "metalness": 0.1, "color": "#2563eb", "description": "Blue elastic rubber bulb atop clear glass capillary tube",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"rubber_bulb_top": [0, 0, 0.135], "capillary_nozzle": [0, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 2: Acids, Bases and Salts", "ncertActivity": "Activity 2.1 - Dropwise Indicator Testing", "formulas": ["Acid + Phenolphthalein -> Colorless", "Base + Phenolphthalein -> Pink"], "examTakeaway": "Dispenses precise drop volumes (approx 0.05mL per drop) to detect sharp color transition endpoints without overshooting titration."},
     tags: ["dropper", "pipette", "indicator", "titration", "acid-base", "fluid-dispensing"]
@@ -1264,7 +1579,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Laboratory Support Apparatus',
     semanticDescription: 'Laboratory support stand with heavy rectangular cast-iron base plate, zinc-plated vertical steel upright rod, and bosshead clamp.',
     dimensions: {"width_mm": 150, "height_mm": 450, "depth_mm": 100, "weight_g": 1200},
-    materials: {"roughness": 0.5, "metalness": 0.85, "color": "#1e293b", "description": "Dark hammered cast-iron base with polished chrome-plated steel rod"},
+    materials: {"roughness": 0.5, "metalness": 0.85, "color": "#1e293b", "description": "Dark hammered cast-iron base with polished chrome-plated steel rod",
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"base_center": [0, 0, 0.015], "clamp_grip": [0.045, 0, 0.25], "rod_top": [0, 0, 0.45]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.5 - Thermal Decomposition of Ferrous Sulphate", "formulas": ["2FeSO4(s) --Delta--> Fe2O3(s) + SO2(g) + SO3(g)"], "examTakeaway": "Provides stable, hands-free elevation of glassware above Bunsen burners during prolonged high-temperature thermal decompositions."},
     tags: ["retort-stand", "clamp", "support", "iron-base", "thermal-decomposition", "apparatus"]
@@ -1276,7 +1598,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Safety & Handling Tools',
     semanticDescription: 'Stainless-steel scissor tongs with serrated bowed jaws, rivet fulcrum pivot, and looped finger handles for holding hot lab materials.',
     dimensions: {"width_mm": 65, "height_mm": 210, "depth_mm": 25, "weight_g": 140},
-    materials: {"roughness": 0.35, "metalness": 0.95, "color": "#94a3b8", "description": "Polished stainless steel 304 with knurled gripping jaw tips"},
+    materials: {"roughness": 0.35, "metalness": 0.95, "color": "#94a3b8", "description": "Polished stainless steel 304 with knurled gripping jaw tips",
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"jaw_grip": [0, 0.095, 0], "fulcrum_pivot": [0, 0.02, 0], "finger_loops": [0, -0.095, 0]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.1 - Holding Magnesium Ribbon in Flame", "formulas": ["2Mg + O2 -> 2MgO (Exothermic flame T > 3000 K)"], "examTakeaway": "Prevents direct manual contact with burning metals and incandescent crucibles, insulating the experimenter from extreme heat."},
     tags: ["tongs", "crucible-tongs", "safety", "combustion", "magnesium-burning", "laboratory"]
@@ -1288,7 +1617,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Metals & Chemical Reagents',
     semanticDescription: 'Silvery-white flexible elemental magnesium ribbon with natural surface passivation texture and ductile strip geometry.',
     dimensions: {"width_mm": 12, "height_mm": 75, "depth_mm": 1, "weight_g": 2},
-    materials: {"roughness": 0.3, "metalness": 0.95, "color": "#cbd5e1", "description": "Silvery-white alkaline earth metal with subtle ductile curvature"},
+    materials: {"roughness": 0.3, "metalness": 0.95, "color": "#cbd5e1", "description": "Silvery-white alkaline earth metal with subtle ductile curvature",
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"ribbon_tip": [0, 0.035, 0], "ribbon_base": [0, -0.035, 0]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.1 - Burning of Magnesium Ribbon in Air", "formulas": ["2Mg(s) + O2(g) -> 2MgO(s) + Heat + Blinding White Light"], "examTakeaway": "Must be scrubbed with sandpaper prior to ignition to strip the passivating layer of basic magnesium carbonate [MgCO3.Mg(OH)2]."},
     tags: ["magnesium", "ribbon", "metal", "combustion", "passivation", "combination-reaction"]
@@ -1300,7 +1636,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Reaction Products & Oxides',
     semanticDescription: 'Fine white porous powder mound representing anhydrous magnesium oxide formed by the high-temperature oxidation of magnesium.',
     dimensions: {"width_mm": 40, "height_mm": 15, "depth_mm": 40, "weight_g": 8},
-    materials: {"roughness": 0.95, "metalness": 0.0, "color": "#f8fafc", "description": "Porous micro-crystalline chalky white powder mound"},
+    materials: {"roughness": 0.95, "metalness": 0.0, "color": "#f8fafc", "description": "Porous micro-crystalline chalky white powder mound",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0.15,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"apex_peak": [0, 0, 0.015], "base_perimeter": [0, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 1: Chemical Reactions and Equations", "ncertActivity": "Activity 1.1 - Nature of Metallic Oxides", "formulas": ["MgO(s) + H2O(l) -> Mg(OH)2(aq) (Magnesium Hydroxide, basic)"], "examTakeaway": "Metallic oxides are basic in nature; when dissolved in water, MgO forms magnesium hydroxide which turns red litmus paper blue."},
     tags: ["magnesium-oxide", "mgo", "basic-oxide", "white-ash", "litmus-test", "reaction-product"]
@@ -1312,7 +1655,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Neurobiology & Nervous System',
     semanticDescription: 'Complete multipolar nerve cell showing cyton/soma, dendritic tree, central nucleus, myelinated axon with Nodes of Ranvier, and synaptic terminal buttons.',
     dimensions: {"width_mm": 140, "height_mm": 45, "depth_mm": 25, "weight_g": 1},
-    materials: {"roughness": 0.4, "metalness": 0.1, "color": "#f59e0b", "description": "Golden soma body, pearlescent white myelin sheaths, and glowing cyan synaptic boutons"},
+    materials: {"roughness": 0.4, "metalness": 0.1, "color": "#f59e0b", "description": "Golden soma body, pearlescent white myelin sheaths, and glowing cyan synaptic boutons",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"soma_nucleus": [-0.045, 0, 0], "dendrite_tip": [-0.07, 0.02, 0], "axon_terminal": [0.065, 0, 0]},
     cbse: {"class": 10, "chapter": "Chapter 6: Control and Coordination", "ncertActivity": "Figure 6.1 - Structure of Neuron", "formulas": ["Dendrite (Input) -> Cyton -> Axon -> Synapse (Neurotransmitter diffusion)"], "examTakeaway": "Information is acquired at dendrite tips, generates an electrical impulse across soma and axon, and triggers neurotransmitter chemical release at the synapse."},
     tags: ["neuron", "nerve-cell", "axon", "dendrite", "myelin-sheath", "synapse", "action-potential"]
@@ -1324,7 +1674,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Central Nervous System',
     semanticDescription: 'Anatomical model of human brain displaying folded cerebrum cortex, corpus callosum, thalamus, cerebellum with folia arborization, and brainstem (pons + medulla).',
     dimensions: {"width_mm": 160, "height_mm": 130, "depth_mm": 140, "weight_g": 1350},
-    materials: {"roughness": 0.45, "metalness": 0.05, "color": "#f43f5e", "description": "Convoluted cerebral cortex pink-tan with ivory internal white matter tracts"},
+    materials: {"roughness": 0.45, "metalness": 0.05, "color": "#f43f5e", "description": "Convoluted cerebral cortex pink-tan with ivory internal white matter tracts",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"cerebrum_cortex": [0, 0.03, 0.05], "cerebellum_folia": [-0.045, -0.04, -0.02], "medulla_brainstem": [0, -0.025, -0.06]},
     cbse: {"class": 10, "chapter": "Chapter 6: Control and Coordination", "ncertActivity": "Figure 6.3 - Human Brain Anatomy", "formulas": ["Forebrain (Thinking/Sensation) + Midbrain (Visual/Auditory reflex) + Hindbrain (Vital involuntary functions)"], "examTakeaway": "Cerebrum governs conscious thought, sensory integration, and memory; Cerebellum coordinates precision motor posture/balance; Medulla controls involuntary breathing and blood pressure."},
     tags: ["brain", "cerebrum", "cerebellum", "medulla", "brainstem", "central-nervous-system", "cortex"]
@@ -1336,7 +1693,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Life Processes & Nutrition',
     semanticDescription: 'Complete human alimentary tract showing esophagus, J-shaped stomach, liver with gallbladder, pancreas, duodenum, convoluted small intestine, colon, and appendix.',
     dimensions: {"width_mm": 180, "height_mm": 480, "depth_mm": 120, "weight_g": 2800},
-    materials: {"roughness": 0.4, "metalness": 0.05, "color": "#f97316", "description": "Multi-organ GI tract with liver (hepatic brown), gallbladder (bile emerald), and intestines"},
+    materials: {"roughness": 0.4, "metalness": 0.05, "color": "#f97316", "description": "Multi-organ GI tract with liver (hepatic brown), gallbladder (bile emerald), and intestines",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"esophagus_inlet": [0, 0, 0.22], "stomach_body": [-0.025, 0, 0.12], "duodenum_pancreas": [0.015, 0, 0.07], "small_intestine_loops": [0, 0, -0.03]},
     cbse: {"class": 10, "chapter": "Chapter 5: Life Processes", "ncertActivity": "Figure 5.6 - Human Alimentary Canal", "formulas": ["Starch + Amylase -> Maltose", "Proteins + Pepsin/Trypsin -> Amino Acids", "Fats + Bile + Lipase -> Fatty Acids + Glycerol"], "examTakeaway": "Complete digestion occurs in small intestine; liver bile emulsifies large fat globules into micro-droplets, while intestinal villi maximize surface area for rapid nutrient absorption."},
     tags: ["digestive-system", "stomach", "liver", "pancreas", "small-intestine", "villi", "bile", "nutrition"]
@@ -1348,7 +1712,14 @@ export const ASSET_REGISTRY: AssetRegistryItem[] = [
     subCategory: 'Genetics & Molecular Biology',
     semanticDescription: 'B-form double-helical nucleic acid model showing intertwined antiparallel sugar-phosphate backbones and complementary purine-pyrimidine base pairs (A-T and G-C).',
     dimensions: {"width_mm": 45, "height_mm": 180, "depth_mm": 45, "weight_g": 25},
-    materials: {"roughness": 0.35, "metalness": 0.1, "color": "#8b5cf6", "description": "Purple sugar-phosphate spiral ribbons linked by color-coded nucleotide base pairs"},
+    materials: {"roughness": 0.35, "metalness": 0.1, "color": "#8b5cf6", "description": "Purple sugar-phosphate spiral ribbons linked by color-coded nucleotide base pairs",
+      clearcoat: 0,
+      clearcoatRoughness: 0.2,
+      subsurfaceWeight: 0,
+      subsurfaceRadius: [1.0, 0.2, 0.1],
+      subsurfaceScale: 0.02,
+      transmission: 0,
+      ior: 1.5,},
     anchorPoints: {"helix_top": [0, 0, 0.09], "helix_mid": [0, 0, 0], "helix_bottom": [0, 0, -0.09]},
     cbse: {"class": 10, "chapter": "Chapter 7 & 8: How do Organisms Reproduce? & Heredity", "ncertActivity": "Section 7.1 - The Importance of Variation in DNA Copying", "formulas": ["Complementary Base Pairing: Adenine (A) = Thymine (T)", "Guanine (G) == Cytosine (C)"], "examTakeaway": "DNA in cell nucleus is the information source for protein synthesis; copying mechanism introduces subtle biochemical errors creating population variations essential for species survival."},
     tags: ["dna", "double-helix", "nucleotides", "adenine-thymine", "guanine-cytosine", "heredity", "replication"]

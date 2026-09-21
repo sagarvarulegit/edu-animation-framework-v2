@@ -1,0 +1,8 @@
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/00_intro_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/01_step1_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/02_step2_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/03_step3_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/04_step4_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/05_step5_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/06_step6_916.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_1_magnesium/clips_916/07_outro_916.mp4'

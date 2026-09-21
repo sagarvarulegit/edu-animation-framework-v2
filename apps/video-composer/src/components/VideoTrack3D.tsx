@@ -29,7 +29,7 @@ export const VideoTrack3D: React.FC<VideoTrack3DProps> = ({
         className="relative h-full w-full flex items-center justify-center transition-transform"
       >
         <OffthreadVideo
-          src={src.startsWith('http') || src.startsWith('/') ? src : staticFile(src)}
+          src={src.startsWith('http') ? src : staticFile(src.replace(/^\//, ''))}
           playbackRate={playbackRate}
           className="h-full w-full object-contain"
         />

@@ -1,0 +1,4 @@
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_3_zinc_acid/clips_action/01_hook_action.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_3_zinc_acid/clips_action/02_setup_action.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_3_zinc_acid/clips_action/03_reaction_action.mp4'
+file 'C:/Sagar/Projects/CBSE/ChapterReady.in/edu-animation-framework-agent-ready/experiments/activity_1_3_zinc_acid/clips_action/04_takeaway_action.mp4'
