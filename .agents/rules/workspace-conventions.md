@@ -36,3 +36,11 @@ Whenever adding a new animation primitive or timeline action, update all 4 layer
 - Always run `node tools/validate.mjs` (or `npm test`) before and after changes to verify all scene plans, assets, lessons, OKF concepts, and design tokens match schemas.
 - Do not track `.blend1` or temporary cache files in git commits.
 
+## 7. Git Commit & Push Discipline
+- **Frequent Commits & Pushes**: Whenever solid progress or a meaningful subtask/milestone is completed, validate and immediately `git commit` and `git push` to `origin`.
+- **Prevent Multi-Machine Desync**: The developer works across multiple locations (office machine and home machine). Never leave completed or validated work uncommitted or unpushed at the end of a session or task milestone.
+- **Standard Protocol**:
+  1. Validate: `node tools/validate.mjs` (or relevant test/build commands).
+  2. Commit: `git add .` and `git commit -m "..."` with clear, descriptive commit messages.
+  3. Push: `git push origin <branch>` immediately so remote is always the source of truth.
+

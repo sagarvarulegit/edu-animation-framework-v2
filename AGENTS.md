@@ -633,6 +633,13 @@ Next recommended step:
 - ...
 ```
 
+### Step 8 — Commit & Push
+
+Once changes are validated and handoff is ready:
+- Commit and push changes immediately (`git commit` and `git push origin <branch>`).
+- Do not leave validated work stranded on a single local machine so work can continue seamlessly across machines (e.g., office vs. home).
+
+
 ---
 
 # 17. Do not leave hidden assumptions
