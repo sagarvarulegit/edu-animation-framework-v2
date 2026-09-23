@@ -1,69 +1,71 @@
 {
   "id": "human-heart",
-  "name": "Human Heart (Anatomical 4-Chamber Coronal Cutaway)",
+  "name": "Human Heart (Anatomical 4-Chamber, Valves & Coronary Circulation)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomical human heart with coronal cutaway section revealing 4 internal chambers (Right Atrium, Right Ventricle, Left Atrium, Left Ventricle with ~3x thicker myocardium), interventricular and interatrial septa, atrioventricular valves (tricuspid and bicuspid/mitral) with chordae tendineae and papillary muscles, semilunar valves, coronary circulation, and great vessels.",
+  "semanticDescription": "Authentic medical-grade human heart model extracted from the Z-Anatomy anatomical atlas with 4 chambers (Left & Right Ventricles, Left & Right Atria), Coronal Cutaway cross-section with ~3x thicker LV myocardium wall (NCERT Class 10 Fig 5.4), Tricuspid & Bicuspid/Mitral valves with chordae tendineae and papillary muscles, Aortic & Pulmonary semilunar valves, Aorta & Aortic Arch with 3 systemic branches (Brachiocephalic, Carotid, Subclavian), Pulmonary Trunk and left/right pulmonary arteries, Superior & Inferior Vena Cava, 4 Pulmonary Veins, and full Coronary Circulation (LAD, RCA, Circumflex, Great & Middle Cardiac Veins, Coronary Sinus).",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "real-world-scale"
+    "basis": "real-world-scale",
+    "width": 0.135,
+    "depth": 0.131,
+    "height": 0.210
   },
   "simplifications": [
-    "Coronal cutaway removes anterior myocardial wall to expose interior 4-chamber anatomy (RA, RV, LA, LV), septa, and valves for educational demonstration",
-    "Left ventricle myocardium authored with 12 mm wall thickness (~3x right ventricle 4 mm wall thickness) reflecting systemic vs pulmonary hydrostatic pressure requirements",
-    "Fibrous valve leaflets (tricuspid 3-cusp, mitral 2-cusp) and papillary chordae tendineae stylized for pedagogical clarity",
-    "Great vessels capped with manifold geometry to guarantee watertight 3D meshes"
+    "Carotid artery and systemic great vessels trimmed to standard isolated anatomical organ margins (~2.5-3.0 cm above aortic arch, ~2 cm below apex).",
+    "Dual-collection architecture: '01_Heart_Chambers_Full' provides complete external muscular organ with coronary circulation; '02_Heart_Chambers_Coronal_Cutaway' provides solidified coronal cross-section exposing all 4 internal cavities and valves (NCERT Fig 5.4).",
+    "Left ventricle myocardium authored with 11 mm wall thickness (~3x right ventricle 4 mm wall thickness) reflecting systemic vs pulmonary hydrostatic pressure requirements."
   ],
   "materials": [
     {
       "id": "heart-myocardium",
-      "look": "Cardiac muscle tissue with subsurface scattering (0.55, 0.09, 0.11)"
+      "look": "Cardiac ventricular muscle tissue with subsurface scattering (0.48, 0.08, 0.10) and ambient occlusion crevice shading"
     },
     {
       "id": "heart-atrium",
-      "look": "Atrial muscle wall with subsurface scattering (0.48, 0.10, 0.12)"
+      "look": "Atrial muscle wall with subsurface scattering (0.46, 0.11, 0.13)"
     },
     {
       "id": "heart-valve",
-      "look": "Dense fibrous connective valve tissue (0.92, 0.90, 0.84)"
+      "look": "Dense fibrous connective valve tissue with transmission translucency (0.88, 0.86, 0.78)"
+    },
+    {
+      "id": "heart-papillary",
+      "look": "Muscular papillary projections anchoring chordae tendineae (0.45, 0.08, 0.10)"
     },
     {
       "id": "heart-aorta",
-      "look": "Aortic arch and ascending/descending aorta (0.84, 0.03, 0.03)"
+      "look": "Oxygenated systemic arterial red for Ascending Aorta, Arch, and 3 branches (0.76, 0.04, 0.04)"
     },
     {
-      "id": "heart-pulmonary",
-      "look": "Pulmonary trunk and arteries (0.015, 0.18, 0.88)"
+      "id": "heart-pulmonary-vein",
+      "look": "Oxygenated pulmonary venous return into Left Atrium (0.74, 0.04, 0.04)"
+    },
+    {
+      "id": "heart-pulmonary-trunk",
+      "look": "Deoxygenated pulmonary trunk and arteries carrying venous blood to lungs (0.04, 0.16, 0.68)"
     },
     {
       "id": "heart-vena-cava",
-      "look": "Systemic venous return vena cava (0.015, 0.16, 0.80)"
+      "look": "Deoxygenated systemic venous return vena cava into Right Atrium (0.04, 0.15, 0.65)"
     },
     {
-      "id": "heart-pulm-vein",
-      "look": "Oxygenated pulmonary veins (0.80, 0.03, 0.03)"
+      "id": "heart-coronary-artery",
+      "look": "Vibrant oxygenated red for Left Anterior Descending (LAD), Right Coronary (RCA), and Circumflex arteries (0.86, 0.03, 0.03)"
     },
     {
-      "id": "heart-fat",
-      "look": "Epicardial adipose tissue cushions along sulci"
-    },
-    {
-      "id": "heart-coronary",
-      "look": "Coronary arteries LAD/RCA (0.95, 0.02, 0.02)"
-    },
-    {
-      "id": "heart-coronary-vein",
-      "look": "Great cardiac vein (0.08, 0.24, 0.92)"
+      "id": "heart-cardiac-vein",
+      "look": "Vibrant deoxygenated blue for Great Cardiac Vein, Middle Cardiac Vein, and Coronary Sinus (0.03, 0.22, 0.82)"
     }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_heart.py",
-    "source": "NCERT Class 10/11 Biology Benchmarks & Procedural Geometry",
-    "license": "project-original",
-    "date": "2026-09-09"
+    "source": "Z-Anatomy open-source anatomical atlas (CC-BY-SA 4.0) & NCERT Class 10/11 Biology Benchmarks",
+    "license": "CC-BY-SA-4.0",
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -82,6 +84,10 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_coronal.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
@@ -91,6 +97,7 @@
     "CBSE-class-10",
     "CBSE-class-11",
     "science-ch5",
-    "coronal-section"
+    "coronal-section",
+    "double-circulation"
   ]
 }
