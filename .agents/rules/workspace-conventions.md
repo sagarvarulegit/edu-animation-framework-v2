@@ -44,3 +44,14 @@ Whenever adding a new animation primitive or timeline action, update all 4 layer
   2. Commit: `git add .` and `git commit -m "..."` with clear, descriptive commit messages.
   3. Push: `git push origin <branch>` immediately so remote is always the source of truth.
 
+## 8. Blender MCP Integration
+- **Server**: `mcp-for-blender` package run via `uvx mcp-for-blender`.
+- **Addon**: Installed to `~/.config/blender/5.2/scripts/addons/blender_mcp.py` and enabled in user preferences (`userpref.blend`).
+- **Port**: Default TCP port `9876` on `localhost`.
+- **Configuration**: Registered globally in `~/.gemini/config/mcp_config.json`.
+- **Live Interaction**:
+  - Open any scene in Blender (GUI or `xvfb-run -a blender <file.blend>`).
+  - Auto-start is enabled so the server listens automatically on port 9876.
+  - MCP tools available: `get_scene_info`, `get_object_info`, `get_viewport_screenshot`, `execute_blender_code`, `describe_node_type`, `bpy_api_lookup`, `export_scene`.
+
+
