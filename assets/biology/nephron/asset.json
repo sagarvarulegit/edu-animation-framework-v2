@@ -3,9 +3,9 @@
   "name": "Nephron (Renal Filtration Unit)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "High-fidelity 3D model of a kidney nephron including Bowman's capsule, glomerular capillary tuft, afferent/efferent arterioles, proximal convoluted tubule (PCT), Loop of Henle with hairpin turn, distal convoluted tubule (DCT) in macula densa contact with Bowman's vascular pole, collecting duct, peritubular capillaries, vasa recta, and corticomedullary boundary (CBSE Class 10 Biology Ch 5 Figure 5.14; CBSE Class 11 Biology Ch 19 Figure 19.3).",
+  "semanticDescription": "Medical-grade anatomical 3D model of a kidney nephron conforming to NCERT Class 10/11 specifications. Includes Bowman's capsule with hollow cup, glomerulus capillary tuft, wide afferent arteriole, narrow efferent arteriole, proximal convoluted tubule (PCT), loop of Henle (thin descending limb, hairpin turn, thick ascending limb) entering macula densa contact with vascular pole, distal convoluted tubule (DCT), branched collecting duct, peritubular capillaries, hairpin vasa recta, and frosted corticomedullary boundary plane. Features dual collections (Nephron_Full and Nephron_Section) for full context and clean isolated tubule views.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
@@ -39,6 +39,10 @@
     {
       "id": "peritubular-capillaries",
       "look": "Intertwined capillary plexus and straight vasa recta for reabsorption"
+    },
+    {
+      "id": "corticomedullary-boundary",
+      "look": "Subtle translucent demarcation plane between renal cortex and medulla"
     }
   ],
   "provenance": {
@@ -46,7 +50,7 @@
     "generator": "build_nephron.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -64,6 +68,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

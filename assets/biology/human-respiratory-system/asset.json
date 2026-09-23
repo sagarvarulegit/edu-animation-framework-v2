@@ -3,9 +3,9 @@
   "name": "Human Respiratory System & Alveoli Cluster",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomical human respiratory system model showing larynx, trachea with authentic C-shaped hyaline cartilaginous rings (open posteriorly), carina bifurcation, transparent lungs revealing internal lobar and segmental bronchial arborization, dome-shaped diaphragm, and magnified alveolar cluster with capillary gas exchange (CBSE Class 10 Biology Ch 5 Figure 5.9; CBSE Class 11 Biology Ch 17 Figure 17.1).",
+  "semanticDescription": "Medical-grade anatomical human respiratory system model showing hyoid bone arch, thyroid cartilage with laryngeal prominence (Adam's apple) and cornua, cricoid cartilage signet ring, epiglottis, trachea with 14 authentic C-shaped hyaline cartilaginous rings and posterior trachealis muscle, carina bifurcation, lobar and segmental bronchial tree arborization, anatomically contoured dual lungs (3-lobed right lung, 2-lobed left lung with cardiac notch), dome-shaped diaphragm with central tendon, and magnified alveolar sac cluster with pulmonary microvasculature (CBSE Class 10 Biology Ch 5 Figure 5.9; CBSE Class 11 Biology Ch 17 Figure 17.1).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
@@ -19,24 +19,52 @@
   ],
   "materials": [
     {
-      "id": "lung-tissue-pink",
-      "look": "Translucent vascular lung parenchyma with dielectric transmission and subsurface scattering"
+      "id": "respiratory-cartilage",
+      "look": "Bluish-white pearlescent hyaline cartilage with subsurface scattering for tracheal C-rings and cricoid"
     },
     {
-      "id": "trachea-cartilage",
-      "look": "Hyaline cartilage C-rings open posteriorly with smooth trachealis muscle"
+      "id": "respiratory-thyroid-cartilage",
+      "look": "Amber-cream thyroid cartilage shield with laryngeal prominence and cornua"
     },
     {
-      "id": "bronchial-tree",
-      "look": "Conducting airway tubules with lobar and segmental branching"
+      "id": "respiratory-epiglottis",
+      "look": "Elastic fibrocartilage leaf guarding laryngeal inlet"
     },
     {
-      "id": "diaphragm-muscle",
-      "look": "Deep reddish-brown dome-shaped diaphragm muscle with central tendon"
+      "id": "respiratory-airway-mucosa",
+      "look": "Pinkish-red smooth airway lining and posterior trachealis muscle"
     },
     {
-      "id": "alveoli-capillary",
-      "look": "Microscopic alveolar sac cluster with oxy-red and deoxy-blue capillaries"
+      "id": "respiratory-bronchus",
+      "look": "Salmon-pink conducting bronchial tubules with lobar and segmental branching"
+    },
+    {
+      "id": "respiratory-lung-exterior",
+      "look": "Translucent pleural lung parenchyma with dielectric transmission revealing internal arborization"
+    },
+    {
+      "id": "respiratory-lung-interior",
+      "look": "Coronal cutaway spongy vascular lung tissue displaying exposed bronchial arborization"
+    },
+    {
+      "id": "respiratory-diaphragm",
+      "look": "Deep striated reddish-brown voluntary muscular dome"
+    },
+    {
+      "id": "respiratory-central-tendon",
+      "look": "Pearly white glistening fibrous aponeurosis"
+    },
+    {
+      "id": "respiratory-alveolus",
+      "look": "Microscopic clustered alveolar epithelial sacs for respiratory gas exchange"
+    },
+    {
+      "id": "respiratory-capillary-oxy",
+      "look": "Oxygenated pulmonary venule capillary plexus (arterial red)"
+    },
+    {
+      "id": "respiratory-capillary-deoxy",
+      "look": "Deoxygenated pulmonary arteriole capillary plexus (venous blue)"
     }
   ],
   "provenance": {
@@ -44,7 +72,7 @@
     "generator": "build_respiratory.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -62,6 +90,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

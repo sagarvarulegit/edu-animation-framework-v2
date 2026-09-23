@@ -3,14 +3,14 @@
   "name": "Human Excretory System (Urinary System)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomical model of the human urinary excretory system including paired bean-shaped kidneys, suprarenal adrenal glands, renal pelvis funnels, renal arteries and veins, abdominal aorta with common iliac bifurcations, inferior vena cava, bilateral ureters inserting into the bladder trigone, muscular urinary bladder, and urethra (CBSE Class 10 Biology Ch 5 Figure 5.13; CBSE Class 11 Biology Ch 19 Figures 19.1, 19.2).",
+  "semanticDescription": "Medical-grade anatomical model of the human urinary excretory system featuring paired bean-shaped kidneys with medial hilum, coronal section of kidney displaying outer renal cortex, striated medullary pyramids, columns of Bertin, renal papillae, calyces, and renal pelvis cavity; suprarenal adrenal glands capping superior poles; abdominal aorta with renal arteries and common iliac bifurcations; inferior vena cava with left renal vein crossing anterior to aorta; bilateral ureters inserting into the bladder trigone, muscular detrusor urinary bladder, and urethra (CBSE Class 10 Biology Ch 5 Figure 5.13; CBSE Class 11 Biology Ch 19 Figures 19.1, 19.2).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
     "width": 0.22,
-    "height": 0.30,
+    "height": 0.3,
     "depth": 0.12
   },
   "simplifications": [
@@ -19,24 +19,40 @@
   ],
   "materials": [
     {
-      "id": "kidney-parenchyma",
-      "look": "Reddish-brown dense renal cortex with subsurface scattering"
+      "id": "kidney-cortex-exterior",
+      "look": "Reddish-brown fibrous renal capsule with realistic subsurface scattering"
     },
     {
-      "id": "renal-artery-red",
-      "look": "Bright red oxygenated arterial vessel from aorta"
+      "id": "kidney-cortex-section",
+      "look": "Vascular granular pink-brown renal cortex and columns of Bertin"
     },
     {
-      "id": "renal-vein-blue",
-      "look": "Deep blue venous drainage vessel to vena cava"
+      "id": "kidney-medulla-pyramid",
+      "look": "Striated deep purplish-crimson medullary pyramids collecting into renal papillae"
     },
     {
-      "id": "ureter-smooth-muscle",
-      "look": "Pale buff yellow muscular conducting tubes"
+      "id": "kidney-pelvis-calyx",
+      "look": "Pale glistening cream minor/major calyces and funnel-shaped renal pelvis"
     },
     {
-      "id": "urinary-bladder-wall",
-      "look": "Distensible pinkish detrusor muscular bladder"
+      "id": "adrenal-gland",
+      "look": "Golden-ochre endocrine parenchymal adrenal gland cap"
+    },
+    {
+      "id": "vessel-artery-red",
+      "look": "Oxygenated abdominal aorta, renal arteries, and iliac bifurcations"
+    },
+    {
+      "id": "vessel-vein-blue",
+      "look": "Deoxygenated inferior vena cava, renal veins (left crossing anterior to aorta), and iliac veins"
+    },
+    {
+      "id": "ureter-muscle",
+      "look": "Pale buff muscular peristaltic conducting ureter tubes"
+    },
+    {
+      "id": "urinary-bladder",
+      "look": "Vascular muscular detrusor urinary bladder and urethral outflow"
     }
   ],
   "provenance": {
@@ -44,7 +60,7 @@
     "generator": "build_excretory.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -62,6 +78,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
