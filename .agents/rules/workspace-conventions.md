@@ -10,7 +10,7 @@ description: Workspace execution rules, working directories, Blender paths, and 
 - Always set `Cwd` to `c:\Sagar\Projects\edu-animation-framework-agent-ready\edu-animation-framework-v2` (or the relative `edu-animation-framework-v2` folder) for shell commands (`git`, `npm`, `node`, `blender`).
 
 ## 2. Blender CLI
-- On Linux, Blender is available on PATH at `/home/sagarv/.local/bin/blender` (v4.2 LTS). Invoke directly as `blender <args>`.
+- On Linux, Blender is available on PATH at `/home/sagarv/.local/bin/blender` (v5.2 LTS). Invoke directly as `blender <args>`.
 - On Windows, Blender is installed at `C:\Program Files\Blender Foundation\Blender 5.2\blender.exe`. When invoking from PowerShell:
   `& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" <args>`
 

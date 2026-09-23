@@ -1,42 +1,48 @@
 {
   "id": "human-eye",
-  "name": "Human Eye (Cornea, Lens, Retina, Vitreous & Optic Nerve)",
+  "name": "Human Eye (Medical-Grade Anatomical 3D Model & NCERT Fig 11.1 Horizontal Section)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomical 3D model of the human eye showing 3 concentric tunics (outer fibrous sclera and clear cornea, middle vascular choroid, ciliary body, and iris with open pupil aperture, inner sensory retina with optic disc and macula lutea), crystalline biconvex lens, suspensory zonules of Zinn, transparent vitreous body, and optic nerve bundle.",
+  "semanticDescription": "Medical-grade anatomical 3D model of the human eye featuring two coordinated presentation collections: 'Eye_Full' (complete external globe with cornea, iris, pupillary sphincter, transparent crystalline lens, 4 extrinsic rectus muscles, and optic nerve bundle II) and 'Eye_Section' (canonical NCERT Fig 11.1 horizontal cutaway exposing the 3 concentric tunics—sclera, choroid, retina—ciliary body with 36 corona ciliaris folds, 48 suspensory zonules of Zinn, crystalline biconvex lens, central fovea, macula lutea, optic disc blind spot, and branching retinal arterial/venous trees).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
   "simplifications": [
-    "Quadrant cutaway removes anterior-superior-right section to expose concentric tunic layers and internal optical components for educational inspection",
-    "Suspensory zonules of Zinn represented as 32 discrete radial fibrous ligament bundles",
-    "Retinal blood vessels simplified to primary superior and inferior arterial and venous arcades"
+    "Equatorial horizontal cutaway removes superior hemisphere (Z > 0) matching NCERT Class 10 Fig 11.1 textbook diagram to expose internal optics, ciliary apparatus, and retinal landmarks",
+    "Suspensory zonules of Zinn represented as 48 discrete radial fibrous ligament strands attaching alternately to anterior and posterior lens equator",
+    "Retinal blood vessels modelled as primary superior and inferior temporal/nasal arcades with macular and floor branches projected on inner retinal wall"
   ],
   "materials": [
-    { "id": "eye-sclera", "look": "Protective white outer fibrous tunic with subsurface scattering" },
-    { "id": "eye-cornea", "look": "Transparent bulging anterior refractive window (IOR 1.376)" },
+    { "id": "eye-sclera", "look": "Protective white outer fibrous tunic with biological subsurface scattering" },
+    { "id": "eye-cornea", "look": "Transparent bulging anterior aspheric refractive window (IOR 1.376)" },
+    { "id": "eye-limbus", "look": "Translucent annular transition zone between sclera and cornea" },
     { "id": "eye-choroid", "look": "Dark brown-black vascular melanin layer absorbing internal light scatter" },
-    { "id": "eye-ciliary", "look": "Ciliary body muscular ring and ciliary processes" },
-    { "id": "eye-iris", "look": "Pigmented hazel-blue iris diaphragm with central open pupil aperture" },
-    { "id": "eye-pupil", "look": "Pupillary sphincter margin surrounding the true open aperture" },
+    { "id": "eye-ciliary", "look": "Ciliary body muscular ring regulating crystalline lens curvature" },
+    { "id": "eye-ciliary-processes", "look": "Radial ciliary folds (corona ciliaris) anchoring zonular fibers" },
+    { "id": "eye-iris", "look": "Pigmented hazel-amber iris diaphragm with fine radial stroma striations and open pupil aperture" },
+    { "id": "eye-pupil-sphincter", "look": "Circumferential pupillary sphincter margin surrounding open aperture" },
     { "id": "eye-lens", "look": "Clear biconvex crystalline lens with optical transmission (IOR 1.406)" },
     { "id": "eye-zonules", "look": "Delicate fibrous suspensory ligaments of Zinn" },
     { "id": "eye-vitreous", "look": "Transparent refractive vitreous humor gel (IOR 1.336)" },
-    { "id": "eye-aqueous", "look": "Clear aqueous humor fluid in anterior chamber (IOR 1.333)" },
     { "id": "eye-retina", "look": "Warm orange-red sensory photoreceptor layer with subsurface scattering" },
-    { "id": "eye-optic-disc", "look": "Pale blind spot at emergence of cranial nerve II" },
-    { "id": "eye-macula", "look": "Yellow macula lutea and central fovea depression" },
-    { "id": "eye-nerve", "look": "Cranial optic nerve bundle II with subsurface scattering" }
+    { "id": "eye-macula", "look": "Golden-yellow macula lutea spot of high visual acuity" },
+    { "id": "eye-fovea", "look": "Central high-acuity fovea centralis depression" },
+    { "id": "eye-optic-disc", "look": "Pale physiological blind spot at emergence of cranial nerve II" },
+    { "id": "eye-retinal-artery", "look": "Scarlet red oxygenated retinal arterial arcades" },
+    { "id": "eye-retinal-vein", "look": "Royal blue deoxygenated companion retinal venules" },
+    { "id": "eye-optic-nerve", "look": "Cranial optic nerve bundle II sheathed with meningeal dura" },
+    { "id": "eye-rectus-muscle", "look": "Striated red extrinsic ocular muscle belly" },
+    { "id": "eye-rectus-tendon", "look": "Silvery glistening tendinous insertion onto sclera" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_eye.py",
-    "source": "NCERT Class 10/11 Physics/Biology Benchmarks & Procedural Geometry",
+    "source": "NCERT Class 10 Chapter 11 (Fig 11.1), CBSE Class 11 Chapter 21, and Medical Anatomy Benchmarks",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -46,19 +52,24 @@
   "outputs": [
     { "file": "out/human-eye.blend", "kind": "blender-scene" },
     { "file": "out/human-eye.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "tags": [
     "eye",
-    "human-eye",
+    "humaneye",
     "cornea",
     "lens",
     "retina",
     "choroid",
+    "ciliary",
+    "iris",
+    "pupil",
     "vitreous",
-    "optic-nerve",
+    "opticnerve",
     "optics",
-    "cbse-class-10",
-    "cbse-class-11"
+    "cbse10",
+    "cbse11",
+    "ncert"
   ]
 }

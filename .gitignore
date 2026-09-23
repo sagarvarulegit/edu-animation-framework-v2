@@ -6,7 +6,7 @@ node_modules/
 # Build outputs & caches
 dist/
 dist-ssr/
-out/
+/out/
 *.local
 *.tsbuildinfo
 *.mp4
