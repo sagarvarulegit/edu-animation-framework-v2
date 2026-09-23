@@ -3,9 +3,9 @@
   "name": "DC Electric Motor Working Model",
   "category": "physics",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Direct current (DC) electric motor model illustrating Fleming's Left-Hand Rule, containing a rectangular armature coil ABCD, curved permanent magnetic poles (N/S), split-ring commutator segments (P/Q), carbon brushes (X/Y), and rotating axle (CBSE Class 10 Magnetic Effects Ch 12).",
+  "semanticDescription": "High-fidelity laboratory DC electric motor model with dual presentation collections (Motor_Full and Motor_Section). Features a rectangular insulated copper armature coil ABCD with arched clearance over the central stainless steel axle, cylindrical soft iron core, permanent magnet with concave cylindrical North (red) and South (blue) pole faces creating a radial magnetic field, turned brass split-ring commutator halves (P and Q) separated by an insulating gap, stationary carbon contact brushes (X and Y) with spring holders, cast iron machinery base, DC battery binding posts, plug key switch, and output pulley. The Motor_Section collection demonstrates Fleming's Left-Hand Rule with 3D vector arrows for the horizontal magnetic field B, coil current I, and opposite vertical forces F producing continuous rotational torque (NCERT Class 10 Physics Ch 13 Figure 13.15).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
@@ -14,21 +14,22 @@
     "depth": 0.16
   },
   "simplifications": [
-    "Armature coil shown as multi-turn rectangular loop on spindle.",
-    "Split-ring commutator gap exaggerated for clear mechanical visibility."
+    "Armature coil shown as a clean rectangular loop with positive arched bridge clearance over the central axle.",
+    "Split-ring commutator gap of 24° provides clear mechanical visibility of the insulating sleeve.",
+    "Motor_Section incorporates Fleming's Left-Hand Rule 3D vectors for magnetic field B, current I, and torque forces F."
   ],
   "materials": [
     {
       "id": "motor-magnet-north",
-      "look": "Curved permanent field magnet North pole (Red)"
+      "look": "Curved permanent field magnet North pole (vivid red)"
     },
     {
       "id": "motor-magnet-south",
-      "look": "Curved permanent field magnet South pole (Blue)"
+      "look": "Curved permanent field magnet South pole (vivid blue)"
     },
     {
       "id": "armature-copper",
-      "look": "Bright insulated copper armature winding"
+      "look": "Bright enamelled copper armature winding"
     },
     {
       "id": "commutator-brass",
@@ -41,6 +42,18 @@
     {
       "id": "motor-axle",
       "look": "Turned stainless steel shaft"
+    },
+    {
+      "id": "motor-base",
+      "look": "Cast iron machinery base plate and bearing pillars"
+    },
+    {
+      "id": "circuit-wiring",
+      "look": "Flexible color-coded DC circuit wiring and plug key switch"
+    },
+    {
+      "id": "physics-vectors",
+      "look": "Cyan magnetic field lines, orange current vectors, and golden force arrows"
     }
   ],
   "provenance": {
@@ -48,7 +61,7 @@
     "generator": "build_electric_motor.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -67,6 +80,10 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
@@ -78,6 +95,8 @@
     "split-ring",
     "carbon-brushes",
     "flemings-left-hand-rule",
+    "magnetic-field",
+    "torque",
     "CBSE-class-10",
     "electromagnetism"
   ]

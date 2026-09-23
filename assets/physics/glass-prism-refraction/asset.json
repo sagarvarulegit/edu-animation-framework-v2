@@ -3,9 +3,9 @@
   "name": "Refraction Through Glass Prism Experiment Setup",
   "category": "physics",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "final",
-  "semanticDescription": "Complete assembled laboratory experiment setup for studying refraction of light through a triangular glass prism as specified in CBSE Class 10 Physics (Light - Reflection & Refraction / Colourful World). Includes wooden drawing board with pinned white sheet, equilateral crown glass prism (n=1.517), collimated ray box light source, optical alignment pins (P1, P2, P3, P4), Snell's law calculated incident, refracted, and emergent light beams, surface normals, straight-line ray extensions, and the angle of deviation (D) indicator with an observation screen.",
+  "semanticDescription": "Complete assembled laboratory experiment setup for studying refraction and dispersion of light through a triangular glass prism as specified in CBSE Class 10 Physics (NCERT Fig 11.4 & Activity 11.2). Features dual presentation collections: 'Prism_Full' (complete laboratory bench experiment showing wooden board, paper, pins P1/P2, ray box, crown glass prism, and full 7-color VIBGYOR spectral dispersion projected onto an angled observation screen) and 'Prism_Section' (the canonical textbook ray diagram with incident ray PE, refracted ray EF, emergent ray FS, optical pins P1-P4, surface normals NN' and MM', straight-line extensions intersecting at G, and angular arcs for angle of prism A, angle of incidence i, angle of emergence e, and angle of deviation D).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
@@ -36,7 +36,7 @@
     "generator": "build_glass_prism_refraction.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-28"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -46,7 +46,8 @@
   "outputs": [
     { "file": "out/glass-prism-refraction.blend", "kind": "blender-scene" },
     { "file": "out/glass-prism-refraction.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "physical_dimensions": {
     "width_mm": 320.0,

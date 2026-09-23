@@ -3,36 +3,44 @@
   "name": "Helical Solenoid with Magnetic Field Lines",
   "category": "physics",
   "type": "prop",
-  "version": "1.0.0",
-  "status": "reviewed",
-  "semanticDescription": "Long helical coil of insulated copper wire carrying electric current, demonstrating uniform axial magnetic field lines inside and dipolar looping field lines outside (CBSE Class 10 Magnetic Effects Ch 12).",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Complete laboratory apparatus demonstrating magnetic field pattern through and around a current-carrying helical solenoid as specified in CBSE Class 10 Physics (NCERT Fig 13.10). Features dual presentation collections: 'Solenoid_Full' (complete laboratory bench assembly with insulating support base, non-slip feet, saddle cradles, acrylic former tube wound with 16 uniform turns of glossy enameled copper wire, machined brass knurled terminal posts with positive red and negative black collars, connecting lead wires, red North (+X) and blue South (-X) polarity badges, and 3D dipolar looping external magnetic field lines with directional flow arrows) and 'Solenoid_Section' (longitudinal cutaway exposing wire cross sections showing current entry/exit symbols and the internal dense, parallel, uniform magnetic field lines B = μ₀nI with directional chevrons traveling from South to North).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.24,
-    "height": 0.1,
+    "width": 0.25,
+    "height": 0.10,
     "depth": 0.12
   },
   "simplifications": [
-    "Helical wire coils represented as 16 discrete turned helical segments.",
-    "Magnetic field lines depicted as axial parallel rays inside and curved dipolar loops outside."
+    "Wire radius (2.2mm) and magnetic flux tubes (0.9mm) are visually optimized for crisp rendering across 3D interactive viewers and video compositions.",
+    "Section cutaway removes front half of core and windings (y < 0) to clearly reveal internal parallel flux lines."
   ],
   "materials": [
     {
-      "id": "copper-enameled",
-      "look": "Glossy reddish-orange enameled copper magnet wire"
+      "id": "solenoid-copper",
+      "look": "Machined high-purity enameled copper magnet wire (metallic 0.96, roughness 0.20)"
+    },
+    {
+      "id": "solenoid-base",
+      "look": "Matte bakelite / slate laboratory bench base with molded support cradles"
     },
     {
       "id": "solenoid-core-tube",
-      "look": "Bakelite / acrylic insulating central support cylinder"
+      "look": "Precision cylindrical dielectric acrylic former tube"
     },
     {
-      "id": "terminal-binding-post",
-      "look": "Machined brass knurled terminal posts (red positive, black negative)"
+      "id": "terminal-brass",
+      "look": "Turned brass knurled binding posts with color-coded polarity collars"
+    },
+    {
+      "id": "polarity-badges",
+      "look": "Anodized crimson North badge and cobalt South badge with embossed lettering"
     },
     {
       "id": "magnetic-flux-field",
-      "look": "Luminescent cyan magnetic flux vector tubes"
+      "look": "Luminescent cyan magnetic flux vector tubes (emission 14.0) with directional conical arrows"
     }
   ],
   "provenance": {
@@ -40,12 +48,12 @@
     "generator": "build_solenoid.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
     "three": "import out/solenoid.glb",
-    "remotion": "use out/preview.png"
+    "remotion": "use out/preview.png or out/preview_section.png"
   },
   "outputs": [
     {
@@ -58,6 +66,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
