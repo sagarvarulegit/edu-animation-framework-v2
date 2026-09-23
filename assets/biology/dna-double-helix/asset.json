@@ -3,16 +3,16 @@
   "name": "DNA Double Helix",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "High-fidelity 3D model of the B-DNA double helix featuring two antiparallel sugar-phosphate helical backbones, alternating major and minor grooves, and horizontal Watson-Crick complementary base pairs (Adenine-Thymine and Guanine-Cytosine) color-coded per design-tokens.json (CBSE Class 10 Biology Ch 8; CBSE Class 11 Biology Ch 9 Figure 9.5; CBSE Class 12 Biology Ch 6 Figures 6.2, 6.3).",
+  "semanticDescription": "High-fidelity 3D model of the B-DNA double helix with dual presentation collections: DNA_Full (antiparallel double helix with 3.4 nm pitch, 10 bp/turn, alternating major/minor grooves, Watson-Crick paired rungs, 5' and 3' direction tags, and laboratory exhibition stand) and DNA_Detail (high-resolution unzipped nucleotide subunit architecture per NCERT Class 12 Fig 6.2 showing pentose deoxyribose rings, phosphate groups with phosphodiester bonds, purine double-rings, pyrimidine single-rings, and stoichiometric 2 vs 3 hydrogen bonds).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
   },
   "simplifications": [
-    "Base pairs represented as complementary paired cylinders meeting at a central hydrogen-bond interface.",
-    "Atomic coordinates stylized into molecular visualization scale with authentic major and minor groove dimensions."
+    "Atomic coordinates stylized into molecular subunit visualization scale with authentic major and minor groove dimensions.",
+    "Stoichiometric hydrogen bonds represented as illuminated dotted interfaces (2 for A=T, 3 for G≡C)."
   ],
   "materials": [
     {
@@ -41,7 +41,7 @@
     "generator": "build_dna.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -59,6 +59,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

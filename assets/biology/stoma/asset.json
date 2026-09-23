@@ -3,9 +3,9 @@
   "name": "Stomatal Apparatus (Open & Closed Guard Cells)",
   "category": "biology",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Microscopic leaf stomatal apparatus illustrating paired bean-shaped guard cells with differential inner/outer wall thickness, chloroplasts, stomatal aperture, and surrounding epidermal pavement cells (CBSE Class 10 Biology Ch 5 Figure 5.3).",
+  "semanticDescription": "Microscopic leaf stomatal apparatus with dual presentation collections: Stoma_Open (NCERT Fig 5.3a turgid kidney-shaped guard cells, open stomatal aperture, thickened inner walls, chloroplasts, nucleus, and rising transpiration vapor stream) and Stoma_Closed (NCERT Fig 5.3b flaccid guard cells touching along the inner wall seam, completely sealing the pore against transpiration).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
@@ -13,16 +13,17 @@
   },
   "simplifications": [
     "Differential wall elasticity illustrated via thicker concave inner boundary mesh.",
-    "Chloroplasts shown as distinct green lens-shaped organelles within guard cell cytoplasm."
+    "Chloroplasts shown as distinct green lens-shaped organelles within guard cell cytoplasm.",
+    "Transpiration vapor stream rendered as rising illuminated H2O droplets."
   ],
   "materials": [
     {
       "id": "guard-cell-cytoplasm",
-      "look": "Translucent cellular green cytoplasm (roughness 0.35, transmission 0.2)"
+      "look": "Translucent cellular green cytoplasm (roughness 0.30, transmission 0.20, subsurface 0.30)"
     },
     {
       "id": "guard-cell-inner-wall",
-      "look": "Thick rigid cellulose inner wall lining (deep emerald green)"
+      "look": "Thick rigid inelastic cellulose inner wall lining (deep emerald green)"
     },
     {
       "id": "chloroplast-green",
@@ -42,7 +43,7 @@
     "generator": "build_stoma.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -60,6 +61,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
