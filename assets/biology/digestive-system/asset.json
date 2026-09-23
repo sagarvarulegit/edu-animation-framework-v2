@@ -3,32 +3,36 @@
   "name": "Human Digestive System (Gastrointestinal Tract & Accessory Organs)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomically authentic 3D model of the human digestive system including mouth, pharynx, continuous esophagus, J-shaped muscular stomach, liver with right/left lobes, gallbladder with cystic duct, pancreas with main pancreatic duct converging at the hepatopancreatic ampulla (Ampulla of Vater) entering the duodenal C-loop, continuous coiled small intestine (jejunum and ileum), and large intestine (caecum with vermiform appendix, haustrated colon, rectum, and anal canal). Aligned with CBSE Class 10 Biology Ch 5 Figure 5.6 and CBSE Class 11 Biology Ch 16 Figures 16.1-16.3.",
+  "semanticDescription": "Medical-grade 3D model of the human digestive system with dual presentation collections (Digestive_Full and Digestive_Section). Features mouth, salivary glands, esophagus, J-shaped muscular stomach with coronal section revealing internal gastric rugae, dual-lobed liver, gallbladder with cystic and common bile ducts, lobulated pancreas with pancreatic duct entering at the hepatopancreatic ampulla (Ampulla of Vater), duodenal C-loop, coiled small intestine, and framed large intestine with caecum, vermiform appendix, haustrated colon, rectum, and anus. Aligned with CBSE Class 10 Biology Ch 5 Figure 5.6 and CBSE Class 11 Biology Ch 16 Figures 16.1-16.3.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
   "simplifications": [
     "Intestinal coils modeled as continuous serpentine loops for pedagogical clarity while maintaining complete lumen continuity.",
-    "Colon haustrations rendered as distinct anatomical sacculations along the continuous colic pathway."
+    "Section collection provides clean coronal cutaway of stomach displaying gastric rugae folds and internal wall thickness."
   ],
   "materials": [
-    { "id": "gi-esophagus", "look": "Soft pinkish muscular swallowing tube with tissue subsurface scattering" },
+    { "id": "gi-buccal", "look": "Oral mucosa and pharynx" },
+    { "id": "gi-salivary", "look": "Parotid and submandibular salivary glands" },
+    { "id": "gi-esophagus", "look": "Soft pinkish muscular swallowing tube" },
     { "id": "gi-stomach", "look": "Coral muscular digestive reservoir with J-shaped curvatures" },
-    { "id": "gi-liver", "look": "Reddish-brown hepatic metabolic gland with right and left lobes" },
-    { "id": "gi-gallbladder", "look": "Emerald green bile storage sac with cystic duct" },
-    { "id": "gi-pancreas", "look": "Golden-amber exocrine/endocrine gland with pancreatic duct" },
-    { "id": "gi-small-intestine", "look": "Continuous warm pink nutrient absorption loops (duodenum, jejunum, ileum)" },
-    { "id": "gi-large-intestine", "look": "Segmented water absorption colon with caecum, appendix, and haustra" }
+    { "id": "gi-rugae", "look": "Internal gastric mucosal longitudinal folds" },
+    { "id": "gi-liver", "look": "Deep reddish-brown hepatic gland with right and left lobes" },
+    { "id": "gi-gallbladder", "look": "Emerald green bile storage sac with cystic and bile ducts" },
+    { "id": "gi-pancreas", "look": "Pale yellow lobulated gland with main pancreatic duct" },
+    { "id": "gi-duodenum", "look": "C-shaped loop receiving chyme and digestive secretions" },
+    { "id": "gi-small-intestine", "look": "Continuous warm pink nutrient absorption loops" },
+    { "id": "gi-large-intestine", "look": "Segmented colon with caecum, vermiform appendix, and haustra" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_digestive.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -38,12 +42,14 @@
   "outputs": [
     { "file": "out/digestive-system.blend", "kind": "blender-scene" },
     { "file": "out/digestive-system.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "tags": [
     "digestive-system",
     "alimentary-canal",
     "stomach",
+    "gastric-rugae",
     "liver",
     "gallbladder",
     "pancreas",

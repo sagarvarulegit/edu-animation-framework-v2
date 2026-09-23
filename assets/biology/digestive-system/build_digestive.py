@@ -1,368 +1,509 @@
 """
-build_digestive.py — High-Fidelity Human Digestive System (Alimentary Canal & Accessory Organs)
-CBSE Class 10 Biology, Chapter 5: Life Processes — Nutrition in Human Beings (Fig 5.6)
-CBSE Class 11 Biology, Chapter 16: Digestion and Absorption (Fig 16.1, 16.2, 16.3)
+build_digestive.py — Human Alimentary Canal & Digestive System (NCERT Class 10 Fig 6.6)
+High-fidelity medical-grade 3D model with dual collections:
+- Digestive_Full: Complete alimentary canal with intact organs
+- Digestive_Section: Cutaway exposing gastric rugae inside stomach and duodenal junction
 
-Key Anatomical Features:
-- Complete Continuous Gastrointestinal (GI) Tract from mouth to rectum:
-  * Mouth / oral cavity with teeth/tongue space
-  * Pharynx and continuous muscular esophagus
-  * J-shaped muscular stomach: cardiac notch, fundus, body with greater/lesser curvatures, pyloric sphincter
-  * C-shaped duodenal loop embracing the head of the pancreas
-  * Continuous looping small intestine (jejunum & ileum) as a serpentine mesenteric coil
-  * Large intestine (colon): ileocecal valve, caecum with vermiform appendix, ascending colon,
-    hepatic flexure, transverse colon, splenic flexure, descending colon, sigmoid colon,
-    rectum, and anal canal.
-- Accessory Organs & Hepatopancreatic Duct Convergence:
-  * Liver: right and left lobes separated by falciform groove
-  * Gallbladder: green bile storage sac with cystic duct
-  * Common bile duct uniting with main pancreatic duct (Duct of Wirsung) from pancreas
-  * Convergence into the Hepatopancreatic Ampulla (Ampulla of Vater) entering duodenal C-loop
-- ZERO non-manifold edges: all tubular segments and organs capped cleanly.
+Standard Anatomical Orientation (Anterior View):
+- Patient's Right (Viewer's Left, X < 0): Liver, Gallbladder, Bile Duct, Duodenum, Ascending Colon, Caecum, Appendix
+- Patient's Left (Viewer's Right, X > 0): Stomach Fundus/Body, Pancreas Tail, Descending Colon
 """
 
 import sys, math
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'python'))
 import edu_asset_kit as kit
 import bpy, bmesh
-from mathutils import Vector
+from mathutils import Vector, Matrix
 
-ASSET_ID = "digestive-system"
+ASSET_ID = 'digestive-system'
 
+# Colors based on medical anatomical palettes
+COLOR_BUCCAL = (0.85, 0.50, 0.52)
+COLOR_SALIVARY = (0.90, 0.82, 0.70)
+COLOR_ESOPHAGUS = (0.88, 0.62, 0.60)
+COLOR_STOMACH = (0.84, 0.38, 0.34)
+COLOR_RUGAE = (0.70, 0.22, 0.20)
+COLOR_LIVER = (0.42, 0.12, 0.08)       # Deep rich reddish-brown
+COLOR_GALLBLADDER = (0.15, 0.55, 0.22)  # Vivid bile green
+COLOR_BILE_DUCT = (0.35, 0.68, 0.28)
+COLOR_PANCREAS = (0.92, 0.84, 0.48)    # Pale yellowish cream
+COLOR_DUODENUM = (0.88, 0.65, 0.58)
+COLOR_SMALL_INT = (0.86, 0.58, 0.52)
+COLOR_LARGE_INT = (0.78, 0.52, 0.48)
+COLOR_APPENDIX = (0.75, 0.45, 0.42)
 
-def create_j_stomach(name, stomach_mat):
+def create_pbr_mat(name, base_color, roughness=0.35, sss=0.0):
+    mat = kit.add_material(name, base_color[:3], metallic=0.04, roughness=roughness)
+    nodes = mat.node_tree.nodes
+    bsdf = nodes.get("Principled BSDF")
+    if bsdf:
+        if "Subsurface Weight" in bsdf.inputs:
+            bsdf.inputs["Subsurface Weight"].default_value = sss
+        elif "Subsurface" in bsdf.inputs:
+            bsdf.inputs["Subsurface"].default_value = sss
+    return mat
+
+def create_curved_tube(name, points, radius, mat, collection, resolution=16):
+    curve_data = bpy.data.curves.new(name=f"{name}_data", type='CURVE')
+    curve_data.dimensions = '3D'
+    curve_data.resolution_u = 12
+    curve_data.bevel_depth = radius
+    curve_data.bevel_resolution = resolution
+    curve_data.fill_mode = 'FULL'
+
+    spline = curve_data.splines.new('BEZIER')
+    spline.bezier_points.add(len(points) - 1)
+
+    for i, pt in enumerate(points):
+        bp = spline.bezier_points[i]
+        bp.co = pt
+        bp.handle_left_type = 'AUTO'
+        bp.handle_right_type = 'AUTO'
+
+    obj = bpy.data.objects.new(name, curve_data)
+    obj.data.materials.append(mat)
+    collection.objects.link(obj)
+
+    bpy.context.view_layer.objects.active = obj
+    obj.select_set(True)
+    bpy.ops.object.convert(target='MESH')
+    obj.select_set(False)
+    return obj
+
+def build_stomach_mesh(name, mat, collection, is_section=False):
     """
-    Creates an anatomically authentic J-shaped stomach with convex greater curvature,
-    concave lesser curvature, rounded superior fundus, and tapering pylorus.
+    Creates an anatomically accurate J-shaped stomach.
+    Anterior view: Cardiac sphincter near midline, fundus curving up and right (X > 0),
+    greater curvature swinging down on the right lateral side,
+    pyloric antrum swinging back towards midline into duodenum on the left (X < 0).
+    """
+    stomach_pts = [
+        Vector((0.002, 0.005, 0.082)),   # Cardiac orifice
+        Vector((0.015, 0.000, 0.090)),   # Fundus top apex
+        Vector((0.038, -0.005, 0.075)),  # Upper greater curvature (viewer's right)
+        Vector((0.042, -0.008, 0.050)),  # Mid greater curvature
+        Vector((0.032, -0.006, 0.028)),  # Lower greater curvature
+        Vector((0.012, -0.004, 0.020)),  # Pyloric antrum bottom swing
+        Vector((-0.006, -0.002, 0.026)), # Pyloric canal
+        Vector((-0.018, 0.000, 0.024)),  # Pylorus sphincter entering duodenum
+    ]
+    
+    radii = [0.009, 0.022, 0.026, 0.025, 0.020, 0.015, 0.011, 0.008]
+
+    curve_data = bpy.data.curves.new(name=f"{name}_curve", type='CURVE')
+    curve_data.dimensions = '3D'
+    curve_data.resolution_u = 16
+    curve_data.bevel_depth = 0.01
+    curve_data.bevel_resolution = 16
+    curve_data.fill_mode = 'FULL'
+
+    spline = curve_data.splines.new('BEZIER')
+    spline.bezier_points.add(len(stomach_pts) - 1)
+
+    for i, pt in enumerate(stomach_pts):
+        bp = spline.bezier_points[i]
+        bp.co = pt
+        bp.radius = radii[i] / 0.01
+        bp.handle_left_type = 'AUTO'
+        bp.handle_right_type = 'AUTO'
+
+    obj = bpy.data.objects.new(name, curve_data)
+    obj.data.materials.append(mat)
+    collection.objects.link(obj)
+
+    bpy.context.view_layer.objects.active = obj
+    obj.select_set(True)
+    bpy.ops.object.convert(target='MESH')
+
+    if is_section:
+        bm = bmesh.new()
+        bm.from_mesh(obj.data)
+        geom = bm.verts[:] + bm.edges[:] + bm.faces[:]
+        bmesh.ops.bisect_plane(
+            bm,
+            geom=geom,
+            plane_co=(0.0, -0.004, 0.0),
+            plane_no=(0.0, -1.0, 0.0),
+            clear_outer=True,
+            clear_inner=False
+        )
+        bm.to_mesh(obj.data)
+        bm.free()
+        obj.data.update()
+
+        mod_sol = obj.modifiers.new(name='WallThickness', type='SOLIDIFY')
+        mod_sol.thickness = 0.0025
+        mod_sol.offset = -1.0
+        bpy.ops.object.modifier_apply(modifier='WallThickness')
+
+        rugae_mat = create_pbr_mat(f"{name}_rugae_mat", COLOR_RUGAE, roughness=0.3)
+        rugae_tracks = [
+            [Vector((0.012, 0.005, 0.078)), Vector((0.024, 0.004, 0.065)), Vector((0.028, 0.003, 0.045)), Vector((0.018, 0.003, 0.028))],
+            [Vector((0.018, 0.005, 0.072)), Vector((0.032, 0.004, 0.056)), Vector((0.032, 0.003, 0.038)), Vector((0.010, 0.003, 0.025))],
+            [Vector((0.006, 0.005, 0.075)), Vector((0.012, 0.004, 0.052)), Vector((0.005, 0.003, 0.032)), Vector((-0.005, 0.003, 0.025))],
+        ]
+        for r_idx, r_pts in enumerate(rugae_tracks):
+            create_curved_tube(f"{name}_rugae_{r_idx}", r_pts, 0.0014, rugae_mat, collection)
+
+    obj.select_set(False)
+    return obj
+
+def build_liver(name, mat, collection):
+    """
+    Creates anatomical dual-lobed liver on patient's right (viewer's left: X < 0).
     """
     bm = bmesh.new()
-    num_rings = 24
-    num_pts = 24
 
-    # Trajectory of gastric midline axis: starts at cardiac orifice, dips through body, rises to pylorus
-    gastric_axis = [
-        # (t, center_x, center_y, center_z, scale_x, scale_y)
-        (0.00, -0.005, 0.002, 0.064, 0.006, 0.006),  # Cardiac entrance from esophagus
-        (0.12, -0.012, 0.004, 0.068, 0.012, 0.010),  # Fundus dome expansion
-        (0.25, -0.016, 0.005, 0.062, 0.015, 0.012),  # Upper body
-        (0.45, -0.014, 0.005, 0.048, 0.016, 0.013),  # Mid gastric body (widest)
-        (0.65, -0.008, 0.005, 0.038, 0.014, 0.012),  # Lower body / incisura angularis
-        (0.80,  0.002, 0.004, 0.036, 0.010, 0.009),  # Pyloric antrum
-        (0.92,  0.008, 0.003, 0.038, 0.007, 0.007),  # Pyloric canal
-        (1.00,  0.012, 0.003, 0.040, 0.006, 0.006),  # Pyloric sphincter into duodenum
-    ]
+    # Right Lobe (large wedge on anatomical right, viewer's left: X < 0)
+    bmesh.ops.create_uvsphere(bm, u_segments=24, v_segments=16, radius=0.032)
+    for v in bm.verts:
+        v.co.x = v.co.x * 1.35 - 0.028
+        v.co.y = v.co.y * 0.75 + 0.005
+        v.co.z = v.co.z * 0.90 + 0.072
+        if v.co.x < -0.03:
+            v.co.z -= (-0.03 - v.co.x) * 0.5
+        if v.co.z < 0.065:
+            v.co.y *= 0.65
 
-    # Interpolate along gastric axis
-    slices = []
-    for r in range(num_rings):
-        tr = r / (num_rings - 1)
-        # Find segment
-        idx = 0
-        while idx < len(gastric_axis) - 2 and gastric_axis[idx + 1][0] < tr:
-            idx += 1
-        p0 = gastric_axis[idx]
-        p1 = gastric_axis[idx + 1]
-        span = p1[0] - p0[0]
-        u = (tr - p0[0]) / span if span > 0 else 0.0
-        # Smooth hermite interpolation
-        u_s = u * u * (3.0 - 2.0 * u)
+    # Left Lobe (thinner triangular flap extending over stomach towards X = +0.015)
+    bm_left = bmesh.new()
+    bmesh.ops.create_uvsphere(bm_left, u_segments=20, v_segments=12, radius=0.020)
+    for v in bm_left.verts:
+        v.co.x = v.co.x * 1.2 + 0.005
+        v.co.y = v.co.y * 0.55 + 0.003
+        v.co.z = v.co.z * 0.75 + 0.076
+        if v.co.x > 0.01:
+            v.co.z -= (v.co.x - 0.01) * 0.4
+    
+    left_mesh = bpy.data.meshes.new("temp_left")
+    bm_left.to_mesh(left_mesh)
+    bm_left.free()
 
-        cx = p0[1] + (p1[1] - p0[1]) * u_s
-        cy = p0[2] + (p1[2] - p0[2]) * u_s
-        cz = p0[3] + (p1[3] - p0[3]) * u_s
-        sx = p0[4] + (p1[4] - p0[4]) * u_s
-        sy = p0[5] + (p1[5] - p0[5]) * u_s
+    bm.from_mesh(left_mesh)
+    bpy.data.meshes.remove(left_mesh)
 
-        ring = []
-        for i in range(num_pts):
-            theta = 2.0 * math.pi * i / num_pts
-            # Gastric asymmetry: greater curvature (+X left) vs lesser curvature (-X right)
-            px = sx * math.cos(theta)
-            py = sy * math.sin(theta)
-            ring.append(bm.verts.new((cx + px, cy + py, cz)))
-        slices.append(ring)
-
-    # Faces between slices
-    for r in range(num_rings - 1):
-        for i in range(num_pts):
-            next_i = (i + 1) % num_pts
-            bm.faces.new([slices[r][i], slices[r][next_i], slices[r + 1][next_i], slices[r + 1][i]])
-
-    # Cap both ends
-    cardiac_cap = bm.verts.new((-0.005, 0.002, 0.064))
-    pylorus_cap = bm.verts.new((0.012, 0.003, 0.040))
-    for i in range(num_pts):
-        next_i = (i + 1) % num_pts
-        bm.faces.new([slices[0][next_i], slices[0][i], cardiac_cap])
-        bm.faces.new([slices[-1][i], slices[-1][next_i], pylorus_cap])
-
-    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
-    mesh = bpy.data.meshes.new(f"{name}-mesh")
+    mesh = bpy.data.meshes.new(f"{name}_mesh")
     bm.to_mesh(mesh)
     bm.free()
 
     obj = bpy.data.objects.new(name, mesh)
-    bpy.context.collection.objects.link(obj)
+    obj.data.materials.append(mat)
+    collection.objects.link(obj)
 
-    sub = obj.modifiers.new("Subsurf", type='SUBSURF')
-    sub.levels = 2
-    bpy.context.view_layer.objects.active = obj
-    obj.select_set(True)
-    bpy.ops.object.modifier_apply(modifier="Subsurf")
-    bpy.ops.object.shade_smooth()
-    obj.data.materials.append(stomach_mat)
+    for poly in obj.data.polygons:
+        poly.use_smooth = True
+
     return obj
 
+def build_pancreas(name, mat, collection):
+    """
+    Creates elongated lobulated pancreas:
+    Head nested in duodenal C-loop on viewer's left (X = -0.016),
+    body and tail extending across behind stomach to viewer's right (X = +0.028).
+    """
+    bm = bmesh.new()
+    lobule_coords = [
+        (-0.016, 0.002, 0.018, 0.008),   # Head (in duodenal C-loop)
+        (-0.008, 0.003, 0.022, 0.007),   # Neck
+        (0.004, 0.005, 0.026, 0.0065),   # Body
+        (0.016, 0.006, 0.030, 0.006),    # Body
+        (0.028, 0.008, 0.034, 0.005),    # Tail
+    ]
 
-def build_digestive():
-    # 1. Biological Tissue Shaders with Subsurface Scattering
-    mouth_mat = kit.add_tissue_material("digest-mouth", base_color=(0.85, 0.55, 0.50, 1.0), roughness=0.45,
-                                        subsurface_weight=0.25, subsurface_radius=(0.5, 0.3, 0.2))
-    esophagus_mat = kit.add_tissue_material("digest-esophagus", base_color=(0.78, 0.52, 0.48, 1.0), roughness=0.50,
-                                            subsurface_weight=0.25, subsurface_radius=(0.5, 0.3, 0.2))
-    stomach_mat = kit.add_tissue_material("digest-stomach", base_color=(0.80, 0.42, 0.36, 1.0), roughness=0.45,
-                                          subsurface_weight=0.35, subsurface_radius=(0.7, 0.3, 0.2))
-    liver_mat = kit.add_tissue_material("digest-liver", base_color=(0.48, 0.18, 0.14, 1.0), roughness=0.40,
-                                        subsurface_weight=0.30, subsurface_radius=(0.8, 0.2, 0.1))
-    gall_mat = kit.add_material("digest-gallbladder", (0.24, 0.58, 0.22), metallic=0.08, roughness=0.30)
-    pancreas_mat = kit.add_tissue_material("digest-pancreas", base_color=(0.88, 0.72, 0.40, 1.0), roughness=0.50,
-                                           subsurface_weight=0.25, subsurface_radius=(0.5, 0.3, 0.2))
-    duct_mat = kit.add_material("digest-duct", (0.35, 0.70, 0.30), metallic=0.05, roughness=0.35)
-    small_int_mat = kit.add_tissue_material("digest-small-int", base_color=(0.84, 0.58, 0.50, 1.0), roughness=0.45,
-                                            subsurface_weight=0.30, subsurface_radius=(0.6, 0.3, 0.2))
-    large_int_mat = kit.add_tissue_material("digest-large-int", base_color=(0.72, 0.50, 0.44, 1.0), roughness=0.50,
-                                            subsurface_weight=0.25, subsurface_radius=(0.5, 0.3, 0.2))
-    rectum_mat = kit.add_tissue_material("digest-rectum", base_color=(0.65, 0.42, 0.38, 1.0), roughness=0.55,
-                                         subsurface_weight=0.25, subsurface_radius=(0.5, 0.3, 0.2))
+    for lx, ly, lz, lr in lobule_coords:
+        bmesh.ops.create_uvsphere(bm, u_segments=12, v_segments=8, radius=lr, matrix=Matrix.Translation((lx, ly, lz)))
 
+    mesh = bpy.data.meshes.new(f"{name}_mesh")
+    bm.to_mesh(mesh)
+    bm.free()
+
+    obj = bpy.data.objects.new(name, mesh)
+    obj.data.materials.append(mat)
+    collection.objects.link(obj)
+
+    for poly in obj.data.polygons:
+        poly.use_smooth = True
+
+    duct_mat = create_pbr_mat(f"{name}_duct_mat", (0.95, 0.95, 0.90), roughness=0.4)
+    duct_pts = [
+        Vector((0.026, -0.001, 0.034)),
+        Vector((0.012, -0.002, 0.029)),
+        Vector((-0.002, -0.003, 0.024)),
+        Vector((-0.014, -0.003, 0.019)),
+    ]
+    create_curved_tube(f"{name}_duct", duct_pts, 0.0008, duct_mat, collection)
+
+    return obj
+
+def build_small_intestine(name, mat, collection):
+    pts = [
+        Vector((-0.012, 0.0, 0.006)),   # End of duodenum
+        Vector((0.005, -0.002, 0.002)),
+        Vector((0.018, -0.004, -0.005)),
+        Vector((0.010, -0.005, -0.012)),
+        Vector((-0.008, -0.004, -0.008)),
+        Vector((-0.018, -0.003, -0.015)),
+        Vector((-0.005, -0.005, -0.022)),
+        Vector((0.015, -0.004, -0.020)),
+        Vector((0.018, -0.002, -0.028)),
+        Vector((0.002, -0.004, -0.032)),
+        Vector((-0.015, -0.003, -0.030)),
+        Vector((-0.024, -0.001, -0.036)),  # Connects to caecum at ileocecal valve
+    ]
+    return create_curved_tube(name, pts, 0.0045, mat, collection, resolution=12)
+
+def build_large_intestine(name, mat, collection):
     objects = []
 
-    # 2. Oral Cavity & Pharynx (Buccal cavity, tongue, and swallowing pharynx)
-    mouth = kit.primitive_object(
-        f"{ASSET_ID}-mouth", "uv_sphere", mouth_mat,
-        size=(0.024, 0.022, 0.016),
-        location=(0.0, 0.005, 0.125)
-    )
-    pharynx = kit.primitive_object(
-        f"{ASSET_ID}-pharynx", "cylinder", esophagus_mat,
-        size=(0.010, 0.010, 0.014),
-        location=(0.0, 0.002, 0.112)
-    )
-    objects.extend([mouth, pharynx])
-
-    # 3. Continuous Muscular Esophagus (Gullet descending down through thorax)
-    esoph_pts = [
-        (0.000, 0.002, 0.112),
-        (0.000, 0.001, 0.090),
-        (-0.002, 0.000, 0.076),
-        (-0.005, 0.002, 0.064),  # Enters cardiac sphincter of stomach
-    ]
-    esophagus = kit.create_smooth_tube(f"{ASSET_ID}-esophagus", esoph_pts, radius=0.0042, cap_ends=True, material=esophagus_mat)
-    objects.append(esophagus)
-
-    # 4. J-Shaped Muscular Stomach (Fundus dome, gastric body, greater/lesser curvatures, pylorus)
-    stomach = create_j_stomach(f"{ASSET_ID}-stomach", stomach_mat)
-    objects.append(stomach)
-
-    # 5. Liver (Large multi-lobed metabolic gland dominating right upper quadrant)
-    # Right Lobe (large triangular mass)
-    liver_r = kit.primitive_object(
-        f"{ASSET_ID}-liver-right", "cube", liver_mat,
-        size=(0.034, 0.020, 0.026),
-        location=(0.022, 0.008, 0.062),
-        rotation_euler=(0.0, 0.12, -0.18)
-    )
-    mod_r = liver_r.modifiers.new("subsurf", type="SUBSURF")
-    mod_r.levels = 2
-    # Left Lobe (smaller triangular mass extending across midline)
-    liver_l = kit.primitive_object(
-        f"{ASSET_ID}-liver-left", "cube", liver_mat,
-        size=(0.020, 0.014, 0.018),
-        location=(-0.002, 0.009, 0.065),
-        rotation_euler=(0.0, -0.10, 0.15)
-    )
-    mod_l = liver_l.modifiers.new("subsurf", type="SUBSURF")
-    mod_l.levels = 2
-    objects.extend([liver_r, liver_l])
-
-    # 6. Gallbladder & Hepatobiliary Ducts
-    # Gallbladder (Pear-shaped green bile sac under inferior liver surface)
-    gallbladder = kit.primitive_object(
-        f"{ASSET_ID}-gallbladder", "uv_sphere", gall_mat,
-        size=(0.008, 0.008, 0.014),
-        location=(0.016, 0.012, 0.048),
-        rotation_euler=(0.35, 0.0, 0.0)
-    )
-    objects.append(gallbladder)
-
-    # Cystic duct from gallbladder
-    cystic_pts = [
-        (0.016, 0.012, 0.048),
-        (0.018, 0.008, 0.042),
-        (0.019, 0.005, 0.036),
-    ]
-    cystic_duct = kit.create_smooth_tube(f"{ASSET_ID}-cystic-duct", cystic_pts, radius=0.0012, cap_ends=True, material=duct_mat)
-
-    # Hepatic ducts from liver lobes uniting to common hepatic duct
-    hepatic_r_pts = [(0.022, 0.008, 0.050), (0.019, 0.005, 0.040)]
-    hepatic_l_pts = [(0.006, 0.008, 0.052), (0.019, 0.005, 0.040)]
-    hep_r = kit.create_smooth_tube(f"{ASSET_ID}-hepatic-duct-r", hepatic_r_pts, radius=0.0011, cap_ends=True, material=duct_mat)
-    hep_l = kit.create_smooth_tube(f"{ASSET_ID}-hepatic-duct-l", hepatic_l_pts, radius=0.0011, cap_ends=True, material=duct_mat)
-
-    # Common Bile Duct (Ductus Choledochus): descends to join pancreatic duct
-    bile_duct_pts = [
-        (0.019, 0.005, 0.036),
-        (0.021, 0.003, 0.032),
-        (0.022, 0.002, 0.026),  # Converges into hepatopancreatic ampulla at duodenum
-    ]
-    bile_duct = kit.create_smooth_tube(f"{ASSET_ID}-common-bile-duct", bile_duct_pts, radius=0.0013, cap_ends=True, material=duct_mat)
-    objects.extend([cystic_duct, hep_r, hep_l, bile_duct])
-
-    # 7. Pancreas & Pancreatic Duct (Gland nestled in duodenal loop)
-    pancreas = kit.primitive_object(
-        f"{ASSET_ID}-pancreas", "cylinder", pancreas_mat,
-        size=(0.009, 0.008, 0.034),
-        location=(0.002, -0.002, 0.036),
-        rotation_euler=(0.0, 1.45, 0.0)
-    )
-    # Pancreatic Duct (Duct of Wirsung) running along pancreas and converging with bile duct
-    panc_duct_pts = [
-        (-0.012, -0.002, 0.038),  # Pancreas tail
-        (0.002, -0.002, 0.034),   # Pancreas body
-        (0.014, 0.000, 0.028),    # Pancreas head
-        (0.022, 0.002, 0.026),    # Converges with bile duct!
-    ]
-    panc_duct = kit.create_smooth_tube(f"{ASSET_ID}-pancreatic-duct", panc_duct_pts, radius=0.0011, cap_ends=True, material=duct_mat)
-
-    # Hepatopancreatic Ampulla (Ampulla of Vater) entering the C-loop of duodenum
-    ampulla = kit.primitive_object(
-        f"{ASSET_ID}-ampulla-vater", "uv_sphere", duct_mat,
-        size=(0.0035, 0.0035, 0.0035),
-        location=(0.0225, 0.002, 0.026)
-    )
-    objects.extend([pancreas, panc_duct, ampulla])
-
-    # 8. Duodenum (C-shaped duodenal loop receiving chyme and hepatopancreatic juices)
-    duodenum_pts = [
-        (0.012, 0.003, 0.040),   # Emerges from pylorus
-        (0.020, 0.003, 0.041),   # Superior duodenal flexure
-        (0.025, 0.002, 0.033),   # Descending duodenum
-        (0.023, 0.002, 0.025),   # Major duodenal papilla site
-        (0.014, 0.002, 0.020),   # Horizontal/inferior duodenal limb
-        (0.004, 0.003, 0.020),   # Ascending duodenum
-        (-0.005, 0.004, 0.023),  # Duodenojejunal flexure transitioning into jejunum
-    ]
-    duodenum = kit.create_smooth_tube(f"{ASSET_ID}-duodenum", duodenum_pts, radius=0.0046, cap_ends=True, material=small_int_mat)
-    objects.append(duodenum)
-
-    # 9. Small Intestine (Continuous Serpentine Looping Coils: Jejunum & Ileum)
-    # Replaces primitive spheres with an authentic continuous lumen tube
-    small_int_pts = [
-        (-0.005, 0.004, 0.023),  # Duodenojejunal flexure start
-        (-0.012, 0.006, 0.026),
-        (-0.016, 0.007, 0.018),
-        (-0.008, 0.007, 0.014),
-        (0.004, 0.006, 0.016),
-        (0.014, 0.005, 0.013),
-        (0.012, 0.006, 0.005),
-        (0.000, 0.007, 0.006),
-        (-0.010, 0.007, 0.008),
-        (-0.016, 0.006, 0.000),
-        (-0.008, 0.006, -0.006),
-        (0.005, 0.006, -0.004),
-        (0.014, 0.005, -0.006),
-        (0.020, 0.003, -0.004),  # Enters caecum at ileocecal valve!
-    ]
-    small_intestine = kit.create_smooth_tube(
-        f"{ASSET_ID}-small-intestine-coil", small_int_pts, radius=0.0040, cap_ends=True, material=small_int_mat
-    )
-    objects.append(small_intestine)
-
-    # 10. Large Intestine / Colon with Haustra (Framing the small intestine perimeter)
-    # Caecum (Dilated pouch in right iliac fossa)
-    caecum = kit.primitive_object(
-        f"{ASSET_ID}-caecum", "uv_sphere", large_int_mat,
-        size=(0.016, 0.014, 0.016),
-        location=(0.022, 0.002, -0.005)
-    )
-    # Vermiform Appendix (Slender blind-ended diverticulum)
-    app_pts = [
-        (0.024, 0.002, -0.011),
-        (0.027, 0.001, -0.018),
-        (0.024, 0.000, -0.023),
-    ]
-    appendix = kit.create_smooth_tube(f"{ASSET_ID}-appendix", app_pts, radius=0.0018, cap_ends=True, material=large_int_mat)
-    objects.extend([caecum, appendix])
-
-    # Continuous Colon Pathway: Ascending, Transverse, Descending, Sigmoid, Rectum
+    # Colon tube path: Inverted U-shape surrounding small intestine
+    # Caecum and Appendix on anatomical right (viewer's left: X = -0.028)
     colon_pts = [
-        (0.022, 0.002, -0.005),  # From caecum
-        (0.024, 0.002, 0.014),   # Ascending colon
-        (0.023, 0.003, 0.030),   # Hepatic flexure (right colic flexure)
-        (0.012, 0.006, 0.033),   # Transverse colon right
-        (0.000, 0.007, 0.032),   # Transverse colon mid (crosses anterior abdomen)
-        (-0.012, 0.006, 0.033),  # Transverse colon left
-        (-0.022, 0.003, 0.030),  # Splenic flexure (left colic flexure)
-        (-0.023, 0.002, 0.014),  # Descending colon
-        (-0.021, 0.002, -0.004), # Left iliac fossa
-        (-0.015, 0.003, -0.010), # Sigmoid colon S-loop
-        (-0.006, 0.002, -0.012), # Sigmoid colon toward midline
-        (0.000, 0.001, -0.015),  # Rectum entrance
-        (0.000, 0.000, -0.024),  # Rectum terminal ampulla
-        (0.000, 0.000, -0.028),  # Anal canal & anus
+        Vector((-0.028, 0.002, -0.038)),  # Caecum base
+        Vector((-0.028, 0.003, -0.018)),  # Ascending colon mid
+        Vector((-0.027, 0.004, 0.005)),   # Hepatic flexure
+        Vector((-0.014, 0.006, 0.012)),   # Transverse colon mid-left
+        Vector((0.014, 0.006, 0.012)),    # Transverse colon mid-right
+        Vector((0.032, 0.004, 0.016)),    # Splenic flexure
+        Vector((0.032, 0.003, -0.015)),   # Descending colon mid
+        Vector((0.030, 0.002, -0.038)),   # Sigmoid entrance
+        Vector((0.018, 0.001, -0.048)),   # Sigmoid S-loop
+        Vector((0.000, 0.001, -0.055)),   # Rectum
+        Vector((0.000, 0.001, -0.068)),   # Anus
     ]
-    colon_trunk = kit.create_smooth_tube(f"{ASSET_ID}-colon-trunk", colon_pts, radius=0.0060, cap_ends=True, material=large_int_mat)
-    objects.append(colon_trunk)
+    colon_tube = create_curved_tube(f"{name}_trunk", colon_pts, 0.008, mat, collection, resolution=16)
+    objects.append(colon_tube)
 
-    # Anatomical Haustral Sacculations (Bulging segments giving the colon its characteristic puckered look)
+    app_mat = create_pbr_mat(f"{name}_app_mat", COLOR_APPENDIX, roughness=0.4)
+    app_pts = [
+        Vector((-0.028, 0.002, -0.042)),
+        Vector((-0.033, 0.001, -0.048)),
+        Vector((-0.030, -0.002, -0.054)),
+    ]
+    appendix = create_curved_tube(f"{name}_appendix", app_pts, 0.002, app_mat, collection)
+    objects.append(appendix)
+
     haustra_locs = [
-        (0.024, 0.002, 0.005),
-        (0.024, 0.002, 0.022),
-        (0.016, 0.006, 0.033),
-        (0.006, 0.007, 0.033),
-        (-0.006, 0.007, 0.033),
-        (-0.016, 0.006, 0.033),
-        (-0.023, 0.002, 0.022),
-        (-0.023, 0.002, 0.005),
-        (-0.018, 0.003, -0.007),
+        (-0.028, 0.0025, -0.028),
+        (-0.028, 0.0035, -0.008),
+        (-0.020, 0.0050, 0.009),
+        (0.000, 0.0060, 0.013),
+        (0.022, 0.0050, 0.014),
+        (0.032, 0.0035, 0.000),
+        (0.032, 0.0025, -0.025),
     ]
     for h_idx, (hx, hy, hz) in enumerate(haustra_locs):
-        h_obj = kit.primitive_object(
-            f"{ASSET_ID}-haustrum-{h_idx}", "uv_sphere", large_int_mat,
-            size=(0.014, 0.013, 0.012),
-            location=(hx, hy, hz)
-        )
-        objects.append(h_obj)
-
-    # Rectum & Anal Sphincter Canal
-    rectum = kit.primitive_object(
-        f"{ASSET_ID}-rectum", "cylinder", rectum_mat,
-        size=(0.012, 0.012, 0.016),
-        location=(0.0, 0.0, -0.020)
-    )
-    anus = kit.primitive_object(
-        f"{ASSET_ID}-anus", "cylinder", rectum_mat,
-        size=(0.008, 0.008, 0.006),
-        location=(0.0, 0.0, -0.028)
-    )
-    objects.extend([rectum, anus])
+        h = kit.primitive_object(f"{name}_haustrum_{h_idx}", 'uv_sphere', mat,
+                                size=(0.018, 0.016, 0.015),
+                                location=(hx, hy, hz))
+        collection.objects.link(h)
+        objects.append(h)
 
     return objects
 
+def build_digestive_system(prefix, is_section, collection):
+    objs = []
+
+    mat_buccal = create_pbr_mat(f"{prefix}_mat_buccal", COLOR_BUCCAL, roughness=0.4)
+    mat_salivary = create_pbr_mat(f"{prefix}_mat_salivary", COLOR_SALIVARY, roughness=0.35)
+    mat_esophagus = create_pbr_mat(f"{prefix}_mat_esophagus", COLOR_ESOPHAGUS, roughness=0.4)
+    mat_stomach = create_pbr_mat(f"{prefix}_mat_stomach", COLOR_STOMACH, roughness=0.35)
+    mat_liver = create_pbr_mat(f"{prefix}_mat_liver", COLOR_LIVER, roughness=0.38)
+    mat_gall = create_pbr_mat(f"{prefix}_mat_gall", COLOR_GALLBLADDER, roughness=0.25)
+    mat_bile = create_pbr_mat(f"{prefix}_mat_bile", COLOR_BILE_DUCT, roughness=0.3)
+    mat_panc = create_pbr_mat(f"{prefix}_mat_panc", COLOR_PANCREAS, roughness=0.45)
+    mat_duod = create_pbr_mat(f"{prefix}_mat_duod", COLOR_DUODENUM, roughness=0.4)
+    mat_small = create_pbr_mat(f"{prefix}_mat_small", COLOR_SMALL_INT, roughness=0.4)
+    mat_large = create_pbr_mat(f"{prefix}_mat_large", COLOR_LARGE_INT, roughness=0.42)
+
+    # 1. Mouth / Buccal Cavity & Pharynx
+    mouth = kit.primitive_object(f"{prefix}_Mouth", 'uv_sphere', mat_buccal,
+                                size=(0.026, 0.022, 0.018),
+                                location=(0.0, 0.0, 0.170))
+    collection.objects.link(mouth)
+    objs.append(mouth)
+
+    # Salivary Glands
+    gland_l = kit.primitive_object(f"{prefix}_Salivary_L", 'uv_sphere', mat_salivary,
+                                  size=(0.008, 0.008, 0.006),
+                                  location=(0.016, 0.002, 0.165))
+    gland_r = kit.primitive_object(f"{prefix}_Salivary_R", 'uv_sphere', mat_salivary,
+                                  size=(0.008, 0.008, 0.006),
+                                  location=(-0.016, 0.002, 0.165))
+    collection.objects.link(gland_l)
+    collection.objects.link(gland_r)
+    objs.extend([gland_l, gland_r])
+
+    # 2. Esophagus
+    eso_pts = [
+        Vector((0.0, 0.0, 0.160)),
+        Vector((0.0, 0.002, 0.135)),
+        Vector((0.001, 0.004, 0.110)),
+        Vector((0.002, 0.005, 0.082)),
+    ]
+    eso = create_curved_tube(f"{prefix}_Esophagus", eso_pts, 0.0045, mat_esophagus, collection)
+    objs.append(eso)
+
+    # 3. Stomach
+    stomach = build_stomach_mesh(f"{prefix}_Stomach", mat_stomach, collection, is_section=is_section)
+    objs.append(stomach)
+
+    # 4. Liver & Gallbladder (Patient's right, viewer's left: X < 0)
+    liver = build_liver(f"{prefix}_Liver", mat_liver, collection)
+    objs.append(liver)
+
+    # Gallbladder
+    gall = kit.primitive_object(f"{prefix}_Gallbladder", 'uv_sphere', mat_gall,
+                               size=(0.009, 0.009, 0.016),
+                               location=(-0.020, -0.008, 0.052),
+                               rotation_euler=(0.3, -0.2, 0.0))
+    collection.objects.link(gall)
+    objs.append(gall)
+
+    # Common Bile Duct
+    cbd_pts = [
+        Vector((-0.020, -0.007, 0.046)),
+        Vector((-0.016, -0.005, 0.038)),
+        Vector((-0.016, -0.001, 0.024)),
+    ]
+    cbd = create_curved_tube(f"{prefix}_Common_Bile_Duct", cbd_pts, 0.0012, mat_bile, collection)
+    objs.append(cbd)
+
+    # 5. Duodenum (C-loop on patient's right, viewer's left)
+    duod_pts = [
+        Vector((-0.018, 0.000, 0.024)),
+        Vector((-0.026, 0.001, 0.020)),
+        Vector((-0.028, 0.001, 0.012)),
+        Vector((-0.022, 0.000, 0.005)),
+        Vector((-0.012, 0.000, 0.006)),
+    ]
+    duodenum = create_curved_tube(f"{prefix}_Duodenum", duod_pts, 0.0055, mat_duod, collection)
+    objs.append(duodenum)
+
+    # 6. Pancreas
+    pancreas = build_pancreas(f"{prefix}_Pancreas", mat_panc, collection)
+    objs.append(pancreas)
+
+    # 7. Small Intestine
+    small_int = build_small_intestine(f"{prefix}_Small_Intestine", mat_small, collection)
+    objs.append(small_int)
+
+    # 8. Large Intestine
+    large_int_objs = build_large_intestine(f"{prefix}_Large_Intestine", mat_large, collection)
+    objs.extend(large_int_objs)
+
+    return objs
+
+def setup_studio_lighting():
+    lights = [
+        ("Key_Light", 'AREA', (-0.35, -0.55, 0.35), (9.0, 9.0, 8.5), 10.0, 0.45),
+        ("Fill_Light", 'AREA', (0.45, -0.45, 0.20), (5.0, 5.2, 5.5), 5.5, 0.55),
+        ("Rim_Light", 'SPOT', (0.0, 0.50, 0.40), (8.0, 8.0, 8.0), 8.0, 0.35),
+        ("Bottom_Bounce", 'POINT', (0.0, -0.25, -0.20), (2.5, 2.5, 2.8), 3.0, 0.20),
+    ]
+
+    for name, l_type, loc, color, energy, size in lights:
+        light_data = bpy.data.lights.new(name=name, type=l_type)
+        light_data.energy = energy
+        light_data.color = (color[0]/10.0, color[1]/10.0, color[2]/10.0)
+        if l_type == 'AREA':
+            light_data.size = size
+        elif l_type == 'SPOT':
+            light_data.spot_size = 1.1
+            light_data.spot_blend = 0.35
+
+        light_obj = bpy.data.objects.new(name, light_data)
+        light_obj.location = loc
+        bpy.context.scene.collection.objects.link(light_obj)
+
+def frame_camera_on_target(cam_obj, target_center, distance, elev_deg=5, azim_deg=0):
+    elev_rad = math.radians(elev_deg)
+    azim_rad = math.radians(azim_deg)
+
+    cam_x = target_center.x + distance * math.cos(elev_rad) * math.sin(azim_rad)
+    cam_y = target_center.y - distance * math.cos(elev_rad) * math.cos(azim_rad)
+    cam_z = target_center.z + distance * math.sin(elev_rad)
+
+    cam_obj.location = (cam_x, cam_y, cam_z)
+
+    direction = target_center - cam_obj.location
+    rot_quat = direction.to_track_quat('-Z', 'Y')
+    cam_obj.rotation_euler = rot_quat.to_euler()
 
 def main():
-    out = kit.output_dir(Path(__file__).resolve().parent / "out")
     kit.reset_scene()
-    objects = build_digestive()
-    kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=24)
-    kit.frame_camera(objects, lens=50.0)
-    kit.save_blend(out / f"{ASSET_ID}.blend")
-    kit.export_glb(out / f"{ASSET_ID}.glb")
-    kit.render_preview(out / "preview.png")
-    print(f"[OK] High-fidelity {ASSET_ID} built and rendered.")
+    out_dir = kit.output_dir(Path(__file__).resolve().parent / 'out')
 
+    bpy.context.scene.display_settings.display_device = 'sRGB'
+    bpy.context.scene.view_settings.view_transform = 'AgX'
+    bpy.context.scene.view_settings.look = 'AgX - Medium High Contrast'
 
-if __name__ == "__main__":
+    world = bpy.data.worlds.new("Digestive_World")
+    world.use_nodes = True
+    bg = world.node_tree.nodes.get("Background")
+    if bg:
+        bg.inputs["Color"].default_value = (0.015, 0.016, 0.020, 1.0)
+        bg.inputs["Strength"].default_value = 0.5
+    bpy.context.scene.world = world
+
+    setup_studio_lighting()
+
+    # 1. Collection: Digestive_Full
+    col_full = bpy.data.collections.new("Digestive_Full")
+    bpy.context.scene.collection.children.link(col_full)
+    full_objs = build_digestive_system("Full", is_section=False, collection=col_full)
+
+    # 2. Collection: Digestive_Section
+    col_section = bpy.data.collections.new("Digestive_Section")
+    bpy.context.scene.collection.children.link(col_section)
+    sec_objs = build_digestive_system("Sec", is_section=True, collection=col_section)
+
+    col_section.hide_render = True
+    col_section.hide_viewport = True
+
+    # Camera setup with 50mm lens for natural full-body perspective
+    cam_data = bpy.data.cameras.new("Macro_Camera")
+    cam_data.lens = 52.0
+    cam_data.sensor_width = 36.0
+    cam_obj = bpy.data.objects.new("Macro_Camera", cam_data)
+    bpy.context.scene.collection.objects.link(cam_obj)
+    bpy.context.scene.camera = cam_obj
+
+    blend_path = out_dir / f"{ASSET_ID}.blend"
+    kit.save_blend(blend_path)
+    print(f"Saved: {blend_path}")
+
+    col_section.hide_render = False
+    col_section.hide_viewport = False
+    glb_path = out_dir / f"{ASSET_ID}.glb"
+    kit.export_glb(glb_path)
+    print(f"Exported: {glb_path}")
+
+    viewer_assets = Path(__file__).resolve().parents[2] / 'apps' / 'interactive-viewer' / 'public' / 'assets'
+    if viewer_assets.exists():
+        import shutil
+        target_path = viewer_assets / f"{ASSET_ID}.glb"
+        shutil.copy2(glb_path, target_path)
+        print(f"Synced GLB to: {target_path}")
+
+    # Render Preview 1: Digestive_Full (Properly framed from buccal cavity down to rectum/anus)
+    col_full.hide_render = False
+    col_section.hide_render = True
+    frame_camera_on_target(cam_obj, Vector((0.0, 0.0, 0.05)), distance=0.58, elev_deg=3, azim_deg=0)
+    kit.configure_render(width=1280, height=720, samples=32)
+    preview_full = out_dir / "preview.png"
+    kit.render_preview(preview_full)
+    print(f"Rendered: {preview_full}")
+
+    # Render Preview 2: Digestive_Section (Zoom in on stomach coronal cutaway and hepatopancreatic ampulla)
+    col_full.hide_render = True
+    col_section.hide_render = False
+    frame_camera_on_target(cam_obj, Vector((0.005, 0.0, 0.045)), distance=0.22, elev_deg=6, azim_deg=4)
+    preview_sec = out_dir / "preview_section.png"
+    kit.render_preview(preview_sec)
+    print(f"Rendered: {preview_sec}")
+
+    print("=== DIGESTIVE SYSTEM BUILD COMPLETED SUCCESSFULLY ===")
+
+if __name__ == '__main__':
     main()

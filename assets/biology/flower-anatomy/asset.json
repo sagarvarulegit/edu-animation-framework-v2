@@ -3,38 +3,54 @@
   "name": "Longitudinal Section of a Flower (Angiosperm Reproduction)",
   "category": "biology",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Longitudinal cross-section of a typical bisexual flower showing sepals, petals, stamen (filament + anther with pollen), and carpel/pistil (stigma, style, ovary containing ovule) (CBSE Class 10 Biology Ch 7 Figure 7.7).",
+  "semanticDescription": "Botanical-grade 3D model of a typical bisexual flower with dual presentation collections (Flower_Full and Flower_Section). Features pedicel, green thalamus/receptacle, protective calyx (sepals), vibrant velvety corolla (petals), androecium with slender filaments and bilobed golden anthers displaying microsporangia furrows and pollen dusting, and central gynoecium/pistil with 5-lobed papillate stigma, style, and basal ovary with clean longitudinal cutaway revealing central placenta, funiculi, and bitegmic ovules with female gamete embryo sacs (NCERT Class 10 Biology Ch 8 Figure 8.7).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
     "flowerHeight": 0.16
   },
   "simplifications": [
-    "One half of petals removed to reveal interior stamen and pistil anatomy.",
-    "Ovary cut open to display internal ovule with female gamete."
+    "Flower_Section displays anterior petals removed and ovary bisected for pedagogical clarity.",
+    "Internal ovules attached via distinct funiculi stalks to highlight angiosperm placentation."
   ],
   "materials": [
     {
-      "id": "petal-magenta",
-      "look": "Velvety colorful floral petals (rosy magenta, roughness 0.4)"
+      "id": "pedicel-receptacle-green",
+      "look": "Supportive green stalk and swollen floral thalamus base"
     },
     {
       "id": "sepal-green",
-      "look": "Foliar protective green calyx"
+      "look": "Foliar protective calyx curving outwards"
+    },
+    {
+      "id": "petal-magenta",
+      "look": "Velvety colorful floral petals (rosy magenta, roughness 0.38)"
+    },
+    {
+      "id": "stamen-filament",
+      "look": "Slender pale translucent filaments supporting anthers"
     },
     {
       "id": "stamen-anther-gold",
-      "look": "Bilobed pollen-bearing golden yellow anthers"
+      "look": "Bilobed golden yellow anthers with microsporangia furrows"
+    },
+    {
+      "id": "pollen-grain",
+      "look": "Golden microspore dusting along theca dehiscence lines"
     },
     {
       "id": "carpel-pistil-green",
-      "look": "Central reproductive pistil: ovary, style, and sticky stigma"
+      "look": "Central reproductive pistil: ovary, style, and 5-lobed sticky stigma"
+    },
+    {
+      "id": "placenta-green",
+      "look": "Central placental tissue column inside ovary"
     },
     {
       "id": "ovule-egg-cell",
-      "look": "Internal embryonic ovule bead (pale cream)"
+      "look": "Bitegmic ovules attached via funiculi with embryonic egg cell sacs"
     }
   ],
   "provenance": {
@@ -42,7 +58,7 @@
     "generator": "build_flower_anatomy.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -61,6 +77,10 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
@@ -69,10 +89,15 @@
     "reproduction",
     "stamen",
     "anther",
+    "filament",
+    "pollen",
     "pistil",
     "carpel",
+    "stigma",
+    "style",
     "ovary",
     "ovule",
+    "placenta",
     "pollination",
     "CBSE-class-10",
     "biology"

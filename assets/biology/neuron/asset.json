@@ -3,37 +3,45 @@
   "name": "Neuron (Multipolar Motor Nerve Cell)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "High-fidelity multipolar motor neuron model featuring soma (cell body) with nucleus and nucleolus, radiating branching dendrites, axon hillock, elongated axon core, cylindrical Schwann cell myelin sheaths with Nodes of Ranvier, and terminal telodendria arborization with synaptic boutons (CBSE Class 10 Biology Ch 7 Figure 7.1; CBSE Class 11 Biology Ch 21 Figure 21.1).",
+  "semanticDescription": "Medical-grade anatomical 3D model of a multipolar motor neuron conforming to NCERT Class 10 (Ch 7, Fig 7.1) and Class 11 (Ch 21, Fig 21.1) diagrams. Features organic cyton (perikaryon) deformed toward dendritic roots, prominent spherical nucleus with dark nucleolus, Nissl's granules, branching dendritic arbor with spines, conical axon hillock, continuous central axon core, 5 segmented Schwann cell myelin sheaths with realistic rounded collars and constricted Nodes of Ranvier, outer Schwann cell nuclei, and terminal telodendria arborization with bulbous synaptic boutons. Features dual presentation collections (Neuron_Full and Neuron_Section).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
   },
   "simplifications": [
-    "Dendritic arbor simplified to primary and secondary branches for educational clarity.",
+    "Dendritic arbor simplified to primary, secondary, and tertiary branches with spines for educational clarity.",
     "Myelin sheath modeled as segmented cylindrical Schwann cells with distinct Nodes of Ranvier."
   ],
   "materials": [
     {
       "id": "neuron-soma",
-      "look": "Warm amber neuronal cell body cytoplasm"
+      "look": "Warm amber neuronal cell body cytoplasm with subtle subsurface scattering"
     },
     {
       "id": "neuron-axon",
-      "look": "Blue conducting central axonal core fiber"
+      "look": "Electric blue conducting central axonal core fiber"
     },
     {
       "id": "neuron-myelin",
-      "look": "Ivory white concentric cylindrical Schwann cell insulating sheaths"
+      "look": "Pearl ivory lipid-protein Schwann cell insulating sheaths"
     },
     {
       "id": "neuron-dendrite",
-      "look": "Receptive branched dendritic processes"
+      "look": "Receptive branched dendritic processes with spines"
     },
     {
       "id": "neuron-nucleus",
-      "look": "Prominent spherical nucleus with dark nucleolus"
+      "look": "Prominent spherical nucleus with dark nucleolus and chromatin"
+    },
+    {
+      "id": "neuron-nissl",
+      "look": "Slate violet granular ribosome clusters in cyton cytoplasm"
+    },
+    {
+      "id": "neuron-bouton",
+      "look": "Rosy red swollen synaptic knobs containing neurotransmitter vesicles"
     }
   ],
   "provenance": {
@@ -41,7 +49,7 @@
     "generator": "build_neuron.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -59,6 +67,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

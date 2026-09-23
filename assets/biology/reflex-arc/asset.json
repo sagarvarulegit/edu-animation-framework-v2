@@ -3,42 +3,46 @@
   "name": "Reflex Arc Neural Pathway",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Complete 3D neural pathway model of a somatic reflex arc illustrating skin heat/pain receptor, afferent sensory neuron, spinal cord butterfly cross-section with interneuron, efferent motor neuron, and effector muscle (CBSE Class 10 Biology Ch 6 Figure 6.2).",
+  "semanticDescription": "Medical-grade 3D neural pathway model of a somatic reflex arc conforming to NCERT Class 10 (Ch 7, Fig 7.2). Features detailed hot saucepan stimulus, human finger receptor with dermal pain endings, afferent sensory nerve tract with dorsal root ganglion (DRG) entering the dorsal nerve root, spinal cord transverse section with anterior median fissure and posterior median sulcus, white matter, butterfly gray matter with slender dorsal horns and broad ventral horns, central canal with ependymal lining, interneuron (relay neuron) with ascending collateral axon ('Message to brain'), efferent motor nerve tract exiting via ventral root with impulse chevrons, and anatomical fusiform arm flexor muscle with tendons and neuromuscular end-plates. Features dual presentation collections (ReflexArc_Full and ReflexArc_Section).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
     "pathLength": 0.28
   },
   "simplifications": [
-    "Nerve pathways shown as continuous color-coded axon fiber bundles.",
+    "Nerve pathways shown as continuous color-coded axon fiber bundles with directional impulse indicators.",
     "Spinal cord segment displayed in anatomical transverse cross-section."
   ],
   "materials": [
     {
       "id": "receptor-skin",
-      "look": "Human finger skin dermal receptor pad (natural flesh tone)"
+      "look": "Human finger skin dermal receptor pad with fingernail plate"
     },
     {
       "id": "sensory-neuron-blue",
-      "look": "Afferent sensory nerve fiber (luminescent cobalt blue)"
+      "look": "Afferent sensory nerve fiber and dorsal root ganglion (luminescent cobalt blue)"
     },
     {
       "id": "spinal-cord-gray-matter",
-      "look": "Butterfly-shaped central spinal gray matter (soft warm gray/taupe)"
+      "look": "Butterfly-shaped central spinal gray matter (soft warm taupe)"
     },
     {
       "id": "relay-neuron-yellow",
-      "look": "Interneuron / relay neuron synapse (amber yellow)"
+      "look": "Interneuron / relay neuron synapse and ascending brain message tract (amber yellow)"
     },
     {
       "id": "motor-neuron-red",
-      "look": "Efferent motor nerve fiber (vibrant crimson red)"
+      "look": "Efferent motor nerve fiber and motor soma (vibrant crimson red)"
     },
     {
       "id": "effector-muscle",
-      "look": "Striated arm flexor muscle block (deep muscular crimson)"
+      "look": "Striated arm flexor muscle belly with glistening tendinous attachments"
+    },
+    {
+      "id": "pan-metal",
+      "look": "Brushed cooking pan with glowing heated rim"
     }
   ],
   "provenance": {
@@ -46,7 +50,7 @@
     "generator": "build_reflex_arc.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-09"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -64,6 +68,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
