@@ -3,32 +3,36 @@
   "name": "Human Brain (Cerebrum, Cerebellum & Brainstem)",
   "category": "biology",
   "type": "prop",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "status": "reviewed",
-  "semanticDescription": "Anatomically accurate 3D model of the human brain showing Cerebrum with cortical gyri ridges and sulci furrows (Frontal, Parietal, Temporal, and Occipital lobes), Cerebellum with horizontal folia striping, Brainstem (Midbrain, Pons, Medulla Oblongata, Spinal Cord), C-shaped commissural arch of Corpus Callosum, Thalamus, and Hypothalamus with Infundibulum and Pituitary Gland.",
+  "semanticDescription": "Medical-grade anatomically accurate 3D model of the human Central Nervous System (Brain). Features complete bilateral cerebral hemispheres with authentic cortical gyri and sulci (Frontal, Parietal, Temporal with temporal pole and insula, Occipital lobes), Cerebellum with horizontal folial striping, Brainstem (Midbrain with superior/inferior colliculi, Pons, Medulla Oblongata with pyramids and olives, and Cervical Spinal Cord), and internal medial diencephalon structures exposed via sagittal section (C-shaped arch of Corpus Callosum, Thalamus, Hypothalamus, Pituitary Gland/Hypophysis, Optic Chiasm, Pineal Gland, and CSF Ventricles).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale"
   },
   "simplifications": [
-    "Medial sagittal section exposes deep commissural and diencephalic anatomy (corpus callosum, thalamus, hypothalamus) and brainstem",
-    "Cerebral cortical gyri and sulci generated via procedural multi-frequency 3D sinusoidal noise displacement",
-    "Cerebellar folia modeled with characteristic horizontal transverse striping"
+    "Modular collection hierarchy enables dual visualization: full bilateral brain or medial sagittal cross-section (NCERT Class 10 Fig 6.3)",
+    "Cortical gyri and sulci preserved with physiological subsurface scattering and vascular cavity ambient occlusion",
+    "Ventricular system rendered with translucent cerebrospinal fluid (CSF) refractive shader"
   ],
   "materials": [
-    { "id": "brain-cortex", "look": "Gray matter cerebral cortex with subsurface scattering (pink-beige)" },
-    { "id": "brain-cerebellum", "look": "Foliated cerebellar cortex (terra-cotta)" },
-    { "id": "brain-stem", "look": "Brainstem nerve tracts and cranial projections with subsurface scattering" },
-    { "id": "brain-corpus-callosum", "look": "White matter commissural tract arch with subsurface scattering" },
+    { "id": "brain-cortex", "look": "Gray matter cerebral cortex with subsurface scattering and sulcal cavity depth" },
+    { "id": "brain-cerebellum", "look": "Foliated cerebellar cortex (terra-cotta) with horizontal folial striations" },
+    { "id": "brain-stem", "look": "Brainstem nerve tracts and spinal cord with subsurface scattering" },
+    { "id": "brain-corpus-callosum", "look": "White matter commissural tract arch with high-translucency subsurface scattering" },
     { "id": "brain-thalamus", "look": "Ovoid sensory relay nucleus" },
-    { "id": "brain-pituitary", "look": "Neuroendocrine hypophysis gland" }
+    { "id": "brain-hypothalamus", "look": "Autonomic / neuroendocrine homeostasis nucleus" },
+    { "id": "brain-pituitary", "look": "Vascular neuroendocrine hypophysis master gland (crimson-pink)" },
+    { "id": "brain-optic", "look": "Myelinated optic chiasm and visual pathway tract" },
+    { "id": "brain-pineal", "look": "Epithalamic neuroendocrine pineal gland" },
+    { "id": "brain-ventricles", "look": "Translucent cerebrospinal fluid (CSF) ventricular chambers" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_brain.py",
-    "source": "NCERT Class 10/11 Biology Benchmarks & Procedural Geometry",
-    "license": "project-original",
-    "date": "2026-09-09"
+    "source": "Z-Anatomy Atlas & NCERT Class 10/11 Biology Benchmarks (Figure 6.3)",
+    "license": "CC-BY-SA-4.0",
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -47,11 +51,14 @@
     "brainstem",
     "pons",
     "medulla",
+    "spinal-cord",
     "corpus-callosum",
     "thalamus",
     "hypothalamus",
+    "pituitary",
     "nervous-system",
     "cbse-class-10",
-    "cbse-class-11"
+    "cbse-class-11",
+    "ncert-fig-6.3"
   ]
 }

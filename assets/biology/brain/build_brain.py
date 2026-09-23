@@ -1,281 +1,565 @@
 """
-build_brain.py — High-Fidelity Anatomical Sagittal & Hemispheric Section of the Human Brain
-CBSE Class 10 Biology, Chapter 7: Control and Coordination
+build_brain.py — High-Detail Anatomical Human Brain Model
+CBSE Class 10 Biology, Chapter 6: Control and Coordination (NCERT Fig 6.3)
 CBSE Class 11 Biology, Chapter 21: Neural Control and Coordination — Central Nervous System (Brain)
 
-Anatomical Features:
-- Cerebrum: Cerebral hemispheres separated by longitudinal fissure, with genuine procedural gyri ridges and sulci furrows
-- Anatomical lobes: Frontal, Parietal, Temporal, and Occipital lobes
-- Medial sagittal section exposing deep commissural and diencephalic anatomy:
-  * C-shaped arch of the Corpus Callosum (rostrum, genu, body, and splenium; NOT a straight cylinder!)
-  * Thalamus: Large ovoid sensory relay center
-  * Hypothalamus: Neuroendocrine control center with infundibulum (stalk) leading to Pituitary Gland (NOT a cube!)
-  * Optic Chiasm and Mammillary body
+Anatomical Structures & Coverage:
+- Cerebrum: Complete bilateral cerebral hemispheres (Left & Right) with genuine anatomical gyri and sulci
+  * Frontal Lobe: Superior, middle, inferior frontal gyri (opercular, triangular, orbital parts), precentral gyrus
+  * Parietal Lobe: Postcentral gyrus, superior parietal lobule, supramarginal & angular gyri, central sulcus
+  * Temporal Lobe: Superior, middle, inferior temporal gyri, temporal pole, lateral sulcus (Sylvian fissure), insula
+  * Occipital Lobe: Superior & lateral occipital gyri, cuneus, lingual gyrus, calcarine sulcus, occipital pole
+- Diencephalon & Internal Medial Anatomy (Exposed in Sagittal Cross-Section):
+  * Corpus Callosum: Authentic C-shaped commissural arch (rostrum, genu, body, and splenium)
+  * Thalamus: Large paired ovoid sensory relay center
+  * Hypothalamus: Autonomic and neuroendocrine control center
+  * Pituitary Gland (Hypophysis): Adenohypophysis and neurohypophysis
+  * Optic Chiasm & Tracts: White matter visual pathways
+  * Pineal Gland: Epithalamic neuroendocrine body
+  * Ventricular System: Lateral ventricles, third ventricle, fourth ventricle, cerebral aqueduct with CSF fluid shader
 - Brainstem:
-  * Differentiated Midbrain (cerebral peduncles and tectal colliculi)
-  * Prominent rounded Pons (bulging anteriorly)
-  * Medulla Oblongata tapering continuously into the Spinal Cord
-- Cerebellum:
-  * Foliated structure with fine horizontal folia folds/striping
-- Shaders:
-  * Subsurface Scattering for gray matter cortex (tissueCortex), brainstem/corpus callosum (tissueNerve), and cerebellar folia
+  * Midbrain (Mesencephalon): Cerebral peduncles and tectal colliculi (superior & inferior colliculi)
+  * Pons: Prominent rounded anterior basilar bulge
+  * Medulla Oblongata: Pyramids and olivary bodies
+  * Spinal Cord: Seamless continuous downward cervical extension
+- Hindbrain:
+  * Cerebellum: Complete cerebellar hemispheres and vermis with fine horizontal folia striations
 """
 
 import sys
 import math
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
+ROOT_DIR = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT_DIR / "assets" / "python"))
 import edu_asset_kit as kit
 import bpy
 import bmesh
-from mathutils import Vector, noise
+from mathutils import Vector, Matrix
 
 ASSET_ID = "brain"
+STANDARD_HEIGHT = 0.14  # 14 cm world scale (standard anatomical adult brain)
+
+SOURCE_BLEND = ROOT_DIR / "assets" / "biology" / "human-heart" / "source" / "extracted" / "Z-Anatomy" / "Startup.blend"
+OUT_DIR = Path(__file__).resolve().parent / "out"
 
 
-def create_cerebral_cortex(name, is_left, material):
-    """
-    Creates an anatomically contoured cerebral hemisphere with authentic procedural
-    gyri ridges and sulci furrows covering the cortex.
-    """
-    bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=64, v_segments=48, radius=0.045)
-    sign = 1.0 if is_left else -1.0
+def create_pbr_materials():
+    mats = {}
 
-    for v in bm.verts:
-        px, py, pz = v.co.x, v.co.y, v.co.z
+    # 1. Cerebral Cortex (Gray matter, gyri & sulci)
+    cortex_mat = bpy.data.materials.new("brain-cortex")
+    cortex_mat.use_nodes = True
+    nt = cortex_mat.node_tree
+    bsdf = nt.nodes["Principled BSDF"]
 
-        # Shape into anatomical hemisphere:
-        # Elongated anterior-posterior (Y), arch parieto-occipitally (Z), flatten medially at X=0
-        if (is_left and px < 0) or (not is_left and px > 0):
-            v.co.x *= 0.12 # Flatten medial sagittal face
-        else:
-            v.co.x *= 1.10
-        v.co.y *= 1.30
-        v.co.z *= 0.98
+    ao_node = nt.nodes.new("ShaderNodeAmbientOcclusion")
+    ao_node.inputs["Distance"].default_value = 0.015
 
-        # Procedural multi-frequency 3D noise displacement for gyri ridges and sulci furrows
-        freq1 = 44.0
-        freq2 = 88.0
-        n1 = noise.noise(Vector((v.co.x * freq1, v.co.y * freq1, v.co.z * freq1)))
-        n2 = noise.noise(Vector((v.co.x * freq2, v.co.y * freq2, v.co.z * freq2)))
+    mix_ao = nt.nodes.new("ShaderNodeMix")
+    mix_ao.data_type = 'RGBA'
+    mix_ao.blend_type = 'MULTIPLY'
+    mix_ao.inputs[0].default_value = 0.65
+    mix_ao.inputs[6].default_value = (0.75, 0.52, 0.48, 1.0)  # Ridge tone
+    mix_ao.inputs[7].default_value = (0.44, 0.26, 0.24, 1.0)  # Sulcal crevice tone
+    nt.links.new(ao_node.outputs["AO"], mix_ao.inputs[0])
+    nt.links.new(mix_ao.outputs[2], bsdf.inputs["Base Color"])
 
-        # Sinusoidal convolution to form continuous winding gyri convolutions and sulcal valleys
-        gyri_val = math.sin(n1 * math.pi * 3.5 + n2 * 1.6) * 0.0035
+    bsdf.inputs["Roughness"].default_value = 0.42
+    if "Subsurface Weight" in bsdf.inputs:
+        bsdf.inputs["Subsurface Weight"].default_value = 0.36
+        bsdf.inputs["Subsurface Radius"].default_value = (1.0, 0.38, 0.22)
+        bsdf.inputs["Subsurface Scale"].default_value = 0.012
+        if "Subsurface IOR" in bsdf.inputs:
+            bsdf.inputs["Subsurface IOR"].default_value = 1.40
 
-        # Weight displacement: fully on lateral convexity, zero on flat medial sagittal face
-        medial_dist = abs(v.co.x)
-        weight = min(1.0, max(0.0, (medial_dist - 0.003) / 0.010))
+    noise_tex = nt.nodes.new("ShaderNodeTexNoise")
+    noise_tex.inputs["Scale"].default_value = 500.0
+    noise_tex.inputs["Detail"].default_value = 4.0
+    noise_tex.inputs["Roughness"].default_value = 0.6
+    bump_node = nt.nodes.new("ShaderNodeBump")
+    bump_node.inputs["Strength"].default_value = 0.06
+    bump_node.inputs["Distance"].default_value = 0.0015
+    nt.links.new(noise_tex.outputs["Fac"], bump_node.inputs["Height"])
+    nt.links.new(bump_node.outputs["Normal"], bsdf.inputs["Normal"])
+    mats["cortex"] = cortex_mat
 
-        norm = v.normal.normalized() if v.normal.length > 0 else Vector((sign, 0, 0))
-        v.co += norm * (gyri_val * weight)
+    # 2. Cerebellar Cortex (Horizontal folia, warm terra-cotta tone with fine folial striations)
+    cb_mat = bpy.data.materials.new("brain-cerebellum")
+    cb_mat.use_nodes = True
+    nt_cb = cb_mat.node_tree
+    bsdf_cb = nt_cb.nodes["Principled BSDF"]
 
-    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
-    mesh = bpy.data.meshes.new(f"{name}-mesh")
-    bm.to_mesh(mesh)
-    bm.free()
+    ao_cb = nt_cb.nodes.new("ShaderNodeAmbientOcclusion")
+    ao_cb.inputs["Distance"].default_value = 0.012
 
-    obj = bpy.data.objects.new(name, mesh)
-    bpy.context.collection.objects.link(obj)
-    offset_x = 0.003 * sign
-    obj.location = (offset_x, 0.016, 0.018)
+    mix_cb = nt_cb.nodes.new("ShaderNodeMix")
+    mix_cb.data_type = 'RGBA'
+    mix_cb.blend_type = 'MULTIPLY'
+    mix_cb.inputs[0].default_value = 0.70
+    mix_cb.inputs[6].default_value = (0.68, 0.40, 0.34, 1.0)
+    mix_cb.inputs[7].default_value = (0.36, 0.18, 0.16, 1.0)
+    nt_cb.links.new(ao_cb.outputs["AO"], mix_cb.inputs[0])
+    nt_cb.links.new(mix_cb.outputs[2], bsdf_cb.inputs["Base Color"])
 
-    for poly in obj.data.polygons:
-        poly.use_smooth = True
-    if material:
-        obj.data.materials.append(material)
+    bsdf_cb.inputs["Roughness"].default_value = 0.48
+    if "Subsurface Weight" in bsdf_cb.inputs:
+        bsdf_cb.inputs["Subsurface Weight"].default_value = 0.32
+        bsdf_cb.inputs["Subsurface Radius"].default_value = (1.0, 0.35, 0.20)
+        bsdf_cb.inputs["Subsurface Scale"].default_value = 0.012
 
-    return obj
+    wave_tex = nt_cb.nodes.new("ShaderNodeTexWave")
+    wave_tex.wave_type = 'BANDS'
+    wave_tex.bands_direction = 'Z'
+    wave_tex.inputs["Scale"].default_value = 220.0
+    wave_tex.inputs["Distortion"].default_value = 1.2
+    bump_cb = nt_cb.nodes.new("ShaderNodeBump")
+    bump_cb.inputs["Strength"].default_value = 0.18
+    bump_cb.inputs["Distance"].default_value = 0.002
+    nt_cb.links.new(wave_tex.outputs["Color"], bump_cb.inputs["Height"])
+    nt_cb.links.new(bump_cb.outputs["Normal"], bsdf_cb.inputs["Normal"])
+    mats["cerebellum"] = cb_mat
+
+    # 3. Brainstem (Midbrain, Pons, Medulla, Spinal Cord - creamy white matter nerve tracts)
+    stem_mat = bpy.data.materials.new("brain-stem")
+    stem_mat.use_nodes = True
+    nt_s = stem_mat.node_tree
+    bsdf_s = nt_s.nodes["Principled BSDF"]
+    bsdf_s.inputs["Base Color"].default_value = (0.86, 0.80, 0.70, 1.0)
+    bsdf_s.inputs["Roughness"].default_value = 0.40
+    if "Subsurface Weight" in bsdf_s.inputs:
+        bsdf_s.inputs["Subsurface Weight"].default_value = 0.38
+        bsdf_s.inputs["Subsurface Radius"].default_value = (1.0, 0.5, 0.3)
+        bsdf_s.inputs["Subsurface Scale"].default_value = 0.014
+    mats["stem"] = stem_mat
+
+    # 4. Corpus Callosum (White matter commissure - bright ivory-white)
+    cc_mat = bpy.data.materials.new("brain-corpus-callosum")
+    cc_mat.use_nodes = True
+    nt_cc = cc_mat.node_tree
+    bsdf_cc = nt_cc.nodes["Principled BSDF"]
+    bsdf_cc.inputs["Base Color"].default_value = (0.92, 0.88, 0.80, 1.0)
+    bsdf_cc.inputs["Roughness"].default_value = 0.36
+    if "Subsurface Weight" in bsdf_cc.inputs:
+        bsdf_cc.inputs["Subsurface Weight"].default_value = 0.45
+        bsdf_cc.inputs["Subsurface Radius"].default_value = (1.0, 0.6, 0.4)
+        bsdf_cc.inputs["Subsurface Scale"].default_value = 0.015
+    mats["corpus_callosum"] = cc_mat
+
+    # 5. Thalamus (Sensory relay nucleus - soft amber-pink)
+    th_mat = bpy.data.materials.new("brain-thalamus")
+    th_mat.use_nodes = True
+    nt_th = th_mat.node_tree
+    bsdf_th = nt_th.nodes["Principled BSDF"]
+    bsdf_th.inputs["Base Color"].default_value = (0.82, 0.56, 0.48, 1.0)
+    bsdf_th.inputs["Roughness"].default_value = 0.44
+    if "Subsurface Weight" in bsdf_th.inputs:
+        bsdf_th.inputs["Subsurface Weight"].default_value = 0.30
+        bsdf_th.inputs["Subsurface Radius"].default_value = (1.0, 0.4, 0.2)
+        bsdf_th.inputs["Subsurface Scale"].default_value = 0.012
+    mats["thalamus"] = th_mat
+
+    # 6. Hypothalamus (Autonomic / neuroendocrine center)
+    hypo_mat = bpy.data.materials.new("brain-hypothalamus")
+    hypo_mat.use_nodes = True
+    nt_hy = hypo_mat.node_tree
+    bsdf_hy = nt_hy.nodes["Principled BSDF"]
+    bsdf_hy.inputs["Base Color"].default_value = (0.84, 0.52, 0.46, 1.0)
+    bsdf_hy.inputs["Roughness"].default_value = 0.42
+    if "Subsurface Weight" in bsdf_hy.inputs:
+        bsdf_hy.inputs["Subsurface Weight"].default_value = 0.30
+        bsdf_hy.inputs["Subsurface Radius"].default_value = (1.0, 0.4, 0.2)
+        bsdf_hy.inputs["Subsurface Scale"].default_value = 0.012
+    mats["hypothalamus"] = hypo_mat
+
+    # 7. Pituitary Gland (Hypophysis - vascular master gland, rich crimson/pink)
+    pit_mat = bpy.data.materials.new("brain-pituitary")
+    pit_mat.use_nodes = True
+    nt_pit = pit_mat.node_tree
+    bsdf_pit = nt_pit.nodes["Principled BSDF"]
+    bsdf_pit.inputs["Base Color"].default_value = (0.80, 0.22, 0.24, 1.0)
+    bsdf_pit.inputs["Roughness"].default_value = 0.28
+    if "Subsurface Weight" in bsdf_pit.inputs:
+        bsdf_pit.inputs["Subsurface Weight"].default_value = 0.45
+        bsdf_pit.inputs["Subsurface Radius"].default_value = (1.0, 0.3, 0.15)
+        bsdf_pit.inputs["Subsurface Scale"].default_value = 0.010
+    mats["pituitary"] = pit_mat
+
+    # 8. Optic Chiasm & Tracts (White matter sensory pathway)
+    opt_mat = bpy.data.materials.new("brain-optic")
+    opt_mat.use_nodes = True
+    nt_opt = opt_mat.node_tree
+    bsdf_opt = nt_opt.nodes["Principled BSDF"]
+    bsdf_opt.inputs["Base Color"].default_value = (0.89, 0.84, 0.76, 1.0)
+    bsdf_opt.inputs["Roughness"].default_value = 0.40
+    if "Subsurface Weight" in bsdf_opt.inputs:
+        bsdf_opt.inputs["Subsurface Weight"].default_value = 0.35
+        bsdf_opt.inputs["Subsurface Radius"].default_value = (1.0, 0.5, 0.3)
+        bsdf_opt.inputs["Subsurface Scale"].default_value = 0.012
+    mats["optic"] = opt_mat
+
+    # 9. Pineal Gland (Neuroendocrine body)
+    pin_mat = bpy.data.materials.new("brain-pineal")
+    pin_mat.use_nodes = True
+    nt_pin = pin_mat.node_tree
+    bsdf_pin = nt_pin.nodes["Principled BSDF"]
+    bsdf_pin.inputs["Base Color"].default_value = (0.76, 0.38, 0.36, 1.0)
+    bsdf_pin.inputs["Roughness"].default_value = 0.36
+    if "Subsurface Weight" in bsdf_pin.inputs:
+        bsdf_pin.inputs["Subsurface Weight"].default_value = 0.40
+        bsdf_pin.inputs["Subsurface Radius"].default_value = (1.0, 0.3, 0.15)
+        bsdf_pin.inputs["Subsurface Scale"].default_value = 0.010
+    mats["pineal"] = pin_mat
+
+    # 10. Ventricles / CSF fluid chambers (Subtle transparent blue glass)
+    ven_mat = bpy.data.materials.new("brain-ventricles")
+    ven_mat.use_nodes = True
+    nt_ven = ven_mat.node_tree
+    bsdf_ven = nt_ven.nodes["Principled BSDF"]
+    bsdf_ven.inputs["Base Color"].default_value = (0.70, 0.88, 0.96, 1.0)
+    bsdf_ven.inputs["Roughness"].default_value = 0.15
+    bsdf_ven.inputs["IOR"].default_value = 1.34
+    if "Transmission Weight" in bsdf_ven.inputs:
+        bsdf_ven.inputs["Transmission Weight"].default_value = 0.80
+    if "Specular IOR Level" in bsdf_ven.inputs:
+        bsdf_ven.inputs["Specular IOR Level"].default_value = 0.5
+    mats["ventricles"] = ven_mat
+
+    return mats
 
 
-def create_cerebellum(name, material):
-    """
-    Creates the cerebellum with characteristic horizontal folia striping.
-    Positioned postero-inferior to the cerebral occipital lobes.
-    """
-    bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=64, v_segments=48, radius=0.034)
-
-    for v in bm.verts:
-        # Morph into bilateral cerebellar mass: wider transversely (X), flattened dorsoventrally (Z)
-        v.co.x *= 1.20
-        v.co.y *= 0.88
-        v.co.z *= 0.80
-
-        # Sculpt horizontal folia striping via sinusoidal Z-frequency modulation
-        folia_val = math.sin(v.co.z * 220.0) * 0.0016
-        norm = v.normal.normalized() if v.normal.length > 0 else Vector((0, -1, 0))
-        v.co += norm * folia_val
-
-    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
-    mesh = bpy.data.meshes.new(f"{name}-mesh")
-    bm.to_mesh(mesh)
-    bm.free()
-
-    obj = bpy.data.objects.new(name, mesh)
-    bpy.context.collection.objects.link(obj)
-    obj.location = (0.004, -0.034, -0.016)
-
-    for poly in obj.data.polygons:
-        poly.use_smooth = True
-    if material:
-        obj.data.materials.append(material)
-
-    return obj
+def get_material_for_structure(name, mats):
+    nl = name.lower()
+    if any(k in nl for k in ["pituitary", "adenohypophysis", "neurohypophysis"]):
+        return mats["pituitary"]
+    if any(k in nl for k in ["optic chiasm", "optic tract"]):
+        return mats["optic"]
+    if "pineal" in nl:
+        return mats["pineal"]
+    if "callosum" in nl or "fornix" in nl:
+        return mats["corpus_callosum"]
+    if "thalamus" in nl:
+        return mats["thalamus"]
+    if "hypothalamus" in nl:
+        return mats["hypothalamus"]
+    if any(k in nl for k in ["ventricle", "aqueduct"]):
+        return mats["ventricles"]
+    if any(k in nl for k in ["cerebell", "lobule", "vermis", "culmen", "declive", "flocculus", "tonsil", "lingula of cerebell"]):
+        return mats["cerebellum"]
+    if any(k in nl for k in ["pons", "medulla", "midbrain", "colliculus", "olive", "pyramid", "spinal"]):
+        return mats["stem"]
+    return mats["cortex"]
 
 
-def create_corpus_callosum(name, material):
-    """
-    Creates the authentic C-shaped commissural arch of the Corpus Callosum
-    (Rostrum, Genu, Body, and Splenium). NOT a straight cylinder!
-    """
-    pts = [
-        Vector((0.004, 0.018, 0.010)),  # Rostrum (pointing toward lamina terminalis)
-        Vector((0.004, 0.024, 0.016)),  # Genu (prominent anterior bend)
-        Vector((0.004, 0.020, 0.024)),  # Anterior body
-        Vector((0.004, 0.004, 0.027)),  # Summit / trunk of arch
-        Vector((0.004, -0.014, 0.024)), # Posterior body
-        Vector((0.004, -0.022, 0.016)), # Splenium (thick rounded posterior arch)
-        Vector((0.004, -0.020, 0.012)),
-    ]
-    return kit.create_smooth_tube(
-        name, pts, radius=0.0035, resolution=20, material=material, cap_ends=True
-    )
+def setup_lighting():
+    world = bpy.data.worlds.new("edu_world")
+    world.use_nodes = True
+    nt = world.node_tree
+    nt.nodes.clear()
 
+    bg = nt.nodes.new(type="ShaderNodeBackground")
+    bg.inputs["Color"].default_value = (0.02, 0.025, 0.035, 1.0)
+    bg.inputs["Strength"].default_value = 0.35
+    out = nt.nodes.new(type="ShaderNodeOutputWorld")
+    nt.links.new(bg.outputs["Background"], out.inputs["Surface"])
+    bpy.context.scene.world = world
 
-def create_hypothalamus(name, material):
-    """
-    Creates the wedge-shaped hypothalamus nucleus situated antero-inferior
-    to the thalamus. (Authentic organic wedge morphology, NOT a cube!).
-    """
-    bm = bmesh.new()
-    bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=24,
-                          radius1=0.0075, radius2=0.0035, depth=0.013)
-    mesh = bpy.data.meshes.new(f"{name}-mesh")
-    bm.to_mesh(mesh)
-    bm.free()
+    try:
+        bpy.context.scene.view_settings.view_transform = 'AgX'
+    except Exception:
+        try:
+            bpy.context.scene.view_settings.view_transform = 'Filmic'
+        except Exception:
+            pass
+    try:
+        bpy.context.scene.view_settings.look = 'Medium High Contrast'
+    except Exception:
+        pass
 
-    obj = bpy.data.objects.new(name, mesh)
-    bpy.context.collection.objects.link(obj)
-    obj.location = (0.004, 0.012, 0.004)
-    obj.rotation_euler = (0.35, 0.0, 0.0)
+    # Key light: Warm 4800K light at 45 degrees
+    key_data = bpy.data.lights.new("brain_key_light", type="AREA")
+    key_data.energy = 25.0
+    key_data.color = (1.0, 0.94, 0.88)
+    key_data.size = 0.25
+    key = bpy.data.objects.new("brain_key_light", key_data)
+    bpy.context.scene.collection.objects.link(key)
+    key.location = Vector((0.20, -0.25, 0.18))
+    key.rotation_euler = (Vector((0, 0, 0)) - key.location).to_track_quat("-Z", "Y").to_euler()
 
-    for poly in obj.data.polygons:
-        poly.use_smooth = True
-    if material:
-        obj.data.materials.append(material)
-    return obj
+    # Fill light: Cool 6500K soft wrap fill
+    fill_data = bpy.data.lights.new("brain_fill_light", type="AREA")
+    fill_data.energy = 12.0
+    fill_data.color = (0.88, 0.94, 1.0)
+    fill_data.size = 0.35
+    fill = bpy.data.objects.new("brain_fill_light", fill_data)
+    bpy.context.scene.collection.objects.link(fill)
+    fill.location = Vector((-0.24, -0.18, 0.10))
+    fill.rotation_euler = (Vector((0, 0, 0)) - fill.location).to_track_quat("-Z", "Y").to_euler()
+
+    # Rim light: Accentuate gyri and cerebellum contours
+    rim_data = bpy.data.lights.new("brain_rim_light", type="AREA")
+    rim_data.energy = 18.0
+    rim_data.color = (0.95, 0.98, 1.0)
+    rim_data.size = 0.22
+    rim = bpy.data.objects.new("brain_rim_light", rim_data)
+    bpy.context.scene.collection.objects.link(rim)
+    rim.location = Vector((0.12, 0.28, 0.16))
+    rim.rotation_euler = (Vector((0, 0, 0)) - rim.location).to_track_quat("-Z", "Y").to_euler()
+
+    # Bottom bounce: subtle soft upward bounce
+    bounce_data = bpy.data.lights.new("brain_bounce_light", type="AREA")
+    bounce_data.energy = 6.0
+    bounce_data.color = (0.85, 0.80, 0.75)
+    bounce_data.size = 0.30
+    bounce = bpy.data.objects.new("brain_bounce_light", bounce_data)
+    bpy.context.scene.collection.objects.link(bounce)
+    bounce.location = Vector((0.0, -0.12, -0.20))
+    bounce.rotation_euler = (Vector((0, 0, 0)) - bounce.location).to_track_quat("-Z", "Y").to_euler()
 
 
 def build_brain():
-    """Builds an authentic anatomical human brain with gyri/sulci, cerebellar folia, C-arch corpus callosum, and brainstem."""
-    # === PBR MATERIALS with Biological Subsurface Scattering ===
-    cortex_mat = kit.add_material_from_token("brain-cortex", "tissueCortex")
-    cerebellum_mat = kit.add_tissue_material("brain-cerebellum", (0.72, 0.42, 0.36, 1.0), roughness=0.55, subsurface_weight=0.35)
-    stem_mat = kit.add_material_from_token("brain-stem", "tissueNerve")
-    corpus_mat = kit.add_material_from_token("brain-corpus-callosum", "tissueNerve")
-    thalamus_mat = kit.add_material("brain-thalamus", (0.80, 0.52, 0.48), metallic=0.04, roughness=0.45)
-    pituitary_mat = kit.add_material("brain-pituitary", (0.85, 0.35, 0.35), metallic=0.08, roughness=0.40)
+    print(f"[1/6] Loading source dataset: {SOURCE_BLEND}")
+    bpy.ops.wm.open_mainfile(filepath=str(SOURCE_BLEND))
+    bpy.context.view_layer.update()
+    depsgraph = bpy.context.evaluated_depsgraph_get()
 
-    objects = []
+    target_groups = {
+        "Cerebrum_Left": [],
+        "Cerebrum_Right": [],
+        "Cerebellum": [],
+        "Brainstem": [],
+        "Diencephalon_Deep": []
+    }
 
-    # 1. Cerebrum: Left Cerebral Hemisphere with procedural gyri and sulci
-    cerebrum_left = create_cerebral_cortex(f"{ASSET_ID}-cerebrum", is_left=True, material=cortex_mat)
-    objects.append(cerebrum_left)
+    def is_valid_mesh(o):
+        return o and o.type == 'MESH' and len(o.data.vertices) >= 10
 
-    # 2. Deep Commissural & Diencephalic Anatomy (Exposed in medial sagittal aspect)
-    # C-shaped arch of Corpus Callosum
-    corpus_callosum = create_corpus_callosum(f"{ASSET_ID}-corpus-callosum", corpus_mat)
-    objects.append(corpus_callosum)
+    # 1. Left Cerebral Hemisphere
+    left_col = bpy.data.collections.get('Left cerebral hemisphere')
+    if left_col:
+        for o in left_col.objects:
+            if is_valid_mesh(o) and not o.name.startswith('White matter'):
+                target_groups["Cerebrum_Left"].append(o)
 
-    # Thalamus: Large ovoid sensory relay center beneath corpus callosum
-    thalamus = kit.primitive_object(
-        f"{ASSET_ID}-thalamus", "uv_sphere", thalamus_mat,
-        size=(0.018, 0.024, 0.016),
-        location=(0.005, -0.002, 0.013)
-    )
-    objects.append(thalamus)
+    # 2. Right Cerebral Hemisphere ('Right cerebal hemisphere' in source)
+    right_col = bpy.data.collections.get('Right cerebal hemisphere') or bpy.data.collections.get('Right cerebral hemisphere')
+    if right_col:
+        for o in right_col.objects:
+            if is_valid_mesh(o) and not o.name.startswith('White matter'):
+                target_groups["Cerebrum_Right"].append(o)
 
-    # Hypothalamus: Organic wedge-shaped neuroendocrine control center
-    hypothalamus = create_hypothalamus(f"{ASSET_ID}-hypothalamus", cortex_mat)
-    objects.append(hypothalamus)
+    # 3. Cerebellum
+    cb_col = bpy.data.collections.get('Cerebellum')
+    if cb_col:
+        for o in cb_col.objects:
+            if is_valid_mesh(o):
+                target_groups["Cerebellum"].append(o)
 
-    # Infundibulum (stalk) & Pituitary Gland (Master endocrine gland)
-    infundibulum = kit.create_smooth_tube(
-        f"{ASSET_ID}-infundibulum",
-        [Vector((0.004, 0.014, 0.002)), Vector((0.004, 0.018, -0.007))],
-        radius=0.0014, resolution=12, material=stem_mat, cap_ends=True
-    )
-    pituitary = kit.primitive_object(
-        f"{ASSET_ID}-pituitary", "uv_sphere", pituitary_mat,
-        size=(0.009, 0.008, 0.007),
-        location=(0.004, 0.020, -0.009)
-    )
-    objects.extend([infundibulum, pituitary])
+    # 4. Brainstem
+    bs_col = bpy.data.collections.get('Brainstem')
+    if bs_col:
+        for o in bs_col.objects:
+            if is_valid_mesh(o) and not any(k in o.name.lower() for k in ["ventricle", "aqueduct", "nucleus of", "nerve"]):
+                target_groups["Brainstem"].append(o)
 
-    # Optic Chiasm landmark
-    optic_chiasm = kit.primitive_object(
-        f"{ASSET_ID}-optic-chiasm", "uv_sphere", stem_mat,
-        size=(0.007, 0.005, 0.004),
-        location=(0.004, 0.023, -0.002)
-    )
-    objects.append(optic_chiasm)
+    # 5. Diencephalon, Endocrine & Deep structures
+    deep_names = [
+        "Corpus callosum",
+        "Thalamus.l", "Thalamus.r",
+        "Hypothalamus",
+        "Adenohypophysis", "Neurohypophysis",
+        "Optic chiasm.l", "Optic chiasm.r",
+        "Optic tract.l", "Optic tract.r",
+        "Pineal gland",
+        "Fornix.l", "Fornix.r",
+        "Hippocampus.l", "Hippocampus.r",
+        "Lateral ventricle.l", "Lateral ventricle.r",
+        "Third ventricle", "Fourth ventricle", "Aqueduct of midbrain"
+    ]
+    for dname in deep_names:
+        obj = bpy.data.objects.get(dname)
+        if obj and is_valid_mesh(obj):
+            target_groups["Diencephalon_Deep"].append(obj)
 
-    # 3. Hindbrain — Cerebellum with horizontal folia striping
-    cerebellum = create_cerebellum(f"{ASSET_ID}-cerebellum", cerebellum_mat)
-    objects.append(cerebellum)
+    print("[2/6] Structure counts identified:")
+    total_count = sum(len(v) for v in target_groups.values())
+    for gname, objs in target_groups.items():
+        print(f"  - {gname}: {len(objs)} objects")
+    print(f"Total target objects: {total_count}")
 
-    # 4. Brainstem: Midbrain, Pons, and Medulla Oblongata
-    # Midbrain (Mesencephalon): cerebral peduncles and colliculi
-    midbrain = kit.primitive_object(
-        f"{ASSET_ID}-midbrain", "cylinder", stem_mat,
-        size=(0.016, 0.016, 0.012),
-        location=(0.004, -0.005, 0.001),
-        rotation_euler=(0.15, 0.0, 0.0)
-    )
-    # Pons: Prominent rounded anterior bulge
-    pons = kit.primitive_object(
-        f"{ASSET_ID}-pons", "uv_sphere", stem_mat,
-        size=(0.022, 0.020, 0.018),
-        location=(0.004, -0.003, -0.013)
-    )
-    # Medulla Oblongata: Tapering cone descending continuously
-    medulla = kit.primitive_object(
-        f"{ASSET_ID}-medulla", "cone", stem_mat,
-        size=(0.015, 0.010, 0.022),
-        location=(0.004, -0.008, -0.030),
-        rotation_euler=(0.10, 0.0, 0.0)
-    )
-    # Spinal Cord: Continuous downward pathway
-    spinal_cord = kit.primitive_object(
-        f"{ASSET_ID}-spinal-cord", "cylinder", stem_mat,
-        size=(0.009, 0.009, 0.030),
-        location=(0.004, -0.012, -0.052),
-        rotation_euler=(0.08, 0.0, 0.0)
-    )
-    objects.extend([midbrain, pons, medulla, spinal_cord])
+    # Extract mesh pydata with world matrix baked
+    extracted_data = {}
+    for gname, objs in target_groups.items():
+        extracted_data[gname] = []
+        for orig_obj in objs:
+            mw = orig_obj.matrix_world.copy()
+            if orig_obj.type == 'CURVE':
+                eval_obj = orig_obj.evaluated_get(depsgraph)
+                temp_mesh = bpy.data.meshes.new_from_object(eval_obj)
+            else:
+                temp_mesh = orig_obj.data
 
-    # Smooth shading across all objects
-    for obj in objects:
-        if obj.type == 'MESH':
-            bpy.context.view_layer.objects.active = obj
-            obj.select_set(True)
-            bpy.ops.object.shade_smooth()
+            verts = [(mw @ v.co)[:] for v in temp_mesh.vertices]
+            edges = [list(e.vertices) for e in temp_mesh.edges]
+            polys = [list(p.vertices) for p in temp_mesh.polygons]
+            extracted_data[gname].append((orig_obj.name, verts, edges, polys))
 
-    return objects
+    # [3/6] Switch to clean new scene
+    print("[3/6] Rebuilding clean target scene...")
+    bpy.ops.wm.read_homefile(use_empty=True)
+
+    materials = create_pbr_materials()
+
+    main_col = bpy.context.scene.collection
+    created_objects = []
+
+    collection_names = {
+        "Cerebrum_Left": "Cerebrum (Left Hemisphere)",
+        "Cerebrum_Right": "Cerebrum (Right Hemisphere)",
+        "Cerebellum": "Cerebellum",
+        "Brainstem": "Brainstem",
+        "Diencephalon_Deep": "Diencephalon & Internal Structures"
+    }
+
+    for gname, items in extracted_data.items():
+        col_title = collection_names.get(gname, f"Brain-{gname}")
+        col = bpy.data.collections.new(col_title)
+        main_col.children.link(col)
+
+        for name, verts, edges, polys in items:
+            clean_name = f"brain-{name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('*', '').replace('\'', '')}"
+            mesh = bpy.data.meshes.new(clean_name)
+            mesh.from_pydata(verts, edges, polys)
+            mesh.update()
+
+            for p in mesh.polygons:
+                p.use_smooth = True
+
+            obj = bpy.data.objects.new(clean_name, mesh)
+            col.objects.link(obj)
+
+            mat = get_material_for_structure(name, materials)
+            obj.data.materials.append(mat)
+            created_objects.append(obj)
+
+    # Compute medulla oblongata bottom rim and continuous trajectory for spinal cord
+    medulla_objs = [o for o in created_objects if "medulla-oblongata" in o.name]
+    if medulla_objs:
+        all_med_verts = [v.co for mo in medulla_objs for v in mo.data.vertices]
+        min_med_z = min(v.z for v in all_med_verts)
+
+        bottom_verts = [v for v in all_med_verts if v.z <= min_med_z + 0.003]
+        bot_cx = sum(v.x for v in bottom_verts) / len(bottom_verts)
+        bot_cy = sum(v.y for v in bottom_verts) / len(bottom_verts)
+
+        slice_high = [v for v in all_med_verts if min_med_z + 0.008 <= v.z <= min_med_z + 0.012]
+        high_cx = sum(v.x for v in slice_high) / len(slice_high)
+        high_cy = sum(v.y for v in slice_high) / len(slice_high)
+
+        dz = 0.010
+        dy = bot_cy - high_cy
+        dx = bot_cx - high_cx
+        pitch_angle = math.atan2(dy, dz)
+
+        bm = bmesh.new()
+        cord_depth = 0.022
+        bmesh.ops.create_cone(
+            bm, cap_ends=True, cap_tris=False, segments=32,
+            radius1=0.0055, radius2=0.0048, depth=cord_depth
+        )
+        bmesh.ops.rotate(bm, cent=Vector((0, 0, 0)), matrix=Matrix.Rotation(pitch_angle, 3, 'X'), verts=bm.verts)
+
+        cord_mesh = bpy.data.meshes.new("brain-spinal-cord")
+        bm.to_mesh(cord_mesh)
+        bm.free()
+        for p in cord_mesh.polygons:
+            p.use_smooth = True
+
+        overlap = 0.0025
+        center_z = min_med_z - (cord_depth / 2.0) * math.cos(pitch_angle) + overlap
+        center_y = bot_cy + (cord_depth / 2.0) * math.sin(pitch_angle)
+        for v in cord_mesh.vertices:
+            v.co += Vector((bot_cx, center_y, center_z))
+
+        cord_obj = bpy.data.objects.new("brain-spinal-cord", cord_mesh)
+        stem_col = bpy.data.collections.get("Brainstem") or main_col
+        stem_col.objects.link(cord_obj)
+        cord_obj.location = Vector((0.0, 0.0, 0.0))
+        cord_obj.data.materials.append(materials["stem"])
+        created_objects.append(cord_obj)
+
+    bpy.context.view_layer.update()
+
+    # [4/6] Normalize bounding box & scale to real-world anatomical standard
+    print("[4/6] Centering and scaling model to anatomical standard...")
+    all_verts = []
+    for obj in created_objects:
+        for v in obj.data.vertices:
+            all_verts.append(v.co)
+
+    if all_verts:
+        center = sum(all_verts, Vector()) / len(all_verts)
+        min_z = min(p.z for p in all_verts)
+        max_z = max(p.z for p in all_verts)
+        height = max(max_z - min_z, 0.001)
+        scale_factor = STANDARD_HEIGHT / height
+
+        for obj in created_objects:
+            for v in obj.data.vertices:
+                v.co = (v.co - center) * scale_factor
+            obj.location = Vector((0.0, 0.0, 0.0))
+            obj.data.update()
+
+    bpy.context.view_layer.update()
+
+    # [5/6] Setup 3-Point Educational Studio Lighting & Camera
+    print("[5/6] Setting up studio environment, lighting & camera...")
+    setup_lighting()
+
+    cam_data = bpy.data.cameras.new("edu_camera")
+    cam_data.lens = 72.0
+    cam_data.clip_start = 0.01
+    cam_data.clip_end = 10.0
+    cam_obj = bpy.data.objects.new("edu_camera", cam_data)
+    bpy.context.scene.collection.objects.link(cam_obj)
+    bpy.context.scene.camera = cam_obj
+
+    cam_dist = 0.17
+    cam_elev = 0.015
+    cam_angle = math.radians(45.0)
+    cam_x = cam_dist * math.sin(cam_angle)
+    cam_y = -cam_dist * math.cos(cam_angle)
+    cam_z = cam_elev
+    cam_obj.location = Vector((cam_x, cam_y, cam_z))
+    target = Vector((0.0, 0.0, 0.008))
+    direction = target - cam_obj.location
+    cam_obj.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
+
+    bpy.context.scene.render.resolution_x = 1920
+    bpy.context.scene.render.resolution_y = 1080
+    bpy.context.scene.render.engine = 'BLENDER_EEVEE_NEXT' if 'BLENDER_EEVEE_NEXT' in bpy.types.RenderSettings.bl_rna.properties['engine'].enum_items else 'BLENDER_EEVEE'
+
+    return created_objects
 
 
 def main():
-    out = kit.output_dir(Path(__file__).resolve().parent / "out")
-    kit.reset_scene()
-    objects = build_brain()
-    kit.setup_world_and_light()
-    kit.configure_render(width=1280, height=720, samples=16)
-    kit.frame_camera(objects, lens=50.0)
-    kit.save_blend(out / f"{ASSET_ID}.blend")
-    kit.export_glb(out / f"{ASSET_ID}.glb")
-    kit.render_preview(out / "preview.png")
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    build_brain()
+
+    # [6/6] Save outputs
+    print("[6/6] Saving outputs (.blend, .glb, preview.png)...")
+    blend_path = OUT_DIR / f"{ASSET_ID}.blend"
+    kit.save_blend(blend_path)
+    print(f"  [OK] Saved blend: {blend_path}")
+
+    glb_path = OUT_DIR / f"{ASSET_ID}.glb"
+    kit.export_glb(glb_path)
+    print(f"  [OK] Exported GLB: {glb_path}")
+
+    preview_path = OUT_DIR / "preview.png"
+    kit.render_preview(preview_path)
+    print(f"  [OK] Rendered preview: {preview_path}")
+
     print(f"[OK] High-fidelity {ASSET_ID} built and rendered successfully.")
 
 

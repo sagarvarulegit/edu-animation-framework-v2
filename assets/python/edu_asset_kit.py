@@ -99,7 +99,10 @@ def add_glass_material(name, tint=None, ior=None, roughness=None, transmission=0
     bsdf.inputs["Roughness"].default_value = actual_roughness
     bsdf.inputs["IOR"].default_value = actual_ior
     bsdf.inputs["Transmission Weight"].default_value = actual_transmission
-    bsdf.inputs["Specular"].default_value = 0.5
+    if "Specular IOR Level" in bsdf.inputs:
+        bsdf.inputs["Specular IOR Level"].default_value = 0.5
+    elif "Specular" in bsdf.inputs:
+        bsdf.inputs["Specular"].default_value = 0.5
     if "Clearcoat Weight" in bsdf.inputs:
         bsdf.inputs["Clearcoat Weight"].default_value = clearcoat
     return material
@@ -411,7 +414,8 @@ def setup_world_and_light():
     # Environment node setup supporting HDRI if available, with fallback to studio gradient
     bg_node = nodes.new(type="ShaderNodeBackground")
     bg_node.inputs["Color"].default_value = (0.015, 0.020, 0.030, 1.0)
-    bg_node.inputs["Roughness"].default_value = 0.0
+    if "Roughness" in bg_node.inputs:
+        bg_node.inputs["Roughness"].default_value = 0.0
     bg_node.inputs["Strength"].default_value = 0.5  # increased from 0.20 for better base illumination
 
     output_node = nodes.new(type="ShaderNodeOutputWorld")
