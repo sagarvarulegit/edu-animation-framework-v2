@@ -3,30 +3,43 @@
   "name": "Graphite Layered Hexagonal Lattice",
   "category": "chemistry",
   "type": "molecular",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Layered planar hexagonal carbon lattice of graphite demonstrating sp2 hexagonal rings within sheets and weak inter-layer van der Waals bonds allowing cleavage and electrical conductivity (CBSE Class 10 Chemistry Ch 4).",
+  "semanticDescription": "NCERT Class 10 Chemistry Ch 4 Fig 4.7(b) layered planar hexagonal carbon crystal lattice of graphite. Carbon atoms form 2D honeycomb sheets with sp2 hybridization, 120° bond angles, and 1.42 Å covalent bonds, separated by a 3.35 Å interlayer gap held by weak van der Waals forces. Dual presentation collections: 'Graphite_Lattice_Full' (3 stacked graphene sheets in ABAB stacking with vertical cyan van der Waals links on a dark studio slate plinth) and 'Graphite_Lattice_Detail' (exploded two-layer view demonstrating interlayer sliding shear vectors for solid lubricity, delocalized pi-electrons for high electrical conductivity, 120° trigonal planar angle arc, and educational property plaque).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
     "atomScale": 0.012
   },
   "simplifications": [
-    "Two parallel hexagonal sheets depicted to illustrate inter-layer van der Waals spacing.",
-    "Bonds within sheets shown as solid covalent rods; interlayer interactions as dashed/thin links."
+    "3 stacked parallel graphene sheets demonstrate both in-plane hexagonal rings and interlayer spacing.",
+    "Interlayer van der Waals forces visualized with vertical cyan links.",
+    "Detail view includes layer sliding shear vectors, delocalized pi-electrons, and 120° angle arc."
   ],
   "materials": [
     {
-      "id": "graphite-carbon",
-      "look": "Semi-metallic dark charcoal carbon atom spheres"
+      "id": "gph-carbon",
+      "look": "Lustrous dark charcoal graphite carbon sphere (metallic 0.30, roughness 0.30)"
     },
     {
-      "id": "graphite-planar-bond",
-      "look": "Planar hexagonal covalent bond connecting rods"
+      "id": "gph-bond",
+      "look": "Silvery in-plane hexagonal covalent connecting rod (metallic 0.88, roughness 0.20)"
     },
     {
-      "id": "van-der-waals-link",
-      "look": "Translucent cyan vertical interlayer van der Waals indicator lines"
+      "id": "gph-vdw",
+      "look": "Translucent cyan vertical interlayer van der Waals indicator link (emission 2.5)"
+    },
+    {
+      "id": "det-gph-elec",
+      "look": "Luminescent cyan delocalized pi-electron cloud spheres (emission 5.5)"
+    },
+    {
+      "id": "det-gph-slip",
+      "look": "Amber interlayer sliding shear vector arrows (emission 4.5)"
+    },
+    {
+      "id": "gph-plinth",
+      "look": "Dark studio slate display pedestal with metallic trim footing"
     }
   ],
   "provenance": {
@@ -34,7 +47,7 @@
     "generator": "build_graphite_lattice.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-24"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -53,6 +66,10 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
@@ -60,10 +77,12 @@
     "allotrope",
     "carbon",
     "hexagonal-layers",
+    "sp2-hybridization",
     "van-der-waals",
     "conductor",
     "lubricant",
     "CBSE-class-10",
+    "NCERT-fig-4.7b",
     "chemistry"
   ]
 }

@@ -3,26 +3,39 @@
   "name": "Diamond Allotrope Crystal Lattice",
   "category": "chemistry",
   "type": "molecular",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "3D tetrahedral covalent network crystal lattice of diamond, where each carbon atom is covalently bonded to four neighbouring carbons in a rigid 3D framework (CBSE Class 10 Chemistry Ch 4).",
+  "semanticDescription": "NCERT Class 10 Chemistry Ch 4 Fig 4.7(a) 3D tetrahedral covalent network crystal lattice of diamond. Each carbon atom is covalently bonded to four other carbon atoms in a rigid tetrahedral framework with sp3 hybridization, bond angle 109.5°, and bond length 1.54 Å. Dual presentation collections: 'Diamond_Lattice_Full' (repeating crystallographic cubic block of interlocking adamantane-like cages mounted on a dark studio slate plinth) and 'Diamond_Lattice_Detail' (isolated single tetrahedral unit with central carbon, 4 covalent bonds, 109.5° bond angle arc, shared valence electron pairs 2e-, 1.54 Å bond caliper, and educational property plaque).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
     "atomScale": 0.012
   },
   "simplifications": [
-    "Cluster of 17 carbon atoms demonstrating central tetrahedral coordination and FCC sub-lattices.",
-    "Bonds shown as solid covalent rods."
+    "Crystallographic block displays Fd-3m diamond cubic symmetry with 29 carbon atoms and 40 covalent bonds.",
+    "Bonds shown as sturdy cylindrical rods with metallic luster to clearly visualize the 3D connectivity.",
+    "Detail view includes 109.5° bond angle measurement arc and shared valence electron pairs."
   ],
   "materials": [
     {
-      "id": "diamond-carbon",
-      "look": "Refractive diamond carbon sphere (slight transmission and high luster)"
+      "id": "dia-carbon",
+      "look": "Lustrous deep carbon graphite sphere (metallic 0.15, roughness 0.35)"
     },
     {
-      "id": "diamond-covalent-bond",
-      "look": "Rigid tetrahedral covalent network connector"
+      "id": "dia-bond",
+      "look": "Rigid tetrahedral covalent network connector with silvery metallic sheen"
+    },
+    {
+      "id": "det-electron",
+      "look": "Luminescent cyan valence electron pairs (emission 5.0)"
+    },
+    {
+      "id": "det-arc",
+      "look": "Warm amber 109.5° tetrahedral angle indicator arc"
+    },
+    {
+      "id": "dia-plinth",
+      "look": "Dark studio slate display pedestal with metallic trim footing"
     }
   ],
   "provenance": {
@@ -30,7 +43,7 @@
     "generator": "build_diamond_lattice.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-24"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -49,6 +62,10 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
@@ -56,9 +73,11 @@
     "allotrope",
     "carbon",
     "tetrahedral-network",
+    "sp3-hybridization",
     "crystal-lattice",
     "hardest-substance",
     "CBSE-class-10",
+    "NCERT-fig-4.7a",
     "chemistry"
   ]
 }

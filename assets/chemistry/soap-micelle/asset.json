@@ -3,30 +3,43 @@
   "name": "Soap Micelle with Central Oil Droplet",
   "category": "chemistry",
   "type": "molecular",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "3D spherical colloidal soap micelle cluster with hydrophobic hydrocarbon tails embedded inwards around a central oil droplet and hydrophilic polar ionic carboxylate heads projecting outward into water (CBSE Class 10 Chemistry Ch 4 Figure 4.12).",
+  "semanticDescription": "NCERT Class 10 Chemistry Ch 4 Fig 4.12 & 4.13 3D spherical colloidal soap micelle cluster demonstrating the cleansing action of soap. Features amphiphilic sodium stearate molecules with hydrophobic zigzag hydrocarbon tails (-C17H35) dissolving inwards into a central trapped oil/dirt core, and hydrophilic polar ionic carboxylate heads (-COO-) pointing outwards into water with associated sodium counter-ions (Na+). Dual presentation collections: 'Soap_Micelle_Full' (complete 3D colloidal sphere of 44 soap molecules mounted on a dark studio slate plinth) and 'Soap_Micelle_Section' (hemispherical cutaway revealing the internal trapped grease core, hydrophobic tail penetration, surrounding polar water molecules forming a hydration shell, green emulsification vector arrows, and educational property plaque).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
-    "micelleDiameter": 0.12
+    "micelleDiameter": 0.14
   },
   "simplifications": [
-    "16 radial amphiphilic soap molecules arrayed around central oil sphere.",
-    "Hydrophobic tails shown as zig-zag aliphatic rods and heads as charged ionic spheres."
+    "44 radial soap molecules arrayed around central oil sphere with authentic zigzag hydrocarbon chains.",
+    "Cutaway view includes surrounding polar Mickey Mouse water molecules (H2O) forming hydration shell.",
+    "Section view includes emulsification vector arrows demonstrating mechanical lifting of oily dirt."
   ],
   "materials": [
     {
-      "id": "micelle-ionic-head",
-      "look": "Bright polar ionic carboxylate head (blue-violet sphere, -COO- Na+)"
+      "id": "mic-oil",
+      "look": "Translucent organic amber lipid core (transmission 0.82, IOR 1.46)"
     },
     {
-      "id": "micelle-hydrocarbon-tail",
-      "look": "Non-polar hydrophobic carbon chain (gold/amber zig-zag tail)"
+      "id": "mic-tail",
+      "look": "Organic warm ivory-amber non-polar zigzag hydrocarbon tail (-CH2-CH2-)"
     },
     {
-      "id": "micelle-oil-droplet",
-      "look": "Translucent organic oil/grease dirt core droplet"
+      "id": "mic-head",
+      "look": "Polar hydrophilic ionic carboxylate head sphere (-COO- in vibrant cyan blue)"
+    },
+    {
+      "id": "mic-na",
+      "look": "Golden amber sodium counter-ion (Na+ with emission 3.0)"
+    },
+    {
+      "id": "sec-mic-water",
+      "look": "Polar water molecules (H2O) with red oxygen and white hydrogen atoms"
+    },
+    {
+      "id": "mic-plinth",
+      "look": "Dark studio slate display pedestal with metallic trim footing"
     }
   ],
   "provenance": {
@@ -34,7 +47,7 @@
     "generator": "build_soap_micelle.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-24"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -53,6 +66,10 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
@@ -64,6 +81,7 @@
     "colloid",
     "emulsion",
     "CBSE-class-10",
+    "NCERT-fig-4.12",
     "chemistry"
   ]
 }
