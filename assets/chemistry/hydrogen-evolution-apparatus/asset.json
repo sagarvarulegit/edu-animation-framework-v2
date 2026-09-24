@@ -3,19 +3,20 @@
   "name": "Hydrogen Gas Evolution Apparatus (Zinc + Acid)",
   "category": "chemistry",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Complete laboratory apparatus for demonstrating the reaction of granulated zinc with dilute sulphuric acid to evolve hydrogen gas, with delivery tube, soap solution trough, and pop-sound test candle (CBSE Class 10 Chemistry Ch 2 Activity 2.1).",
+  "semanticDescription": "NCERT Class 10 Chemistry Ch 2 Activity 2.1 (Fig 2.1) laboratory-grade Hydrogen Gas Evolution apparatus demonstrating reaction of granulated zinc with dilute sulphuric acid. Features dual presentation collections: Hydrogen_Apparatus_Full (complete setup with clamped Erlenmeyer conical flask on heavy retort stand, two-hole rubber cork, deeply submerged thistle funnel establishing liquid trap seal, zinc granules with effervescent micro-bubble stream, bent glass delivery tube, soap solution trough with rising buoyant iridescent hydrogen bubbles, and lit test candle) and Hydrogen_Apparatus_Section (longitudinal cutaway revealing cork bore channels, liquid seal safety principle, effervescent reaction boundary layer, gas flow migration arrows inside delivery tube, Zn + H2SO4 -> ZnSO4 + H2 reaction plaque, and acoustic pop-sound combustion explosion dynamics with detonation shockwave rings).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.28,
-    "height": 0.24,
-    "depth": 0.16
+    "width": 0.34,
+    "height": 0.25,
+    "depth": 0.22
   },
   "simplifications": [
-    "Delivery tube curved path simplified for robust 3D export.",
-    "Soap bubbles shown as iridescent thin-film spheres rising from trough."
+    "Effervescent bubbling shown as clustered micro-spheres nucleating on zinc surfaces.",
+    "Soap bubbles shown as iridescent thin-film spheres rising buoyantly from trough due to lower density of H2.",
+    "Section view demonstrates acoustic pop-sound combustion dynamics at the test candle interface."
   ],
   "materials": [
     {
@@ -44,7 +45,7 @@
     "generator": "build_hydrogen_evolution.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-24"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -62,6 +63,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

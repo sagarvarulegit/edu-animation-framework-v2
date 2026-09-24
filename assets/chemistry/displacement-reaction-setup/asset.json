@@ -3,40 +3,49 @@
   "name": "Displacement Reaction Setup (Iron in Copper Sulphate)",
   "category": "chemistry",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Laboratory demonstration setup of single displacement reaction where an iron nail suspended by thread in copper sulphate solution displaces copper, developing a reddish-brown copper deposit while the blue solution fades to light green (CBSE Class 10 Chemistry Ch 1 Activity 1.9).",
+  "semanticDescription": "NCERT Class 10 Chemistry Ch 1 Activity 1.9 (Fig 1.8) single displacement laboratory setup. Features an open-front hardwood test tube rack with perforated shelf, control Test Tube A containing deep blue CuSO4 solution, experimental Test Tube B containing pale green FeSO4 solution with suspended iron nail coated in reddish-brown copper deposit below liquid line, and front watch glass comparing clean vs reacted nails. Dual presentation collections: 'Displacement_Setup_Full' (complete lab bench setup) and 'Displacement_Setup_Section' (longitudinal cutaway revealing suspended nail core/copper mantle, redox electron transfer arrows Fe->Fe2+ and Cu2+->Cu, chemical equation banner Fe(s) + CuSO4(aq) -> FeSO4(aq) + Cu(s), and reactivity series badge Fe > Cu).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.16,
+    "width": 0.28,
     "height": 0.20,
-    "depth": 0.10
+    "depth": 0.22
   },
   "simplifications": [
-    "Solution color shows transitional blue-green state.",
-    "Copper coating on iron nail shown with characteristic reddish-brown metallic texture."
+    "Test tube rack features open front geometry to ensure 100% optical visibility of both solution columns.",
+    "Copper deposit thickness is slightly accentuated for pedagogical clarity under laboratory lighting.",
+    "Section view includes redox electron transfer vector cones and balanced stoichiometric equation banner."
   ],
   "materials": [
     {
-      "id": "disp-cuso4-sol",
-      "look": "Aqueous translucent blue-green copper/iron sulphate solution"
+      "id": "disp-cuso4",
+      "look": "Translucent aqueous deep blue copper(II) sulphate solution (transmission 0.85, subtle emission)"
     },
     {
-      "id": "disp-iron-nail",
-      "look": "Machined metallic iron nail (grey, metallic 0.9, roughness 0.3)"
+      "id": "disp-feso4",
+      "look": "Translucent aqueous pale green iron(II) sulphate solution (transmission 0.85, subtle emission)"
     },
     {
-      "id": "disp-copper-deposit",
-      "look": "Reddish-brown granular elemental copper coating"
+      "id": "disp-iron",
+      "look": "Clean grey metallic iron nail (metallic 0.92, roughness 0.25)"
     },
     {
-      "id": "disp-glass-tube",
-      "look": "Borosilicate glass test tube"
+      "id": "disp-copper",
+      "look": "Granular reddish-brown metallic elemental copper crust (metallic 0.82, roughness 0.42)"
     },
     {
-      "id": "disp-wooden-stand",
-      "look": "Polished beechwood laboratory test tube stand"
+      "id": "disp-glass",
+      "look": "Borosilicate optical glass (transmission 0.98, IOR 1.48, roughness 0.01)"
+    },
+    {
+      "id": "disp-wood",
+      "look": "Polished laboratory hardwood test tube rack (beechwood tone)"
+    },
+    {
+      "id": "disp-porcelain",
+      "look": "Glazed white porcelain watch glass dish"
     }
   ],
   "provenance": {
@@ -44,7 +53,7 @@
     "generator": "build_displacement_reaction.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-24"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -63,16 +72,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "displacement-reaction",
     "iron-nail",
     "copper-sulphate",
+    "iron-sulphate",
     "reactivity-series",
     "redox",
     "single-displacement",
     "CBSE-class-10",
+    "NCERT-activity-1.9",
     "chemical-reactions"
   ]
 }

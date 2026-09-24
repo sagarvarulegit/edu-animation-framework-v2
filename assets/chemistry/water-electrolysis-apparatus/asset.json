@@ -3,19 +3,20 @@
   "name": "Electrolysis of Water Apparatus (Voltameter)",
   "category": "chemistry",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Electrolytic decomposition cell with two inverted graduated test tubes over graphite carbon electrodes in acidified water, demonstrating 2:1 volume ratio of hydrogen and oxygen gas collection (CBSE Class 10 Chemistry Ch 1).",
+  "semanticDescription": "NCERT Class 10 Chemistry Ch 1 Activity 1.7 (Fig 1.6) laboratory-grade Electrolysis of Water apparatus. Features dual presentation collections: Electrolysis_Apparatus_Full (complete setup with translucent polypropylene mug, inverted borosilicate test tubes over graphite carbon electrodes with 2:1 stoichiometric gas headspace displacement of H2 vs O2, acidified water with bubble effervescence, 6V DC battery pack, plug key switch, and alligator clip copper wiring) and Electrolysis_Apparatus_Section (longitudinal cutaway through mug revealing internal rubber stopper seating, borehole water seal, graphite rod contact, 2:1 gas volumetric calipers, 2H2O -> 2H2 + O2 equation plaque, and gas identification test badges with popping flame and rekindling ember).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.16,
+    "width": 0.24,
     "height": 0.22,
-    "depth": 0.14
+    "depth": 0.21
   },
   "simplifications": [
     "Electrolyte solution shown with subtle aqueous blue-green tint.",
-    "Gas bubbles depicted at electrode tips and tube headspaces."
+    "Gas bubbles depicted at electrode tips and tube headspaces.",
+    "Stoichiometric 2:1 volume displacement modeled directly at test tube menisci."
   ],
   "materials": [
     {
@@ -44,7 +45,7 @@
     "generator": "build_water_electrolysis.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-23"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -62,6 +63,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
