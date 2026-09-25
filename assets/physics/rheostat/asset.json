@@ -1,35 +1,50 @@
 {
   "id": "rheostat",
-  "name": "Rheostat (Variable Resistor)",
+  "name": "Laboratory Slide-Wire Rheostat (Variable Resistor)",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A sliding rheostat with ceramic base, copper wire coil, brass slider bar and contacts, and terminal posts. Used in CBSE Class 10 Ch11.",
+  "version": "1.2.0",
+  "status": "reviewed",
+  "semanticDescription": "Laboratory-grade sliding rheostat / variable resistor for controlling current and regulating voltage in electrical circuits (NCERT Class 10 Science Chapter 11 Electricity, Activity 11.2 and Figures 11.2 & 11.3). Features dual presentation collections: Rheostat_Full (heavy cast-iron end upright brackets, porcelain ceramic insulating cylinder, tightly wound constantan resistance wire coil with polished upper slider track, brass slider guide bar, spring contact rider with phenolic handle knob, and three knurled brass binding posts on studio slate plinth) and Rheostat_Section (annotated electro-mechanical view displaying active conductor path between Terminal A and Slider C, effective length l dimension caliper, and educational plaque on brass stanchions).",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "visualization-scale"
+    "basis": "real-world-scale",
+    "width": 0.30,
+    "height": 0.10,
+    "depth": 0.16
   },
   "simplifications": [
-    "Simplified coil winding",
-    "No detailed contact spring"
+    "Wire turns represented as discrete close-pitch rings for optimal real-time rendering.",
+    "Internal ceramic tube hollow thickness simplified to solid cylinder core."
   ],
   "materials": [
     {
-      "id": "ceramic base",
-      "look": "ceramic base"
+      "id": "porcelain-ceramic",
+      "look": "Glazed white insulating porcelain cylinder"
     },
     {
-      "id": "copper coil",
-      "look": "copper coil"
+      "id": "constantan-wire",
+      "look": "Oxidized constantan/eureka resistance wire coil"
     },
     {
-      "id": "brass slider",
-      "look": "brass slider"
+      "id": "cast-iron-bracket",
+      "look": "Matte black enameled cast-iron end support brackets"
     },
     {
-      "id": "brass terminals",
-      "look": "brass terminals"
+      "id": "slider-brass",
+      "look": "Machined brass slider rod and terminal binding posts"
+    },
+    {
+      "id": "rider-spring-bronze",
+      "look": "Phosphor-bronze spring contact rider"
+    },
+    {
+      "id": "active-current-cyan",
+      "look": "Luminescent cyan active conductor path and current flow vectors"
+    },
+    {
+      "id": "studio-plinth-slate",
+      "look": "Dark studio slate display pedestal with satin gold trim"
     }
   ],
   "provenance": {
@@ -37,7 +52,7 @@
     "generator": "build_rheostat.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -56,12 +71,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "rheostat",
     "variable-resistor",
-    "circuit",
-    "current-control"
+    "potential-divider",
+    "resistance",
+    "resistivity",
+    "ohms-law",
+    "current-control",
+    "electricity",
+    "CBSE-class-10",
+    "NCERT-activity-11-2"
   ]
 }
