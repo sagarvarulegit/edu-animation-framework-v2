@@ -1,25 +1,48 @@
 {
   "id": "plane-mirror",
-  "name": "Plane Mirror with Frame",
+  "name": "Laboratory Plane Mirror & Laws of Reflection",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A flat rectangular plane mirror with wooden frame, used in CBSE Class 10 Ch9 to demonstrate reflection and image formation.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory swivel plane mirror mounted in a brass frame with tightening knobs on vertical stanchions and studio slate plinth with leveling screws. Paired with an optical ray reflection demonstration illustrating the laws of reflection (angle i = angle r), normal line NN', virtual ray extensions, and virtual/erect image formation with lateral inversion for CBSE Class 10 optics.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.12,
-    "height": 0.08
+    "width": 0.14,
+    "depth": 0.10,
+    "height": 0.12
   },
+  "collections": [
+    {
+      "name": "Plane_Mirror_Full",
+      "description": "Real-world laboratory swivel plane mirror with brass frame, side trunnions, locking knobs, chrome support stanchions, and leveling screws on slate plinth."
+    },
+    {
+      "name": "Plane_Mirror_Section",
+      "description": "Laws of reflection demonstration showing normal NN', incident and reflected emerald laser rays (angle i = angle r), virtual backward extensions, object/image pins, and educational plaque."
+    }
+  ],
   "simplifications": [
-    "Flat reflective surface; no slight curvature.",
-    "Frame simplified to 4 straight strips."
+    "Specular reflection modeled with high-reflectivity silver metal PBR shader.",
+    "Ray reflections visualized using continuous emerald cylindrical beam segments with cyan virtual extension rays."
   ],
   "materials": [
     {
-      "id": "mirror-surface",
-      "look": "silver reflective, metallic 1.0, roughness 0.02"
+      "id": "mirror-silver",
+      "look": "High-reflectivity silver specular mirror surface"
+    },
+    {
+      "id": "mirror-frame",
+      "look": "Machined brass frame and knurled swivel knobs"
+    },
+    {
+      "id": "mirror-post",
+      "look": "Polished stainless steel / chrome support rod"
+    },
+    {
+      "id": "mirror-ray",
+      "look": "Luminescent emerald green 532nm laser ray"
     }
   ],
   "provenance": {
@@ -27,7 +50,7 @@
     "generator": "build_plane_mirror.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -46,12 +69,21 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
-    "mirror",
     "plane-mirror",
-    "reflection",
-    "optics"
+    "flat-mirror",
+    "specular-reflection",
+    "laws-of-reflection",
+    "virtual-image",
+    "lateral-inversion",
+    "optics",
+    "physics-class-10",
+    "ncert"
   ]
 }

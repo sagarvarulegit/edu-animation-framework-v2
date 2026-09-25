@@ -4,8 +4,8 @@
   "category": "physics",
   "type": "prop",
   "version": "1.0.0",
-  "status": "reviewed",
-  "semanticDescription": "Standard dual-rod laboratory optical bench (1.0m) with millimeter metric scale, leveling feet, and three movable riders carrying an illuminated candle object, a lens holder, and a projection screen for focal length experiments (CBSE Class 10 Light Ch 9).",
+  "status": "final",
+  "semanticDescription": "Dual-rail laboratory optical bench (1.0m) with metric scale, leveling feet, and three movable precision riders carrying an object pin, biconvex lens, and projection screen for focal length experiments and lens formula demonstrations (CBSE Class 10 Light Ch 10 / Class 12 Physics).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
@@ -40,7 +40,7 @@
     "generator": "build_optical_bench.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -58,6 +58,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
