@@ -4,8 +4,8 @@
   "category": "chemistry",
   "type": "molecular",
   "version": "0.1.0",
-  "status": "reviewed",
-  "semanticDescription": "3D Bohr atomic model of Oxygen (Z=8) showing an 8p 8n nucleus and 2 concentric electron shells with electronic configuration 2, 6.",
+  "status": "final",
+  "semanticDescription": "3D Bohr atomic model of Oxygen (Z=8) showing an 8p 8n nucleus and 2 concentric electron shells with electronic configuration 2, 6, alongside an electron reduction detail mode displaying octet completion to form O²⁻ [2, 8].",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
@@ -69,7 +69,8 @@
   "outputs": [
     { "file": "out/oxygen-atom.blend", "kind": "blender-scene" },
     { "file": "out/oxygen-atom.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "tags": ["oxygen", "atom", "bohr", "chemistry", "valence"]
 }

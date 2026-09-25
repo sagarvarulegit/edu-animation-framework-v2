@@ -4,8 +4,8 @@
   "category": "chemistry",
   "type": "molecular",
   "version": "0.1.0",
-  "status": "reviewed",
-  "semanticDescription": "3D Bohr atomic model of Magnesium (Z=12) showing a central 12p 12n nucleus and 3 concentric electron shells with electronic configuration 2, 8, 2.",
+  "status": "final",
+  "semanticDescription": "3D Bohr atomic model of Magnesium (Z=12) showing a central 12p 12n nucleus and 3 concentric electron shells with electronic configuration 2, 8, 2, alongside an ionization detail mode showing 2 valence electrons ejected to yield Mg²⁺ [2, 8].",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
@@ -70,7 +70,8 @@
   "outputs": [
     { "file": "out/magnesium-atom.blend", "kind": "blender-scene" },
     { "file": "out/magnesium-atom.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "tags": ["magnesium", "atom", "bohr", "chemistry", "valence"]
 }

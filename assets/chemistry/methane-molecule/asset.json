@@ -4,8 +4,8 @@
   "category": "chemistry",
   "type": "molecular",
   "version": "1.0.0",
-  "status": "reviewed",
-  "semanticDescription": "3D ball-and-stick covalent molecular model of methane (CH4) exhibiting perfect tetrahedral geometry with four equivalent C-H single covalent bonds at 109.5 degree bond angles (CBSE Class 10 Chemistry Ch 4).",
+  "status": "final",
+  "semanticDescription": "3D ball-and-stick covalent molecular model of methane (CH4) exhibiting perfect tetrahedral geometry with four equivalent C-H single covalent bonds at 109.5 degree bond angles, alongside an sp3-1s covalent orbital overlap mode with plaque.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale",
@@ -13,20 +13,28 @@
   },
   "simplifications": [
     "Atoms represented by CPK color-coded spheres.",
-    "Covalent electron sharing represented by cylindrical chemical bond rods."
+    "Covalent electron sharing represented by cylindrical chemical bond rods and directional orbital overlap lobes."
   ],
   "materials": [
     {
       "id": "cpk-carbon",
-      "look": "Dark charcoal gray carbon atom sphere (metallic 0.1, roughness 0.3)"
+      "look": "Dark charcoal gray carbon atom sphere (metallic 0.15, roughness 0.30)"
     },
     {
       "id": "cpk-hydrogen",
-      "look": "Crisp off-white hydrogen atom sphere (metallic 0.05, roughness 0.25)"
+      "look": "Crisp off-white hydrogen atom sphere (metallic 0.05, roughness 0.22)"
     },
     {
       "id": "covalent-bond-rod",
       "look": "Machined semi-gloss grey covalent bond connector rod"
+    },
+    {
+      "id": "sp3-hybrid-orbital",
+      "look": "Translucent azure/cyan sp3 hybrid orbital lobe"
+    },
+    {
+      "id": "sigma-overlap",
+      "look": "High-emission green-cyan sigma covalent overlap zone"
     }
   ],
   "provenance": {
@@ -52,6 +60,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

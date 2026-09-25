@@ -4,8 +4,8 @@
   "category": "chemistry",
   "type": "molecular",
   "version": "0.1.0",
-  "status": "reviewed",
-  "semanticDescription": "3D ionic crystal lattice structure of Magnesium Oxide showing alternating Mg²⁺ cations and O²⁻ anions bonded by strong electrostatic forces in a rock-salt cubic arrangement.",
+  "status": "final",
+  "semanticDescription": "3D ionic crystal lattice structure of Magnesium Oxide showing alternating Mg²⁺ cations and O²⁻ anions bonded by strong electrostatic forces in a rock-salt cubic arrangement, alongside an isolated octahedral unit cell coordination detail mode with plaque.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "visualization-scale"
@@ -64,7 +64,8 @@
   "outputs": [
     { "file": "out/magnesium-oxide-lattice.blend", "kind": "blender-scene" },
     { "file": "out/magnesium-oxide-lattice.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "tags": ["lattice", "mgo", "crystal", "ionic", "chemistry"]
 }
