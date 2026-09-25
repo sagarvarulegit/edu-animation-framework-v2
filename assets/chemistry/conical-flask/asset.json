@@ -4,22 +4,31 @@
   "category": "chemistry",
   "type": "prop",
   "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "An Erlenmeyer conical flask with wide base and narrow neck, used in CBSE Class 10 chemistry for mixing, heating, and gas collection.",
+  "status": "final",
+  "semanticDescription": "Standard 250ml Pyrex borosilicate glass Erlenmeyer conical flask with wide base (84mm), tapered body, reinforced beaded rim (34mm), 3D ceramic enamel graduation markings, and golden-amber ferric chloride / acid solution with concave wetting meniscus.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "height": 0.095,
-    "base-diameter": 0.08
+    "width": 0.22,
+    "height": 0.15,
+    "depth": 0.20
   },
   "simplifications": [
-    "Simplified neck-to-body transition.",
-    "Glass thickness approximated."
+    "Wall thickness standardized to 1.5mm borosilicate laboratory standard.",
+    "Section view bisects conical body along Y=0 to exhibit internal liquid swirl profile."
   ],
   "materials": [
     {
       "id": "flask-glass",
-      "look": "transparent glass, transmission 0.9, roughness 0.05"
+      "look": "Transparent Pyrex borosilicate glass (IOR 1.52, roughness 0.012)"
+    },
+    {
+      "id": "flask-liquid",
+      "look": "Golden-amber ferric chloride / dilute acid solution (IOR 1.333)"
+    },
+    {
+      "id": "flask-enamel",
+      "look": "Permanent white ceramic enamel graduation markings"
     }
   ],
   "provenance": {
@@ -27,7 +36,7 @@
     "generator": "build_flask.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -45,6 +54,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

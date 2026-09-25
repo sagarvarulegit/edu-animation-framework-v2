@@ -4,22 +4,31 @@
   "category": "chemistry",
   "type": "prop",
   "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A standard glass test tube with rounded bottom and rim, used in CBSE Class 10 chemistry for small-scale reactions and heating.",
+  "status": "final",
+  "semanticDescription": "Standard 16x140mm borosilicate glass test tube with true hemispherical base and beaded rim, mounted upright in a laboratory hardwood rack block, containing reddish-amber iodine solution with concave wetting meniscus.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "height": 0.125,
-    "diameter": 0.018
+    "width": 0.18,
+    "height": 0.16,
+    "depth": 0.16
   },
   "simplifications": [
-    "Single test tube shown; real experiments may use multiple.",
-    "Glass thickness approximated."
+    "Wall thickness standardized to 1.2mm borosilicate laboratory standard.",
+    "Section view bisects cylindrical tube along Y=0 to exhibit hemispherical bottom curvature and liquid wetting profile."
   ],
   "materials": [
     {
-      "id": "test-tube-glass",
-      "look": "transparent glass, transmission 0.9, roughness 0.05"
+      "id": "tube-glass",
+      "look": "Transparent Pyrex borosilicate glass (IOR 1.52, roughness 0.012)"
+    },
+    {
+      "id": "tube-liquid",
+      "look": "Reddish-amber iodine solution (IOR 1.333)"
+    },
+    {
+      "id": "tube-rack-wood",
+      "look": "Polished laboratory hardwood test tube rack block"
     }
   ],
   "provenance": {
@@ -27,7 +36,7 @@
     "generator": "build_test_tube.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -45,6 +54,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

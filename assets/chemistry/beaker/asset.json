@@ -4,22 +4,31 @@
   "category": "chemistry",
   "type": "prop",
   "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A standard 250ml glass laboratory beaker with pour spout and graduation marks, used in CBSE Class 10 chemistry experiments for mixing, heating, and measuring liquids.",
+  "status": "final",
+  "semanticDescription": "Standard 250ml borosilicate glass laboratory beaker with pour spout, flared beaded rim, 3D ceramic enamel graduation markings, and deep blue copper sulfate (CuSO4) solution with concave wetting meniscus.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "height": 0.095,
-    "diameter": 0.065
+    "width": 0.20,
+    "height": 0.10,
+    "depth": 0.18
   },
   "simplifications": [
-    "Graduation marks are decorative rings, not numerically accurate.",
-    "Beaker is shown as a solid glass shell rather than thin-walled."
+    "Wall thickness standardized to 1.4mm borosilicate laboratory standard.",
+    "Section view bisects cylinder along Y=0 to exhibit meniscus wetting geometry."
   ],
   "materials": [
     {
       "id": "beaker-glass",
-      "look": "transparent glass, transmission 0.9, roughness 0.05"
+      "look": "Transparent Pyrex borosilicate glass (IOR 1.52, roughness 0.012)"
+    },
+    {
+      "id": "beaker-liquid",
+      "look": "Deep cerulean blue copper sulfate (CuSO4) solution (IOR 1.333)"
+    },
+    {
+      "id": "beaker-enamel",
+      "look": "Permanent white ceramic enamel graduation markings"
     }
   ],
   "provenance": {
@@ -27,7 +36,7 @@
     "generator": "build_beaker.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -45,6 +54,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
