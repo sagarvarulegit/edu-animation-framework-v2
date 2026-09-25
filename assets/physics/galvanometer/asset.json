@@ -1,42 +1,54 @@
 {
   "id": "galvanometer",
-  "name": "Center-Zero Laboratory Galvanometer",
+  "name": "Center-Zero Laboratory Moving Coil Galvanometer",
   "category": "physics",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "Sensitive center-zero moving-coil laboratory meter with dial scale (-30 to +30), central zero indicator, and red pointer needle for detecting presence and direction of induced electric current in electromagnetic induction experiments (CBSE Class 10 Magnetic Effects Ch 12).",
+  "semanticDescription": "Laboratory-grade center-zero moving-coil galvanometer (-30 to +30 scale with central zero indicator and bold G emblem) for detecting presence and direction of induced electric currents in electromagnetic induction experiments (NCERT Class 10 Chapter 12 and Class 12 Physics Chapter 4). Features dual presentation collections: Galvanometer_Full (complete bench instrument in molded black Bakelite casing, front glass window, crimson needle, mechanical zero-adjustment screw, top knurled brass binding posts on studio slate plinth) and Galvanometer_Section (cutaway revealing internal electromechanical movement: permanent horseshoe magnet with concave cylindrical pole shoes, soft iron core, rectangular copper wire coil, phosphor-bronze spiral hairsprings, radial magnetic field lines, and educational plaque on brass stanchions).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.12,
-    "height": 0.11,
-    "depth": 0.13
+    "width": 0.26,
+    "height": 0.12,
+    "depth": 0.22
   },
   "simplifications": [
-    "Internal horseshoe magnet and soft iron core enclosed inside meter housing.",
-    "Scale graduations simplified to high-contrast major interval markers."
+    "Coil winding represented as high-density layered copper form.",
+    "Radial magnetic field visualized via discrete luminescent flux vectors."
   ],
   "materials": [
     {
-      "id": "galvano-casing",
-      "look": "Black molded Bakelite instrument housing"
+      "id": "bakelite-casing",
+      "look": "Molded black phenolic Bakelite instrument casing"
     },
     {
-      "id": "galvano-dial",
-      "look": "Crisp white matte printed scale face with bold G"
+      "id": "dial-scale-white",
+      "look": "Crisp white matte printed scale face with center zero and bold G"
     },
     {
-      "id": "galvano-needle",
+      "id": "needle-crimson",
       "look": "Crimson red lightweight aluminum indicator pointer"
     },
     {
-      "id": "galvano-glass",
-      "look": "Flat optical glass protective face"
+      "id": "magnet-poles",
+      "look": "Concave cylindrical North (red) and South (blue) permanent magnet pole shoes"
     },
     {
-      "id": "terminal-brass",
-      "look": "Machined brass knurled terminal posts"
+      "id": "soft-iron-core",
+      "look": "High-permeability machined soft iron central cylinder"
+    },
+    {
+      "id": "copper-winding",
+      "look": "High-luster enameled copper magnet wire turns"
+    },
+    {
+      "id": "radial-flux-cyan",
+      "look": "Luminescent cyan radial magnetic field vectors"
+    },
+    {
+      "id": "studio-plinth-slate",
+      "look": "Dark studio slate display pedestal with satin gold trim"
     }
   ],
   "provenance": {
@@ -44,7 +56,7 @@
     "generator": "build_galvanometer.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -63,17 +75,23 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "galvanometer",
+    "moving-coil-galvanometer",
     "meter",
     "electromagnetic-induction",
     "faraday",
     "induced-current",
     "center-zero",
+    "radial-magnetic-field",
     "CBSE-class-10",
-    "electricity",
+    "CBSE-class-12",
     "electromagnetism"
   ]
 }

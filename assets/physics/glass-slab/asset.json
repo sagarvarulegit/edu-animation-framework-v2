@@ -1,23 +1,46 @@
 {
   "id": "glass-slab",
-  "name": "Rectangular Glass Slab",
+  "name": "Rectangular Glass Slab Refraction & Lateral Displacement",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A rectangular glass slab (IOR 1.52) used to demonstrate refraction and lateral displacement. Used in CBSE Class 10 Ch9.",
+  "version": "1.2.0",
+  "status": "reviewed",
+  "semanticDescription": "Laboratory-grade rectangular borosilicate optical glass slab (130mm x 60mm x 22mm, refractive index n=1.52) illustrating Snell's law of refraction and lateral displacement (Activity 10.10 and Figure 9.10 in NCERT Class 10 Light Chapter 9). Features dual presentation collections: Glass_Slab_Full (laboratory drawing board, paper with pencil ABCD tracing, 4 thumb tacks, 4 mapping pins E/F/G/H on steel needles, mini diode laser emitter, and continuous glowing emerald laser beam) and Glass_Slab_Section (geometric ray optics diagram with normal lines NN' and MM', angle arcs for angle of incidence i, refraction r, and emergence e, extended undeviated original incident ray, lateral displacement caliper d, and educational plaque on brass stanchions).",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "visualization-scale"
+    "basis": "real-world-scale",
+    "width": 0.28,
+    "height": 0.08,
+    "depth": 0.23
   },
   "simplifications": [
-    "Perfect rectangular prism",
-    "No surface imperfections"
+    "Slab edges have calibrated optical bevels for clean specular highlights without micro-scratches.",
+    "Laser beam represented as smooth luminescent cylinder segment with volumetric glow."
   ],
   "materials": [
     {
-      "id": "clear glass",
-      "look": "clear glass"
+      "id": "optical-glass",
+      "look": "High-clarity borosilicate glass with IOR 1.52 and specular highlights"
+    },
+    {
+      "id": "laser-beam-emerald",
+      "look": "Luminescent emerald green 532nm optical laser beam"
+    },
+    {
+      "id": "normal-cyan",
+      "look": "Luminescent cyan normal boundary lines"
+    },
+    {
+      "id": "lateral-disp-amber",
+      "look": "Vibrant amber lateral displacement dimension line and badge d"
+    },
+    {
+      "id": "drawing-board-wood",
+      "look": "Natural softwood laboratory drawing board"
+    },
+    {
+      "id": "studio-plinth-slate",
+      "look": "Matte dark slate display pedestal with satin gold trim"
     }
   ],
   "provenance": {
@@ -25,7 +48,7 @@
     "generator": "build_glass_slab.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -44,12 +67,21 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "glass-slab",
     "refraction",
     "lateral-displacement",
-    "optics"
+    "snells-law",
+    "angle-of-incidence",
+    "angle-of-emergence",
+    "optics",
+    "CBSE-class-10",
+    "NCERT-activity-10-10"
   ]
 }

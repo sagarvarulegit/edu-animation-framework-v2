@@ -3,24 +3,24 @@
   "name": "Permanent Bar Magnet & Magnetic Field Lines",
   "category": "physics",
   "type": "prop",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "reviewed",
-  "semanticDescription": "AlNiCo rectangular permanent bar magnet with distinct North (red) and South (blue) magnetic poles, accompanied by 3D toroidal magnetic field lines and an orientation compass needle (CBSE Class 10 Magnetic Effects Ch 12).",
+  "semanticDescription": "Laboratory-grade AlNiCo permanent bar magnet with distinct North (crimson red) and South (cobalt blue) magnetic poles, accompanied by 3D continuous toroidal magnetic field lines, directional flux arrows, and magnetic plotting compasses (NCERT Class 10 Science Chapter 12 Magnetic Effects of Electric Current, Figures 12.2, 12.3, and 12.4). Features dual presentation collections: Bar_Magnet_Full (macro view on studio slate plinth with continuous 3D toroidal magnetic field lines, directional arrows, and tangential brass pocket compass) and Bar_Magnet_Detail (laboratory investigation card showing ferromagnetic iron filings streamline distribution, pole particle clustering, multi-compass tangential orientation array showing lines of force, and educational plaque on brass stanchions).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.22,
-    "height": 0.06,
-    "depth": 0.14
+    "width": 0.34,
+    "height": 0.08,
+    "depth": 0.25
   },
   "simplifications": [
     "Magnetic field lines represented as discrete 3D spatial curve loops.",
-    "Pole boundary shown as sharp midpoint transition."
+    "Iron filings pattern represented as aligned continuous ferromagnetic streamlines and polar density clusters."
   ],
   "materials": [
     {
       "id": "magnet-north-red",
-      "look": "Vibrant red painted North magnetic pole"
+      "look": "Deep crimson painted North magnetic pole"
     },
     {
       "id": "magnet-south-blue",
@@ -28,11 +28,19 @@
     },
     {
       "id": "magnetic-flux-line",
-      "look": "Luminescent cyan field flux curve"
+      "look": "Luminescent cyan magnetic flux line with directional arrows"
     },
     {
       "id": "compass-brass",
-      "look": "Turned brass pocket compass casing"
+      "look": "Turned brass pocket compass casing with glass cover"
+    },
+    {
+      "id": "iron-filings",
+      "look": "Fine grey-black ferromagnetic iron filing particles"
+    },
+    {
+      "id": "studio-plinth-slate",
+      "look": "Dark studio slate display pedestal with satin gold trim"
     }
   ],
   "provenance": {
@@ -40,7 +48,7 @@
     "generator": "build_bar_magnet.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -59,17 +67,23 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "magnet",
     "bar-magnet",
     "magnetic-field",
+    "magnetic-field-lines",
     "north-pole",
     "south-pole",
-    "field-lines",
+    "iron-filings",
     "compass",
     "CBSE-class-10",
-    "electromagnetism"
+    "electromagnetism",
+    "NCERT-activity-12-1"
   ]
 }
