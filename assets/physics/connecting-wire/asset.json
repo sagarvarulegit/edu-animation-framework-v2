@@ -4,26 +4,35 @@
   "category": "physics",
   "type": "prop",
   "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A red-insulated copper connecting wire with stripped ends, used to connect components in CBSE Class 10 electricity circuits.",
+  "status": "final",
+  "semanticDescription": "Flexible red laboratory connecting lead with stackable 4mm banana plug and heavy-duty spring-loaded alligator clip, featuring an internal cutaway of the 19-strand OFHC copper conductor core and PVC insulation (CBSE Class 10 Electricity Ch 12).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "length": 0.15,
-    "diameter": 0.003
+    "width": 0.32,
+    "height": 0.08,
+    "depth": 0.20
   },
   "simplifications": [
-    "Straight wire rather than coiled.",
-    "Single color (red) shown; black variant also common."
+    "Wire length standardized to laboratory patch lead length.",
+    "Internal copper conductor depicted with standard 19-strand concentric bundle."
   ],
   "materials": [
     {
-      "id": "wire-red",
-      "look": "red PVC insulation"
+      "id": "wire-pvc-red",
+      "look": "Flexible laboratory-grade red PVC insulating jacket"
     },
     {
-      "id": "wire-copper",
-      "look": "bare copper conductor"
+      "id": "wire-copper-core",
+      "look": "19-strand oxygen-free high-conductivity copper conductor"
+    },
+    {
+      "id": "wire-banana-gold",
+      "look": "Machined brass 4mm stackable banana plug with 4-leaf lantern springs"
+    },
+    {
+      "id": "wire-alligator-nickel",
+      "look": "Nickel-plated steel alligator clip with serrated gripping jaws"
     }
   ],
   "provenance": {
@@ -31,7 +40,7 @@
     "generator": "build_wire.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -49,6 +58,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

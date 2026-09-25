@@ -4,22 +4,35 @@
   "category": "physics",
   "type": "prop",
   "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "An equilateral triangular glass prism (side 6cm, depth 8cm) with IOR 1.52, used in CBSE Class 10 Ch10 to demonstrate dispersion of white light into spectrum (ROYGBIV).",
+  "status": "final",
+  "semanticDescription": "Equilateral 60° optical crown glass dispersion prism (side 65mm, height 75mm, n = 1.52) mounted on a turned brass spectrometer turntable, demonstrating Newton's dispersion of white light into the 7 spectral rainbow colors VIBGYOR (CBSE Class 10 Ch 11).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "side": 0.06,
-    "depth": 0.08
+    "width": 0.28,
+    "height": 0.12,
+    "depth": 0.22
   },
   "simplifications": [
-    "Equilateral triangle rather than 60\u00b0 prism angle.",
-    "No beveled edges."
+    "Standard 60° equilateral laboratory geometry.",
+    "Spectral fan discretely traces the 7 canonical rainbow wavelengths (ROYGBIV) onto observation screen."
   ],
   "materials": [
     {
-      "id": "prism-glass",
-      "look": "transparent glass with slight blue tint, transmission 0.92"
+      "id": "prism-glass-clear",
+      "look": "Polished optical crown glass (IOR 1.52, transmission 1.0)"
+    },
+    {
+      "id": "prism-brass",
+      "look": "Turned brass spectrometer turntable with graduated degree circle"
+    },
+    {
+      "id": "sec-beam-white",
+      "look": "Collimated incident white light pencil beam"
+    },
+    {
+      "id": "sec-white-screen",
+      "look": "Diffusion matte white observation projection screen"
     }
   ],
   "provenance": {
@@ -27,7 +40,7 @@
     "generator": "build_prism.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -45,6 +58,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],

@@ -4,40 +4,39 @@
   "category": "physics",
   "type": "prop",
   "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A complete simple circuit on a breadboard: battery, bulb, switch, ammeter, connected by red wires. Used in CBSE Class 10 Ch11.",
+  "status": "final",
+  "semanticDescription": "Complete laboratory electric circuit trainer board (NCERT Class 10 Science Fig 12.1) comprising dual-cell DC power supply (3.0V), plug key switch, DC moving-coil ammeter (0-3A), incandescent light bulb in socket with glowing tungsten filament, and fixed resistor connected in series by insulated leads.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "visualization-scale"
+    "basis": "real-world-scale",
+    "width": 0.26,
+    "height": 0.10,
+    "depth": 0.19
   },
   "simplifications": [
-    "Flat layout rather than 3D wiring",
-    "Components simplified for clarity"
+    "Arranged on modular laboratory educational demonstration board.",
+    "Wire routing follows standard textbook schematic topological layout."
   ],
   "materials": [
     {
-      "id": "white board",
-      "look": "white board"
+      "id": "fc-board",
+      "look": "Dark slate Bakelite trainer mounting plinth"
     },
     {
-      "id": "red wires",
-      "look": "red wires"
+      "id": "fc-brass",
+      "look": "Machined solid brass contact blocks, binding nuts, and plug key"
     },
     {
-      "id": "copper battery",
-      "look": "copper battery"
+      "id": "fc-filament",
+      "look": "Glowing warm incandescent tungsten filament (2500K)"
     },
     {
-      "id": "glass bulb",
-      "look": "glass bulb"
+      "id": "fc-dial",
+      "look": "Calibrated 0-3A ivory meter dial with deflected red needle"
     },
     {
-      "id": "brass switch",
-      "look": "brass switch"
-    },
-    {
-      "id": "black ammeter",
-      "look": "black ammeter"
+      "id": "fc-wire-red",
+      "look": "Flexible red positive connecting leads with spade lugs"
     }
   ],
   "provenance": {
@@ -45,7 +44,7 @@
     "generator": "build_circuit.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -63,6 +62,10 @@
     },
     {
       "file": "out/preview.png",
+      "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
       "kind": "preview-render"
     }
   ],
