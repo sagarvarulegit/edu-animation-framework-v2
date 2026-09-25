@@ -1,27 +1,48 @@
 {
   "id": "concave-lens",
-  "name": "Biconcave Lens",
+  "name": "Laboratory Biconcave Lens & Ray Divergence",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A biconcave (diverging) lens with transparent glass (IOR 1.52) and chrome edge ring. Used in CBSE Class 10 Ch9-10.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory biconcave (diverging) glass lens mounted in a precision turned brass retaining ring on a vertical chrome post and studio slate plinth with leveling screws. Paired with an optical ray tracing demonstration showing parallel light rays diverging, with virtual backward extensions converging to the virtual principal focus F1, focal length caliper, and negative lens formula for CBSE Class 10 optics.",
   "scaleConvention": {
     "unit": "meter",
-    "basis": "visualization-scale"
+    "basis": "real-world-scale",
+    "width": 0.14,
+    "depth": 0.10,
+    "height": 0.12
   },
+  "collections": [
+    {
+      "name": "Concave_Lens_Full",
+      "description": "Real-world laboratory lens stand with biconcave glass lens (thin center, thick edge) in turned brass retaining ring on slate plinth with chrome post and leveling screws."
+    },
+    {
+      "name": "Concave_Lens_Section",
+      "description": "Ray optics divergence demonstration showing parallel emerald laser rays diverging, virtual backward ray extensions meeting at virtual focus F1, and educational plaque."
+    }
+  ],
   "simplifications": [
-    "Symmetric biconcave",
-    "No mounting ring"
+    "Light rays modeled as luminescent 532nm emerald cylindrical beam segments with cyan virtual extension rays.",
+    "Biconcave surface geometry generated with accurate spherical curvature."
   ],
   "materials": [
     {
-      "id": "clear glass",
-      "look": "clear glass"
+      "id": "lens-glass",
+      "look": "Flint/crown optical glass (n = 1.55)"
     },
     {
-      "id": "chrome edge ring",
-      "look": "chrome edge ring"
+      "id": "lens-brass",
+      "look": "Machined brass retaining ring and clamp"
+    },
+    {
+      "id": "lens-chrome",
+      "look": "Polished stainless steel / chrome support rod"
+    },
+    {
+      "id": "lens-ray",
+      "look": "Luminescent emerald green 532nm laser ray"
     }
   ],
   "provenance": {
@@ -29,7 +50,7 @@
     "generator": "build_concave_lens.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -48,13 +69,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
+    "concave-lens",
+    "diverging-lens",
     "lens",
-    "concave",
-    "diverging",
+    "refraction",
+    "light",
+    "focal-length",
+    "virtual-focus",
     "optics",
-    "refraction"
+    "physics-class-10",
+    "ncert"
   ]
 }

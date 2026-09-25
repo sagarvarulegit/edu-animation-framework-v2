@@ -1,25 +1,48 @@
 {
   "id": "convex-lens",
-  "name": "Biconvex Lens",
+  "name": "Laboratory Biconvex Lens & Ray Convergence",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A biconvex (converging) lens with transparent glass material (IOR 1.52), used in CBSE Class 10 Ch9-10 to demonstrate refraction and image formation.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory biconvex (converging) glass lens mounted in a precision turned brass retaining ring on a vertical chrome post and studio slate plinth with leveling screws. Paired with an optical ray tracing demonstration showing parallel light rays refracting and converging to the real principal focus F2, with focal length caliper and lens formula for CBSE Class 10 optics.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "diameter": 0.08,
-    "thickness": 0.02
+    "width": 0.14,
+    "depth": 0.10,
+    "height": 0.12
   },
+  "collections": [
+    {
+      "name": "Convex_Lens_Full",
+      "description": "Real-world laboratory lens stand with biconvex glass lens in turned brass retaining ring on slate plinth with chrome post and leveling screws."
+    },
+    {
+      "name": "Convex_Lens_Section",
+      "description": "Ray optics convergence demonstration showing parallel emerald laser rays converging to real focus F2, principal axis, focal point pins, and educational plaque."
+    }
+  ],
   "simplifications": [
-    "Symmetric biconvex rather than plano-convex.",
-    "No mounting ring."
+    "Light rays modeled as luminescent 532nm emerald cylindrical beam segments.",
+    "Biconvex surface geometry generated with accurate spherical radius of curvature."
   ],
   "materials": [
     {
       "id": "lens-glass",
-      "look": "transparent glass, transmission 0.9, IOR 1.52"
+      "look": "Crown optical glass (n = 1.52)"
+    },
+    {
+      "id": "lens-brass",
+      "look": "Machined brass retaining ring and clamp"
+    },
+    {
+      "id": "lens-chrome",
+      "look": "Polished stainless steel / chrome support rod"
+    },
+    {
+      "id": "lens-ray",
+      "look": "Luminescent emerald green 532nm laser ray"
     }
   ],
   "provenance": {
@@ -27,7 +50,7 @@
     "generator": "build_convex_lens.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -46,13 +69,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
+    "convex-lens",
+    "converging-lens",
     "lens",
-    "convex",
-    "converging",
+    "refraction",
+    "light",
+    "focal-length",
     "optics",
-    "refraction"
+    "lens-formula",
+    "physics-class-10",
+    "ncert"
   ]
 }

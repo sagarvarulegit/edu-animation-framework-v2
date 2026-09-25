@@ -1,24 +1,48 @@
 {
   "id": "concave-mirror",
-  "name": "Concave Mirror",
+  "name": "Laboratory Concave Spherical Mirror & Reflection",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A concave (converging) mirror with inward-curving reflective surface, used in CBSE Class 10 Ch9-10 to demonstrate real/virtual images and focal point.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory spherical concave (converging) front-surface silver mirror mounted in a brass bezel on a vertical chrome support post and studio slate plinth with leveling screws. Paired with a ray optics reflection demonstration showing parallel light rays reflecting through real focus F, normal lines through Center of Curvature C, and mirror formula for CBSE Class 10 optics.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "diameter": 0.1
+    "width": 0.14,
+    "depth": 0.10,
+    "height": 0.12
   },
+  "collections": [
+    {
+      "name": "Concave_Mirror_Full",
+      "description": "Real-world laboratory spherical concave mirror stand with turned brass bezel, swivel bracket, chrome post, and leveling screws on slate plinth."
+    },
+    {
+      "name": "Concave_Mirror_Section",
+      "description": "Ray reflection demonstration showing parallel emerald laser rays converging to real focus F, normal lines from C, focal length caliper, and educational plaque."
+    }
+  ],
   "simplifications": [
-    "Spherical approximation rather than parabolic.",
-    "No focal length label."
+    "Mirror reflection modeled with high-specular metallic silver PBR shader.",
+    "Ray reflection visualized using continuous emerald cylindrical beam segments."
   ],
   "materials": [
     {
-      "id": "concave-mirror-surface",
-      "look": "silver reflective, metallic 1.0, roughness 0.02"
+      "id": "mirror-silver",
+      "look": "High-reflectivity silver mirror surface"
+    },
+    {
+      "id": "mirror-brass",
+      "look": "Machined brass bezel ring and swivel clamp"
+    },
+    {
+      "id": "mirror-chrome",
+      "look": "Polished stainless steel / chrome support rod"
+    },
+    {
+      "id": "mirror-ray",
+      "look": "Luminescent emerald green 532nm laser ray"
     }
   ],
   "provenance": {
@@ -26,7 +50,7 @@
     "generator": "build_concave_mirror.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -45,13 +69,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
-    "mirror",
-    "concave",
-    "converging",
+    "concave-mirror",
+    "spherical-mirror",
+    "converging-mirror",
+    "reflection",
+    "focus",
+    "center-of-curvature",
+    "mirror-formula",
     "optics",
-    "focal-point"
+    "physics-class-10",
+    "ncert"
   ]
 }
