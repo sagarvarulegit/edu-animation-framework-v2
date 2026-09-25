@@ -1,29 +1,48 @@
 {
   "id": "bulb",
-  "name": "Incandescent Light Bulb",
+  "name": "Laboratory Incandescent Bulb & Socket",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A small incandescent light bulb with glass globe, metal base, and visible filament, used in CBSE Class 10 electricity circuits to demonstrate current flow.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory incandescent electric lamp mounted in a molded black Bakelite socket on a studio slate plinth with dual knurled brass binding posts. Paired with a longitudinal cutaway revealing the tungsten filament, argon gas envelope, and internal conduction path illustrating Joule's heating law (H = I^2 R t) for CBSE Class 10 science.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "height": 0.04,
-    "diameter": 0.03
+    "width": 0.12,
+    "depth": 0.10,
+    "height": 0.11
   },
+  "collections": [
+    {
+      "name": "Bulb_Full",
+      "description": "Complete laboratory bench lamp in molded socket on slate plinth with twin brass binding posts, threaded Edison base, and optical clear glass envelope."
+    },
+    {
+      "name": "Bulb_Section",
+      "description": "Cutaway glass envelope showing incandescent glowing tungsten filament, inert gas fill, complete internal conduction circuit loop, and forward-tilted educational plaque."
+    }
+  ],
   "simplifications": [
-    "Screw thread simplified to smooth cylinder.",
-    "Filament shown as single rod rather than coiled wire."
+    "Tungsten double-coil represented as a coiled cylindrical filament with high emissive radiance.",
+    "Internal argon-nitrogen gas fill indicated via optical transparency and educational plaque."
   ],
   "materials": [
     {
       "id": "bulb-glass",
-      "look": "transparent glass globe"
+      "look": "Crystal clear optical glass envelope"
+    },
+    {
+      "id": "bulb-brass",
+      "look": "Machined threaded brass base and knurled binding posts"
     },
     {
       "id": "bulb-filament",
-      "look": "tungsten filament, warm glow"
+      "look": "High-temperature incandescent glowing tungsten filament"
+    },
+    {
+      "id": "bulb-holder",
+      "look": "Molded black Bakelite lamp socket"
     }
   ],
   "provenance": {
@@ -31,7 +50,7 @@
     "generator": "build_bulb.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -50,13 +69,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "bulb",
     "lamp",
-    "light",
+    "incandescent",
+    "joule-heating",
+    "tungsten",
     "electricity",
-    "filament"
+    "circuit",
+    "resistance",
+    "physics-class-10",
+    "ncert"
   ]
 }

@@ -1,25 +1,48 @@
 {
   "id": "resistor",
-  "name": "Through-Hole Resistor",
+  "name": "Laboratory Fixed Resistor & Carbon Film Spiral",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A standard axial through-hole resistor with 4 color bands (Red-Blue-Yellow-Gold = 260k\u03a9 \u00b15%), used in CBSE Class 10 electricity circuits.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory fixed resistor mounted on a slate carrier plinth with dual knurled brass binding posts. Features a ceramic body with standard 4-band EIA color rings (1.0 k-ohm +/-5%), paired with an internal longitudinal cutaway revealing the alumina ceramic core, laser-grooved helical carbon film spiral, and resistance formula (R = rho * l / A) for CBSE Class 10 and 12 physics.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "length": 0.006,
-    "diameter": 0.002
+    "width": 0.14,
+    "depth": 0.08,
+    "height": 0.05
   },
+  "collections": [
+    {
+      "name": "Resistor_Full",
+      "description": "Complete laboratory bench resistor with 4 color code bands (Brown, Black, Red, Gold = 1 k-ohm) on slate plinth with twin brass binding posts."
+    },
+    {
+      "name": "Resistor_Section",
+      "description": "Internal longitudinal cutaway showing ceramic core, helical carbon film spiral path, dimension caliper for length l, and forward-tilted educational plaque."
+    }
+  ],
   "simplifications": [
-    "Color band values are illustrative.",
-    "Lead length simplified."
+    "Helical carbon track discretized into rings with cyan conduction indicators for pedagogical clarity.",
+    "Resistor scaled up slightly to bench apparatus scale for clear observation."
   ],
   "materials": [
     {
-      "id": "resistor-body",
-      "look": "tan/beige ceramic body"
+      "id": "resistor-ceramic",
+      "look": "High-alumina insulating ceramic body and core"
+    },
+    {
+      "id": "resistor-brass",
+      "look": "Machined knurled brass binding posts"
+    },
+    {
+      "id": "resistor-carbon",
+      "look": "Carbon film resistive spiral track"
+    },
+    {
+      "id": "resistor-leads",
+      "look": "Tinned copper axial wire leads"
     }
   ],
   "provenance": {
@@ -27,7 +50,7 @@
     "generator": "build_resistor.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -46,12 +69,21 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "resistor",
-    "ohm",
+    "resistance",
+    "ohms-law",
+    "color-code",
     "circuit",
-    "electricity"
+    "electricity",
+    "carbon-film",
+    "physics-class-10",
+    "ncert"
   ]
 }

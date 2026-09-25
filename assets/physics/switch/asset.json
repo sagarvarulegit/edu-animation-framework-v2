@@ -1,25 +1,44 @@
 {
   "id": "switch",
-  "name": "Knife Switch (Open)",
+  "name": "Laboratory Plug Key (Circuit Switch)",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A simple single-pole knife switch in open position, used in CBSE Class 10 electricity to make/break circuits.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory brass plug key mounted on an insulating slate base with rubber feet and knurled binding posts. Demonstrates closed circuit [(.)] state with plug key seated, paired with an exploded open circuit [ ] state showing infinite air resistance gap and current conduction pathways for CBSE Class 10 science.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.04,
-    "depth": 0.02
+    "width": 0.13,
+    "depth": 0.08,
+    "height": 0.06
   },
+  "collections": [
+    {
+      "name": "Switch_Full",
+      "description": "Complete laboratory plug key in closed circuit [(.)] state with solid brass plug inserted between brass blocks."
+    },
+    {
+      "name": "Switch_Section",
+      "description": "Exploded open circuit [ ] state showing plug key elevated above conical socket, infinite air resistance gap, and forward-tilted educational plaque."
+    }
+  ],
   "simplifications": [
-    "No mounting screws.",
-    "Arm angle simplified."
+    "Conical socket modeled with precision clearance for clear visualization of the open air gap.",
+    "Wire clamping holes on binding posts standardized."
   ],
   "materials": [
     {
-      "id": "switch-contact",
-      "look": "brass/copper contact"
+      "id": "switch-slate",
+      "look": "Insulating dark studio slate base"
+    },
+    {
+      "id": "switch-brass",
+      "look": "Precision machined brass blocks and plug key"
+    },
+    {
+      "id": "switch-ebonite",
+      "look": "Molded black phenolic insulating handle"
     }
   ],
   "provenance": {
@@ -27,7 +46,7 @@
     "generator": "build_switch.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -46,12 +65,21 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "switch",
-    "knife-switch",
+    "plug-key",
+    "key",
     "circuit",
-    "electricity"
+    "open-circuit",
+    "closed-circuit",
+    "electricity",
+    "physics-class-10",
+    "ncert"
   ]
 }

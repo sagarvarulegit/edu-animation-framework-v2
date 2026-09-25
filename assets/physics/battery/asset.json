@@ -1,29 +1,56 @@
 {
   "id": "battery",
-  "name": "Dry Cell Battery (AA)",
+  "name": "Laboratory DC Battery Source (Dual-Cell 3.0V) & Dry Cell",
   "category": "physics",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A standard AA dry cell battery with positive and negative terminals, used in CBSE Class 10 electricity experiments to provide EMF.",
+  "version": "1.2.0",
+  "status": "final",
+  "semanticDescription": "Laboratory DC power source comprising a dual-cell AA series battery holder (1.5V x 2 = 3.0V DC) with knurled brass binding posts and authentic cell jackets, paired with a detailed longitudinal cutaway section of a Leclanché chemical dry cell showing zinc anode can, ammonium chloride electrolyte, manganese dioxide depolarizer, and central graphite cathode rod for CBSE Class 10 and 12 electricity curricula.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "height": 0.05,
-    "diameter": 0.014
+    "width": 0.14,
+    "depth": 0.10,
+    "height": 0.07
   },
+  "collections": [
+    {
+      "name": "Battery_Full",
+      "description": "Real-world dual-cell AA battery pack in molded Bakelite holder on slate plinth with knurled red (+)/black (-) brass binding posts and 3.0V DC series connection."
+    },
+    {
+      "name": "Battery_Section",
+      "description": "Longitudinal electrochemical cutaway of Leclanché dry cell revealing zinc can anode, porous separator, NH4Cl electrolyte paste, MnO2 depolarizer, and graphite cathode rod with educational plaque."
+    }
+  ],
   "simplifications": [
-    "Simplified label without brand text.",
-    "Terminal details reduced."
+    "Electrolyte paste represented as uniform solid layer for clean rendering.",
+    "Dual AA cells scaled to standard laboratory dimensions."
   ],
   "materials": [
     {
-      "id": "battery-body",
-      "look": "dark metallic cylinder"
+      "id": "batt-bakelite",
+      "look": "Molded black Bakelite housing"
     },
     {
-      "id": "battery-terminal",
-      "look": "brass terminal"
+      "id": "batt-brass",
+      "look": "Machined knurled brass binding posts and contact pip"
+    },
+    {
+      "id": "batt-zinc",
+      "look": "Machined zinc anode canister"
+    },
+    {
+      "id": "batt-carbon",
+      "look": "Dense black graphite cathode rod"
+    },
+    {
+      "id": "batt-electrolyte",
+      "look": "Hydrated NH4Cl electrolyte paste"
+    },
+    {
+      "id": "batt-mno2",
+      "look": "Dark manganese dioxide depolarizer mixture"
     }
   ],
   "provenance": {
@@ -31,7 +58,7 @@
     "generator": "build_battery.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -50,12 +77,22 @@
     {
       "file": "out/preview.png",
       "kind": "preview-render"
+    },
+    {
+      "file": "out/preview_section.png",
+      "kind": "preview-render"
     }
   ],
   "tags": [
     "battery",
     "cell",
+    "dry-cell",
+    "leclanche-cell",
     "electricity",
-    "emf"
+    "emf",
+    "dc-source",
+    "circuit",
+    "physics-class-10",
+    "ncert"
   ]
 }
