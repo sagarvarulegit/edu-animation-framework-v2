@@ -46,7 +46,8 @@
   "outputs": [
     { "file": "out/magnesium-burning-setup.blend", "kind": "blender-scene" },
     { "file": "out/magnesium-burning-setup.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
   "tags": ["chemistry", "magnesium", "combustion", "flame", "laboratory", "cbse", "reactions", "oxidation"]
 }

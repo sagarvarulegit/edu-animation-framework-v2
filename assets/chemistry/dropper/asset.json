@@ -3,13 +3,18 @@
   "name": "Pasteur Dropper / Pipette",
   "category": "chemistry",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A glass Pasteur dropper with blue rubber bulb and visible coloured solution, suitable for adding small quantities of liquid to a laboratory vessel.",
-  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "length": 0.19 },
-  "simplifications": ["Solution colour is illustrative and should be overridden by lesson context."],
-  "provenance": { "method": "procedural-blender-python", "generator": "build_dropper.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-08-28" },
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "A medical and laboratory grade borosilicate glass Pasteur pipette featuring volume graduation rings, drawn liquid column with wetting meniscus, forming capillary pendant droplet, ribbed silicone squeeze bulb, and dedicated laboratory support stand. Includes dual collections: Dropper_Full and Dropper_Section with 180° longitudinal cutaway, internal wall thickness, suction vacuum physics, and technical plaque.",
+  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "length": 0.188, "barrelDiameter": 0.0072, "capillaryDiameter": 0.0028 },
+  "simplifications": ["Reagent liquid color is illustrative (crimson indicator) and can be recolored based on experimental reagent context."],
+  "provenance": { "method": "procedural-blender-python", "generator": "build_dropper.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-09-25" },
   "rendererCompatibility": { "blender": true, "three": "import out/dropper.glb", "remotion": "use out/preview.png or render frames" },
-  "outputs": [{ "file": "out/dropper.blend", "kind": "blender-scene" }, { "file": "out/dropper.glb", "kind": "glTF-binary" }, { "file": "out/preview.png", "kind": "preview-render" }],
-  "tags": ["dropper", "pipette", "glass", "laboratory", "liquid"]
+  "outputs": [
+    { "file": "out/dropper.blend", "kind": "blender-scene" },
+    { "file": "out/dropper.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
+  ],
+  "tags": ["dropper", "pipette", "glass", "laboratory", "liquid", "capillary", "suction"]
 }

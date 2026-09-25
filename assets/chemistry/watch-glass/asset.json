@@ -1,10 +1,20 @@
 {
-  "id": "watch-glass", "name": "Watch Glass (80 mm)", "category": "chemistry", "type": "prop", "version": "0.1.0", "status": "draft",
-  "semanticDescription": "A shallow borosilicate watch glass used to hold or collect small quantities of solids during a chemistry experiment.",
-  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "diameter": 0.082 },
-  "simplifications": ["Glass thickness is slightly exaggerated for visual clarity."],
-  "provenance": { "method": "procedural-blender-python", "generator": "build_watch_glass.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-08-28" },
-  "rendererCompatibility": { "blender": true, "three": "import out/watch-glass.glb", "remotion": "use out/preview.png" },
-  "outputs": [{ "file": "out/watch-glass.blend", "kind": "blender-scene" }, { "file": "out/watch-glass.glb", "kind": "glTF-binary" }, { "file": "out/preview.png", "kind": "preview-render" }],
-  "tags": ["watch-glass", "laboratory", "glass", "solid-collection"]
+  "id": "watch-glass",
+  "name": "Watch Glass (80 mm)",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "A high-fidelity 80 mm borosilicate laboratory watch glass with fire-polished beveled rim, precise spherical curvature radius (88 mm), and collected chemical sample crystal powder bed. Features dual collections: Watch_Glass_Full (assembled dish with crystal powder on studio pedestal) and Watch_Glass_Section (180° longitudinal cutaway revealing uniform 1.6 mm glass wall thickness, spherical profile arc, diameter caliper, and annotated plaque).",
+  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "diameter": 0.080, "depth": 0.0094, "wallThickness": 0.0016 },
+  "simplifications": ["Sample powder is illustrative and represents collected reaction solids or evaporation residues."],
+  "provenance": { "method": "procedural-blender-python", "generator": "build_watch_glass.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-09-25" },
+  "rendererCompatibility": { "blender": true, "three": "import out/watch-glass.glb", "remotion": "use out/preview.png or render frames" },
+  "outputs": [
+    { "file": "out/watch-glass.blend", "kind": "blender-scene" },
+    { "file": "out/watch-glass.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
+  ],
+  "tags": ["watch-glass", "laboratory", "glass", "solid-collection", "evaporation", "chemistry"]
 }

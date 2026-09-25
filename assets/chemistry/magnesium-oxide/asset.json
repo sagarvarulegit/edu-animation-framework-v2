@@ -1,10 +1,25 @@
 {
-  "id": "magnesium-oxide", "name": "Magnesium Oxide Powder", "category": "chemistry", "type": "prop", "version": "0.1.0", "status": "draft",
-  "semanticDescription": "A white powder heap representing magnesium oxide, the product formed when magnesium burns in oxygen from air.",
-  "scaleConvention": { "unit": "meter", "basis": "visualization-scale" },
-  "simplifications": ["The granular heap is a pedagogical visual representation, not a measured mass of product."],
-  "provenance": { "method": "procedural-blender-python", "generator": "build_magnesium_oxide.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-08-28" },
-  "rendererCompatibility": { "blender": true, "three": "import out/magnesium-oxide.glb", "remotion": "use out/preview.png" },
-  "outputs": [{ "file": "out/magnesium-oxide.blend", "kind": "blender-scene" }, { "file": "out/magnesium-oxide.glb", "kind": "glTF-binary" }, { "file": "out/preview.png", "kind": "preview-render" }],
-  "tags": ["magnesium", "magnesium-oxide", "mgo", "powder", "reaction-product"]
+  "id": "magnesium-oxide",
+  "name": "Magnesium Oxide Powder Ash",
+  "category": "chemistry",
+  "type": "prop",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "Brilliant-white magnesium oxide (MgO) combustion product ash collected in an 80 mm borosilicate watch glass as produced in CBSE Class 10 Chemistry Activity 1.1 (Burning of Magnesium Ribbon). Features dual collections: Magnesium_Oxide_Full (realistic conical ash heap with micro-granules and crumbling combustion flakes in a watch glass on a studio plinth) and Magnesium_Oxide_Detail (180° longitudinal cutaway revealing internal powder bed profile, calipers, an atomic/ionic rock-salt lattice inset demonstrating alternating Mg2+ and O2- ions, and technical reaction plaque).",
+  "scaleConvention": { "unit": "meter", "basis": "real-world-scale", "watchGlassDiameter": 0.080, "ashHeapDiameter": 0.050, "ashHeapHeight": 0.0075 },
+  "simplifications": ["The atomic ionic lattice unit cell is a pedagogical structural inset to connect physical ash powder to its sub-microscopic 1:1 ionic crystal lattice."],
+  "materials": [
+    { "id": "mgo-ash", "look": "fluffy brilliant-white powdery ash, metallic 0.0, roughness 0.96" },
+    { "id": "mgo-flake", "look": "crumbling brittle combustion flakes, metallic 0.0, roughness 0.92" },
+    { "id": "mgo-glass", "look": "borosilicate Pyrex watch glass, IOR 1.52, roughness 0.012" }
+  ],
+  "provenance": { "method": "procedural-blender-python", "generator": "build_magnesium_oxide.py", "generatedBy": "AI coding agent", "license": "project-original", "date": "2026-09-25" },
+  "rendererCompatibility": { "blender": true, "three": "import out/magnesium-oxide.glb", "remotion": "use out/preview.png or render frames" },
+  "outputs": [
+    { "file": "out/magnesium-oxide.blend", "kind": "blender-scene" },
+    { "file": "out/magnesium-oxide.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
+  ],
+  "tags": ["chemistry", "magnesium", "magnesium-oxide", "mgo", "powder", "ash", "combustion", "reaction-product", "cbse", "ncert"]
 }

@@ -3,29 +3,31 @@
   "name": "Magnesium Ribbon",
   "category": "chemistry",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A thin strip of elemental magnesium metal as used in the CBSE Class 10 'burning of magnesium ribbon' experiment, shown as a gently wavy strip.",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "A strip of elemental magnesium metal used in CBSE Class 10 Chemistry Activity 1.1 (Burning of Magnesium Ribbon). Features dual collections: Magnesium_Ribbon_Full (curled ribbon showing shiny cleaned elemental Mg metal vs dull protective MgO/MgCO3 passivation layer, alongside sandpaper sheet) and Magnesium_Ribbon_Detail (micro-structural cross-section showing pure Mg core, surface oxide layer, mechanical abrasion vectors, calipers, and technical plaque).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "length": 0.15,
-    "width": 0.012,
-    "thickness": 0.0015
+    "length": 0.130,
+    "width": 0.008,
+    "thickness": 0.0008
   },
   "simplifications": [
-    "Thickness exaggerated from ~0.1 mm (real ribbon) to 1.5 mm so the strip remains visible at educational camera distances; the exaggeration must not be read as physical scale.",
-    "Wavy-strip shape approximates how rolled magnesium ribbon unwinds; it is not an exact model of any specific commercial ribbon."
+    "Thickness slightly exaggerated (0.8 mm vs ~0.2 mm real ribbon) for visual clarity at educational camera distances.",
+    "Ribbon demonstrates the pedagogical concept of cleaning with sandpaper before combustion to remove protective oxide coating."
   ],
   "materials": [
-    { "id": "magnesium-metal", "look": "silvery-white metal, metallic 1.0, roughness 0.35" }
+    { "id": "mg-shiny", "look": "lustrous silvery-white pure elemental magnesium, metallic 0.98, roughness 0.18" },
+    { "id": "mg-tarnish", "look": "dull matte grey protective magnesium oxide/carbonate passivation layer" },
+    { "id": "mg-sandpaper", "look": "coarse brown silicon carbide abrasive sandpaper" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_magnesium_ribbon.py",
-    "generatedBy": "AI coding agent (ox-alpha)",
+    "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -35,7 +37,8 @@
   "outputs": [
     { "file": "out/magnesium-ribbon.blend", "kind": "blender-scene" },
     { "file": "out/magnesium-ribbon.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
-  "tags": ["mg", "metal", "laboratory"]
+  "tags": ["chemistry", "magnesium", "ribbon", "metal", "passivation", "oxidation", "cbse", "ncert"]
 }
