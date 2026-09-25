@@ -4,76 +4,42 @@
   "category": "chemistry",
   "type": "prop",
   "version": "1.0.0",
-  "status": "reviewed",
-  "semanticDescription": "Laboratory heating assembly comprising a heavy cast-iron tripod stand, nichrome wire gauze with ceramic heat-distribution center pad, and porcelain evaporating china dish containing copper powder (CBSE Class 10 Chemistry Ch 1 Activity 1.11).",
+  "status": "final",
+  "semanticDescription": "Laboratory heating assembly comprising a heavy cast-iron triangular tripod stand, nichrome wire gauze with ceramic heat-distribution center pad, and porcelain evaporating china dish containing copper powder undergoing thermal oxidation into black copper(II) oxide (CBSE Class 10 Chemistry Ch 1 Activity 1.11).",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "width": 0.16,
-    "height": 0.22,
-    "depth": 0.16
+    "width": 0.160,
+    "height": 0.220,
+    "depth": 0.160
   },
   "simplifications": [
-    "Wire mesh simplified to cross-hatched textured pattern with solid ceramic pad.",
-    "Tripod legs splayed at realistic 15 degree stability angle."
+    "Wire mesh modeled as textured nichrome grid with ceramic refractory heat-distribution disc and surface copper oxide crust cross-section."
   ],
   "materials": [
-    {
-      "id": "tripod-cast-iron",
-      "look": "Black wrinkle-finish heavy cast iron"
-    },
-    {
-      "id": "nichrome-wire-mesh",
-      "look": "Interwoven nichrome wire grid"
-    },
-    {
-      "id": "ceramic-center-pad",
-      "look": "Circular heat-resistant off-white ceramic disc"
-    },
-    {
-      "id": "porcelain-dish",
-      "look": "Glazed white laboratory porcelain evaporating dish"
-    },
-    {
-      "id": "copper-powder-oxidized",
-      "look": "Reddish brown elemental copper powder with surface black CuO crust"
-    }
+    { "id": "tripod-cast-iron", "look": "black crackle enamel cast iron tripod ring and legs, metallic 0.72, roughness 0.52" },
+    { "id": "nichrome-wire-mesh", "look": "woven nichrome wire grid with crimped edges, metallic 0.75, roughness 0.35" },
+    { "id": "ceramic-center-pad", "look": "refractory off-white ceramic circular pad, metallic 0.05, roughness 0.85" },
+    { "id": "porcelain-dish", "look": "high-gloss glazed white laboratory porcelain evaporating dish, metallic 0.05, roughness 0.15" },
+    { "id": "copper-powder-oxidized", "look": "unreacted reddish-brown elemental copper core with surface black copper(II) oxide crust" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_tripod_gauze.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-09-05"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
     "three": "import out/tripod-wire-gauze.glb",
-    "remotion": "use out/preview.png"
+    "remotion": "use out/preview.png or render frames"
   },
   "outputs": [
-    {
-      "file": "out/tripod-wire-gauze.blend",
-      "kind": "blender-scene"
-    },
-    {
-      "file": "out/tripod-wire-gauze.glb",
-      "kind": "glTF-binary"
-    },
-    {
-      "file": "out/preview.png",
-      "kind": "preview-render"
-    }
+    { "file": "out/tripod-wire-gauze.blend", "kind": "blender-scene" },
+    { "file": "out/tripod-wire-gauze.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
-  "tags": [
-    "tripod-stand",
-    "wire-gauze",
-    "china-dish",
-    "oxidation",
-    "copper-oxide",
-    "evaporation",
-    "heating",
-    "CBSE-class-10",
-    "chemistry"
-  ]
+  "tags": ["laboratory", "chemistry", "heating", "tripod", "wire-gauze", "china-dish", "copper-oxidation"]
 }

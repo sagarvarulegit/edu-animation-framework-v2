@@ -1,33 +1,35 @@
 {
   "id": "retort-stand",
-  "name": "Retort Stand with Clamp",
+  "name": "Laboratory Retort Stand with 3-Prong Clamp",
   "category": "chemistry",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "An iron retort stand with base plate, vertical rod, and adjustable clamp, used to hold test tubes and flasks during CBSE Class 10 experiments.",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "A heavy cast-iron laboratory retort stand with a vertical stainless steel support rod, die-cast right-angle bosshead clamp with brass T-screws, and a 3-prong articulated utility clamp with high-temperature silicone rubber gripping sleeves, holding a standard laboratory test tube.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "height": 0.15,
-    "base-width": 0.1
+    "totalHeight": 0.520,
+    "baseWidth": 0.200,
+    "baseDepth": 0.125
   },
   "simplifications": [
-    "Clamp shown in fixed position.",
-    "No wingnut detail."
+    "Test tube is shown clamped at mid-height for authentic experimental apparatus representation."
   ],
   "materials": [
-    {
-      "id": "stand-iron",
-      "look": "dark iron, metallic 0.8, roughness 0.45"
-    }
+    { "id": "stand-cast-iron", "look": "black crackle enamel cast iron base, metallic 0.72, roughness 0.48" },
+    { "id": "stand-chrome-rod", "look": "precision-ground chrome steel support rod, metallic 0.95, roughness 0.14" },
+    { "id": "stand-bosshead", "look": "die-cast zinc/aluminum alloy clamp body, metallic 0.88, roughness 0.28" },
+    { "id": "stand-brass-tscrew", "look": "machined brass T-screw with Tommy bar, metallic 0.92, roughness 0.22" },
+    { "id": "stand-rubber-sleeve", "look": "high-friction red silicone rubber finger sleeves, metallic 0.0, roughness 0.55" },
+    { "id": "stand-pyrex-glass", "look": "borosilicate test tube glass, ior 1.52, roughness 0.012" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_stand.py",
     "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -35,24 +37,10 @@
     "remotion": "use out/preview.png or render frames"
   },
   "outputs": [
-    {
-      "file": "out/retort-stand.blend",
-      "kind": "blender-scene"
-    },
-    {
-      "file": "out/retort-stand.glb",
-      "kind": "glTF-binary"
-    },
-    {
-      "file": "out/preview.png",
-      "kind": "preview-render"
-    }
+    { "file": "out/retort-stand.blend", "kind": "blender-scene" },
+    { "file": "out/retort-stand.glb", "kind": "glTF-binary" },
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
-  "tags": [
-    "stand",
-    "clamp",
-    "iron",
-    "laboratory",
-    "support"
-  ]
+  "tags": ["laboratory", "chemistry", "physics", "apparatus", "support", "retort-stand", "clamp"]
 }

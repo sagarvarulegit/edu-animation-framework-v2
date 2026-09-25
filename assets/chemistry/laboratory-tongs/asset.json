@@ -1,28 +1,31 @@
 {
   "id": "laboratory-tongs",
-  "name": "Laboratory Tongs",
+  "name": "Laboratory Crucible & Ribbon Tongs",
   "category": "chemistry",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "Steel laboratory tongs (scissor type) used to hold a magnesium ribbon over a flame without direct hand contact.",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "Forged stainless steel scissor-type laboratory tongs with ergonomic finger loops, cross-lap pivot rivet, bowed gripping jaws with serrated tips gripping a magnesium ribbon strip, and detailed engineering close-up of the pivot mechanism and jaw serration profile.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "totalLength": 0.22
+    "totalLength": 0.235,
+    "jawSpan": 0.040
   },
   "simplifications": [
-    "Arms are straight bars with a simple hinge cylinder; real tongs have curved jaws and finger rings that are omitted for visual clarity at educational camera distances."
+    "Tongs are shown holding a coiled magnesium ribbon strip ready for burner ignition (CBSE Class 10 Activity 1.1)."
   ],
   "materials": [
-    { "id": "tongs-steel", "look": "brushed steel, metallic 1.0, roughness 0.35" }
+    { "id": "tongs-stainless-steel", "look": "polished satin stainless steel 304, metallic 0.95, roughness 0.20" },
+    { "id": "tongs-rivet", "look": "cold-forged steel domed pivot rivet, metallic 0.92, roughness 0.24" },
+    { "id": "magnesium-ribbon-metal", "look": "silvery lustrous metallic magnesium ribbon with subtle surface brush grain" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_laboratory_tongs.py",
-    "generatedBy": "AI coding agent (ox-alpha)",
+    "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -32,7 +35,8 @@
   "outputs": [
     { "file": "out/laboratory-tongs.blend", "kind": "blender-scene" },
     { "file": "out/laboratory-tongs.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
-  "tags": ["laboratory", "equipment"]
+  "tags": ["laboratory", "chemistry", "tools", "tongs", "handling", "magnesium-burning"]
 }

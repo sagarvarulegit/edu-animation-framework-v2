@@ -1,34 +1,34 @@
 {
   "id": "bunsen-burner",
-  "name": "Bunsen Burner",
+  "name": "Laboratory Bunsen Burner",
   "category": "chemistry",
   "type": "prop",
-  "version": "0.1.0",
-  "status": "draft",
-  "semanticDescription": "A standard laboratory Bunsen burner: cast base, vertical stem, adjustable air collar, and brass nozzle. Provides the flame used to heat and ignite the magnesium ribbon.",
+  "version": "1.0.0",
+  "status": "final",
+  "semanticDescription": "A standard NCERT Class 9-12 laboratory Bunsen burner with heavy cast-iron base, knurled air collar, gas needle valve, serrated hose barb, nickel-plated mixing chimney, and authentic multi-zone flame with longitudinal cutaway section detailing internal Venturi air entrainment and combustion flame thermometry.",
   "scaleConvention": {
     "unit": "meter",
     "basis": "real-world-scale",
-    "totalHeight": 0.133
+    "totalHeight": 0.170,
+    "baseDiameter": 0.090
   },
   "simplifications": [
-    "Gas inlet hose and gas tap are omitted; lessons should imply the gas connection verbally if needed.",
-    "Air-collar adjustment ring is a static representation; no moving parts are authored yet.",
-    "Includes multi-zone Bunsen burner flame with inner reducing core and outer oxidizing mantle."
+    "Flame is modeled as dual-layer emissive volumetric boundary cones with physically calibrated temperature color isotherms."
   ],
   "materials": [
-    { "id": "burner-cast-iron", "look": "dark cast metal, metallic 0.75, roughness 0.55" },
-    { "id": "burner-brass", "look": "brass nozzle, metallic 0.92, roughness 0.25" },
-    { "id": "burner-nickel", "look": "nickel stem, metallic 0.95, roughness 0.22" },
-    { "id": "burner-flame-outer", "look": "outer blue oxidizing flame cone, emission strength 6.0" },
-    { "id": "burner-flame-inner", "look": "inner cyan reducing core cone, emission strength 10.0" }
+    { "id": "burner-cast-iron", "look": "dark cast iron base, metallic 0.78, roughness 0.52" },
+    { "id": "burner-brass", "look": "machined brass air collar and hose barb, metallic 0.92, roughness 0.22" },
+    { "id": "burner-nickel", "look": "polished nickel-plated chimney tube, metallic 0.95, roughness 0.18" },
+    { "id": "burner-hose", "look": "ribbed orange laboratory neoprene gas tubing, roughness 0.65" },
+    { "id": "burner-flame-outer", "look": "outer blue oxidizing flame mantle (1400-1540C), emission strength 8.0" },
+    { "id": "burner-flame-inner", "look": "inner cyan reducing core cone (900-1000C), emission strength 12.0" }
   ],
   "provenance": {
     "method": "procedural-blender-python",
     "generator": "build_bunsen_burner.py",
-    "generatedBy": "AI coding agent (ox-alpha)",
+    "generatedBy": "AI coding agent",
     "license": "project-original",
-    "date": "2026-08-26"
+    "date": "2026-09-25"
   },
   "rendererCompatibility": {
     "blender": true,
@@ -38,7 +38,8 @@
   "outputs": [
     { "file": "out/bunsen-burner.blend", "kind": "blender-scene" },
     { "file": "out/bunsen-burner.glb", "kind": "glTF-binary" },
-    { "file": "out/preview.png", "kind": "preview-render" }
+    { "file": "out/preview.png", "kind": "preview-render" },
+    { "file": "out/preview_section.png", "kind": "preview-render" }
   ],
-  "tags": ["laboratory", "equipment", "flame-source"]
+  "tags": ["laboratory", "chemistry", "heating", "bunsen-burner", "combustion", "flame"]
 }
