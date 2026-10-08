@@ -36,7 +36,7 @@ VIEWER_VIEWS = 'window.__viewer?.views ?? []'
 # a wrong flag shows up as capture_mode 'swiftshader' instead of silently claiming a GPU.
 ANGLE_ARGS = {'Darwin': ['--use-angle=metal'],
               'Linux': ['--use-angle=gl', '--ignore-gpu-blocklist'],
-              'Windows': ['--use-angle=d3d11']}
+              'Windows': ['--use-gl=angle', '--use-angle=d3d11', '--ignore-gpu-blocklist']}
 # WEBGL_debug_renderer_info is the only way to read the driver string the page actually got.
 RENDERER_JS = """() => {
   const gl = document.createElement('canvas').getContext('webgl2');
@@ -45,13 +45,42 @@ RENDERER_JS = """() => {
 }"""
 
 
+def find_system_browser():
+    """Locate system Chrome or Edge executable if present on Windows/macOS/Linux."""
+    custom = os.environ.get('CHROME_PATH')
+    if custom and Path(custom).exists():
+        return custom
+    candidates = [
+        # Windows
+        r'C:\Program Files\Google\Chrome\Application\chrome.exe',
+        r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe',
+        r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
+        # macOS
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+        # Linux
+        '/usr/bin/google-chrome',
+        '/usr/bin/chromium',
+        '/usr/bin/chromium-browser',
+    ]
+    for candidate in candidates:
+        if Path(candidate).exists():
+            return candidate
+    return None
+
+
 def launch_chromium(driver, gpu=False, headless=True):
     """One launcher for capture.py and kit-proof.py, so the two can never drift apart.
 
     Only ANGLE backend flags are added: no --no-sandbox, no --disable-web-security, no
     remote debugging port."""
-    args = ANGLE_ARGS.get(platform.system(), []) if gpu else []
-    return driver.chromium.launch(headless=headless, args=args)
+    args = list(ANGLE_ARGS.get(platform.system(), [])) if gpu else []
+    system_browser = find_system_browser()
+    try:
+        return driver.chromium.launch(headless=headless, args=args)
+    except Exception as err:
+        if system_browser and ("Executable doesn't exist" in str(err) or "executable doesn't exist" in str(err).lower()):
+            return driver.chromium.launch(headless=headless, args=args, executable_path=system_browser)
+        raise
 
 
 def read_renderer(page):
