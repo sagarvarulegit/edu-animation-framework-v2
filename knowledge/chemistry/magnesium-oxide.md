@@ -48,3 +48,11 @@ related_concepts:
 
 ## Nature and Properties
 Magnesium oxide is an odorless, non-toxic white powder possessing a high melting point ($2852^\circ\text{C}$), making it valuable as a refractory lining material. In CBSE Class 10 chemistry, it serves as the primary exemplar of basic metallic oxides.
+
+## Crystal Structure and Unit Cell Accounting
+Magnesium oxide crystallizes in the rock-salt (halite) structure, consisting of interpenetrating face-centered cubic (FCC) lattices of $\text{Mg}^{2+}$ cations and $\text{O}^{2-}$ anions:
+- **Coordination Number**: Each $\text{Mg}^{2+}$ ion is octahedrally coordinated by 6 $\text{O}^{2-}$ ions, and each $\text{O}^{2-}$ is coordinated by 6 $\text{Mg}^{2+}$ ions (6:6 coordination).
+- **Fractional Boundary Accounting per Conventional Unit Cell**:
+  - $\text{O}^{2-}$ ions occupy FCC lattice points: $8 \text{ corners} \times \frac{1}{8} + 6 \text{ faces} \times \frac{1}{2} = 1 + 3 = 4\text{ ions}$.
+  - $\text{Mg}^{2+}$ ions occupy octahedral interstitial sites: $12 \text{ edges} \times \frac{1}{4} + 1 \text{ body centre} \times 1 = 3 + 1 = 4\text{ ions}$.
+- **Net Unit Cell Composition**: Exactly 4 formula units of $\text{MgO}$ per conventional unit cell, preserving rigorous $1:1$ stoichiometric neutrality without double-counting shared boundary sites.

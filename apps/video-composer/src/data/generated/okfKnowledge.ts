@@ -1,7 +1,7 @@
 /**
  * AUTO-GENERATED FILE by tools/okf/compile-okf.mjs
  * DO NOT EDIT MANUALLY.
- * Generated on: 2026-09-07T13:28:31.365Z
+ * Generated on: 2026-10-08T09:21:13.574Z
  */
 
 export type OkfConceptType =
@@ -89,7 +89,7 @@ export interface OkfManifest {
 export const OKF_MANIFEST: OkfManifest = {
   "schemaVersion": "0.2.0",
   "spec": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
-  "generatedAt": "2026-09-07T13:28:31.365Z",
+  "generatedAt": "2026-10-08T09:21:13.574Z",
   "totalConcepts": 44,
   "totalEdges": 208,
   "byType": {
@@ -245,7 +245,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "human-heart-circulation",
         "cardiac-chambers"
       ],
-      "body": "# Aorta & Great Systemic Arterial Trunk\n\nThe aorta is the prime systemic conduit delivering oxygenated blood from the left ventricle. Its high concentration of elastic fibers allows it to expand during systolic ejection and recoil during diastole (Windkessel effect), ensuring continuous peripheral perfusion."
+      "body": "# Aorta & Great Systemic Arterial Trunk\r\n\r\nThe aorta is the prime systemic conduit delivering oxygenated blood from the left ventricle. Its high concentration of elastic fibers allows it to expand during systolic ejection and recoil during diastole (Windkessel effect), ensuring continuous peripheral perfusion."
     },
     "cardiac-chambers": {
       "id": "cardiac-chambers",
@@ -290,7 +290,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "human-heart-circulation",
         "aorta-systemic-trunk"
       ],
-      "body": "# The Four Cardiac Chambers & Valvular System\n\nThe human heart is divided by muscular and fibrous septa into four distinct chambers:\n1. **Right Atrium (RA)**: Receives systemic venous return via Superior Vena Cava (SVC) and Inferior Vena Cava (IVC).\n2. **Right Ventricle (RV)**: Pumps into Pulmonary Trunk through the Pulmonary Semilunar Valve.\n3. **Left Atrium (LA)**: Receives 4 Pulmonary Veins (2 left, 2 right).\n4. **Left Ventricle (LV)**: High-pressure conical chamber pumping into the Aorta through the Aortic Semilunar Valve."
+      "body": "# The Four Cardiac Chambers & Valvular System\r\n\r\nThe human heart is divided by muscular and fibrous septa into four distinct chambers:\r\n1. **Right Atrium (RA)**: Receives systemic venous return via Superior Vena Cava (SVC) and Inferior Vena Cava (IVC).\r\n2. **Right Ventricle (RV)**: Pumps into Pulmonary Trunk through the Pulmonary Semilunar Valve.\r\n3. **Left Atrium (LA)**: Receives 4 Pulmonary Veins (2 left, 2 right).\r\n4. **Left Ventricle (LV)**: High-pressure conical chamber pumping into the Aorta through the Aortic Semilunar Valve."
     },
     "digestive-system": {
       "id": "digestive-system",
@@ -326,7 +326,7 @@ export const OKF_MANIFEST: OkfManifest = {
       ],
       "related_lessons": [],
       "related_concepts": [],
-      "body": "# Human Alimentary Canal & Digestive System\n\nThe human alimentary canal is a continuous muscular tube spanning approximately $9\\text{ meters}$ extending from the buccal cavity to the anus, accompanied by specialized accessory digestive glands (salivary glands, liver with gallbladder, and pancreas)."
+      "body": "# Human Alimentary Canal & Digestive System\r\n\r\nThe human alimentary canal is a continuous muscular tube spanning approximately $9\\text{ meters}$ extending from the buccal cavity to the anus, accompanied by specialized accessory digestive glands (salivary glands, liver with gallbladder, and pancreas)."
     },
     "flower-anatomy": {
       "id": "flower-anatomy",
@@ -377,7 +377,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-eye-optics"
       ],
-      "body": "# Flower Anatomy\n\nFigure 7.7 in NCERT Class 10 Biology illustrates the reproductive architecture of angiosperms. Students are assessed on identifying male vs female organs, explaining self-pollination vs cross-pollination, and tracing post-fertilization changes (ovule becomes seed, ovary wall becomes pericarp/fruit)."
+      "body": "# Flower Anatomy\r\n\r\nFigure 7.7 in NCERT Class 10 Biology illustrates the reproductive architecture of angiosperms. Students are assessed on identifying male vs female organs, explaining self-pollination vs cross-pollination, and tracing post-fertilization changes (ovule becomes seed, ovary wall becomes pericarp/fruit)."
     },
     "human-excretory-system": {
       "id": "human-excretory-system",
@@ -426,7 +426,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-heart-circulation"
       ],
-      "body": "# Human Excretory System\n\nNCERT Class 10 Chapter 5 outlines the filtration of blood and elimination of toxic nitrogenous metabolites. The anatomical architecture coordinates high-pressure renal arterial perfusion with tubular reabsorption to maintain homeostatic osmotic balance."
+      "body": "# Human Excretory System\r\n\r\nNCERT Class 10 Chapter 5 outlines the filtration of blood and elimination of toxic nitrogenous metabolites. The anatomical architecture coordinates high-pressure renal arterial perfusion with tubular reabsorption to maintain homeostatic osmotic balance."
     },
     "human-eye-optics": {
       "id": "human-eye-optics",
@@ -471,7 +471,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "convex-lens",
         "snells-law"
       ],
-      "body": "# The Human Eye as an Optical Instrument\n\nThe human eyeball is approximately spherical with a diameter of about $2.3\\text{ cm}$. Light entering through the protective transparent cornea passes through the aqueous humor, pupil aperture, crystalline lens, and vitreous body to cast a real, inverted image onto the neuro-retinal membrane."
+      "body": "# The Human Eye as an Optical Instrument\r\n\r\nThe human eyeball is approximately spherical with a diameter of about $2.3\\text{ cm}$. Light entering through the protective transparent cornea passes through the aqueous humor, pupil aperture, crystalline lens, and vitreous body to cast a real, inverted image onto the neuro-retinal membrane."
     },
     "human-heart-circulation": {
       "id": "human-heart-circulation",
@@ -521,7 +521,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "cardiac-chambers",
         "aorta-systemic-trunk"
       ],
-      "body": "# Double Circulation in the Human Heart\n\n## 1. Physiological Mechanism\nHuman circulation is termed *double circulation* because blood passes through the four-chambered heart twice in one complete cardiovascular transit:\n1. **Pulmonary Circulation**: Transports deoxygenated blood from the right ventricle through the pulmonary arteries to the lung alveoli for gaseous exchange ($\\text{CO}_2$ release, $\\text{O}_2$ uptake), and returns oxygenated blood through the pulmonary veins into the left atrium.\n2. **Systemic Circulation**: Transports oxygenated blood from the muscular left ventricle through the aorta to all capillary beds in systemic tissues and organs, returning oxygen-depleted blood via the superior and inferior vena cava into the right atrium."
+      "body": "# Double Circulation in the Human Heart\r\n\r\n## 1. Physiological Mechanism\r\nHuman circulation is termed *double circulation* because blood passes through the four-chambered heart twice in one complete cardiovascular transit:\r\n1. **Pulmonary Circulation**: Transports deoxygenated blood from the right ventricle through the pulmonary arteries to the lung alveoli for gaseous exchange ($\\text{CO}_2$ release, $\\text{O}_2$ uptake), and returns oxygenated blood through the pulmonary veins into the left atrium.\r\n2. **Systemic Circulation**: Transports oxygenated blood from the muscular left ventricle through the aorta to all capillary beds in systemic tissues and organs, returning oxygen-depleted blood via the superior and inferior vena cava into the right atrium."
     },
     "human-respiratory-system": {
       "id": "human-respiratory-system",
@@ -569,7 +569,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-heart-circulation"
       ],
-      "body": "# Human Respiratory System\n\nThe respiratory system in NCERT Class 10 Biology explains human aerobic metabolism. Students are frequently tested on the anatomical pathway of air, the physiological function of cartilage rings, and how the alveolar architecture maximizes diffusion surface area."
+      "body": "# Human Respiratory System\r\n\r\nThe respiratory system in NCERT Class 10 Biology explains human aerobic metabolism. Students are frequently tested on the anatomical pathway of air, the physiological function of cartilage rings, and how the alveolar architecture maximizes diffusion surface area."
     },
     "nephron": {
       "id": "nephron",
@@ -616,7 +616,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-heart-circulation"
       ],
-      "body": "# Nephron Structure and Function\n\nThe nephron is the centerpiece of renal physiology in CBSE Class 10. The three phases of urine formation—Ultrafiltration at the glomerulus, Selective Reabsorption along the renal tubule, and Tubular Secretion—are directly represented in this 3D model."
+      "body": "# Nephron Structure and Function\r\n\r\nThe nephron is the centerpiece of renal physiology in CBSE Class 10. The three phases of urine formation—Ultrafiltration at the glomerulus, Selective Reabsorption along the renal tubule, and Tubular Secretion—are directly represented in this 3D model."
     },
     "reflex-arc": {
       "id": "reflex-arc",
@@ -665,7 +665,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-eye-optics"
       ],
-      "body": "# Reflex Arc\n\nReflex arcs evolved as an efficient emergency response system in animals. In CBSE Class 10 examinations, students are required to trace the complete circuit from peripheral receptor to muscle effector and explain why the spinal cord executes the motor withdrawal before the brain consciously registers the sensation of heat or pain."
+      "body": "# Reflex Arc\r\n\r\nReflex arcs evolved as an efficient emergency response system in animals. In CBSE Class 10 examinations, students are required to trace the complete circuit from peripheral receptor to muscle effector and explain why the spinal cord executes the motor withdrawal before the brain consciously registers the sensation of heat or pain."
     },
     "stoma": {
       "id": "stoma",
@@ -713,7 +713,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-eye-optics"
       ],
-      "body": "# Stomatal Apparatus\n\nIn NCERT Class 10 Biology, the stomatal apparatus illustrates how cellular turgor mechanics regulate macroscopic physiological processes. The differential thickness between inner and outer cell walls is the mechanical basis for opening and closing."
+      "body": "# Stomatal Apparatus\r\n\r\nIn NCERT Class 10 Biology, the stomatal apparatus illustrates how cellular turgor mechanics regulate macroscopic physiological processes. The differential thickness between inner and outer cell walls is the mechanical basis for opening and closing."
     },
     "trophic-level-pyramid": {
       "id": "trophic-level-pyramid",
@@ -765,7 +765,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "human-eye-optics"
       ],
-      "body": "# Ecological Trophic Pyramid\n\nChapter 13 in NCERT Class 10 explores trophic ecology. The step pyramid geometry visually enforces the dual core principles: the rapid attenuation of usable metabolic energy (10% law) and the catastrophic reciprocal concentration of environmental contaminants (biomagnification) at the top of the food chain."
+      "body": "# Ecological Trophic Pyramid\r\n\r\nChapter 13 in NCERT Class 10 explores trophic ecology. The step pyramid geometry visually enforces the dual core principles: the rapid attenuation of usable metabolic energy (10% law) and the catastrophic reciprocal concentration of environmental contaminants (biomagnification) at the top of the food chain."
     },
     "bunsen-burner": {
       "id": "bunsen-burner",
@@ -813,7 +813,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "magnesium-ribbon-combustion"
       ],
-      "body": "# Laboratory Bunsen Burner\n\n## Anatomy & Operation\nThe Bunsen burner comprises a heavy cast-iron base, a vertical brass barrel, a needle gas jet, and an adjustable rotating air collar. Adjusting the air collar controls air-fuel stoichiometry between a sooty yellow flame ($300^\\circ\\text{C}$) and a clean, high-temperature blue oxidizing flame ($1100^\\circ\\text{C}$)."
+      "body": "# Laboratory Bunsen Burner\r\n\r\n## Anatomy & Operation\r\nThe Bunsen burner comprises a heavy cast-iron base, a vertical brass barrel, a needle gas jet, and an adjustable rotating air collar. Adjusting the air collar controls air-fuel stoichiometry between a sooty yellow flame ($300^\\circ\\text{C}$) and a clean, high-temperature blue oxidizing flame ($1100^\\circ\\text{C}$)."
     },
     "combination-reaction": {
       "id": "combination-reaction",
@@ -856,7 +856,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "magnesium-metal",
         "magnesium-oxide"
       ],
-      "body": "# Combination Reaction\n\nA reaction in which a single product is formed from two or more reactants is known as a combination reaction.\nIn the burning of magnesium ribbon:\n$$2\\text{Mg}(s) + \\text{O}_2(g) \\rightarrow 2\\text{MgO}(s)$$\nElemental magnesium and molecular oxygen combine into a single substance, solid magnesium oxide."
+      "body": "# Combination Reaction\r\n\r\nA reaction in which a single product is formed from two or more reactants is known as a combination reaction.\r\nIn the burning of magnesium ribbon:\r\n$$2\\text{Mg}(s) + \\text{O}_2(g) \\rightarrow 2\\text{MgO}(s)$$\r\nElemental magnesium and molecular oxygen combine into a single substance, solid magnesium oxide."
     },
     "crucible-tongs": {
       "id": "crucible-tongs",
@@ -897,7 +897,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "magnesium-ribbon-combustion"
       ],
-      "body": "# Crucible & Laboratory Tongs\n\nStainless steel laboratory tongs with bowed serrated jaws and looped handles designed to manipulate hot experimental vessels and combustible metal strips at safe operator distance."
+      "body": "# Crucible & Laboratory Tongs\r\n\r\nStainless steel laboratory tongs with bowed serrated jaws and looped handles designed to manipulate hot experimental vessels and combustible metal strips at safe operator distance."
     },
     "diamond-lattice": {
       "id": "diamond-lattice",
@@ -946,7 +946,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Diamond Allotrope\n\nDiamond represents carbon in its densest crystalline configuration. The isotropic distribution of tetrahedral single covalent bonds in all three dimensions eliminates any natural cleavage planes, creating extreme resistance to mechanical deformation."
+      "body": "# Diamond Allotrope\r\n\r\nDiamond represents carbon in its densest crystalline configuration. The isotropic distribution of tetrahedral single covalent bonds in all three dimensions eliminates any natural cleavage planes, creating extreme resistance to mechanical deformation."
     },
     "displacement-reaction": {
       "id": "displacement-reaction",
@@ -993,7 +993,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Single Displacement Reaction\n\nActivity 1.9 of NCERT Class 10 demonstrates chemical reactivity and redox electron exchange. Iron atoms lose electrons to form $Fe^{2+}$ ions that dissolve into solution, while $Cu^{2+}$ ions from the blue solution accept electrons to plate onto the iron surface as reddish-brown elemental copper."
+      "body": "# Single Displacement Reaction\r\n\r\nActivity 1.9 of NCERT Class 10 demonstrates chemical reactivity and redox electron exchange. Iron atoms lose electrons to form $Fe^{2+}$ ions that dissolve into solution, while $Cu^{2+}$ ions from the blue solution accept electrons to plate onto the iron surface as reddish-brown elemental copper."
     },
     "graphite-lattice": {
       "id": "graphite-lattice",
@@ -1043,7 +1043,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Graphite Allotrope\n\nGraphite is the thermodynamically standard state of carbon. The anisotropy between strong in-plane covalent bonding and weak out-of-plane van der Waals forces gives graphite its distinctive electrical conductivity and lubricative properties."
+      "body": "# Graphite Allotrope\r\n\r\nGraphite is the thermodynamically standard state of carbon. The anisotropy between strong in-plane covalent bonding and weak out-of-plane van der Waals forces gives graphite its distinctive electrical conductivity and lubricative properties."
     },
     "hydrogen-evolution": {
       "id": "hydrogen-evolution",
@@ -1097,7 +1097,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Reaction of Zinc with Dilute Acid\n\nActivity 2.1 in NCERT Class 10 demonstrates the fundamental reaction between metals and acids: $\\text{Acid} + \\text{Metal} \\rightarrow \\text{Salt} + \\text{Hydrogen gas}$. The pop sound confirms the flammable nature and presence of pure hydrogen gas."
+      "body": "# Reaction of Zinc with Dilute Acid\r\n\r\nActivity 2.1 in NCERT Class 10 demonstrates the fundamental reaction between metals and acids: $\\text{Acid} + \\text{Metal} \\rightarrow \\text{Salt} + \\text{Hydrogen gas}$. The pop sound confirms the flammable nature and presence of pure hydrogen gas."
     },
     "magnesium-metal": {
       "id": "magnesium-metal",
@@ -1149,7 +1149,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "magnesium-ribbon-combustion",
         "magnesium-oxide"
       ],
-      "body": "# Magnesium Metal (Mg)\n\n## Electronic Structure & Reactivity\nMagnesium ($Z = 12$) has 12 protons and 12 electrons configured as $1s^2 2s^2 2p^6 3s^2$ (or $2, 8, 2$). \nWith a low first and second ionization enthalpy, it acts as a strong reducing agent in combination and displacement reactions."
+      "body": "# Magnesium Metal (Mg)\r\n\r\n## Electronic Structure & Reactivity\r\nMagnesium ($Z = 12$) has 12 protons and 12 electrons configured as $1s^2 2s^2 2p^6 3s^2$ (or $2, 8, 2$). \r\nWith a low first and second ionization enthalpy, it acts as a strong reducing agent in combination and displacement reactions."
     },
     "magnesium-oxide": {
       "id": "magnesium-oxide",
@@ -1213,7 +1213,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "magnesium-metal",
         "combination-reaction"
       ],
-      "body": "# Magnesium Oxide (MgO)\n\n## Nature and Properties\nMagnesium oxide is an odorless, non-toxic white powder possessing a high melting point ($2852^\\circ\\text{C}$), making it valuable as a refractory lining material. In CBSE Class 10 chemistry, it serves as the primary exemplar of basic metallic oxides."
+      "body": "# Magnesium Oxide (MgO)\r\n\r\n## Nature and Properties\r\nMagnesium oxide is an odorless, non-toxic white powder possessing a high melting point ($2852^\\circ\\text{C}$), making it valuable as a refractory lining material. In CBSE Class 10 chemistry, it serves as the primary exemplar of basic metallic oxides.\r\n\r\n## Crystal Structure and Unit Cell Accounting\r\nMagnesium oxide crystallizes in the rock-salt (halite) structure, consisting of interpenetrating face-centered cubic (FCC) lattices of $\\text{Mg}^{2+}$ cations and $\\text{O}^{2-}$ anions:\r\n- **Coordination Number**: Each $\\text{Mg}^{2+}$ ion is octahedrally coordinated by 6 $\\text{O}^{2-}$ ions, and each $\\text{O}^{2-}$ is coordinated by 6 $\\text{Mg}^{2+}$ ions (6:6 coordination).\r\n- **Fractional Boundary Accounting per Conventional Unit Cell**:\r\n  - $\\text{O}^{2-}$ ions occupy FCC lattice points: $8 \\text{ corners} \\times \\frac{1}{8} + 6 \\text{ faces} \\times \\frac{1}{2} = 1 + 3 = 4\\text{ ions}$.\r\n  - $\\text{Mg}^{2+}$ ions occupy octahedral interstitial sites: $12 \\text{ edges} \\times \\frac{1}{4} + 1 \\text{ body centre} \\times 1 = 3 + 1 = 4\\text{ ions}$.\r\n- **Net Unit Cell Composition**: Exactly 4 formula units of $\\text{MgO}$ per conventional unit cell, preserving rigorous $1:1$ stoichiometric neutrality without double-counting shared boundary sites."
     },
     "magnesium-ribbon-combustion": {
       "id": "magnesium-ribbon-combustion",
@@ -1286,7 +1286,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "bunsen-burner",
         "crucible-tongs"
       ],
-      "body": "# Combustion of Magnesium Ribbon in Air\n\n## 1. Educational Overview\nThe burning of magnesium ribbon in air is the canonical foundational demonstration in the CBSE Class 10 Chemistry curriculum (NCERT Chapter 1, Activity 1.1). It introduces students to the observable hallmarks of a chemical reaction:\n- Evolution of energy (heat and dazzling white light).\n- Change in state and color (silvery flexible metal strip $\\rightarrow$ brittle white powder).\n- Formation of a new chemical substance with basic oxide properties.\n\n## 2. Experimental Procedure\n1. Take a 3–4 cm long strip of magnesium ribbon.\n2. Clean its surface thoroughly by rubbing with sandpaper until the silvery metal shines.\n3. Hold the cleaned ribbon securely with a pair of crucible tongs.\n4. Heat the tip of the ribbon in the hottest oxidizing zone (blue outer cone) of a Bunsen burner flame.\n5. As soon as the dazzling white ignition starts, hold the burning strip over a clean watch glass to collect the white magnesium oxide powder."
+      "body": "# Combustion of Magnesium Ribbon in Air\r\n\r\n## 1. Educational Overview\r\nThe burning of magnesium ribbon in air is the canonical foundational demonstration in the CBSE Class 10 Chemistry curriculum (NCERT Chapter 1, Activity 1.1). It introduces students to the observable hallmarks of a chemical reaction:\r\n- Evolution of energy (heat and dazzling white light).\r\n- Change in state and color (silvery flexible metal strip $\\rightarrow$ brittle white powder).\r\n- Formation of a new chemical substance with basic oxide properties.\r\n\r\n## 2. Experimental Procedure\r\n1. Take a 3–4 cm long strip of magnesium ribbon.\r\n2. Clean its surface thoroughly by rubbing with sandpaper until the silvery metal shines.\r\n3. Hold the cleaned ribbon securely with a pair of crucible tongs.\r\n4. Heat the tip of the ribbon in the hottest oxidizing zone (blue outer cone) of a Bunsen burner flame.\r\n5. As soon as the dazzling white ignition starts, hold the burning strip over a clean watch glass to collect the white magnesium oxide powder."
     },
     "methane-molecule": {
       "id": "methane-molecule",
@@ -1335,7 +1335,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Methane (CH4)\n\nMethane is the foundational paradigm for covalent chemical bonding in CBSE Class 10 Chemistry. By sharing electrons rather than transferring them, carbon attains a stable octet while hydrogen attains a stable duplet."
+      "body": "# Methane (CH4)\r\n\r\nMethane is the foundational paradigm for covalent chemical bonding in CBSE Class 10 Chemistry. By sharing electrons rather than transferring them, carbon attains a stable octet while hydrogen attains a stable duplet."
     },
     "oxygen-element": {
       "id": "oxygen-element",
@@ -1399,7 +1399,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "magnesium-oxide",
         "combination-reaction"
       ],
-      "body": "# Oxygen Element (O, Z=8)\n\n## Electronic Structure & Chemical Behavior\nOxygen ($Z = 8$) has 8 protons and 8 electrons configured as $1s^2 2s^2 2p^4$ (or $[2, 6]$). \nWith high electronegativity (3.44 on the Pauling scale), it readily pulls valence electrons from electropositive metals such as magnesium, forming crystalline basic oxides."
+      "body": "# Oxygen Element (O, Z=8)\r\n\r\n## Electronic Structure & Chemical Behavior\r\nOxygen ($Z = 8$) has 8 protons and 8 electrons configured as $1s^2 2s^2 2p^4$ (or $[2, 6]$). \r\nWith high electronegativity (3.44 on the Pauling scale), it readily pulls valence electrons from electropositive metals such as magnesium, forming crystalline basic oxides."
     },
     "soap-micelle": {
       "id": "soap-micelle",
@@ -1449,7 +1449,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Soap Micelle\n\nSection 4.3.4 of NCERT Class 10 explores the physical chemistry of cleansing action. Oily dirt is insoluble in pure water, but becomes solubilized when surrounded by the hydrocarbon tails of soap molecules inside the core of a micelle."
+      "body": "# Soap Micelle\r\n\r\nSection 4.3.4 of NCERT Class 10 explores the physical chemistry of cleansing action. Oily dirt is insoluble in pure water, but becomes solubilized when surrounded by the hydrocarbon tails of soap molecules inside the core of a micelle."
     },
     "tripod-wire-gauze": {
       "id": "tripod-wire-gauze",
@@ -1503,7 +1503,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Tripod Stand and Wire Gauze\n\nThe tripod stand and ceramic-centered wire gauze constitute the fundamental heating station in chemistry laboratories, providing a stable, thermally buffered platform for reactions such as the oxidation and reduction of copper in CBSE Class 10 Activity 1.11."
+      "body": "# Tripod Stand and Wire Gauze\r\n\r\nThe tripod stand and ceramic-centered wire gauze constitute the fundamental heating station in chemistry laboratories, providing a stable, thermally buffered platform for reactions such as the oxidation and reduction of copper in CBSE Class 10 Activity 1.11."
     },
     "water-electrolysis": {
       "id": "water-electrolysis",
@@ -1553,7 +1553,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "combination-reaction"
       ],
-      "body": "# Electrolysis of Water\n\nActivity 1.7 in NCERT Class 10 Chemistry proves the chemical composition of water through electrical energy. The 2:1 volume ratio observed between the cathode and anode gas collections provides empirical proof that water consists of hydrogen and oxygen in a 2:1 atomic proportion."
+      "body": "# Electrolysis of Water\r\n\r\nActivity 1.7 in NCERT Class 10 Chemistry proves the chemical composition of water through electrical energy. The 2:1 volume ratio observed between the cathode and anode gas collections provides empirical proof that water consists of hydrogen and oxygen in a 2:1 atomic proportion."
     },
     "cbse-class-10-science": {
       "id": "cbse-class-10-science",
@@ -1590,7 +1590,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "ncert-physics-ch11",
         "ncert-biology-ch06"
       ],
-      "body": "# CBSE Class 10 Science Curriculum Specification\n\nThe CBSE Class 10 Science course (Code 086) establishes foundational STEM literacy organized into five thematic units:\n1. **Unit I: Chemical Substances — Nature and Behaviour** (Chemical Reactions, Acids/Bases/Salts, Metals and Non-Metals, Carbon Compounds).\n2. **Unit II: World of Living** (Life Processes, Control and Coordination, Reproduction, Heredity).\n3. **Unit III: Natural Phenomena** (Light – Reflection and Refraction, The Human Eye and Colourful World).\n4. **Unit IV: Effects of Current** (Electricity, Magnetic Effects of Electric Current).\n5. **Unit V: Natural Resources** (Our Environment)."
+      "body": "# CBSE Class 10 Science Curriculum Specification\r\n\r\nThe CBSE Class 10 Science course (Code 086) establishes foundational STEM literacy organized into five thematic units:\r\n1. **Unit I: Chemical Substances — Nature and Behaviour** (Chemical Reactions, Acids/Bases/Salts, Metals and Non-Metals, Carbon Compounds).\r\n2. **Unit II: World of Living** (Life Processes, Control and Coordination, Reproduction, Heredity).\r\n3. **Unit III: Natural Phenomena** (Light – Reflection and Refraction, The Human Eye and Colourful World).\r\n4. **Unit IV: Effects of Current** (Electricity, Magnetic Effects of Electric Current).\r\n5. **Unit V: Natural Resources** (Our Environment)."
     },
     "ncert-biology-ch06": {
       "id": "ncert-biology-ch06",
@@ -1627,7 +1627,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "cardiac-chambers",
         "cbse-class-10-science"
       ],
-      "body": "# NCERT Class 10 Biology Chapter 6: Life Processes\n\nComprehensive study of metabolic life-sustaining processes: Autotrophic & Heterotrophic Nutrition, Aerobic & Anaerobic Respiration, Double Circulation & Lymphatic System, and Human Excretory System (Nephron structure)."
+      "body": "# NCERT Class 10 Biology Chapter 6: Life Processes\r\n\r\nComprehensive study of metabolic life-sustaining processes: Autotrophic & Heterotrophic Nutrition, Aerobic & Anaerobic Respiration, Double Circulation & Lymphatic System, and Human Excretory System (Nephron structure)."
     },
     "ncert-chemistry-ch01": {
       "id": "ncert-chemistry-ch01",
@@ -1664,7 +1664,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "combination-reaction",
         "cbse-class-10-science"
       ],
-      "body": "# NCERT Class 10 Chemistry Chapter 1\n\n## Core Activities & Practical Demonstrations\n- **Activity 1.1**: Burning of Magnesium Ribbon in Air ($2\\text{Mg} + \\text{O}_2 \\rightarrow 2\\text{MgO}$).\n- **Activity 1.2**: Precipitation of Lead Iodide ($\\text{Pb(NO}_3)_2 + 2\\text{KI} \\rightarrow \\text{PbI}_2 \\downarrow + 2\\text{KNO}_3$).\n- **Activity 1.3**: Zinc Granules in Dilute Sulphuric Acid ($\\text{Zn} + \\text{H}_2\\text{SO}_4 \\rightarrow \\text{ZnSO}_4 + \\text{H}_2 \\uparrow$)."
+      "body": "# NCERT Class 10 Chemistry Chapter 1\r\n\r\n## Core Activities & Practical Demonstrations\r\n- **Activity 1.1**: Burning of Magnesium Ribbon in Air ($2\\text{Mg} + \\text{O}_2 \\rightarrow 2\\text{MgO}$).\r\n- **Activity 1.2**: Precipitation of Lead Iodide ($\\text{Pb(NO}_3)_2 + 2\\text{KI} \\rightarrow \\text{PbI}_2 \\downarrow + 2\\text{KNO}_3$).\r\n- **Activity 1.3**: Zinc Granules in Dilute Sulphuric Acid ($\\text{Zn} + \\text{H}_2\\text{SO}_4 \\rightarrow \\text{ZnSO}_4 + \\text{H}_2 \\uparrow$)."
     },
     "ncert-physics-ch11": {
       "id": "ncert-physics-ch11",
@@ -1703,7 +1703,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "optical-dispersion",
         "cbse-class-10-science"
       ],
-      "body": "# NCERT Class 10 Physics Chapter 11\n\nCovers the structure and defects of the human eye, refraction of light through a glass prism, dispersion of white light, atmospheric refraction (twinkling of stars, advance sunrise), and scattering of light (blue color of sky, red color at sunset)."
+      "body": "# NCERT Class 10 Physics Chapter 11\r\n\r\nCovers the structure and defects of the human eye, refraction of light through a glass prism, dispersion of white light, atmospheric refraction (twinkling of stars, advance sunrise), and scattering of light (blue color of sky, red color at sunset)."
     },
     "angle-of-deviation": {
       "id": "angle-of-deviation",
@@ -1748,7 +1748,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "optical-prism",
         "snells-law"
       ],
-      "body": "# Angle of Deviation (D)\n\nIn a triangular prism, because the two lateral refracting surfaces are not parallel, the emergent ray is bent towards the thicker base of the prism. The angle between the incident direction and the final emergent direction is termed the Angle of Deviation ($D$)."
+      "body": "# Angle of Deviation (D)\r\n\r\nIn a triangular prism, because the two lateral refracting surfaces are not parallel, the emergent ray is bent towards the thicker base of the prism. The angle between the incident direction and the final emergent direction is termed the Angle of Deviation ($D$)."
     },
     "bar-magnet": {
       "id": "bar-magnet",
@@ -1797,7 +1797,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "electric-circuit"
       ],
-      "body": "# Permanent Bar Magnet\n\nThe permanent bar magnet serves as the standard pedagogical exemplar in NCERT Chapter 12 for demonstrating magnetic poles, drawing field lines using iron filings and compass plotting, and understanding non-intersecting field geometry."
+      "body": "# Permanent Bar Magnet\r\n\r\nThe permanent bar magnet serves as the standard pedagogical exemplar in NCERT Chapter 12 for demonstrating magnetic poles, drawing field lines using iron filings and compass plotting, and understanding non-intersecting field geometry."
     },
     "convex-lens": {
       "id": "convex-lens",
@@ -1847,7 +1847,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "snells-law"
       ],
-      "body": "# Double Convex Lens\n\nDouble convex lenses are the principal optical component in compound microscopes, astronomical telescopes, camera objectives, and corrective spectacles for hypermetropia (farsightedness)."
+      "body": "# Double Convex Lens\r\n\r\nDouble convex lenses are the principal optical component in compound microscopes, astronomical telescopes, camera objectives, and corrective spectacles for hypermetropia (farsightedness)."
     },
     "convex-mirror": {
       "id": "convex-mirror",
@@ -1899,7 +1899,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "snells-law"
       ],
-      "body": "# Convex Mirror\n\nA convex mirror is a diverging spherical mirror whose reflecting surface curves outward toward the light source. It forms virtual, erect, and diminished images for all real object positions. Because it curves outwards, it gathers light over a wide angle, offering drivers and shopkeepers a broad field of view."
+      "body": "# Convex Mirror\r\n\r\nA convex mirror is a diverging spherical mirror whose reflecting surface curves outward toward the light source. It forms virtual, erect, and diminished images for all real object positions. Because it curves outwards, it gathers light over a wide angle, offering drivers and shopkeepers a broad field of view."
     },
     "electric-circuit": {
       "id": "electric-circuit",
@@ -1955,7 +1955,7 @@ export const OKF_MANIFEST: OkfManifest = {
       ],
       "related_lessons": [],
       "related_concepts": [],
-      "body": "# Electric Circuit & Ohm's Law Apparatus\n\nStandard CBSE Class 10 electricity setup for verifying the linear $V-I$ characteristic of metallic conductors. By varying the position of the rheostat sliding contact, students record multiple current-voltage pairs to plot a straight-line graph through the origin, whose slope represents the ohmic resistance $R = \\Delta V / \\Delta I$."
+      "body": "# Electric Circuit & Ohm's Law Apparatus\r\n\r\nStandard CBSE Class 10 electricity setup for verifying the linear $V-I$ characteristic of metallic conductors. By varying the position of the rheostat sliding contact, students record multiple current-voltage pairs to plot a straight-line graph through the origin, whose slope represents the ohmic resistance $R = \\Delta V / \\Delta I$."
     },
     "electric-motor": {
       "id": "electric-motor",
@@ -2009,7 +2009,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "electric-circuit"
       ],
-      "body": "# Direct Current (DC) Electric Motor\n\nThe electric motor demonstrates the fundamental conversion of electrical energy to mechanical work. In CBSE Class 10 examinations, students are evaluated on diagram labelling (armature, split rings, brushes, field magnets) and explaining the function of the split-ring commutator in reversing current direction every half-turn to sustain continuous rotation."
+      "body": "# Direct Current (DC) Electric Motor\r\n\r\nThe electric motor demonstrates the fundamental conversion of electrical energy to mechanical work. In CBSE Class 10 examinations, students are evaluated on diagram labelling (armature, split rings, brushes, field magnets) and explaining the function of the split-ring commutator in reversing current direction every half-turn to sustain continuous rotation."
     },
     "galvanometer": {
       "id": "galvanometer",
@@ -2064,7 +2064,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "electric-circuit"
       ],
-      "body": "# Galvanometer\n\nThe center-zero galvanometer is the essential detector in electromagnetic induction investigations. In NCERT Chapter 12 Activity 12.8, when the North pole of a bar magnet is thrust into a fixed coil of wire, the galvanometer needle undergoes a momentary deflection to one side, proving that motion relative to a magnetic field induces electrical current."
+      "body": "# Galvanometer\r\n\r\nThe center-zero galvanometer is the essential detector in electromagnetic induction investigations. In NCERT Chapter 12 Activity 12.8, when the North pole of a bar magnet is thrust into a fixed coil of wire, the galvanometer needle undergoes a momentary deflection to one side, proving that motion relative to a magnetic field induces electrical current."
     },
     "glass-prism-refraction": {
       "id": "glass-prism-refraction",
@@ -2126,7 +2126,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "optical-dispersion",
         "snells-law"
       ],
-      "body": "# Refraction of Light Through a Triangular Glass Prism\n\n## 1. Pedagogical Overview\nWhen a ray of light enters an equilateral triangular glass prism ($A = 60^\\circ$):\n1. **At first face $AB$ (Air $\\rightarrow$ Glass)**: Light enters an optically denser medium ($n \\approx 1.517$) and refracts towards the normal ($r_1 < i$).\n2. **Inside the prism along $EF$**: The ray propagates through the bulk glass.\n3. **At second face $AC$ (Glass $\\rightarrow$ Air)**: Light exits into the optically rarer air and refracts away from the second normal ($e > r_2$).\n4. **Deviation Angle ($D$)**: Extending the forward incident ray and backward emergent ray reveals the net angular deviation subtended at vertex $G$."
+      "body": "# Refraction of Light Through a Triangular Glass Prism\r\n\r\n## 1. Pedagogical Overview\r\nWhen a ray of light enters an equilateral triangular glass prism ($A = 60^\\circ$):\r\n1. **At first face $AB$ (Air $\\rightarrow$ Glass)**: Light enters an optically denser medium ($n \\approx 1.517$) and refracts towards the normal ($r_1 < i$).\r\n2. **Inside the prism along $EF$**: The ray propagates through the bulk glass.\r\n3. **At second face $AC$ (Glass $\\rightarrow$ Air)**: Light exits into the optically rarer air and refracts away from the second normal ($e > r_2$).\r\n4. **Deviation Angle ($D$)**: Extending the forward incident ray and backward emergent ray reveals the net angular deviation subtended at vertex $G$.\r\n\r\n## 2. Planar Interface Ray Vector Dynamics\r\nAt each refracting boundary with outward surface normal $\\mathbf{n}$ and incident ray direction unit vector $\\mathbf{d}_1$:\r\n- **Snell's Law in Vector Form**:\r\n  $$\\mathbf{d}_2 = \\frac{n_1}{n_2}\\mathbf{d}_1 + \\left(\\frac{n_1}{n_2}\\cos\\theta_1 - \\cos\\theta_2\\right)\\mathbf{n}$$\r\n  where $\\cos\\theta_1 = -(\\mathbf{d}_1 \\cdot \\mathbf{n})$ and $\\cos\\theta_2 = \\sqrt{1 - \\left(\\frac{n_1}{n_2}\\right)^2(1 - \\cos^2\\theta_1)}$.\r\n- **Total Internal Reflection Boundary Check**:\r\n  When transitioning from denser glass ($n_1 \\approx 1.517$) to rarer air ($n_2 \\approx 1.0$), the critical angle is $\\theta_c = \\arcsin(n_2 / n_1) \\approx 41.2^\\circ$. If the internal incidence angle $r_2 > \\theta_c$, the radicand becomes negative; the transmitted refracted branch ceases to exist, and total internal reflection occurs."
     },
     "optical-bench": {
       "id": "optical-bench",
@@ -2182,7 +2182,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "convex-lens",
         "snells-law"
       ],
-      "body": "# Laboratory Optical Bench\n\nThe optical bench is the quintessential experimental apparatus used in secondary physics laboratories for verifying Snell's law, tracing conjugate foci, determining lens focal lengths, and observing image magnification transitions."
+      "body": "# Laboratory Optical Bench\r\n\r\nThe optical bench is the quintessential experimental apparatus used in secondary physics laboratories for verifying Snell's law, tracing conjugate foci, determining lens focal lengths, and observing image magnification transitions."
     },
     "optical-dispersion": {
       "id": "optical-dispersion",
@@ -2234,7 +2234,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "optical-prism",
         "angle-of-deviation"
       ],
-      "body": "# Dispersion of White Light by a Glass Prism\n\nSir Isaac Newton was the first to demonstrate that sunlight consists of seven constituent colors by placing two identical prisms in an inverted combination to recombine the separated spectrum back into white light.\nThe dispersion arises because the speed of light $v$ in a material medium varies with wavelength $\\lambda$ (Cauchy's dispersion equation: $n(\\lambda) = A + B/\\lambda^2$)."
+      "body": "# Dispersion of White Light by a Glass Prism\r\n\r\nSir Isaac Newton was the first to demonstrate that sunlight consists of seven constituent colors by placing two identical prisms in an inverted combination to recombine the separated spectrum back into white light.\r\nThe dispersion arises because the speed of light $v$ in a material medium varies with wavelength $\\lambda$ (Cauchy's dispersion equation: $n(\\lambda) = A + B/\\lambda^2$)."
     },
     "optical-prism": {
       "id": "optical-prism",
@@ -2276,7 +2276,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "angle-of-deviation",
         "optical-dispersion"
       ],
-      "body": "# Equilateral Triangular Glass Prism\n\nA solid homogeneous block of optical glass (such as Schott N-BK7 crown glass) with two equilateral triangular end-faces and three rectangular lateral faces that refract and disperse light rays."
+      "body": "# Equilateral Triangular Glass Prism\r\n\r\nA solid homogeneous block of optical glass (such as Schott N-BK7 crown glass) with two equilateral triangular end-faces and three rectangular lateral faces that refract and disperse light rays."
     },
     "snells-law": {
       "id": "snells-law",
@@ -2323,7 +2323,7 @@ export const OKF_MANIFEST: OkfManifest = {
         "glass-prism-refraction",
         "angle-of-deviation"
       ],
-      "body": "# Snell's Law of Refraction\n\nThe refractive index $n$ quantifies the factor by which light wavefronts slow down when entering an optically denser medium. \nFor crown glass in air, $n \\approx 1.517$, meaning light travels approximately $1.517\\times$ slower in glass ($v \\approx 1.98 \\times 10^8\\text{ m/s}$) than in air/vacuum."
+      "body": "# Snell's Law of Refraction\r\n\r\nThe refractive index $n$ quantifies the factor by which light wavefronts slow down when entering an optically denser medium. \r\nFor crown glass in air, $n \\approx 1.517$, meaning light travels approximately $1.517\\times$ slower in glass ($v \\approx 1.98 \\times 10^8\\text{ m/s}$) than in air/vacuum."
     },
     "solenoid": {
       "id": "solenoid",
@@ -2371,7 +2371,7 @@ export const OKF_MANIFEST: OkfManifest = {
       "related_concepts": [
         "electric-circuit"
       ],
-      "body": "# Solenoid\n\nA solenoid consists of a helical winding of copper wire around an insulating or soft iron core. When an electric current flows through the coil, individual loop magnetic fields constructively interfere to produce a dense, uniform magnetic flux along the central axis."
+      "body": "# Solenoid\r\n\r\nA solenoid consists of a helical winding of copper wire around an insulating or soft iron core. When an electric current flows through the coil, individual loop magnetic fields constructively interfere to produce a dense, uniform magnetic flux along the central axis."
     }
   },
   "edges": [

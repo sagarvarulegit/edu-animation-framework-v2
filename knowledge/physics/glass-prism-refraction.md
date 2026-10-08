@@ -53,3 +53,11 @@ When a ray of light enters an equilateral triangular glass prism ($A = 60^\circ$
 2. **Inside the prism along $EF$**: The ray propagates through the bulk glass.
 3. **At second face $AC$ (Glass $\rightarrow$ Air)**: Light exits into the optically rarer air and refracts away from the second normal ($e > r_2$).
 4. **Deviation Angle ($D$)**: Extending the forward incident ray and backward emergent ray reveals the net angular deviation subtended at vertex $G$.
+
+## 2. Planar Interface Ray Vector Dynamics
+At each refracting boundary with outward surface normal $\mathbf{n}$ and incident ray direction unit vector $\mathbf{d}_1$:
+- **Snell's Law in Vector Form**:
+  $$\mathbf{d}_2 = \frac{n_1}{n_2}\mathbf{d}_1 + \left(\frac{n_1}{n_2}\cos\theta_1 - \cos\theta_2\right)\mathbf{n}$$
+  where $\cos\theta_1 = -(\mathbf{d}_1 \cdot \mathbf{n})$ and $\cos\theta_2 = \sqrt{1 - \left(\frac{n_1}{n_2}\right)^2(1 - \cos^2\theta_1)}$.
+- **Total Internal Reflection Boundary Check**:
+  When transitioning from denser glass ($n_1 \approx 1.517$) to rarer air ($n_2 \approx 1.0$), the critical angle is $\theta_c = \arcsin(n_2 / n_1) \approx 41.2^\circ$. If the internal incidence angle $r_2 > \theta_c$, the radicand becomes negative; the transmitted refracted branch ceases to exist, and total internal reflection occurs.
