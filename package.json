@@ -27,6 +27,7 @@
     "video:composer": "npm run dev --prefix apps/video-composer",
     "video:studio": "npm run dev --prefix apps/video-composer",
     "video:render": "npm run build --prefix apps/video-composer",
-    "test": "node tools/validate.mjs"
+    "test": "node tools/validate.mjs",
+    "test:visual": "python tools/capture.py"
   }
 }
