@@ -6,7 +6,9 @@ node_modules/
 # Build outputs & caches
 dist/
 dist-ssr/
+out/
 /out/
+apps/video-composer/out/
 *.local
 *.tsbuildinfo
 *.mp4
@@ -15,15 +17,28 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Blender backup & temp files
+# Duplicate assets in web application
+apps/interactive-viewer/public/assets/*.glb
+
+# Blender scene binary files (deterministically rebuilt via build_*.py)
+assets/**/out/*.blend
+*.blend
 *.blend1
 *.blend2
 *.blend@
 frames/
 frames_*/
 
+# Scene QA render outputs
+lessons/**/scenes/out/
+scenes/out/
+
 # Large raw extracted external sources
 assets/biology/human-heart/source/
+
+# Temporary loose images
+reach.png
+tmp.png
 
 # Logs & Environment
 npm-debug.log*
