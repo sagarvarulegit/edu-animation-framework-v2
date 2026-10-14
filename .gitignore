@@ -6,7 +6,6 @@ node_modules/
 # Build outputs & caches
 dist/
 dist-ssr/
-out/
 /out/
 apps/video-composer/out/
 *.local
@@ -17,11 +16,10 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Duplicate assets in web application
+# Duplicate assets in web application (dynamically served by Vite in dev and copied on build)
 apps/interactive-viewer/public/assets/*.glb
 
 # Blender scene binary files (deterministically rebuilt via build_*.py)
-assets/**/out/*.blend
 *.blend
 *.blend1
 *.blend2
