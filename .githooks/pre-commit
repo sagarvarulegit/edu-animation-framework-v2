@@ -1,0 +1,17 @@
+#!/bin/sh
+# Guard AGENTS.md / CLAUDE.md size: agents silently truncate rule files at 24 KB.
+# Warn above 20 KB, block above 24 KB. Bypass in emergencies: git commit --no-verify
+WARN=20000
+MAX=24000
+status=0
+for f in $(git diff --cached --name-only --diff-filter=ACM | grep -E '(^|/)(AGENTS|CLAUDE|GEMINI)\.md$'); do
+  size=$(git cat-file -s ":$f")
+  if [ "$size" -gt "$MAX" ]; then
+    echo "ERROR: $f is $size bytes (> $MAX). Agents will drop everything past 24 KB." >&2
+    echo "       Compact it or move reference material into docs/ and link it." >&2
+    status=1
+  elif [ "$size" -gt "$WARN" ]; then
+    echo "WARNING: $f is $size bytes (> $WARN). Compact it soon." >&2
+  fi
+done
+exit $status

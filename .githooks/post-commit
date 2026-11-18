@@ -1,0 +1,13 @@
+#!/bin/sh
+# Non-blocking reminder for CLI agents (Codex, Copilot, OpenCode, etc.) when substantive code
+# is committed without updating AGENTS.md, docs/project-memory/, docs/agents/, or .agents/skills/.
+changed=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null)
+[ -z "$changed" ] && exit 0
+
+if echo "$changed" | grep -Eq '(^|/)(AGENTS|CLAUDE|GEMINI)\.md$|(^|/)docs/(project-memory|agents|memory)/|(^|/)docs/project-memory\.md$|(^|/)\.agents/(rules|skills|scripts|hooks\.json)|(^|/)\.claude/|(^|/)\.cursor/|(^|/)\.github/copilot-instructions\.md$|(^|/)\.githooks/'; then
+  exit 0
+fi
+
+echo "[memory-check] Code committed without updating docs/project-memory/ or AGENTS.md." >&2
+echo "[memory-check] If this commit resolved a non-obvious gotcha or set a convention, commit the learning before pushing." >&2
+exit 0
